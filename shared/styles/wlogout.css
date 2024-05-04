@@ -1,0 +1,42 @@
+* {
+  background-image: none;
+  box-shadow: none;
+  transition: 20ms;
+}
+
+window {
+  background-color: alpha(@background, 0.2);
+}
+
+button {
+  color: @color1;
+  font-size: 20px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+
+  border-style: solid;
+  background-color: alpha(@background, 0.3);
+  border: 10px solid alpha(@color1, 0.5);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+button:hover {
+  background-color: alpha(@background, 0.6);
+  outline-style: none;
+}
+
+#lock,
+#logout,
+#suspend,
+#hibernate,
+#shutdown,
+#reboot {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+}

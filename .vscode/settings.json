@@ -1,0 +1,7 @@
+{
+  "editor.fontFamily": "'Fira Code Nerd Font', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "files.associations": {
+    "*.css": "less"
+  }
+}
