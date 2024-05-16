@@ -3,11 +3,6 @@
   user,
   ...
 }: {
-  home.packages = with pkgs; [
-    ueberzugpp # To preview images
-    ffmpegthumbnailer # To preview videos thumbnails
-  ];
-
   programs = {
     imv.enable = true;
     ranger = {
@@ -41,4 +36,11 @@
       ];
     };
   };
+
+  home.packages = with pkgs; [
+    ueberzugpp # To preview images
+    ffmpegthumbnailer # To preview videos thumbnails
+  ];
+
+  programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<.*ueberzugpp.*>" = "";
 }

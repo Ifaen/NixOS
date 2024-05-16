@@ -91,11 +91,12 @@
         createDirectories = true;
         pictures = "${user.home}/Media";
         videos = "${user.home}/Media";
+        music = "${user.home}/Media";
         extraConfig = {
-          XDG_SYNC = "${user.home}/Sync";
+          sync = "${user.home}/Sync";
+          flake = user.flake; # Path were flake is stored
         };
         # Prevent to create
-        music = null;
         desktop = null;
         publicShare = null;
         templates = null;
@@ -104,7 +105,6 @@
 
     # Open an instance of ranger in alacritty
     home.file.lf = {
-      enable = true;
       target = "${user.home}/.local/share/applications/lf.desktop";
       text = ''
         [Desktop Entry]

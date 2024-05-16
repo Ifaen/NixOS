@@ -13,7 +13,8 @@
       source = "${user.home}/.cache/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
       animations = {
-        enabled = "yes";
+        enabled = "no";
+        /*
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 7, myBezier"
@@ -23,6 +24,7 @@
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
+        */
       };
 
       decoration = {
@@ -40,9 +42,7 @@
         "col.shadow" = "rgba($color0ee)";
       };
 
-      dwindle = {
-        preserve_split = "yes"; # you probably want this
-      };
+      master.new_is_master = false;
 
       exec-once = [
         "${
@@ -60,7 +60,7 @@
         "col.active_border" = "rgba($color6a1)";
         "col.inactive_border" = "rgba($color1aa)";
         gaps_in = 2;
-        gaps_out = 2;
+        gaps_out = 1;
         layout = "master";
       };
 
@@ -93,7 +93,6 @@
           "3, monitor:${user.monitor.name}"
           "4, monitor:${user.monitor.name}"
           "5, monitor:${user.monitor.name}"
-          "15, monitor:${user.monitor.name}" # Gaming
         ]
         ++ (
           if (user.machine == "desktop") # When second monitor is turn off, workspaces move to default monitor
@@ -106,10 +105,9 @@
             "10, monitor:${user.monitor2.name}"
             # Workspaces with specific softwares
             "11, monitor:${user.monitor2.name}, default:true"
-            "12, monitor:${user.monitor2.name}"
+            "12, monitor:${user.monitor2.name}" # Spotify
             "13, monitor:${user.monitor2.name}, on-created-empty:keepassxc"
-            "14, monitor:${user.monitor2.name}"
-            "16, monitor:${user.monitor2.name}" # Gaming
+            "14, monitor:${user.monitor2.name}" # Thunderbird
           ]
           else []
         );

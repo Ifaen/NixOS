@@ -43,6 +43,8 @@ in {
     flake = user.flake;
   };
 
+  networking.hostName = user.machine; # Define your hostname.
+
   users = {
     mutableUsers = false;
     users = {
@@ -74,9 +76,9 @@ in {
     };
 
     extraSpecialArgs = {inherit user;};
-  };
 
-  networking.hostName = user.machine; # Define your hostname.
+    backupFileExtension = "bak";
+  };
 
   boot = {
     kernelParams = [

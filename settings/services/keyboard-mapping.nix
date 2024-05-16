@@ -287,6 +287,8 @@ in {
               launch: ["wtype", "Ú"]
             alt-shift-n:
               launch: ["wtype", "Ñ"]
+            alt-shift-1:
+              launch: ["wtype", "¡"]
 
 
         - name: cursor-keyboard

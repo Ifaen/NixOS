@@ -22,7 +22,6 @@
 
   home.file = {
     librewolf-profile = {
-      enable = true;
       text = ''
         [Profile0]
         Name=default
@@ -36,7 +35,6 @@
       target = "${user.home}/.librewolf/profiles.ini";
     };
     librewolf-userChrome = {
-      enable = true;
       # hides the native tabs
       text = ''
         #TabsToolbar, #sidebar-header {

@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   user,
   ...
@@ -28,7 +29,6 @@
   # Make the configuration file for keepassxc
   home-manager.users.${user.name} = {
     home.file.keepassxc = {
-      enable = true;
       target = "${user.home}/.config/keepassxc/keepassxc.ini";
       text = ''
         [General]
@@ -81,7 +81,7 @@
   services.syncthing = {
     enable = true;
     user = "${user.name}";
-    dataDir = "${user.home}/Sync";
+    dataDir = "${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.sync}"; # Obtain the name of sync folder in the extraconfig of xdg
     configDir = "${user.home}/.config/syncthing";
     settings = {
       devices = {
@@ -89,7 +89,7 @@
       };
       folders = {
         "Keepass" = {
-          path = "~/Sync/.keepass";
+          path = "${config.services.syncthing.dataDir}/.keepass";
           devices = ["mobile"];
         };
       };

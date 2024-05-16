@@ -17,29 +17,22 @@
     nur,
     xremap-flake,
   }: let
+    machine = builtins.readFile ./shared/others/machine; # Read from file the machine name, desktop or notebook
     user =
       {
         fullname = "Santiago Fuentes";
         name = "sfuentes";
         home = "/home/${user.name}";
-        flake = "/etc/nixos"; # Path were flake is stored
+        flake = "${user.home}/NixOS";
         mail = "sfuentes@mail.com";
         city = "Punta Arenas";
+        language = "us";
         system = "x86_64-linux";
+        inherit machine;
       }
       // (
-        if builtins.pathExists ./.is_notebook # If file exists, then is my notebook
+        if (machine == "desktop")
         then {
-          machine = "notebook";
-          monitor = {
-            name = "eDP-1";
-            width = "1920";
-            height = "1200";
-          };
-          language = "latam";
-        }
-        else {
-          machine = "desktop";
           monitor = {
             name = "DP-1";
             width = "1920";
@@ -50,23 +43,29 @@
             width = "1920";
             height = "1080";
           };
-          language = "us";
+        }
+        else {
+          monitor = {
+            name = "eDP-1";
+            width = "1920";
+            height = "1200";
+          };
         }
       );
   in {
-    nixosConfigurations."${user.machine}" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${machine} = nixpkgs.lib.nixosSystem {
       system = user.system;
       specialArgs = {
         inherit
           user
-          nur
           nixpkgs-stable
           home-manager
+          nur
           xremap-flake
           ;
       };
       modules = map (path: ./settings + path) [
-        /configuration.nix
+        /config.nix
         /imports.nix
         /packages.nix
       ];

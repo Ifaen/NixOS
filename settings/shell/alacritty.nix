@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  user,
+  ...
+}: {
   # https://sunnnychan.github.io/cheatsheet/linux/config/alacritty.yml.html
   programs.alacritty = {
     enable = true;
@@ -18,10 +22,17 @@
     };
   };
 
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "[workspace 3 silent] alacritty"
-    "[workspace 11 silent] alacritty"
-  ];
+  wayland.windowManager.hyprland.settings.exec-once =
+    [
+      "[workspace 11 silent] alacritty"
+    ]
+    ++ (
+      if user.machine == "desktop"
+      then [
+        "[workspace 3 silent] alacritty"
+      ]
+      else []
+    );
 
   programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<Alacritty>" = "󰆍";
 }

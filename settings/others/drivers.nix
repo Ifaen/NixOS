@@ -21,15 +21,10 @@
         # Drivers
         boot = {
           kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxKernel.packages.linux_zen.amdgpu-pro;
-
           kernelModules = ["amdgpu"]; # To boot kernel with amd module
         };
-        services.xserver.videoDrivers = ["amdgpu"]; # for XServer
 
-        fileSystems."/home" = {
-          device = "/dev/disk/by-label/Home";
-          fsType = "btrfs";
-        };
+        services.xserver.videoDrivers = ["amdgpu"]; # for XServer
 
         hardware.opengl = {
           enable = true; # Mesa

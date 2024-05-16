@@ -1,4 +1,8 @@
-{user, ...}: {
+{
+  config,
+  user,
+  ...
+}: {
   # Configure OS
   imports =
     [
@@ -33,6 +37,7 @@
     [
       ./apps/discord.nix # Voice chat
       ./apps/librewolf.nix # Web browser
+      ./apps/firefox.nix # Web browser of work
       ./apps/vscode.nix # Code editor
       ./apps/thunderbird.nix # Email manager
 
