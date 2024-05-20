@@ -19,6 +19,7 @@
       redhat.vscode-yaml # Support for yaml files
       #tamasfe.even-better-toml # Support for toml files
       wix.vscode-import-cost # Display import/require package size in the editor
+      # peacock
     ];
     userSettings = {
       "editor.defaultFormatter" = "esbenp.prettier-vscode"; # Use prettier to format the code

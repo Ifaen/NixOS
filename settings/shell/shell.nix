@@ -12,7 +12,6 @@
     ls = "eza";
     la = "eza -a";
     lg = "eza -l | grep";
-    lf = "ranger --choosedir=/tmp/.rangerdir; LASTDIR=`cat /tmp/.rangerdir`; cd \"$LASTDIR\"";
     cls = "clear";
     ".." = "cd ..";
   };
