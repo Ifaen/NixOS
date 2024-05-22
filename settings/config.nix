@@ -37,12 +37,6 @@ in {
   ];
   nixpkgs.config.allowUnfree = true; # Allow unfree packages for nixpkgs
 
-  # Yet another nix cli helper
-  programs.nh = {
-    enable = true;
-    flake = user.flake;
-  };
-
   networking.hostName = user.machine; # Define your hostname.
 
   users = {

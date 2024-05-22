@@ -7,9 +7,14 @@
         /*
         {
           name = "";
-          url = "";
-          keyword = "";
           toolbar = true;
+          bookmarks = [
+            {
+              name = "";
+              url = "";
+              keyword = "";
+            }
+          ];
         }
         */
         {
@@ -48,6 +53,11 @@
               keyword = "insta";
             }
             {
+              name = "TikTok";
+              url = "https://www.tiktok.com/";
+              keyword = "tt";
+            }
+            {
               name = "Twitter";
               url = "https://twitter.com/cabalgatas_puq";
               keyword = "twt";
@@ -56,6 +66,22 @@
               name = "Facebook";
               url = "https://facebook.com/aventuraspatagonia";
               keyword = "face";
+            }
+          ];
+        }
+        {
+          name = "Tools";
+          toolbar = true;
+          bookmarks = [
+            {
+              name = "Canva";
+              url = "https://www.canva.com/";
+              keyword = "canva";
+            }
+            {
+              name = "GitLab";
+              url = "https://gitlab.com/aventuras-en-la-patagonia/Webpage";
+              keyword = "glab";
             }
           ];
         }

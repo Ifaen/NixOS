@@ -48,10 +48,10 @@
       ./services/dunst.nix # Notification daemon
       ./services/swayidle.nix # Idle management daemon
 
-      ./shell/alacritty.nix # Terminal simulator
       ./shell/git.nix # Code version control
-      ./shell/ranger.nix # Terminal file browser
+      ./shell/lf.nix # Terminal file browser
       ./shell/starship.nix # Shell prompt customization
+      ./shell/terminal.nix # Terminal simulator
     ]
     ++ (
       if user.machine == "desktop"

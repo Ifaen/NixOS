@@ -18,15 +18,26 @@
 
   initExtra = ''
     fastfetch
+
     nh() {
       if [[ $1 == "os" && ($2 == "switch" || $2 == "test" || $2 == "boot") && $3 == "" ]]; then
         command nh os "$2" --ask
+      elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && $3 == "" ]]; then
+        command nh clean "$2" --ask
       else
         command nh "$@"
       fi
     }
   '';
 in {
+  # Yet another nix cli helper
+  programs.nh = {
+    enable = true;
+    flake = user.flake;
+  };
+
+  environment.pathsToLink = ["/share/zsh" "/share/bash-completion"]; # To allow completation of zsh and bash
+
   home-manager.users.${user.name} = {
     # SHELLS
     programs.zsh = {
@@ -42,9 +53,7 @@ in {
     # A BETTER CHANGE DIRECTORY
     programs.zoxide = {
       enable = true;
-      options = [
-        "--cmd cd"
-      ];
+      options = ["--cmd cd"];
     };
     programs.fzf = {
       enable = true; # For cdi, which means Change Directory Interactively
@@ -55,9 +64,7 @@ in {
       enable = true;
       icons = true; # Display icons of apps or folder
       git = true; # Display if file is being tracked by git
-      extraOptions = [
-        "--no-quotes"
-      ];
+      extraOptions = ["--no-quotes"];
     };
 
     # Packages used in the shell
@@ -67,13 +74,7 @@ in {
     ];
     home.file.fastfetch = {
       source = ../../shared/configs/fastfetch.jsonc;
-      target = "${user.home}/.config/fastfetch/config.jsonc";
+      target = ".config/fastfetch/config.jsonc";
     };
   };
-
-  programs.zsh.enable = true; # Enable zsh in PATH
-
-  users.defaultUserShell = pkgs.zsh;
-
-  environment.pathsToLink = ["/share/zsh" "/share/bash-completion"]; # To allow completation of zsh and bash
 }

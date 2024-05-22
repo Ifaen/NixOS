@@ -20,7 +20,6 @@
       cmd_duration = {
         show_notifications = true;
         min_time_to_notify = 60000 * 5;
-        #notification_timeout = ; #Duration to show notification for (in milliseconds). If unset, notification timeout will be determined by daemon. Not all notification daemons honor this option.
       };
       directory = {
         format = lib.concatStrings [
