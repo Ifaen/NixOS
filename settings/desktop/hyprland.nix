@@ -66,20 +66,29 @@
 
       gestures.workspace_swipe = "off";
 
-      input = {
-        kb_layout = "${user.language}";
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = "no";
-          disable_while_typing = false;
-        };
-        sensitivity = 1; # range [-1.0, 1.0], 0 means no modification.
-      };
+      input =
+        {
+          kb_layout = "${user.language}";
+          follow_mouse = 1;
+          touchpad = {
+            natural_scroll = "no";
+            disable_while_typing = false;
+          };
+        }
+        // (
+          if user.machine == "desktop"
+          then {
+            sensitivity = 1; # range [-1.0, 1.0], 0 means no modification.
+          }
+          else {
+            sensitivity = 0;
+          }
+        );
 
       misc.disable_hyprland_logo = true;
 
       monitor =
-        if (user.machine == "notebook")
+        if user.machine == "notebook"
         then "${user.monitor.name},${user.monitor.width}x${user.monitor.height}, auto, 1"
         else [
           "${user.monitor.name}, highres, 1920x0, 1"

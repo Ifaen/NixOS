@@ -20,8 +20,8 @@
     fastfetch
 
     nh() {
-      if [[ $1 == "os" && ($2 == "switch" || $2 == "test" || $2 == "boot") && $3 == "" ]]; then
-        command nh os "$2" --ask
+      if [[ ($1 == "switch" || $1 == "test" || $1 == "boot") && $2 == "" ]]; then
+        command nh os "$1" --ask
       elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && $3 == "" ]]; then
         command nh clean "$2" --ask
       else

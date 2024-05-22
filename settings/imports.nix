@@ -22,7 +22,7 @@
       ./others/hardware.nix
       ./others/language.nix
 
-      ./shell/shell.nix # Terminal shell configuration
+      ./commandline/shell.nix # Terminal shell configuration
     ]
     ++ (
       if user.machine == "desktop"
@@ -48,10 +48,10 @@
       ./services/dunst.nix # Notification daemon
       ./services/swayidle.nix # Idle management daemon
 
-      ./shell/git.nix # Code version control
-      ./shell/lf.nix # Terminal file browser
-      ./shell/starship.nix # Shell prompt customization
-      ./shell/terminal.nix # Terminal simulator
+      ./commandline/git.nix # Code version control
+      ./commandline/lf.nix # Terminal file browser
+      ./commandline/starship.nix # Shell prompt customization
+      ./commandline/terminal.nix # Terminal simulator
     ]
     ++ (
       if user.machine == "desktop"
