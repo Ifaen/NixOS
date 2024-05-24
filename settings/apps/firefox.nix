@@ -54,7 +54,7 @@
             }
             {
               name = "TikTok";
-              url = "https://www.tiktok.com/";
+              url = "https://www.tiktok.com/@aventuraspatagonia";
               keyword = "tt";
             }
             {
@@ -83,6 +83,11 @@
               url = "https://gitlab.com/aventuras-en-la-patagonia/Webpage";
               keyword = "glab";
             }
+            {
+              name = "Tabler.io";
+              url = "tabler.io/icons";
+              keyword = "icons";
+            }
             # TODO Check out Peacock
           ];
         }
@@ -100,5 +105,5 @@
     };
   };
 
-  programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<firefox>" = "";}; # nf-fa-suitcase
+  programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<firefox>" = "";}; # nf-dev-firefox
 }
