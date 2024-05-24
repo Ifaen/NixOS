@@ -19,17 +19,7 @@
     '';
   };
 
-  wayland.windowManager.hyprland.settings.exec-once =
-    [
-      "[workspace 11 silent] wezterm"
-    ]
-    ++ (
-      if user.machine == "desktop"
-      then [
-        "[workspace 3 silent] wezterm"
-      ]
-      else []
-    );
+  wayland.windowManager.hyprland.settings.exec-once = ["[workspace 11 silent;float;tile] wezterm start --always-new-process"]; # FIXME This is a workaround, until Wezterm has a new release that fixes its bug
 
   programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<org.wezfurlong.wezterm>" = "󰆍";
 }

@@ -47,7 +47,7 @@ in {
     };
     programs.bash = {
       enable = true;
-      inherit shellAliases;
+      inherit shellAliases initExtra;
     };
 
     # A BETTER CHANGE DIRECTORY
