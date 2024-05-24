@@ -7,4 +7,5 @@
       obs-pipewire-audio-capture
     ];
   };
+  programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<com.obsproject.Studio>" = "󰄀"; # nf-md-camera
 }
