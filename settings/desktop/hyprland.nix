@@ -59,7 +59,7 @@
         border_size = 4;
         "col.active_border" = "rgba($color6a1)";
         "col.inactive_border" = "rgba($color1aa)";
-        gaps_in = 2;
+        gaps_in = 1;
         gaps_out = 1;
         layout = "master";
       };
@@ -96,30 +96,26 @@
         ];
 
       workspace =
-        [
+        if user.machine == "desktop" # When second monitor is turn off, workspaces move to default monitor
+        then [
           "1, monitor:${user.monitor.name}, default:true"
-          "2, monitor:${user.monitor.name}, on-created-empty:code"
+          "2, monitor:${user.monitor.name}"
           "3, monitor:${user.monitor.name}"
           "4, monitor:${user.monitor.name}"
           "5, monitor:${user.monitor.name}"
+          # Workspaces 5 to 10 are to move workspaces 1 to 5 between monitors
+          "6, monitor:${user.monitor2.name}"
+          "7, monitor:${user.monitor2.name}"
+          "8, monitor:${user.monitor2.name}"
+          "9, monitor:${user.monitor2.name}"
+          "10, monitor:${user.monitor2.name}"
+          # Workspaces with specific softwares
+          "11, monitor:${user.monitor2.name}, default:true"
+          "12, monitor:${user.monitor2.name}"
+          "13, monitor:${user.monitor2.name}, on-created-empty:keepassxc"
+          "14, monitor:${user.monitor2.name}"
         ]
-        ++ (
-          if (user.machine == "desktop") # When second monitor is turn off, workspaces move to default monitor
-          then [
-            # Workspaces 5 to 10 are to move workspaces 1 to 5 between monitors
-            "6, monitor:${user.monitor2.name}"
-            "7, monitor:${user.monitor2.name}"
-            "8, monitor:${user.monitor2.name}"
-            "9, monitor:${user.monitor2.name}"
-            "10, monitor:${user.monitor2.name}"
-            # Workspaces with specific softwares
-            "11, monitor:${user.monitor2.name}, default:true"
-            "12, monitor:${user.monitor2.name}" # Spotify
-            "13, monitor:${user.monitor2.name}, on-created-empty:keepassxc"
-            "14, monitor:${user.monitor2.name}" # Thunderbird
-          ]
-          else []
-        );
+        else [];
     };
   };
 }
