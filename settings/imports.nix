@@ -4,33 +4,24 @@
   ...
 }: {
   # Configure OS
-  imports =
-    [
-      ./desktop/hyprland.nix # Window manager
-      ./desktop/sddm.nix # Display manager
-      ./desktop/swaylock.nix # System password lock
-      ./desktop/themes.nix # Icons, fons, GTK and QT Theming
+  imports = [
+    ./desktop/hyprland.nix # Window manager
+    ./desktop/sddm.nix # Display manager
+    ./desktop/swaylock.nix # System password lock
+    ./desktop/themes.nix # Icons, fons, GTK and QT Theming
 
-      ./services/file-management.nix
-      ./services/keyboard-mapping.nix
-      ./services/networking.nix
-      ./services/portal.nix
-      ./services/secrets.nix
-      ./services/sound.nix
+    ./services/file-management.nix
+    ./services/keyboard-mapping.nix
+    ./services/networking.nix
+    ./services/portal.nix
+    ./services/secrets.nix
+    ./services/sound.nix
 
-      ./others/drivers.nix
-      ./others/hardware.nix
-      ./others/language.nix
+    ./others/drivers.nix
+    ./others/hardware.nix
 
-      ./commandline/shell.nix # Terminal shell configuration
-    ]
-    ++ (
-      if user.machine == "desktop"
-      then [
-        ./others/virtualisation.nix
-      ]
-      else []
-    );
+    ./commandline/shell.nix # Terminal shell configuration
+  ];
 
   # Configure HM
   home-manager.users."${user.name}".imports =

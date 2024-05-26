@@ -27,6 +27,7 @@
       else
         command nh "$@"
       fi
+      systemctl --user restart xremap
     }
   '';
 in {

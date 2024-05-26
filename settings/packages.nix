@@ -9,7 +9,6 @@
       unar # To extract files
       zapzap # Whatsapp web
       telegram-desktop # groups
-      #wineWowPackages.stable # To emulate windows apps
       # INFRAESTRUCTURA TI
       zoom-us
       inetutils # Collection of common network programs like telnet

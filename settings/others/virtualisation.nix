@@ -92,6 +92,7 @@ in {
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<virt-manager>" = ""; # nf-cod-vm_connect
   };
 
+  /*
   services.openssh = {
     enable = false;
     # require public key authentication for better security
@@ -101,4 +102,5 @@ in {
       PermitRootLogin = "no";
     };
   };
+  */
 }

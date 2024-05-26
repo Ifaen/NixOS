@@ -39,6 +39,8 @@ in {
 
   networking.hostName = user.machine; # Define your hostname.
 
+  time.timeZone = "America/Punta_Arenas"; # Set your time zone.
+
   users = {
     mutableUsers = false;
     users = {
@@ -55,6 +57,10 @@ in {
     };
   };
 
+  system = {
+    inherit stateVersion;
+  };
+
   home-manager = {
     useUserPackages = true; # True to move the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
     useGlobalPkgs = true; # True to use the same nixpkgs config as the nixos system
@@ -65,7 +71,7 @@ in {
       home = {
         username = user.name;
         homeDirectory = user.home;
-        inherit stateVersion;
+        stateVersion = config.system.stateVersion; # The same of the system
       };
     };
 
@@ -83,9 +89,5 @@ in {
       efi.canTouchEfiVariables = true;
       timeout = 100;
     };
-  };
-
-  system = {
-    inherit stateVersion;
   };
 }

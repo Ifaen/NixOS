@@ -59,8 +59,8 @@
         border_size = 4;
         "col.active_border" = "rgba($color6a1)";
         "col.inactive_border" = "rgba($color1aa)";
-        gaps_in = 1;
-        gaps_out = 1;
+        gaps_in = 2;
+        gaps_out = 2;
         layout = "master";
       };
 
@@ -68,12 +68,7 @@
 
       input =
         {
-          kb_layout = "${user.language}";
           follow_mouse = 1;
-          touchpad = {
-            natural_scroll = "no";
-            disable_while_typing = false;
-          };
         }
         // (
           if user.machine == "desktop"
@@ -82,6 +77,10 @@
           }
           else {
             sensitivity = 0;
+            touchpad = {
+              natural_scroll = "no";
+              disable_while_typing = false;
+            };
           }
         );
 

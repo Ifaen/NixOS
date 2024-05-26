@@ -3,157 +3,139 @@
   xremap-flake,
   user,
   ...
-}: let
-  wallpaperDirectory = "${user.home}/Media/Wallpapers";
-  walDirectory = "${user.home}/.cache/wal";
-  wallpaper-change = "${pkgs.writeShellScript "wallpaper-change"
-    ''
-      current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/${user.monitor.name}))  # Obtain the current wallpaper filename
-
-      case $1 in
-        "up")
-          bool="0"
-          for file in ${wallpaperDirectory}/*; do                   # Loop directory and rename the file variable
-            if [ -f "$file" ]; then                                 # Check if it's a regular file
-              file=$(basename "$file")                              # Keep only the filename
-
-              if [ "$bool" == "1" ]; then
-                bool="0"    # Stop from renaming "file" variable
-                break         # Break the for loop
-              fi
-
-              if [ "$file" == "$current_wallpaper" ]; then          # If the filename is the same as the current
-                bool="1"                                            # Make variable true and loop once time (if possible)
-              fi
-            fi
-          done
-
-          if [ "$bool" == "1" ]; then                               # If the boolean is still true
-            file=$(ls -1 ${wallpaperDirectory} | head -n 1)         # Select 1st file from directory
-          fi
-        ;;
-
-        "down")
-          file=""
-          for current_file in ${wallpaperDirectory}/*; do           # Loop directory and rename the file variable
-            if [ -f "$current_file" ]; then                         # Check if it's a regular file
-              current_file=$(basename "$current_file")              # Keep only the filename
-
-              if [ "$current_file" == "$current_wallpaper" ]; then  # If the filename is the same as the current
-                break
-              fi
-
-              file="$current_file"
-            fi
-          done
-
-          if [ "$file" == "" ]; then                            # If the variable is empty
-            file=$(ls -1 ${wallpaperDirectory} | tail -n 1)     # Select last file from directory
-          fi
-        ;;
-        *)
-          echo "Wrong input"
-        ;;
-      esac
-
-      # Change the wallpaper with specific parameters. ACCEPTED FILE TYPES: jpg | jpeg | png | gif | pnm | tga | tiff | webp | bmp | farbfeld
-      ${pkgs.swww}/bin/swww img ${wallpaperDirectory}"/$file" \
-        --transition-bezier .43,1.19,1,.4 \
-        --transition-fps=60 \
-        --transition-type="wipe" \
-        --transition-duration=0.7 \
-        --transition-pos "$(hyprctl cursorpos)"
-
-      # Pywal
-      ${pkgs.pywal}/bin/wal -q -i ${wallpaperDirectory}"/$file" # Create color scheme of file
-      colors="${walDirectory}/colors"                           # Obtain new color scheme
-
-      i=0
-      # Make wal for hyprland
-      > "${walDirectory}/colors-hyprland.conf"                  # Clean file
-
-      while IFS= read -r line; do
-        echo "\$color$i = ''${line#"#"}" >> "${walDirectory}/colors-hyprland.conf"  # Append to file
-        ((i++))
-      done < "$colors"                                                              # Read from the path inside the $colors variable
-
-      #sleep 1
-      ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image $file"
-    ''}";
-
-  workspace-change = "${pkgs.writeShellScript "workspace-change"
-    ''
-      tmp_file_previous_workspace="/tmp/hypr_previous_workspace"
-
-      SELECTED_WORKSPACE="$1"
-      CURRENT_WORKSPACE=$(echo $(hyprctl -j activewindow | grep '"id"') | awk -F'[:, ]' '{print $3}') # Uses the activewindow function from hyprctl
-
-      # Check if the file exists
-      if [ ! -f "$tmp_file_previous_workspace" ]; then
-        echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace" # Create the file and write the current workspace number to it
-      fi
-      PREVIOUS_WORKSPACE=$(cat "$tmp_file_previous_workspace") # Obtain the value from the file
-
-      case $2 in
-        "key")
-          if (("$CURRENT_WORKSPACE" == "$SELECTED_WORKSPACE")); then  # If the inputted is equal to the current workspace
-            hyprctl dispatch workspace $PREVIOUS_WORKSPACE            # Move to the previous workspace
-          else                                                        # If not
-            hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
-            echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
-          fi
-        ;;
-        "arrow")
-          hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
-          echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
-        ;;
-        *)
-          echo "Wrong input"
-        ;;
-      esac
-    ''}";
-in {
-  environment.systemPackages = [
-    pkgs.wtype # Tool to type any input, even special characters
-    pkgs.ydotool # Tool to move cursor using the keyboard
-  ];
-
-  # Start service for ydotool to detect inputs
-  systemd.user.services.ydotoold = {
-    description = "ydotool daemon";
-    wantedBy = ["graphical-session.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.ydotool}/bin/ydotoold";
-      ExecReload = "${pkgs.util-linux}/bin/kill -HUP $MAINPID";
-      KillMode = "Process";
-      Restart = "always";
-      TimeoutSec = 180;
-    };
-  };
-
-  hardware.uinput.enable = true;
-
-  users.groups = {
-    uinput.members = ["${user.name}"];
-    input.members = ["${user.name}"];
-  };
-
+}: {
   home-manager.users."${user.name}" = {
     imports = [xremap-flake.homeManagerModules.default];
 
     # Move/resize windows with mainMod + LMB/RMB and dragging
-    wayland.windowManager.hyprland.settings.bindm = [
-      "SUPER, mouse:272, movewindow" # SUPER + LMB
-      "SUPER, mouse:273, resizewindow" # SUPER + RMB
-    ];
+    wayland.windowManager.hyprland.settings = {
+      bindm = [
+        "SUPER, mouse:272, movewindow" # SUPER + LMB
+        "SUPER, mouse:273, resizewindow" # SUPER + RMB
+      ];
+
+      input = {
+        kb_layout = "${user.language}"; # Keyboard layout to be directed to user language
+        kb_options = "compose:caps"; # Make Caps-Lock key to be Compose Key
+      };
+
+      exec-once = ["systemctl --user restart xremap"]; # Workaround to reset the service of xremap after logout of hyprland
+    };
 
     services.xremap = {
       enable = true;
-      withWlroots = true;
-      mouse = true; # Listen to mouse inputs
-      watch = true; # Watch for other devices being connected and remapped
-      yamlConfig = ''
+      yamlConfig = let
+        wallpaper-change = let
+          wallpaper-directory = "${user.home}/Media/Wallpapers";
+          wal-directory = "${user.home}/.cache/wal";
+        in "${
+          pkgs.writeShellScript "wallpaper-change" ''
+            current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/${user.monitor.name}))  # Obtain the current wallpaper filename
+
+            case $1 in
+              "up")
+                bool="0"
+                for file in ${wallpaper-directory}/*; do                   # Loop directory and rename the file variable
+                  if [ -f "$file" ]; then                                 # Check if it's a regular file
+                    file=$(basename "$file")                              # Keep only the filename
+
+                    if [ "$bool" == "1" ]; then
+                      bool="0"    # Stop from renaming "file" variable
+                      break         # Break the for loop
+                    fi
+
+                    if [ "$file" == "$current_wallpaper" ]; then          # If the filename is the same as the current
+                      bool="1"                                            # Make variable true and loop once time (if possible)
+                    fi
+                  fi
+                done
+
+                if [ "$bool" == "1" ]; then                               # If the boolean is still true
+                  file=$(ls -1 ${wallpaper-directory} | head -n 1)         # Select 1st file from directory
+                fi
+              ;;
+
+              "down")
+                file=""
+                for current_file in ${wallpaper-directory}/*; do           # Loop directory and rename the file variable
+                  if [ -f "$current_file" ]; then                         # Check if it's a regular file
+                    current_file=$(basename "$current_file")              # Keep only the filename
+
+                    if [ "$current_file" == "$current_wallpaper" ]; then  # If the filename is the same as the current
+                      break
+                    fi
+
+                    file="$current_file"
+                  fi
+                done
+
+                if [ "$file" == "" ]; then                            # If the variable is empty
+                  file=$(ls -1 ${wallpaper-directory} | tail -n 1)     # Select last file from directory
+                fi
+              ;;
+              *)
+                echo "Wrong input"
+              ;;
+            esac
+
+            # Change the wallpaper with specific parameters. ACCEPTED FILE TYPES: jpg | jpeg | png | gif | pnm | tga | tiff | webp | bmp | farbfeld
+            ${pkgs.swww}/bin/swww img ${wallpaper-directory}"/$file" \
+              --transition-bezier .43,1.19,1,.4 \
+              --transition-fps=60 \
+              --transition-type="wipe" \
+              --transition-duration=0.7 \
+              --transition-pos "$(hyprctl cursorpos)"
+
+            # Pywal
+            ${pkgs.pywal}/bin/wal -q -i ${wallpaper-directory}"/$file" # Create color scheme of file
+            colors="${wal-directory}/colors"                           # Obtain new color scheme
+
+            # Make wal for hyprland
+            > "${wal-directory}/colors-hyprland.conf"                  # Clean file
+
+            i=0
+            while IFS= read -r line; do
+              echo "\$color$i = ''${line#"#"}" >> "${wal-directory}/colors-hyprland.conf"  # Append to file
+              ((i++))
+            done < "$colors"                                                              # Read from the path inside the $colors variable
+
+            #sleep 1
+            ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image $file"
+          ''
+        }";
+        workspace-change = "${
+          pkgs.writeShellScript "workspace-change" ''
+            tmp_file_previous_workspace="/tmp/hypr_previous_workspace"
+
+            SELECTED_WORKSPACE="$1"
+            CURRENT_WORKSPACE=$(echo $(hyprctl -j activewindow | grep '"id"') | awk -F'[:, ]' '{print $3}') # Uses the activewindow function from hyprctl
+
+            # Check if the file exists
+            if [ ! -f "$tmp_file_previous_workspace" ]; then
+              echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace" # Create the file and write the current workspace number to it
+            fi
+            PREVIOUS_WORKSPACE=$(cat "$tmp_file_previous_workspace") # Obtain the value from the file
+
+            case $2 in
+              "key")
+                if (("$CURRENT_WORKSPACE" == "$SELECTED_WORKSPACE")); then  # If the inputted is equal to the current workspace
+                  hyprctl dispatch workspace $PREVIOUS_WORKSPACE            # Move to the previous workspace
+                else                                                        # If not
+                  hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
+                  echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
+                fi
+              ;;
+              "arrow")
+                hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
+                echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
+              ;;
+              *)
+                echo "Wrong input"
+              ;;
+            esac
+          ''
+        }";
+      in ''
         keymap:
         - name: applications
           remap:
@@ -170,7 +152,6 @@ in {
               launch: ["hyprctl", "dispatch", "exec", "${pkgs.writeShellScript "screenshot-movement" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -o)\" ${user.home}/Media/Screenshots/$(date +'%s_screen.png')"}"]
             control-shift-sysrq:
               launch: ["hyprctl", "dispatch", "exec", "${pkgs.writeShellScript "screenshot-instant" "${pkgs.grim}/bin/grim ${user.home}/Media/Screenshots/$(date +'%s_fullscreen.png')"}"]
-
 
         - name: desktop
           remap:
@@ -260,37 +241,6 @@ in {
             super-shift-v:
               launch: ["hyprctl", "dispatch", "togglefloating"]
 
-
-        - name: tildes
-          remap:
-            alt-a:
-              launch: ["wtype", "á"]
-            alt-e:
-              launch: ["wtype", "é"]
-            alt-i:
-              launch: ["wtype", "í"]
-            alt-o:
-              launch: ["wtype", "ó"]
-            alt-u:
-              launch: ["wtype", "ú"]
-            alt-n:
-              launch: ["wtype", "ñ"]
-            alt-shift-a:
-              launch: ["wtype", "Á"]
-            alt-shift-e:
-              launch: ["wtype", "É"]
-            alt-shift-i:
-              launch: ["wtype", "í"]
-            alt-shift-o:
-              launch: ["wtype", "Ó"]
-            alt-shift-u:
-              launch: ["wtype", "Ú"]
-            alt-shift-n:
-              launch: ["wtype", "Ñ"]
-            alt-shift-1:
-              launch: ["wtype", "¡"]
-
-
         - name: cursor-keyboard
           remap:
             control-shift-alt-up:
@@ -301,13 +251,54 @@ in {
               launch: ["ydotool", "mousemove", "-x", "-5", "-y", "0"]
             control-shift-alt-right:
               launch: ["ydotool", "mousemove", "-x", "5", "-y", "0"]
-
-
-        modmap:
-        - name: others
-          remap:
-            capslock: enter
       '';
+      withWlroots = true; # To work in wayland
+      mouse = true; # Listen to mouse inputs
+      watch = true; # Watch for other devices being connected and remapped
     };
+  };
+
+  # Configure console keymap
+  console.keyMap = "${user.language}";
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "es_CL.UTF-8";
+      LC_IDENTIFICATION = "es_CL.UTF-8";
+      LC_MEASUREMENT = "es_CL.UTF-8";
+      LC_MONETARY = "es_CL.UTF-8";
+      LC_NAME = "es_CL.UTF-8";
+      LC_NUMERIC = "es_CL.UTF-8";
+      LC_PAPER = "es_CL.UTF-8";
+      LC_TELEPHONE = "es_CL.UTF-8";
+      LC_TIME = "es_CL.UTF-8";
+    };
+  };
+
+  environment.systemPackages = [
+    pkgs.ydotool # Tool to move cursor using the keyboard
+  ];
+
+  # Start service for ydotool to detect inputs
+  systemd.user.services.ydotoold = {
+    description = "ydotool daemon";
+    wantedBy = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.ydotool}/bin/ydotoold";
+      ExecReload = "${pkgs.util-linux}/bin/kill -HUP $MAINPID";
+      KillMode = "Process";
+      Restart = "always";
+      TimeoutSec = 180;
+    };
+  };
+
+  hardware.uinput.enable = true;
+
+  users.groups = {
+    uinput.members = ["${user.name}"];
+    input.members = ["${user.name}"];
   };
 }
