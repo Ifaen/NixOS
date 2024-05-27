@@ -29,7 +29,7 @@
   # Make the configuration file for keepassxc
   home-manager.users.${user.name} = {
     home.file.keepassxc = {
-      target = "${user.home}/.config/keepassxc/keepassxc.ini";
+      target = ".config/keepassxc/keepassxc.ini";
       text = ''
         [General]
         BackupBeforeSave=true

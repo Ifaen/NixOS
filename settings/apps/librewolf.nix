@@ -35,8 +35,9 @@
           StartWithLastProfile=1
         '';
 
-        target = "${user.home}/.librewolf/profiles.ini";
+        target = ".librewolf/profiles.ini";
       };
+
       librewolf-userChrome = {
         # hides the native tabs
         text = ''
@@ -48,7 +49,7 @@
           }
         '';
 
-        target = "${user.home}/.librewolf/${user.name}/chrome/userChrome.css";
+        target = ".librewolf/${user.name}/chrome/userChrome.css";
       };
     };
 
