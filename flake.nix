@@ -18,6 +18,7 @@
     xremap-flake,
   }: let
     machine = builtins.readFile ./shared/others/machine; # Read from file the machine name, desktop or notebook
+
     user =
       {
         fullname = "Santiago Fuentes";
@@ -52,9 +53,12 @@
           };
         }
       );
+
+    pkgs = nixpkgs.legacyPackages.${user.system};
   in {
     nixosConfigurations.${machine} = nixpkgs.lib.nixosSystem {
       system = user.system;
+
       specialArgs = {
         inherit
           user
@@ -64,14 +68,16 @@
           xremap-flake
           ;
       };
+
       modules = map (path: ./settings + path) [
         /config.nix
         /imports.nix
         /packages.nix
       ];
     };
-    devShells.${user.system}.default = nixpkgs.legacyPackages.${user.system}.mkShell {
-      nativeBuildInputs = with nixpkgs.legacyPackages.${user.system}; [
+
+    devShells.${user.system}.default = pkgs.mkShell {
+      nativeBuildInputs = with pkgs; [
         nurl # Shows information about a package in a repository
         file # Shows information of files
       ];
