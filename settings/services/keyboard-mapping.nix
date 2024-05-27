@@ -16,7 +16,7 @@
 
       input = {
         kb_layout = "${user.language}"; # Keyboard layout to be directed to user language
-        kb_options = "compose:caps"; # Make Caps-Lock key to be Compose Key
+        kb_options = "compose:caps"; # Remap Caps-Lock key to be Compose Key
       };
 
       exec-once = ["systemctl --user restart xremap"]; # Workaround to reset the service of xremap after logout of hyprland
@@ -251,10 +251,22 @@
               launch: ["ydotool", "mousemove", "-x", "-5", "-y", "0"]
             control-shift-alt-right:
               launch: ["ydotool", "mousemove", "-x", "5", "-y", "0"]
+
       '';
+      /*
+      - name: headphones
+        remap:
+          volumeup:
+            launch: ["ydotool", "type", "test"]
+      */
       withWlroots = true; # To work in wayland
-      mouse = true; # Listen to mouse inputs
       watch = true; # Watch for other devices being connected and remapped
+      deviceNames = [
+        "2.4G Mouse"
+        "2.4G RF Keyboard & Mouse"
+        "Kingston HyperX Cloud Stinger Core Wireless" # Wireless headphones
+        "ydotoold virtual device"
+      ];
     };
   };
 
@@ -295,6 +307,7 @@
     };
   };
 
+  # Add user to respective groups to allow uinput to work
   hardware.uinput.enable = true;
 
   users.groups = {
