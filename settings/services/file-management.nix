@@ -21,9 +21,11 @@
   users.users.${user.name}.extraGroups = ["storage"]; # For disk management in file managers
 
   environment.systemPackages = with pkgs; [
+    imv # Image viewer
+    gimp # Image editor
     vlc # Media player
-    zathura # For pdf
-    libreoffice-fresh # For excel files
+    zathura # PDF viewer
+    libreoffice-fresh # Open Source microsoft 365. Fresh version
   ];
 
   # Allow management of XDG base directories
@@ -96,6 +98,7 @@
           sync = "${user.home}/Sync";
           flake = user.flake; # Path were flake is stored
         };
+
         # Prevent to create
         desktop = null;
         publicShare = null;
