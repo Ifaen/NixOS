@@ -74,16 +74,13 @@ in {
         stateVersion = config.system.stateVersion; # The same of the system
       };
     };
-
-    extraSpecialArgs = {inherit user;};
-
-    backupFileExtension = "bak";
   };
 
   boot = {
     kernelParams = [
       "intel_pstate=active"
     ];
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

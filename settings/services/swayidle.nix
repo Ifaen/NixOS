@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  services.swayidle = {
+  home-manager.users.${user.name}.services.swayidle = {
     enable = true;
     timeouts = [
       {

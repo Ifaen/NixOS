@@ -1,10 +1,18 @@
-{pkgs, ...}: {
-  home = {
-    packages = [pkgs.discord-screenaudio];
-    file.discordcss = {
-      target = ".config/discord-screenaudio/userstyles.css";
-      text = "";
+{
+  pkgs,
+  user,
+  ...
+}: {
+  home-manager.users.${user.name} = {
+    home = {
+      packages = [pkgs.discord-screenaudio];
+
+      file.discordcss = {
+        target = ".config/discord-screenaudio/userstyles.css";
+        text = "";
+      };
     };
+
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<de.shorsh.discord-screenaudio>" = "";
   };
-  programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<discord>" = "";
 }

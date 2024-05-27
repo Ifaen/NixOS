@@ -1,5 +1,9 @@
-{lib, ...}: {
-  programs.starship = {
+{
+  lib,
+  user,
+  ...
+}: {
+  home-manager.users.${user.name}.programs.starship = {
     enable = true;
     settings = {
       add_newline = true;

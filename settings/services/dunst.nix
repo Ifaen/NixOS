@@ -1,5 +1,7 @@
-{
-  services.dunst = {
-    enable = true;
+{user, ...}: {
+  home-manager.users.${user.name} = {
+    services.dunst = {
+      enable = true;
+    };
   };
 }
