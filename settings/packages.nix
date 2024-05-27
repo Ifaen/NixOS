@@ -9,6 +9,7 @@
       unar # To extract files
       zapzap # Whatsapp web
       telegram-desktop # groups
+      obsidian # Knowledge database notes
       # INFRAESTRUCTURA TI
       zoom-us
       inetutils # Collection of common network programs like telnet
