@@ -103,23 +103,6 @@
       };
     };
 
-    # Open an instance of ranger in alacritty
-    home.file.lf = {
-      target = "${user.home}/.local/share/applications/lf.desktop";
-      text = ''
-        [Desktop Entry]
-        Type=Application
-        Name=lf
-        Comment=Launches the ranger file manager
-        Icon=utilities-terminal
-        Terminal=false
-        Exec=alacritty -e ranger
-        Categories=ConsoleOnly;System;FileTools;FileManager
-        MimeType=inode/directory;
-        Keywords=File;Manager;Browser;Explorer;Launcher;Vi;Vim;Python
-      '';
-    };
-
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
       "class<thunar>" = "";
       "class<libreoffice-calc>" = "󱎏";
