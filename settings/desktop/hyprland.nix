@@ -50,7 +50,7 @@
           ''
             ${pkgs.swww}/bin/swww-daemon & # Start daemon
 
-            ${pkgs.swww}/bin/swww img $(cat ${user.home}/.cache/swww/${user.monitor.name}) & # Change to previous session wallpaper
+            ${pkgs.swww}/bin/swww img $(cat ${user.home}/.cache/swww/${user.monitor}) & # Change to previous session wallpaper
           ''
         }"
       ];
@@ -88,31 +88,31 @@
 
       monitor =
         if user.machine == "notebook"
-        then "${user.monitor.name},${user.monitor.width}x${user.monitor.height}, auto, 1"
+        then "${user.monitor},1920x1200, auto, 1"
         else [
-          "${user.monitor.name}, highres, 1920x0, 1"
-          "${user.monitor2.name}, highres, 0x0, 1"
+          "${user.monitor}, highres, 1920x0, 1"
+          "${user.monitor2}, highres, 0x0, 1"
         ];
 
       workspace =
         if user.machine == "desktop" # When second monitor is turn off, workspaces move to default monitor
         then [
-          "1, monitor:${user.monitor.name}, default:true"
-          "2, monitor:${user.monitor.name}"
-          "3, monitor:${user.monitor.name}"
-          "4, monitor:${user.monitor.name}"
-          "5, monitor:${user.monitor.name}"
+          "1, monitor:${user.monitor}, default:true"
+          "2, monitor:${user.monitor}"
+          "3, monitor:${user.monitor}"
+          "4, monitor:${user.monitor}"
+          "5, monitor:${user.monitor}"
           # Workspaces 5 to 10 are to move workspaces 1 to 5 between monitors
-          "6, monitor:${user.monitor2.name}"
-          "7, monitor:${user.monitor2.name}"
-          "8, monitor:${user.monitor2.name}"
-          "9, monitor:${user.monitor2.name}"
-          "10, monitor:${user.monitor2.name}"
+          "6, monitor:${user.monitor2}"
+          "7, monitor:${user.monitor2}"
+          "8, monitor:${user.monitor2}"
+          "9, monitor:${user.monitor2}"
+          "10, monitor:${user.monitor2}"
           # Workspaces with specific softwares
-          "11, monitor:${user.monitor2.name}, default:true"
-          "12, monitor:${user.monitor2.name}"
-          "13, monitor:${user.monitor2.name}, on-created-empty:keepassxc"
-          "14, monitor:${user.monitor2.name}"
+          "11, monitor:${user.monitor2}, default:true"
+          "12, monitor:${user.monitor2}"
+          "13, monitor:${user.monitor2}, on-created-empty:keepassxc"
+          "14, monitor:${user.monitor2}"
         ]
         else [];
     };

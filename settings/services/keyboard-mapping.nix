@@ -34,7 +34,7 @@
               wal-directory = "${user.home}/.cache/wal";
             in "${
               pkgs.writeShellScript "wallpaper-change" ''
-                current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/${user.monitor.name}))  # Obtain the current wallpaper filename
+                current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/${user.monitor}))  # Obtain the current wallpaper filename
 
                 case $1 in
                   "up")

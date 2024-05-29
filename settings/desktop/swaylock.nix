@@ -15,7 +15,7 @@
         clock = true;
         timestr = "%R";
         datestr = "%a, %e de %B";
-        image = "$(cat ${user.home}/.cache/swww/${user.monitor.name})";
+        image = "$(cat ${user.home}/.cache/swww/${user.monitor})";
 
         fade-in = "1"; # Fade in time
 
