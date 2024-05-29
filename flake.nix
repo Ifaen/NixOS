@@ -26,7 +26,6 @@
         home = "/home/${user.name}";
         flake = "${user.home}/NixOS";
         mail = "sfuentes@mail.com";
-        city = "Punta Arenas";
         language = "us";
         system = "x86_64-linux";
         inherit machine;
@@ -34,23 +33,11 @@
       // (
         if (machine == "desktop")
         then {
-          monitor = {
-            name = "DP-1";
-            width = "1920";
-            height = "1080";
-          };
-          monitor2 = {
-            name = "HDMI-A-1";
-            width = "1920";
-            height = "1080";
-          };
+          monitor = "DP-1";
+          monitor2 = "HDMI-A-1";
         }
         else {
-          monitor = {
-            name = "eDP-1";
-            width = "1920";
-            height = "1200";
-          };
+          monitor = "eDP-1";
         }
       );
 
