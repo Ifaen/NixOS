@@ -25,52 +25,50 @@
   };
 
   ## KEEPASSXC
-  environment.systemPackages = [pkgs.keepassxc];
-  # Make the configuration file for keepassxc
   home-manager.users.${user.name} = {
-    home.file.keepassxc = {
-      target = ".config/keepassxc/keepassxc.ini";
-      text = ''
-        [General]
-        BackupBeforeSave=true
-        BackupFilePathPattern=${user.home}/Sync/.keepass/{DB_FILENAME}.old.kdbx
-        FaviconDownloadTimeout=15
-        NumberOfRememberedLastDatabases=1
-        RememberLastKeyFiles=false
-        UseGroupIconOnEntryCreation=false
+    home.packages = [pkgs.keepassxc];
 
-        [Browser]
-        CustomProxyLocation=
-        Enabled=true
+    xdg.configFile."keepassxc/keepassxc.ini".text = ''
+      [General]
+      BackupBeforeSave=true
+      BackupFilePathPattern=${user.home}/Sync/.keepass/{DB_FILENAME}.old.kdbx
+      FaviconDownloadTimeout=15
+      NumberOfRememberedLastDatabases=1
+      RememberLastKeyFiles=false
+      UseGroupIconOnEntryCreation=false
 
-        [GUI]
-        ApplicationTheme=dark
-        ColorPasswords=true
-        CompactMode=true
-        HidePreviewPanel=false
-        HideToolbar=false
-        HideUsernames=false
-        TrayIconAppearance=monochrome-light
+      [Browser]
+      CustomProxyLocation=
+      Enabled=true
 
-        [PasswordGenerator]
-        AdditionalChars=
-        ExcludedChars=
-        Length=30
+      [GUI]
+      ApplicationTheme=dark
+      ColorPasswords=true
+      CompactMode=true
+      HidePreviewPanel=false
+      HideToolbar=false
+      HideUsernames=false
+      TrayIconAppearance=monochrome-light
 
-        [Security]
-        ClearClipboardTimeout=30
-        ClearSearch=true
-        ClearSearchTimeout=2
-        EnableCopyOnDoubleClick=true
-        HidePasswordPreviewPanel=true
-        HideTotpPreviewPanel=true
-        IconDownloadFallback=true
-        LockDatabaseIdle=true
-        LockDatabaseMinimize=true
-        NoConfirmMoveEntryToRecycleBin=false
-        Security_HideNotes=true
-      '';
-    };
+      [PasswordGenerator]
+      AdditionalChars=
+      ExcludedChars=
+      Length=30
+
+      [Security]
+      ClearClipboardTimeout=30
+      ClearSearch=true
+      ClearSearchTimeout=2
+      EnableCopyOnDoubleClick=true
+      HidePasswordPreviewPanel=true
+      HideTotpPreviewPanel=true
+      IconDownloadFallback=true
+      LockDatabaseIdle=true
+      LockDatabaseMinimize=true
+      NoConfirmMoveEntryToRecycleBin=false
+      Security_HideNotes=true
+    '';
+
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
       "class<org.keepassxc.KeePassXC>" = "󰌋";
       "class<polkit-kde-authentication-agent-1>" = "󰌾"; # nf-md-lock
@@ -81,19 +79,19 @@
   services.syncthing = {
     enable = true;
     user = "${user.name}";
+
     dataDir = "${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.sync}"; # Obtain the name of sync folder in the extraconfig of xdg
     configDir = "${user.home}/.config/syncthing";
+
     settings = {
-      devices = {
-        "mobile".id = "FDD6P6K-OV6LVEX-BPUKI6F-2CCANDX-KAHGOSV-5JTU4BC-NISJSGW-3YES5QX";
-      };
-      folders = {
-        "Keepass" = {
-          path = "${config.services.syncthing.dataDir}/.keepass";
-          devices = ["mobile"];
-        };
+      devices."mobile".id = "FDD6P6K-OV6LVEX-BPUKI6F-2CCANDX-KAHGOSV-5JTU4BC-NISJSGW-3YES5QX";
+
+      folders."Keepass" = {
+        path = "${config.services.syncthing.dataDir}/.keepass";
+        devices = ["mobile"];
       };
     };
+
     # overrides any folders and devices added or deleted through the WebUI
     overrideDevices = true;
     overrideFolders = true;

@@ -70,12 +70,9 @@ in {
 
     # Packages used in the shell
     home.packages = with pkgs; [
-      fastfetch # Echo information about the machine
       nix-output-monitor # Frontend output for performing certain nix commands. Can be used as 'nom develop' or 'nom shell'
+      fastfetch # Echo information about the machine
     ];
-    home.file.fastfetch = {
-      source = ../../shared/configs/fastfetch.jsonc;
-      target = ".config/fastfetch/config.jsonc";
-    };
+    xdg.configFile."fastfetch/config.jsonc".source = ../../shared/configs/fastfetch.jsonc;
   };
 }
