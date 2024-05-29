@@ -57,7 +57,7 @@
             format = "{}°C";
             tooltip = true;
             interval = 36000;
-            exec = "${pkgs.wttrbar}/bin/wttrbar --location '${user.city}'";
+            exec = "${pkgs.wttrbar}/bin/wttrbar --location 'Punta Arenas'";
             return-type = "json";
           };
 
