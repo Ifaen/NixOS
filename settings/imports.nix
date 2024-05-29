@@ -8,12 +8,6 @@
       ./apps/vscode.nix # Code editor
       ./apps/thunderbird.nix # Email manager
 
-      ./commandline/shell.nix # Terminal shell configuration
-      ./commandline/git.nix # Code version control
-      ./commandline/lf.nix # Terminal file browser
-      ./commandline/starship.nix # Shell prompt customization
-      ./commandline/terminal.nix # Terminal simulator
-
       ./desktop/eww.nix # Status bar
       ./desktop/hyprland.nix # Window manager
       ./desktop/sddm.nix # Display manager
@@ -23,7 +17,10 @@
       ./desktop/wlogout.nix # Logout interface
       ./desktop/wofi.nix # Software selector
 
-      ./services/file-management.nix
+      ./others/drivers.nix # Few drivers depending of the hardware
+      ./others/file-management.nix # xdg-open and mimeapps
+      ./others/hardware.nix # DO NOT use if it's cloned in another system
+
       ./services/keyboard-mapping.nix
       ./services/networking.nix
       ./services/portal.nix
@@ -32,8 +29,11 @@
       ./services/dunst.nix # Notification daemon
       ./services/swayidle.nix # Idle management daemon
 
-      ./others/drivers.nix
-      ./others/hardware.nix
+      ./shell/git.nix # Code version control
+      ./shell/lf.nix # Terminal file browser
+      ./shell/starship.nix # Shell prompt customization
+      ./shell/wezterm.nix # Terminal simulator
+      ./shell/zsh.nix # Terminal shell configuration
     ]
     ++ (
       if user.machine == "desktop"
