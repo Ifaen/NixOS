@@ -50,6 +50,7 @@
         # keys
         r = "rename";
         "<delete>" = "delete";
+        "<esc>" = "quit";
         # control + key
         "<c-c>" = "copy";
         "<c-x>" = "cut";
@@ -73,6 +74,7 @@
         m = null;
         M = null;
         p = null;
+        q = null;
         u = null;
         v = null;
         y = null;
