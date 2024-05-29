@@ -23,6 +23,7 @@
   home-manager.users.${user.name} = {
     xdg = {
       enable = true;
+
       mimeApps = {
         enable = true;
         defaultApplications = {
@@ -59,9 +60,11 @@
 
       userDirs = {
         createDirectories = true;
+
         pictures = "${user.home}/Media";
         videos = "${user.home}/Media";
         music = "${user.home}/Media";
+
         extraConfig = {
           sync = "${user.home}/Sync";
           flake = user.flake; # Path were flake is stored

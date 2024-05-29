@@ -28,6 +28,7 @@
 
         hardware.opengl = {
           enable = true; # Mesa
+
           driSupport = true; # radv: an open-source Vulkan driver from freedesktop
           driSupport32Bit = true; # radv support for 32 bits applications
         };

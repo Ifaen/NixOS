@@ -112,6 +112,7 @@
                 " "
               ];
             };
+
             scroll-step = 5;
             on-click = "pkill pavucontrol || pavucontrol";
             on-click-right = "${

@@ -5,6 +5,7 @@
 }: {
   home-manager.users.${user.name}.services.swayidle = {
     enable = true;
+
     timeouts = [
       {
         timeout = 300;

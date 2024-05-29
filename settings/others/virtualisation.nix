@@ -16,6 +16,7 @@ in {
       #"video=efif:off"
       #"disable_idle_d3=1"
     ];
+
     # Virtual function for PCI Express
     kernelModules = [
       "vfio"
@@ -32,8 +33,10 @@ in {
 
   virtualisation.libvirtd = {
     enable = true; # virt-manager / qemu
+
     onBoot = "ignore"; # Prevent from starting guests that were not closed when host was shutdown
     onShutdown = "shutdown"; # Setting to "shutdown" will cause an ACPI shutdown of each guest. "suspend" will attempt to save the state of the guests ready to restore on boot.
+
     qemu = {
       swtpm.enable = false; # Software Trusted Platform Module. Provides cryptographic functionalities such as secure storage of keys, remote attestation, and sealing/unsealing data
       # Open Virtual Machine Firmware. Provides UEFI support for Virtual Machines
@@ -42,6 +45,7 @@ in {
         packages = [pkgs.OVMFFull.fd];
       };
     };
+
     hooks.qemu."${vm-name}-gpu-passthrough" = "${
       pkgs.writeShellScript "${vm-name}-gpu-passthrough.sh" ''
         function prepare() {

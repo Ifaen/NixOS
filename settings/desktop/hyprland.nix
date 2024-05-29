@@ -29,11 +29,13 @@
 
       decoration = {
         rounding = 0;
+
         blur = {
           enabled = true;
           size = 3;
           passes = 1;
         };
+
         drop_shadow = "yes";
         shadow_range = 300;
         shadow_render_power = 4;
@@ -59,8 +61,10 @@
         border_size = 4;
         "col.active_border" = "rgba($color6a1)";
         "col.inactive_border" = "rgba($color1aa)";
+
         gaps_in = 2;
         gaps_out = 2;
+
         layout = "master";
       };
 
@@ -77,6 +81,7 @@
           }
           else {
             sensitivity = 0;
+
             touchpad = {
               natural_scroll = "no";
               disable_while_typing = false;
