@@ -21,7 +21,7 @@
       ./others/file-management.nix # xdg-open and mimeapps
       ./others/hardware.nix # DO NOT use if it's cloned in another system
 
-      ./services/keyboard-mapping.nix
+      ./services/keybindings.nix
       ./services/networking.nix
       ./services/portal.nix
       ./services/secrets.nix

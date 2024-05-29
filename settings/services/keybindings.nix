@@ -254,6 +254,13 @@
         };
       };
 
+      # Add user to respective groups to allow uinput to work
+      hardware.uinput.enable = true;
+      users.groups = {
+        uinput.members = ["${user.name}"];
+        input.members = ["${user.name}"];
+      };
+
       # Configure console keymap
       console.keyMap = "${user.language}";
 
@@ -271,14 +278,6 @@
           LC_TELEPHONE = "es_CL.UTF-8";
           LC_TIME = "es_CL.UTF-8";
         };
-      };
-
-      # Add user to respective groups to allow uinput to work
-      hardware.uinput.enable = true;
-
-      users.groups = {
-        uinput.members = ["${user.name}"];
-        input.members = ["${user.name}"];
       };
     }
     // (
