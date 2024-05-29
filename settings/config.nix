@@ -86,5 +86,7 @@ in {
       efi.canTouchEfiVariables = true;
       timeout = 100;
     };
+
+    tmp.cleanOnBoot = true;
   };
 }
