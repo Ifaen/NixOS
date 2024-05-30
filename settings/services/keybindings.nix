@@ -145,13 +145,28 @@
                 name = "applications";
                 remap = {
                   control-q.launch = ["hyprctl" "dispatch" "killactive"];
-                  super-w.launch = ["hyprctl" "dispatch" "exec" "${pkgs.writeShellScript "toggle-wofi" "pkill wofi || wofi --normal-window --show drun"}"];
-                  super-shift-w.launch = ["hyprctl" "dispatch" "exec" "${pkgs.writeShellScript "toggle-waybar" "pkill waybar || waybar"}"];
+                  super-w.launch = [
+                    "hyprctl"
+                    "dispatch"
+                    "exec"
+                    "${pkgs.writeShellScript "toggle-wofi" ''pkill wofi || wofi --normal-window --show drun''}"
+                  ];
+                  super-shift-w.launch = [
+                    "hyprctl"
+                    "dispatch"
+                    "exec"
+                    "${pkgs.writeShellScript "toggle-waybar" "pkill waybar || waybar"}"
+                  ];
 
-                  # Screenshots utility
-                  sysrq.launch = ["hyprctl" "dispatch" "exec" "${pkgs.writeShellScript "screenshot-freeze" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ${user.home}/Media/Screenshots/$(date +'%s_screen_area.png')"}"];
-                  control-sysrq.launch = ["hyprctl" "dispatch" "exec" "${pkgs.writeShellScript "screenshot-movement" "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -o)\" ${user.home}/Media/Screenshots/$(date +'%s_screen.png')"}"];
-                  control-shift-sysrq.launch = ["hyprctl" "dispatch" "exec" "${pkgs.writeShellScript "screenshot-instant" "${pkgs.grim}/bin/grim ${user.home}/Media/Screenshots/$(date +'%s_fullscreen.png')"}"];
+                  # Screenshot utility
+                  sysrq.launch = [
+                    "hyprctl"
+                    "dispatch"
+                    "exec"
+                    "${pkgs.writeShellScript "screenshot-clipboard.sh" ''
+                      ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -w 0)" - | ${pkgs.stable.swappy}/bin/swappy -f -
+                    ''}"
+                  ];
                 };
               }
               {
@@ -202,6 +217,13 @@
 
                   super-shift-o.launch = ["hyprctl" "dispatch" "togglesplit"];
                   super-shift-v.launch = ["hyprctl" "dispatch" "togglefloating"];
+                };
+              }
+              {
+                name = "laziness-mode";
+                application.only = ["imv" "mpv"];
+                remap = {
+                  delete.launch = ["hyprctl" "dispatch" "killactive"];
                 };
               }
             ]
