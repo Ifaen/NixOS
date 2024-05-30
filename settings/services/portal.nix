@@ -45,6 +45,7 @@
       "title<Save As>" = "";
       "title<Save Image>" = "";
       "title<Open Folder>" = "";
+      "title<Enter name of file to save to…>" = "";
     };
   };
 }
