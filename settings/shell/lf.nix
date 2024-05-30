@@ -9,9 +9,12 @@
 
       settings = {
         icons = true; # Enable icons
-        ignorecase = true; # To find files ignoring casing
         drawbox = true; # Borders around the columns
+
+        ignorecase = true; # To find files ignoring casing
+
         mouse = true; # Enable mouse bindings
+
         # To preview images using Sixel with Chafa
         preview = true;
         sixel = true;
@@ -22,10 +25,11 @@
       commands = {
         dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"''; # TODO Replace with ripdrag
         editor-open = ''$$EDITOR $f'';
+
         # Create new folder
         create-folder = ''
           %{{
-            echo -n "Enter folder name: "
+            echo -n " Enter folder name: "
             read foldername
             if [ -n "$foldername" ]; then
               mkdir "$foldername"
@@ -34,6 +38,21 @@
             fi
           }}
         '';
+
+        delete-trash = "%{{${pkgs.trashy}/bin/trash put $fx}}";
+        # Using fzf to restore selected items from trash
+        restore-trash = ''
+          ''${{
+            selected_files=$(${pkgs.trashy}/bin/trash list | ${pkgs.fzf}/bin/fzf --multi | awk '{print $NF}')
+
+            while IFS= read -r file; do
+              echo "$file"
+              ${pkgs.trashy}/bin/trash restore -f --exact "$file"
+            done <<< "$selected_files"
+          }}
+        '';
+        empty-trash = "\${{${pkgs.trashy}/bin/trash empty --all}}";
+
         # When opening a file, hide the preview column
         on-redraw = ''
           %{{
@@ -49,8 +68,8 @@
       keybindings = {
         # keys
         r = "rename";
-        "<delete>" = "delete";
         "<esc>" = "quit";
+
         # control + key
         "<c-c>" = "copy";
         "<c-x>" = "cut";
@@ -58,6 +77,12 @@
         "<c-r>" = "reload";
         "<c-u>" = "unselect";
         "<c-d>" = "create-folder"; # Do the custom mkdir command
+
+        # delete keys
+        "<delete><enter>" = "delete-trash";
+        "<delete><delete>" = "restore-trash";
+        "<delete><backspace2>" = "empty-trash";
+
         # Unbind keys
         c = null;
         d = null;
@@ -74,7 +99,7 @@
         m = null;
         M = null;
         p = null;
-        q = null;
+        q = null; # Default: quit
         u = null;
         v = null;
         y = null;
