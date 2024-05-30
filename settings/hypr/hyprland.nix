@@ -44,8 +44,6 @@
         "col.shadow" = "rgba($color0ee)";
       };
 
-      master.new_is_master = false;
-
       exec-once = [
         "${
           pkgs.writeShellScript "wallpaper-start"
@@ -88,6 +86,8 @@
             };
           }
         );
+
+      master.new_is_master = false;
 
       misc.disable_hyprland_logo = true;
 

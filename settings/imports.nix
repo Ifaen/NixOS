@@ -2,6 +2,11 @@
   # Configure OS
   imports =
     [
+      # TODO Changing folders to be per app instead of category
+      ./hypr/hypridle.nix # Idle management daemon
+      ./hypr/hyprland.nix # Window manager
+      ./hypr/hyprlock.nix # System password lock
+
       ./apps/discord.nix # Voice chat
       ./apps/librewolf.nix # Web browser
       ./apps/firefox.nix # Web browser of work
@@ -9,9 +14,7 @@
       ./apps/thunderbird.nix # Email manager
 
       ./desktop/eww.nix # Status bar
-      ./desktop/hyprland.nix # Window manager
       ./desktop/sddm.nix # Display manager
-      ./desktop/swaylock.nix # System password lock
       ./desktop/themes.nix # Icons, fons, GTK and QT Theming
       ./desktop/waybar.nix # Status bar
       ./desktop/wlogout.nix # Logout interface
@@ -27,7 +30,6 @@
       ./services/secrets.nix
       ./services/sound.nix
       ./services/dunst.nix # Notification daemon
-      ./services/swayidle.nix # Idle management daemon
 
       ./shell/git.nix # Code version control
       ./shell/lf.nix # Terminal file browser
