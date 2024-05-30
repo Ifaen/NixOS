@@ -20,6 +20,48 @@
         sixel = true;
       };
 
+      extraConfig = ''
+        set previewer ${
+          pkgs.writeShellScript "lf-previewer.sh" ''
+            function createPreview (
+              ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+            )
+
+            path=""
+
+            case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")" in
+              application/pdf)
+                path="/tmp/lf_preview_image" # pdftoppm adds the .jpg at the end anyway (like example.jpg.jpg)
+                ${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "$path"
+                path="/tmp/lf_preview_image.jpg" # so rewrite string
+                break
+                ;;
+              video/*)
+                path="/tmp/lf_preview_image.png"
+                ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$1" -o "$path" -s 0
+                break
+              ;;
+              image/svg+xml)
+                path="/tmp/lf_preview_image.png"
+                ${pkgs.librsvg}/bin/rsvg-convert -o "$path" "$1"
+                break
+              ;;
+              image/*)
+                createPreview "$1" "$2" "$3"
+                exit
+              ;;
+              *)
+                ${pkgs.pistol}/bin/pistol "$1"
+                exit
+              ;;
+            esac
+
+            createPreview "$path" "$2" "$3"
+            rm "$path"
+          ''
+        }
+      '';
+
       # % To stay on lf
       # $ To temporarily go back to terminal
       commands = {
@@ -39,19 +81,25 @@
           }}
         '';
 
-        delete-trash = "%{{${pkgs.trashy}/bin/trash put $fx}}";
-        # Using fzf to restore selected items from trash
+        # Delete to the trash all selected files
+        delete-trash = ''
+          %{{
+            while IFS= read -r file; do
+              ${pkgs.trashy}/bin/trash put "$file"
+            done <<< "$fx"
+          }}
+        '';
+        # Using fzf to restore selected items from trash by id in the list
         restore-trash = ''
           ''${{
-            selected_files=$(${pkgs.trashy}/bin/trash list | ${pkgs.fzf}/bin/fzf --multi | awk '{print $NF}')
+            selected_files=$(${pkgs.trashy}/bin/trash list | ${pkgs.fzf}/bin/fzf --multi | awk '{print $1}')
 
             while IFS= read -r file; do
-              echo "$file"
-              ${pkgs.trashy}/bin/trash restore -f --exact "$file"
+              ${pkgs.trashy}/bin/trash restore -f -r "$file"
             done <<< "$selected_files"
           }}
         '';
-        empty-trash = "\${{${pkgs.trashy}/bin/trash empty --all}}";
+        empty-trash = "\${{${pkgs.trashy}/bin/trash empty --all}}"; # Empty all files in the trash
 
         # When opening a file, hide the preview column
         on-redraw = ''
@@ -61,6 +109,32 @@
             else
               lf -remote "send $id :set preview true; set ratios 1:2:3"
             fi
+          }}
+        '';
+
+        open = ''
+          &{{
+            file_mime_type=$(${pkgs.file}/bin/file -Lb --mime-type -- "$fx")
+
+            case "$file_mime_type" in
+              text/*)
+                lf -remote "send $id \$$EDITOR \$fx"
+                exit 0
+              ;;
+              video/*)
+                ${pkgs.mpv}/bin/mpv "$fx"
+                exit 0
+              ;;
+              image/*)
+                ${pkgs.imv}/bin/imv "$fx"
+                exit 0
+              ;;
+              *)
+                ${pkgs.xdg_utils}/bin/xdg-open "$fx"
+                echo "$file_mime_type"
+                exit 0
+              ;;
+            esac
           }}
         '';
       };
@@ -114,48 +188,6 @@
         "';'" = null;
         "','" = null;
       };
-
-      extraConfig = ''
-        set previewer ${
-          pkgs.writeShellScript "lf-previewer.sh" ''
-            function createPreview (
-              ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
-            )
-
-            path=""
-
-            case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")" in
-              application/pdf)
-                path="/tmp/lf_preview_image" # pdftoppm adds the .jpg at the end anyway (like example.jpg.jpg)
-                ${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "$path"
-                path="/tmp/lf_preview_image.jpg" # so rewrite string
-                break
-                ;;
-              video/*)
-                path="/tmp/lf_preview_image.png"
-                ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$1" -o "$path" -s 0
-                break
-              ;;
-              image/svg+xml)
-                path="/tmp/lf_preview_image.png"
-                ${pkgs.librsvg}/bin/rsvg-convert -o "$path" "$1"
-                break
-              ;;
-              image/*)
-                createPreview "$1" "$2" "$3"
-                exit
-              ;;
-              *)
-                ${pkgs.pistol}/bin/pistol "$1"
-                exit
-              ;;
-            esac
-
-            createPreview "$path" "$2" "$3"
-            rm "$path"
-          ''
-        }
-      '';
     };
 
     xdg.configFile."lf/icons".source = ../../shared/styles/lf-icons;
