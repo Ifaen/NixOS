@@ -11,37 +11,26 @@
 
   users.users.${user.name}.extraGroups = ["storage"]; # For disk management in file managers
 
-  environment.systemPackages = with pkgs; [
-    imv # Image viewer
-    gimp # Image editor
-    vlc # Media player
-    zathura # PDF viewer
-    libreoffice-fresh # Open Source microsoft 365. Fresh version
-  ];
-
   # Allow management of XDG base directories
   home-manager.users.${user.name} = {
+    home.packages = with pkgs; [
+      imv # Image viewer
+      mpv # Video viewer
+      zathura # PDF viewer
+      vlc # Media player
+      gimp # Image editor
+      libreoffice-fresh # Open Source microsoft 365. Fresh version
+    ];
+
     xdg = {
       enable = true;
 
       mimeApps = {
         enable = true;
         defaultApplications = {
-          "text/csv" = "calc.destkop";
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "calc.desktop";
-
           "application/json" = "code.desktop";
           "application/x-httpd-php" = "code.desktop";
           "application/xml" = "code.desktop";
-          "text/css" = "code.desktop";
-          "text/plain" = "code.desktop";
-          "text/x-shellscript" = "code.desktop";
-          "text/xml" = "code.desktop";
-
-          "image/jpeg" = "imv.desktop gimp.desktop";
-          "image/jpg" = "imv.desktop gimp.desktop";
-          "image/png" = "imv.desktop gimp.desktop";
-          "image/svg+xml" = "imv.desktop gimp.desktop";
 
           "application/xhtml+xml" = "librewolf.desktop";
           "scheme-handler/http" = "librewolf.desktop";
@@ -51,11 +40,8 @@
           "x-scheme-handler/https" = "librewolf.desktop";
 
           "image/gif" = "vlc.desktop";
-
-          "application/pdf" = "org.pwmt.zathura.desktop";
-
-          "x-scheme-handler/tg" = "userapp-Telegram Desktop-4V96K2.desktop";
         };
+        #"application/pdf" = "org.pwmt.zathura.desktop";
       };
 
       userDirs = {
@@ -81,6 +67,8 @@
       "class<libreoffice-calc>" = "󱎏";
       "class<zathura>" = "";
       "class<vlc>" = "󰕼"; # nf-md-vlc
+      "class<mpv>" = "";
+      "class<imv>" = "";
       "class<org.kde.partitionmanager>" = "󰋊"; # nf-md-harddisk
     };
   };
