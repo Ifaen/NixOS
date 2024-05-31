@@ -31,7 +31,7 @@
     );
 
   ## USER PACKAGES
-  home-manager.users."${user.name}" = {
+  home-manager.users.${user.name} = {
     home.packages = [];
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
