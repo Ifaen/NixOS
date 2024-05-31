@@ -3,6 +3,9 @@
   imports =
     [
       # TODO Changing folders to be per app instead of category
+      ./hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+      ./hardware/hardware.drivers.nix # Few drivers depending of the hardware
+
       ./hypr/hypridle.nix # Idle management daemon
       ./hypr/hyprland.config.nix # Window manager
       ./hypr/hyprland.keybinds.nix # Window manager keybindings
@@ -33,9 +36,7 @@
       ./desktop/wlogout.nix # Logout interface
       ./desktop/wofi.nix # Software selector
 
-      ./others/drivers.nix # Few drivers depending of the hardware
       ./others/file-management.nix # xdg-open and mimeapps
-      ./others/hardware.nix # DO NOT use if it's cloned in another system
 
       ./services/networking.nix
       ./services/portal.nix

@@ -1,14 +1,11 @@
 {
   config,
   pkgs,
-  modulesPath,
   user,
   ...
 }: {
   config =
     {
-      boot.supportedFilesystems = ["ntfs"]; # Allow the lecture of windows file system
-
       zramSwap.enable = true; # Enable the usage of zram instead of swap memory
 
       # Using cpufreq-info | grep "governor" in nix-shell -p cpufrequtils, outputs available options. When doing cat
@@ -18,13 +15,12 @@
     // (
       if user.machine == "desktop"
       then {
+        boot.supportedFilesystems = ["ntfs"]; # Allow the support for windows file system
         # Drivers
         boot = {
-          kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxKernel.packages.linux_zen.amdgpu-pro;
+          kernelPackages = pkgs.linuxPackages_latest;
           kernelModules = ["amdgpu"]; # To boot kernel with amd module
         };
-
-        services.xserver.videoDrivers = ["amdgpu"]; # for XServer
 
         hardware.opengl = {
           enable = true; # Mesa
