@@ -4,12 +4,23 @@
     [
       # TODO Changing folders to be per app instead of category
       ./hypr/hypridle.nix # Idle management daemon
-      ./hypr/hyprland.nix # Window manager
+      ./hypr/hyprland.config.nix # Window manager
+      ./hypr/hyprland.keybinds.nix # Window manager keybindings
       ./hypr/hyprlock.nix # System password lock
 
-      ./waybar/waybar.general.nix
-      ./waybar/waybar.settings.nix
+      ./waybar/waybar.general.nix # Status bar
+      ./waybar/waybar.settings.nix # Status bar settings
 
+      ./wezterm/wezterm.config.nix # Terminal simulator
+      ./wezterm/wezterm.keybinds.nix # Terminal simulator keybindings
+
+      ./xremap/xremap.config.nix # Dynamic keybinds service
+      ./xremap/xremap.keybinds.nix # Dynamic keybinds service keybindings
+
+      ./zsh/zsh.config.nix # Terminal shell configuration
+      ./zsh/zsh.tools.nix # Terminal shell tools
+
+      # TODO Replace this paths
       ./apps/discord.nix # Voice chat
       ./apps/librewolf.nix # Web browser
       ./apps/firefox.nix # Web browser of work
@@ -19,7 +30,6 @@
       ./desktop/eww.nix # Status bar
       ./desktop/sddm.nix # Display manager
       ./desktop/themes.nix # Icons, fons, GTK and QT Theming
-      ./desktop/waybar.nix # Status bar
       ./desktop/wlogout.nix # Logout interface
       ./desktop/wofi.nix # Software selector
 
@@ -27,7 +37,6 @@
       ./others/file-management.nix # xdg-open and mimeapps
       ./others/hardware.nix # DO NOT use if it's cloned in another system
 
-      ./services/keybindings.nix
       ./services/networking.nix
       ./services/portal.nix
       ./services/secrets.nix
@@ -37,8 +46,6 @@
       ./shell/git.nix # Code version control
       ./shell/lf.nix # Terminal file browser
       ./shell/starship.nix # Shell prompt customization
-      ./shell/wezterm.nix # Terminal simulator
-      ./shell/zsh.nix # Terminal shell configuration
     ]
     ++ (
       if user.machine == "desktop"
