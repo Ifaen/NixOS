@@ -7,6 +7,9 @@
       ./hypr/hyprland.nix # Window manager
       ./hypr/hyprlock.nix # System password lock
 
+      ./waybar/waybar.general.nix
+      ./waybar/waybar.settings.nix
+
       ./apps/discord.nix # Voice chat
       ./apps/librewolf.nix # Web browser
       ./apps/firefox.nix # Web browser of work
