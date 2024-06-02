@@ -33,7 +33,6 @@
 
       # TODO Replace this paths
       ./apps/discord.nix # Voice chat
-      ./apps/librewolf.nix # Web browser
       ./apps/vscode.nix # Code editor
       ./apps/thunderbird.nix # Email manager
 
