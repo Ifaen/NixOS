@@ -15,6 +15,10 @@
       ./hypr/hyprland.keybinds.nix # Window manager keybindings
       ./hypr/hyprlock.nix # System password lock
 
+      ./lf/lf.config.nix # Terminal file browser configuration
+      ./lf/lf.keybinds.nix # Terminal file browser keybinds
+      ./lf/lf.previewer.nix # Terminal file browser previewer
+
       ./waybar/waybar.general.nix # Status bar
       ./waybar/waybar.settings.nix # Status bar settings
 
@@ -48,7 +52,7 @@
       ./services/dunst.nix # Notification daemon
 
       ./shell/git.nix # Code version control
-      ./shell/lf.nix # Terminal file browser
+
       ./shell/starship.nix # Shell prompt customization
     ]
     ++ (
