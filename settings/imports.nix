@@ -3,6 +3,10 @@
   imports =
     [
       # TODO Changing folders to be per app instead of category
+      ./firefox/firefox.config.nix # Web browser
+      ./firefox/firefox.profile.aventuraspatagonia.nix
+      ./firefox/firefox.profile.default.nix
+
       ./hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
       ./hardware/hardware.drivers.nix # Few drivers depending of the hardware
 
@@ -26,7 +30,6 @@
       # TODO Replace this paths
       ./apps/discord.nix # Voice chat
       ./apps/librewolf.nix # Web browser
-      ./apps/firefox.nix # Web browser of work
       ./apps/vscode.nix # Code editor
       ./apps/thunderbird.nix # Email manager
 

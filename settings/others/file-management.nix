@@ -32,12 +32,12 @@
           "application/x-httpd-php" = "code.desktop";
           "application/xml" = "code.desktop";
 
-          "application/xhtml+xml" = "librewolf.desktop";
-          "scheme-handler/http" = "librewolf.desktop";
-          "scheme-handler/https" = "librewolf.desktop";
-          "text/html" = "librewolf.desktop";
-          "x-scheme-handler/http" = "librewolf.desktop";
-          "x-scheme-handler/https" = "librewolf.desktop";
+          "application/xhtml+xml" = "firefox.desktop";
+          "scheme-handler/http" = "firefox.desktop";
+          "scheme-handler/https" = "firefox.desktop";
+          "text/html" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
 
           "image/gif" = "vlc.desktop";
         };
