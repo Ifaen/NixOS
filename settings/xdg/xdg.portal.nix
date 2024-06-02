@@ -3,7 +3,8 @@
   user,
   ...
 }: {
-  services.gnome.gnome-keyring.enable = true; # Enable Keyring managing
+  # Enable Keyring managing
+  services.gnome.gnome-keyring.enable = true;
 
   # Add gnome keyring to pam services
   security.pam.services = {
@@ -35,13 +36,7 @@
       file://${user.home}/Sync
     '';
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
-      "size 60% 80%, class:(xdg-desktop-portal-gtk)"
-      "center, class:(xdg-desktop-portal-gtk)"
-    ];
-
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<xdg-desktop-portal-gtk>" = "";
       "title<Save As>" = "";
       "title<Save Image>" = "";
       "title<Open Folder>" = "";
