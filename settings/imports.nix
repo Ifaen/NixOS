@@ -19,6 +19,10 @@
       ./lf/lf.keybinds.nix # Terminal file browser keybinds
       ./lf/lf.previewer.nix # Terminal file browser previewer
 
+      ./vscode/vscode.config.nix
+      ./vscode/vscode.keybinds.nix
+      ./vscode/vscode.settings.nix
+
       ./waybar/waybar.general.nix # Status bar
       ./waybar/waybar.settings.nix # Status bar settings
 
