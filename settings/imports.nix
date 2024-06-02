@@ -22,6 +22,11 @@
       ./waybar/waybar.general.nix # Status bar
       ./waybar/waybar.settings.nix # Status bar settings
 
+      ./xdg/xdg.config.nix
+      ./xdg/xdg.directories.nix
+      ./xdg/xdg.mimemapps.nix
+      ./xdg/xdg.portal.nix
+
       ./wezterm/wezterm.config.nix # Terminal simulator
       ./wezterm/wezterm.keybinds.nix # Terminal simulator keybindings
 
@@ -42,10 +47,7 @@
       ./desktop/wlogout.nix # Logout interface
       ./desktop/wofi.nix # Software selector
 
-      ./others/file-management.nix # xdg-open and mimeapps
-
       ./services/networking.nix
-      ./services/portal.nix
       ./services/secrets.nix
       ./services/sound.nix
       ./services/dunst.nix # Notification daemon
