@@ -2,20 +2,11 @@
   pkgs,
   user,
   ...
-}: {
-  fonts = {
-    fontDir.enable = true;
-
-    packages = with pkgs; [
-      fira-code-nerdfont
-      kdePackages.breeze-icons
-    ];
-  };
-
-  home-manager.users.${user.name} = let
-    cursor-name = "Bibata_Ghost";
-    cursor-size = 40;
-  in {
+}: let
+  cursor-name = "Bibata_Ghost";
+  cursor-size = 40;
+in {
+  home-manager.users.${user.name} = {
     programs.pywal.enable = true; # Generate and change colorschemes on the fly
 
     ## THEME

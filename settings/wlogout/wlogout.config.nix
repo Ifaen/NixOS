@@ -41,8 +41,8 @@ in {
         }
       ];
       style = ''
-        @import "${user.flake}/shared/styles/wlogout.css";  /* For the styling*/
-        @import "${user.home}/.cache/wal/colors-waybar.css";        /* For the color scheme */
+        @import "${user.flake}/apps/wlogout.style.css"; /* For the styling*/
+        @import "${user.home}/.cache/wal/colors-waybar.css"; /* For the color scheme */
 
         #lock {
           background-image: image(url("${iconsPath}/lock.png"));

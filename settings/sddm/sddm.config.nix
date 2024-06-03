@@ -21,7 +21,7 @@
     }}";
   };
 
-  # Sddm dependencies, A cross-platform application framework for C++
+  # SDDM dependencies, A cross-platform application framework for C++
   environment.systemPackages = with pkgs.libsForQt5.qt5; [
     qtgraphicaleffects
     qtquickcontrols2

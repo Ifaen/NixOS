@@ -17,7 +17,7 @@
     nur,
     xremap-flake,
   }: let
-    machine = builtins.readFile ./shared/others/machine; # Read from file the machine name, desktop or notebook
+    machine = builtins.readFile ./.others/machine; # Read from file the machine name, desktop or notebook
 
     user =
       {

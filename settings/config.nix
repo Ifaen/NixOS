@@ -7,21 +7,14 @@
   xremap-flake,
   user,
   ...
-}: let
-  stateVersion = "23.11"; # Before changing, read https://nixos.org/nixos/options.html.
-in {
+}: {
   imports = [home-manager.nixosModules.home-manager]; # import the HM system module *once*
 
   # Enable flakes and auto optimise /nix/store
-  nix = {
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-      trusted-users = ["${user.name}"];
-    };
-    extraOptions = ''
-      warn-dirty = false
-    '';
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
+    trusted-users = ["${user.name}"];
   };
 
   # Enable the usage of NUR and Stable packages globally, with unfree configuration
@@ -57,9 +50,7 @@ in {
     };
   };
 
-  system = {
-    inherit stateVersion;
-  };
+  system.stateVersion = "23.11"; # Before changing, read https://nixos.org/nixos/options.html.
 
   home-manager = {
     useUserPackages = true; # True to move the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
@@ -74,12 +65,12 @@ in {
         stateVersion = config.system.stateVersion; # The same of the system
       };
     };
+
+    backupFileExtension = "backup";
   };
 
   boot = {
-    kernelParams = [
-      "intel_pstate=active"
-    ];
+    kernelParams = ["intel_pstate=active"];
 
     loader = {
       systemd-boot.enable = true;
@@ -88,5 +79,24 @@ in {
     };
 
     tmp.cleanOnBoot = true;
+  };
+
+  # Configure console keymap
+  console.keyMap = "${user.language}";
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "es_CL.UTF-8";
+      LC_IDENTIFICATION = "es_CL.UTF-8";
+      LC_MEASUREMENT = "es_CL.UTF-8";
+      LC_MONETARY = "es_CL.UTF-8";
+      LC_NAME = "es_CL.UTF-8";
+      LC_NUMERIC = "es_CL.UTF-8";
+      LC_PAPER = "es_CL.UTF-8";
+      LC_TELEPHONE = "es_CL.UTF-8";
+      LC_TIME = "es_CL.UTF-8";
+    };
   };
 }

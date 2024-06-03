@@ -14,19 +14,20 @@
       };
 
       listener = [
+        # Lock screen
         {
           timeout = 60 * 3;
           on-timeout = "hyprlock";
         }
         # Turn off the screen
         {
-          timeout = 60 * 5;
+          timeout = 60 * 10;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         # Suspend
         {
-          timeout = 60 * 10; # 30min
+          timeout = 60 * 20;
           on-timeout = "systemctl suspend";
         }
       ];

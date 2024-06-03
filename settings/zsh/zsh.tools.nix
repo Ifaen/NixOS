@@ -60,6 +60,118 @@
     };
 
     # Echo information about the machine
-    xdg.configFile."fastfetch/config.jsonc".source = ../../shared/configs/fastfetch.jsonc;
+    xdg.configFile."fastfetch/config.jsonc".text = ''
+      {
+        "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+        "display": {
+          "separator": "  "
+        },
+        "modules": [
+          {
+            "type": "custom", // HardwareStart
+            "format": "┌─────────── \u001b[1mHardware Information\u001b[0m ───────────┐" // `\u001b` is `\033`, or `\e`
+          },
+          {
+            "type": "host",
+            "key": "  󰌢"
+          },
+          {
+            "type": "cpu",
+            "key": "  󰻠"
+          },
+          {
+            "type": "gpu",
+            "key": "  󰍛"
+          },
+          {
+            "type": "disk",
+            "key": "  "
+          },
+          {
+            "type": "memory",
+            "key": "  󰑭"
+          },
+          {
+            "type": "display",
+            "key": "  󰍹"
+          },
+          {
+            "type": "brightness",
+            "key": "  󰃞"
+          },
+          {
+            "type": "battery",
+            "key": "  "
+          },
+          {
+            "type": "poweradapter",
+            "key": "  "
+          },
+          {
+            "type": "bluetooth",
+            "key": "  "
+          },
+          {
+            "type": "sound",
+            "key": "  "
+          },
+          {
+            "type": "gamepad",
+            "key": "  "
+          },
+          {
+            "type": "custom", // SoftwareStart
+            "format": "├─────────── \u001b[1mSoftware Information\u001b[0m ───────────┤"
+          },
+          {
+            "type": "title",
+            "key": "  ",
+            "format": "{1}@{2}"
+          },
+          {
+            "type": "os",
+            "key": "  " // Just get your distro's logo off nerdfonts.com
+          },
+          {
+            "type": "kernel",
+            "key": "  ",
+            "format": "{1} {2}"
+          },
+          {
+            "type": "de",
+            "key": "  "
+          },
+          {
+            "type": "wm",
+            "key": "  "
+          },
+          {
+            "type": "shell",
+            "key": "  "
+          },
+          {
+            "type": "terminal",
+            "key": "  "
+          },
+          {
+            "type": "packages",
+            "key": "  󰏖"
+          },
+          {
+            "type": "wifi",
+            "key": "  ",
+            "format": "{4}" // ssid
+          },
+          {
+            "type": "locale",
+            "key": "  "
+          },
+          {
+            "type": "custom", // InformationEnd
+            "format": "└────────────────────────────────────────────┘"
+          }
+        ]
+      }
+    '';
   };
 }

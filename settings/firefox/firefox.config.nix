@@ -38,12 +38,14 @@
   home-manager.users.${user.name} = {
     programs.firefox.enable = true; # Allow firefox to be configured per user / profile
 
-    # Other browsers
-    home.packages = [pkgs.brave];
+    wayland.windowManager.hyprland.settings.exec-once = ["[workspace 1 silent] firefox"];
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
       "class<firefox>" = "󰈹"; # nf-md-firefox
       "class<Brave-browser>" = "";
     };
+
+    # Other browsers
+    home.packages = [pkgs.brave];
   };
 }
