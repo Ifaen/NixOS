@@ -66,7 +66,7 @@
       };
     };
 
-    backupFileExtension = "backup";
+    backupFileExtension = "bak2";
   };
 
   boot = {

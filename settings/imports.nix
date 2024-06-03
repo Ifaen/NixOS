@@ -2,7 +2,7 @@
   imports =
     [
       ./discord/discord.config.nix # Voice chat
-      ./dunst/dunst.dunst.nix # Notification daemon
+      ./dunst/dunst.config.nix # Notification daemon
       ./eww/eww.config.nix # Status bar
       ./firefox/firefox.config.nix # Web browser
       ./firefox/firefox.profile.aventuraspatagonia.nix
@@ -29,7 +29,7 @@
       ./vscode/vscode.config.nix
       ./vscode/vscode.keybinds.nix
       ./vscode/vscode.settings.nix
-      ./waybar/waybar.general.nix # Status bar
+      ./waybar/waybar.config.nix # Status bar
       ./waybar/waybar.settings.nix # Status bar settings
       ./wezterm/wezterm.config.nix # Terminal simulator
       ./wezterm/wezterm.keybinds.nix # Terminal simulator keybindings
@@ -37,7 +37,7 @@
       ./wofi/wofi.config.nix # Software selector
       ./xdg/xdg.config.nix
       ./xdg/xdg.directories.nix
-      ./xdg/xdg.mimemapps.nix
+      ./xdg/xdg.mimeapps.nix
       ./xdg/xdg.portal.nix
       ./xremap/xremap.config.nix # Dynamic keybinds service
       ./xremap/xremap.keybinds.nix # Dynamic keybinds service keybindings
