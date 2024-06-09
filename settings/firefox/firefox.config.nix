@@ -13,11 +13,6 @@
       "fr"
     ];
 
-    preferences = {
-      "browser.startup.page" = 3; # 3 to resume previous tabs. Default: 1
-      "trailhead.firstrun.didSeeAboutWelcome" = true;
-    };
-
     # https://mozilla.github.io/policy-templates/
     policies = {
       DisableFeedbackCommands = true;
@@ -28,7 +23,7 @@
       DisableTelemetry = true;
       DontCheckDefaultBrowser = true;
       DownloadDirectory = "${user.home}/Downloads";
-      HardwareAcceleration = true; # TODO Test whether this affects somehow my notebook
+      HardwareAcceleration = true;
       OfferToSaveLoginsDefault = false;
       StartDownloadsInTempDirectory = true;
       TranslateEnabled = false;
