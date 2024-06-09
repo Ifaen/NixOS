@@ -65,8 +65,6 @@
         stateVersion = config.system.stateVersion; # The same of the system
       };
     };
-
-    backupFileExtension = "bak2";
   };
 
   boot = {
