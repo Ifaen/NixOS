@@ -41,7 +41,7 @@ in {
         }
       ];
       style = ''
-        @import "${user.flake}/apps/wlogout.style.css"; /* For the styling*/
+        @import "${user.flake}/settings/wlogout/wlogout.style.css"; /* For the styling*/
         @import "${user.home}/.cache/wal/colors-waybar.css"; /* For the color scheme */
 
         #lock {
