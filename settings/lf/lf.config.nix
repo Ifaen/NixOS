@@ -11,6 +11,8 @@
         icons = true; # Enable icons
         drawbox = true; # Borders around the columns
 
+        cursorpreviewfmt = ''\033[7m'';
+
         ignorecase = true; # To find files ignoring casing
 
         mouse = true; # Enable mouse bindings
