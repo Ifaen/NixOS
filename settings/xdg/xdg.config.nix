@@ -1,13 +1,6 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   # File Manager
-  programs = {
-    partition-manager.enable = false;
-  };
+  programs.partition-manager.enable = false;
 
   users.users.${user.name}.extraGroups = ["storage"]; # For disk management in file managers
 
