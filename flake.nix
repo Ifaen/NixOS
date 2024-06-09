@@ -6,6 +6,7 @@
     nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager";
     nur.url = "github:nix-community/nur";
+    ags.url = "github:Aylur/ags";
     xremap-flake.url = "github:xremap/nix-flake";
   };
 
@@ -15,6 +16,7 @@
     nixpkgs-stable,
     home-manager,
     nur,
+    ags,
     xremap-flake,
   }: let
     machine = builtins.readFile ./.others/machine; # Read from file the machine name, desktop or notebook
@@ -52,6 +54,7 @@
           nixpkgs-stable
           home-manager
           nur
+          ags
           xremap-flake
           ;
       };
