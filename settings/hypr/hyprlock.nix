@@ -11,7 +11,7 @@
     settings = {
       general = {
         disable_loading_bar = true;
-        #grace = 10; # Unlock upon mouse movement within 10 seconds after lock
+        grace = 10; # Unlock upon mouse movement within 10 seconds after lock
         hide_cursor = true;
         no_fade_in = false;
       };
