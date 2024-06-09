@@ -16,12 +16,12 @@
       listener = [
         # Lock screen
         {
-          timeout = 60 * 3;
+          timeout = 60 * 5;
           on-timeout = "hyprlock";
         }
         # Turn off the screen
         {
-          timeout = 60 * 10;
+          timeout = 60 * 15;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
