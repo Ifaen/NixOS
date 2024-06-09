@@ -8,22 +8,7 @@
     id = 1;
 
     bookmarks = [
-      {
-        name = "Domain";
-        toolbar = true;
-        bookmarks = [
-          {
-            name = "Email";
-            url = "https://email.aventuraspatagonia.com";
-            keyword = "email";
-          }
-          {
-            name = "Linktree";
-            url = "https://linktr.ee/admin";
-            keyword = "tree";
-          }
-        ];
-      }
+      # Social Media
       {
         name = "Social Media";
         toolbar = true;
@@ -35,7 +20,7 @@
           }
           {
             name = "Linkedin";
-            url = "https://www.linkedin.com/in/aventuraspatagonia";
+            url = "https://www.linkedin.com/in/aventuras-en-la-patagonia";
             keyword = "in";
           }
           {
@@ -55,14 +40,54 @@
           }
           {
             name = "Facebook";
-            url = "https://facebook.com/aventuraspatagonia";
+            url = "https://web.facebook.com/cabalgataspuq";
             keyword = "face";
           }
         ];
       }
+      # Domain
+      {
+        name = "Domain";
+        toolbar = true;
+        bookmarks = [
+          {
+            name = "Email";
+            url = "https://email.aventuraspatagonia.com";
+            keyword = "email";
+          }
+          {
+            name = "Linktree";
+            url = "https://linktr.ee/admin";
+            keyword = "tree";
+          }
+        ];
+      }
+      # Enterprise
+      {
+        name = "Enterprise";
+        toolbar = false;
+        bookmarks = [
+          {
+            name = "SII";
+            url = "https://homer.sii.cl";
+            keyword = "sii";
+          }
+          {
+            name = "Tu Empresa en un Dia";
+            url = "https://www.registrodeempresasysociedades.cl";
+            keyword = "enundia";
+          }
+          {
+            name = "Sernatur";
+            url = "https://portalserviciosturisticos.sernatur.cl";
+            keyword = "sernatur";
+          }
+        ];
+      }
+      # Tools
       {
         name = "Tools";
-        toolbar = true;
+        toolbar = false;
         bookmarks = [
           {
             name = "Canva";
