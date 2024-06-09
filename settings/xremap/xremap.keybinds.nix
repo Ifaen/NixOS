@@ -81,42 +81,10 @@
       ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image $file"
     ''
   }";
-
-  workspace-change = "${
-    pkgs.writeShellScript "workspace-change" ''
-      tmp_file_previous_workspace="/tmp/hypr_previous_workspace"
-
-      SELECTED_WORKSPACE="$1"
-      CURRENT_WORKSPACE=$(echo $(hyprctl -j activewindow | grep '"id"') | awk -F'[:, ]' '{print $3}') # Uses the activewindow function from hyprctl
-
-      # Check if the file exists
-      if [ ! -f "$tmp_file_previous_workspace" ]; then
-        echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace" # Create the file and write the current workspace number to it
-      fi
-      PREVIOUS_WORKSPACE=$(cat "$tmp_file_previous_workspace") # Obtain the value from the file
-
-      case $2 in
-        "key")
-          if (("$CURRENT_WORKSPACE" == "$SELECTED_WORKSPACE")); then  # If the inputted is equal to the current workspace
-            hyprctl dispatch workspace $PREVIOUS_WORKSPACE            # Move to the previous workspace
-          else                                                        # If not
-            hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
-            echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
-          fi
-        ;;
-        "arrow")
-          hyprctl dispatch workspace $SELECTED_WORKSPACE            # Move to the inputted workspace
-          echo "$CURRENT_WORKSPACE" > "$tmp_file_previous_workspace"                       # Then the current workspace becomes the previous
-        ;;
-        *)
-          echo "Wrong input"
-        ;;
-      esac
-    ''
-  }";
 in {
   home-manager.users.${user.name}.services.xremap.config.keymap =
     [
+      # Applications
       {
         name = "applications";
         remap = {
@@ -145,6 +113,7 @@ in {
           ];
         };
       }
+      # Workspace
       {
         name = "workspace";
         remap = {
@@ -156,25 +125,25 @@ in {
           super-ctrl-right.launch = ["hyprctl" "dispatch" "movefocus" "r"];
           super-ctrl-up.launch = ["hyprctl" "dispatch" "movefocus" "u"];
 
-          super-1.launch = ["${workspace-change}" "1" "key"];
-          super-2.launch = ["${workspace-change}" "2" "key"];
-          super-3.launch = ["${workspace-change}" "3" "key"];
-          super-4.launch = ["${workspace-change}" "4" "key"];
-          super-5.launch = ["${workspace-change}" "5" "key"];
-          super-6.launch = ["${workspace-change}" "6" "key"];
-          super-7.launch = ["${workspace-change}" "7" "key"];
-          super-8.launch = ["${workspace-change}" "8" "key"];
-          super-9.launch = ["${workspace-change}" "9" "key"];
-          super-0.launch = ["${workspace-change}" "10" "key"];
-          super-space.launch = ["${workspace-change}" "11" "key"];
-          super-s.launch = ["${workspace-change}" "12" "key"];
-          super-k.launch = ["${workspace-change}" "13" "key"];
-          super-m.launch = ["${workspace-change}" "14" "key"];
+          super-1.launch = ["hyprctl" "dispatch" "workspace" "1"];
+          super-2.launch = ["hyprctl" "dispatch" "workspace" "2"];
+          super-3.launch = ["hyprctl" "dispatch" "workspace" "3"];
+          super-4.launch = ["hyprctl" "dispatch" "workspace" "4"];
+          super-5.launch = ["hyprctl" "dispatch" "workspace" "5"];
+          super-6.launch = ["hyprctl" "dispatch" "workspace" "6"];
+          super-7.launch = ["hyprctl" "dispatch" "workspace" "7"];
+          super-8.launch = ["hyprctl" "dispatch" "workspace" "8"];
+          super-9.launch = ["hyprctl" "dispatch" "workspace" "9"];
+          super-0.launch = ["hyprctl" "dispatch" "workspace" "10"];
+          super-space.launch = ["hyprctl" "dispatch" "workspace" "11"];
+          super-s.launch = ["hyprctl" "dispatch" "workspace" "12"];
+          super-k.launch = ["hyprctl" "dispatch" "workspace" "13"];
+          super-m.launch = ["hyprctl" "dispatch" "workspace" "14"];
 
-          super-left.launch = ["${workspace-change}" "e-1" "arrow"];
-          super-right.launch = ["${workspace-change}" "e+1" "arrow"];
-          super-xhires_downscroll.launch = ["${workspace-change}" "e+1" "arrow"];
-          super-xhires_upscroll.launch = ["${workspace-change}" "e-1" "arrow"];
+          super-left.launch = ["hyprctl" "dispatch" "workspace" "e-1"];
+          super-right.launch = ["hyprctl" "dispatch" "workspace" "e+1"];
+          super-xhires_downscroll.launch = ["hyprctl" "dispatch" "workspace" "e+1"];
+          super-xhires_upscroll.launch = ["hyprctl" "dispatch" "workspace" "e-1"];
 
           super-shift-1.launch = ["hyprctl" "dispatch" "movetoworkspace" "1"];
           super-shift-2.launch = ["hyprctl" "dispatch" "movetoworkspace" "2"];
@@ -195,6 +164,7 @@ in {
           super-shift-v.launch = ["hyprctl" "dispatch" "togglefloating"];
         };
       }
+      # Laziness Mode
       {
         name = "laziness-mode";
         application.only = ["imv" "mpv"];
@@ -206,6 +176,7 @@ in {
     ++ (
       if user.machine == "desktop"
       then [
+        # Cursor Keyboard
         {
           name = "cursor-keyboard";
           remap = {
@@ -215,6 +186,7 @@ in {
             control-shift-alt-right.launch = ["ydotool" "mousemove" "-x" "5" "-y" "0"];
           };
         }
+        # Headphones
         {
           name = "headphones";
           remap = {
