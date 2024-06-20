@@ -3,6 +3,8 @@
   user,
   ...
 }: {
+  programs.thunar.enable = true; # Just when needed
+
   home-manager.users.${user.name} = {
     programs.lf = {
       enable = true;
@@ -23,6 +25,6 @@
       };
     };
 
-    xdg.configFile."lf/icons".source = ./lf-icons.txt;
+    xdg.configFile."lf/icons".source = ./lf.icons.txt;
   };
 }
