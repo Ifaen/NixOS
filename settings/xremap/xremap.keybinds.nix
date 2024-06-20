@@ -104,12 +104,19 @@ in {
 
           # Screenshot utility
           sysrq.launch = [
-            "hyprctl"
-            "dispatch"
-            "exec"
-            "${pkgs.writeShellScript "screenshot-clipboard.sh" ''
-              ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -w 0)" - | ${pkgs.stable.swappy}/bin/swappy -f -
-            ''}"
+            "${pkgs.hyprshot}/bin/hyprshot"
+            "--mode"
+            "region"
+            "--freeze"
+            "--clipboard-only"
+          ];
+          shift-sysrq.launch = [
+            "${pkgs.hyprshot}/bin/hyprshot"
+            "--mode"
+            "region"
+            "--freeze"
+            "--output-folder"
+            "${user.home}/Media/Screenshots"
           ];
         };
       }
