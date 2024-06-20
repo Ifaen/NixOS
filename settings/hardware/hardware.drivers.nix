@@ -16,9 +16,10 @@
       if user.machine == "desktop"
       then {
         boot.supportedFilesystems = ["ntfs"]; # Allow the support for windows file system
+
         # Drivers
         boot = {
-          kernelPackages = pkgs.linuxPackages_latest;
+          #kernelPackages = ;
           kernelModules = ["amdgpu"]; # To boot kernel with amd module
         };
 
