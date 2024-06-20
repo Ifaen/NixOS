@@ -11,6 +11,8 @@
       ./firefox/firefox.profile.aventuraspatagonia.nix
       ./firefox/firefox.profile.default.nix
 
+      ./games/minecraft/minecraft.config.nix
+
       ./git/git.config.nix # Code version control
 
       ./hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
