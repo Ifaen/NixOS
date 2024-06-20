@@ -32,6 +32,7 @@
       ./secrets/secrets.keepassxc.nix
       ./secrets/secrets.networking.nix
       ./secrets/secrets.polkit.nix
+
       ./services/services.sound.nix
 
       ./starship/starship.config.nix # Shell prompt customization
@@ -69,6 +70,8 @@
     ++ (
       if user.machine == "desktop"
       then [
+        ./davinci-resolve/davinci-resolve.config.nix # Video Editing
+        ./davinci-resolve/davinci-resolve.datafiles.nix # Video Editing data files
         ./obs/obs.config.nix # Screen recorder
       ]
       else []
