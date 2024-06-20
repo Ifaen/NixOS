@@ -32,7 +32,7 @@
       windowrulev2 = [
         "float, class:(pavucontrol)"
         "size 60% 80%, class:(pavucontrol)"
-        "opacity 0.95 1, class:^(Spotify)$"
+        "opacity 0.95, class:(Spotify)"
       ];
     };
 
