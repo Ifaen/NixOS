@@ -21,6 +21,7 @@
     settings = {
       "browser.startup.page" = 3; # 3 to resume previous tabs. Default: 1
       "trailhead.firstrun.didSeeAboutWelcome" = true;
+      "browser.download.useDownloadDir" = false;
     };
 
     bookmarks = [
@@ -50,6 +51,11 @@
             keyword = "yt";
           }
           {
+            name = "Reddit";
+            url = "https://www.reddit.com";
+            keyword = "reddit";
+          }
+          {
             name = "Manganato";
             url = "https://manganato.com";
             keyword = "manga";
@@ -58,6 +64,27 @@
             name = "VisorTMO";
             url = "https://visortmo.com";
             keyword = "visor";
+          }
+          {
+            name = "Anix";
+            url = "https://anix.to/home";
+            keyword = "anix";
+          }
+        ];
+      }
+      # Games Related
+      {
+        name = "Games Related";
+        bookmarks = [
+          {
+            name = "Modrinth Minecraft mods";
+            url = "https://modrinth.com";
+            keyword = "modrinth";
+          }
+          {
+            name = "Curseforge Minecraft mods";
+            url = "https://www.curseforge.com/minecraft/search?page=1&pageSize=10&sortBy=relevancy&class=mc-mods";
+            keyword = "curseforge";
           }
         ];
       }
@@ -78,7 +105,7 @@
           {
             name = "Instagram";
             url = "https://instagram.com";
-            keyword = "insta";
+            keyword = "ins";
           }
           {
             name = "TikTok";
@@ -153,6 +180,11 @@
             url = "https://firebase.google.com";
             keyword = "fbase";
           }
+          {
+            name = "Drive";
+            url = "https://drive.google.com";
+            keyword = "drive";
+          }
         ];
       }
       # University
@@ -160,9 +192,14 @@
         name = "University";
         bookmarks = [
           {
-            name = "Intranet";
+            name = "Intranet Unab";
             url = "https://portal.unab.cl";
             keyword = "intra";
+          }
+          {
+            name = "Canvas Unab";
+            url = "https://canvas.unab.cl";
+            keyword = "canvas";
           }
           {
             name = "CAE";

@@ -22,7 +22,6 @@
       DisableSetDesktopBackground = true;
       DisableTelemetry = true;
       DontCheckDefaultBrowser = true;
-      DownloadDirectory = "${user.home}/Downloads";
       HardwareAcceleration = true;
       OfferToSaveLoginsDefault = false;
       StartDownloadsInTempDirectory = true;

@@ -19,6 +19,11 @@
             keyword = "wsp";
           }
           {
+            name = "Youtube";
+            url = "https://www.youtube.com/@aventuraspatagonia";
+            keyword = "yt";
+          }
+          {
             name = "Linkedin";
             url = "https://www.linkedin.com/in/aventuras-en-la-patagonia";
             keyword = "in";
@@ -26,7 +31,7 @@
           {
             name = "Instagram";
             url = "https://instagram.com/aventuras_en_la_patagonia";
-            keyword = "insta";
+            keyword = "ins";
           }
           {
             name = "TikTok";
