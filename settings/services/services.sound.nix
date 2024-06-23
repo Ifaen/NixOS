@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs; [
     pavucontrol # Audio controller
     pw-volume # Basic interface for PipeWire volume controls
-    stable.spotify # Music provider
+    spotify # Music provider. If you get: libcurl-gnutls.so.4: no version information, then clear your Spotify cache rm -rf ~/.cache/spotify
   ];
 
   services.pipewire = {
