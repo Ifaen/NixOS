@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  # Making an overlay
+  # Making an overlay to bind drivers to correct folder
   nixpkgs.overlays = [
     (final: prev: {
       davinci-resolve = prev.davinci-resolve.override (old: {
@@ -19,18 +19,13 @@
     })
   ];
 
-  hardware.opengl.extraPackages = [
-    pkgs.rocm-opencl-icd
-    # TODO Seems to be unnecessary
-    #rocm-opencl-runtime
-    #rocmPackages.rocm-runtime
-    #amdvlk
-  ];
+  # allow opencl to detect amd gpu
+  hardware.opengl.extraPackages = [pkgs.rocm-opencl-icd];
 
   home-manager.users.${user.name} = {
     home.packages = [pkgs.davinci-resolve];
 
-    xdg.desktopEntries.resolve = {
+    xdg.desktopEntries.davinci-resolve = {
       name = "Davinci Resolve";
       genericName = "Video Editing";
       exec = "env QT_QPA_PLATFORM=xcb davinci-resolve";
