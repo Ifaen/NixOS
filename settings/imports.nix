@@ -49,6 +49,8 @@
       ./waybar/waybar.config.nix # Status bar
       ./waybar/waybar.settings.nix # Status bar settings
 
+      ./waypaper/waypaper.nix # Wallpaper manager
+
       ./wezterm/wezterm.config.nix # Terminal simulator
       ./wezterm/wezterm.keybinds.nix # Terminal simulator keybindings
 
