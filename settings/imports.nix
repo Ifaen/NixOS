@@ -7,10 +7,6 @@
 
       ./dunst/dunst.config.nix # Notification daemon
 
-      ./firefox/firefox.config.nix # Web browser
-      ./firefox/firefox.profile.aventuraspatagonia.nix
-      ./firefox/firefox.profile.default.nix
-
       ./games/minecraft/minecraft.config.nix
 
       ./git/git.config.nix # Code version control
@@ -41,6 +37,8 @@
       ./themes/themes.fonts.nix
 
       ./thunderbird/thunderbird.config.nix # Email manager
+
+      ./vivaldi/vivaldi.config.nix # Web Browser
 
       ./vscode/vscode.config.nix
       ./vscode/vscode.keybinds.nix

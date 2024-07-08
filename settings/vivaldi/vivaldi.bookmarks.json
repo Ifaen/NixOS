@@ -1,0 +1,341 @@
+{
+  "roots": {
+    "bookmark_bar": {
+      "name": "Bookmarks",
+      "children": [
+        {
+          "name": "Speed Dial",
+          "children": [
+            {
+              "name": "ChatGPT",
+              "url": "https://chatgpt.com",
+              "type": "url"
+            },
+            {
+              "name": "Nix Pkgs",
+              "url": "https://search.nixos.org/packages?channel=unstable",
+              "type": "url"
+            },
+            {
+              "name": "MyNixOS",
+              "url": "https://mynixos.com",
+              "type": "url"
+            },
+            {
+              "name": "GitLab",
+              "url": "https://gitlab.com",
+              "type": "url"
+            },
+            {
+              "name": "GitHub",
+              "url": "https://github.com",
+              "type": "url"
+            },
+            {
+              "name": "Youtube",
+              "url": "https://youtube.com",
+              "type": "url"
+            },
+            {
+              "name": "Manganato",
+              "url": "https://manganato.com",
+              "type": "url"
+            },
+            {
+              "name": "VisorTMO",
+              "url": "https://visortmo.com",
+              "type": "url"
+            },
+            {
+              "name": "Instagram",
+              "url": "https://instagram.com",
+              "type": "url"
+            },
+            {
+              "name": "Twitter",
+              "url": "https://x.com",
+              "type": "url"
+            }
+          ],
+          "id": "5",
+          "meta_info": { "Speeddial": "true" },
+          "type": "folder"
+        },
+        {
+          "name": "Bookmarks",
+          "children": [
+            {
+              "name": "Education",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "intranet" },
+                  "name": "Intranet Unab",
+                  "url": "https://portal.unab.cl",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "canvas" },
+                  "name": "Canvas Unab",
+                  "url": "https://canvas.unab.cl",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "cae" },
+                  "name": "CAE",
+                  "url": "https://ingresa.cl",
+                  "type": "url"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "NixOS",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "np" },
+                  "name": "Nix Pkgs",
+                  "url": "https://search.nixos.org/packages?channel=unstable",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "myn" },
+                  "name": "MyNixOS",
+                  "url": "https://mynixos.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "nhub" },
+                  "name": "NixHub",
+                  "url": "https://nixhub.io",
+                  "type": "url"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "Tools",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "myn" },
+                  "name": "MyNixOS",
+                  "url": "https://mynixos.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "ghub" },
+                  "name": "GitHub",
+                  "url": "https://github.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "gpt" },
+                  "name": "ChatGPT",
+                  "url": "https://chatgpt.com",
+                  "type": "url"
+                },
+                {
+                  "name": "Icons",
+                  "children": [
+                    {
+                      "meta_info": { "Nickname": "tabler" },
+                      "name": "TablerIo",
+                      "url": "https://tabler.io/icons",
+                      "type": "url"
+                    },
+                    {
+                      "meta_info": { "Nickname": "nf" },
+                      "name": "NerdFonts",
+                      "url": "https://nerdfonts.com/cheat-sheet",
+                      "type": "url"
+                    },
+                    {
+                      "meta_info": { "Nickname": "fa" },
+                      "name": "FontAwesome",
+                      "url": "https://fontawesome.com",
+                      "type": "url"
+                    }
+                  ],
+                  "type": "folder"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "Entertainment",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "yt" },
+                  "name": "Youtube",
+                  "url": "https://youtube.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "manga" },
+                  "name": "Manganato",
+                  "url": "https://manganato.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "visor" },
+                  "name": "VisorTMO",
+                  "url": "https://visortmo.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "netflix" },
+                  "name": "NetFlix",
+                  "url": "https://netflix.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "flix" },
+                  "name": "FlixTor",
+                  "url": "https://flixtortv.to/home",
+                  "type": "url"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "Social Media",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "wsp" },
+                  "name": "Whatsapp Web",
+                  "url": "https://web.whatsapp.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "linkd" },
+                  "name": "Linkedin",
+                  "url": "https://linkedin.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "insta" },
+                  "name": "Instagram",
+                  "url": "https://instagram.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "tt" },
+                  "name": "TikTok",
+                  "url": "https://tiktok.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "twt" },
+                  "name": "Twitter",
+                  "type": "url",
+                  "url": "https://x.com"
+                },
+                {
+                  "meta_info": { "Nickname": "face" },
+                  "name": "Facebook",
+                  "type": "url",
+                  "url": "https://facebook.com"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "Google Services",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "maps" },
+                  "name": "Google Maps",
+                  "url": "https://maps.google.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "drive" },
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "fbase" },
+                  "name": "Google Firebase",
+                  "url": "https://firebase.google.com",
+                  "type": "url"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "E-Commerce",
+              "children": [
+                {
+                  "meta_info": { "Nickname": "aliexpress" },
+                  "name": "Aliexpress",
+                  "url": "https://aliexpress.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "solotodo" },
+                  "name": "SoloTodo",
+                  "url": "https://solotodo.cl",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "mercado" },
+                  "name": "MercadoLibre",
+                  "url": "https://mercadolibre.cl",
+                  "type": "url"
+                }
+              ],
+              "type": "folder"
+            },
+            {
+              "name": "Games Related",
+              "children": [
+                {
+                  "name": "Minecraft",
+                  "children": [
+                    {
+                      "meta_info": { "Nickname": "modrinth" },
+                      "name": "Modrinth",
+                      "url": "https://modrinth.com",
+                      "type": "url"
+                    },
+                    {
+                      "meta_info": { "Nickname": "curseforge" },
+                      "name": "CurseForge",
+                      "url": "https://curseforge.com/minecraft/search?page=1&pageSize=10&sortBy=relevancy&class=mc-mods",
+                      "type": "url"
+                    }
+                  ],
+                  "type": "folder"
+                }
+              ],
+              "type": "folder"
+            }
+          ],
+          "id": "6",
+          "type": "folder"
+        }
+      ],
+      "id": "1",
+      "type": "folder"
+    },
+    "other": {
+      "name": "Other bookmarks",
+      "children": [],
+      "id": "2",
+      "type": "folder"
+    },
+    "synced": {
+      "name": "Mobile bookmarks",
+      "children": [],
+      "id": "3",
+      "type": "folder"
+    },
+    "trash": {
+      "name": "Trash",
+      "children": [],
+      "id": "4",
+      "type": "folder"
+    }
+  },
+  "version": 1
+}

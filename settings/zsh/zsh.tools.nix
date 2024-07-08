@@ -16,6 +16,8 @@
         ${pkgs.fastfetch}/bin/fastfetch
 
         nh() {
+          rm ${user.home}/.config/vivaldi/Default/Bookmarks
+
           if [[ ($1 == "switch" || $1 == "test" || $1 == "boot") && $2 == "" ]]; then
             command nh os "$1" --ask
           elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && $3 == "" ]]; then
@@ -23,6 +25,7 @@
           else
             command nh "$@"
           fi
+
           systemctl --user restart xremap
         }
       '';
