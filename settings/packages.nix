@@ -10,13 +10,6 @@
       zapzap # Whatsapp web
       telegram-desktop # groups
       obsidian # Knowledge database notes
-      # INFRAESTRUCTURA TI
-      zoom-us
-      inetutils # Collection of common network programs like telnet
-      dynamips # Emulator computer program that was written to emulate Cisco routers
-      gns3-gui # Graphical user interface for controlling the GNS3
-      ubridge # Bridge for UDP tunnels, Ethernet, TAP, and VMnet interfaces
-      stable.gns3-server # Graphical Network Simulator 3 server
     ])
     # Packages specific to device
     ++ (
