@@ -1,4 +1,5 @@
 {
+  pkgs,
   user,
   ags,
   ...
@@ -9,6 +10,14 @@
     programs.ags = {
       enable = true;
       configDir = ./.;
+
+      # additional packages to add to gjs's runtime
+      extraPackages = with pkgs; [
+        gnome.gvfs
+        #gtksourceview
+        #webkitgtk
+        #accountsservice
+      ];
     };
   };
 }

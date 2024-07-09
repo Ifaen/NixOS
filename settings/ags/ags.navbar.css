@@ -1,0 +1,34 @@
+@import "/home/sfuentes/.cache/wal/colors-waybar.css";
+
+window.bar {
+  background-color: @background;
+  color: @foreground;
+}
+
+button {
+  min-width: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+}
+
+button:active {
+  background-color: @color1;
+}
+
+button:hover {
+  border-bottom: 3px solid @color1;
+}
+
+label {
+  font-weight: bold;
+}
+
+.workspaces button.focused {
+  border-bottom: 3px solid @background;
+}
+
+levelbar block,
+highlight {
+  min-height: 10px;
+}
