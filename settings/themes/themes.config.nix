@@ -27,6 +27,10 @@ in {
         name = "monospace";
         size = 13;
       };
+
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
     };
 
     qt = {

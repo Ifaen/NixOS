@@ -27,14 +27,45 @@
     };
   };
 
-  home-manager.users.${user.name} = {
-    xdg.configFile."gtk-3.0/bookmarks".text = ''
-      file://${user.home}/NixOS
-      file://${user.home}/Documents
-      file://${user.home}/Downloads
-      file://${user.home}/Media
-      file://${user.home}/Sync
+  home-manager.users.${user.name} = {config, ...}: {
+    xdg.configFile."gtk-2.0/gtkfilechooser.ini".text = ''
+      [Filechooser Settings]
+      LocationMode=path-bar
+      ShowHidden=true
+      ShowSizeColumn=true
+      GeometryX=1920
+      GeometryY=0
+      GeometryWidth=742
+      GeometryHeight=753
+      SortColumn=name
+      SortOrder=ascending
+      StartupMode=cwd
+      DefaultFolder=cwd
     '';
+
+    gtk = {
+      gtk2 = {
+        configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
+        extraConfig = ''
+          gtk-recent-files-max-age=0
+        '';
+      };
+
+      gtk3 = {
+        bookmarks = [
+          "file://${user.home}/NixOS"
+          "file://${user.home}/Documents"
+          "file://${user.home}/Downloads"
+          "file://${user.home}/Media"
+          "file://${user.home}/Sync"
+        ];
+
+        extraConfig.gtk-recent-files-enabled = 0;
+      };
+
+      gtk4.extraConfig.gtk-recent-files-enabled = 0;
+    };
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [
       "size 60% 80%, class:(xdg-desktop-portal-gtk)"
