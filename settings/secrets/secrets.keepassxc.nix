@@ -7,46 +7,49 @@
   home-manager.users.${user.name} = {
     home.packages = [pkgs.keepassxc];
 
-    xdg.configFile."keepassxc/keepassxc.ini".text = ''
-      [General]
-      BackupBeforeSave=true
-      BackupFilePathPattern=${user.home}/Sync/.keepass/{DB_FILENAME}.old.kdbx
-      FaviconDownloadTimeout=15
-      NumberOfRememberedLastDatabases=1
-      RememberLastKeyFiles=false
-      UseGroupIconOnEntryCreation=false
+    xdg.configFile."keepassxc/keepassxc.ini" = {
+      enable = true;
+      text = ''
+        [General]
+        BackupBeforeSave=true
+        BackupFilePathPattern=${user.home}/Sync/.keepass/{DB_FILENAME}.old.kdbx
+        FaviconDownloadTimeout=15
+        NumberOfRememberedLastDatabases=1
+        RememberLastKeyFiles=false
+        UseGroupIconOnEntryCreation=false
 
-      [Browser]
-      CustomProxyLocation=
-      Enabled=true
+        [Browser]
+        CustomProxyLocation=
+        Enabled=true
 
-      [GUI]
-      ApplicationTheme=dark
-      ColorPasswords=true
-      CompactMode=true
-      HidePreviewPanel=false
-      HideToolbar=false
-      HideUsernames=false
-      TrayIconAppearance=monochrome-light
+        [GUI]
+        ApplicationTheme=dark
+        ColorPasswords=true
+        CompactMode=true
+        HidePreviewPanel=false
+        HideToolbar=false
+        HideUsernames=false
+        TrayIconAppearance=monochrome-light
 
-      [PasswordGenerator]
-      AdditionalChars=
-      ExcludedChars=
-      Length=30
+        [PasswordGenerator]
+        AdditionalChars=
+        ExcludedChars=
+        Length=30
 
-      [Security]
-      ClearClipboardTimeout=30
-      ClearSearch=true
-      ClearSearchTimeout=2
-      EnableCopyOnDoubleClick=true
-      HidePasswordPreviewPanel=true
-      HideTotpPreviewPanel=true
-      IconDownloadFallback=true
-      LockDatabaseIdle=true
-      LockDatabaseMinimize=true
-      NoConfirmMoveEntryToRecycleBin=false
-      Security_HideNotes=true
-    '';
+        [Security]
+        ClearClipboardTimeout=30
+        ClearSearch=true
+        ClearSearchTimeout=2
+        EnableCopyOnDoubleClick=true
+        HidePasswordPreviewPanel=true
+        HideTotpPreviewPanel=true
+        IconDownloadFallback=true
+        LockDatabaseIdle=true
+        LockDatabaseMinimize=true
+        NoConfirmMoveEntryToRecycleBin=false
+        Security_HideNotes=true
+      '';
+    };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
       "class<org.keepassxc.KeePassXC>" = "󰌋";
