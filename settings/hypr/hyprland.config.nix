@@ -13,8 +13,7 @@
       source = "${user.home}/.cache/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
       animations = {
-        enabled = "no";
-        /*
+        enabled = "yes";
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 7, myBezier"
@@ -24,7 +23,6 @@
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
-        */
       };
 
       decoration = {
@@ -43,17 +41,6 @@
         shadow_scale = 0.9;
         "col.shadow" = "rgba($color0ee)";
       };
-
-      exec-once = [
-        "${
-          pkgs.writeShellScript "wallpaper-start"
-          ''
-            ${pkgs.swww}/bin/swww-daemon & # Start daemon
-
-            ${pkgs.swww}/bin/swww img $(cat ${user.home}/.cache/swww/${user.monitor}) & # Change to previous session wallpaper
-          ''
-        }"
-      ];
 
       general = {
         border_size = 4;
@@ -87,7 +74,7 @@
           }
         );
 
-      master.new_is_master = false;
+      #master.new_is_master = false;
 
       misc.disable_hyprland_logo = true;
 

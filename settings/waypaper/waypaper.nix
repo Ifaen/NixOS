@@ -28,6 +28,6 @@
       swww_transition_duration = 2
     '';
 
-    wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.swww}/bin/swww restore"];
+    wayland.windowManager.hyprland.settings.exec-once = ["swww-daemon"];
   };
 }
