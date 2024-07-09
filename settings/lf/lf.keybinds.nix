@@ -10,6 +10,8 @@
       dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"''; # TODO Replace with ripdrag
       editor-open = ''$$EDITOR $f'';
 
+      # Convert a .mp4 or H.264 file to .mov
+      convert-to-mov-file = ''%${pkgs.ffmpeg}/bin/ffmpeg -i "$fx" -vcodec mjpeg -q:v 2 -acodec pcm_s16be -q:a 0 -f mov "$fx".mov'';
       # Create new folder
       create-folder = ''
         %{{
@@ -22,7 +24,6 @@
           fi
         }}
       '';
-
       # Delete to the trash all selected files
       delete-trash = ''
         %{{
@@ -41,8 +42,36 @@
           done <<< "$selected_files"
         }}
       '';
-      empty-trash = "\${{${pkgs.trashy}/bin/trash empty --all}}"; # Empty all files in the trash
+      # FIXME Empty all files in the trash. Currently not working as it should
+      empty-trash = ''
+        ''${{
+          # Define the Trash folders
+          trash_info="${user.home}/.local/share/Trash/info"
 
+          # Show the contents of the Trash folder using fzf and capture the user's selection
+          selected_files=$(find ${user.home}/.local/share/Trash/files -type f | fzf --preview 'cat {}' --preview-window=right:60% --multi)
+
+          # If no files are selected, exit the script
+          if [ -z "$selected_files" ]; then
+            echo "No files selected. Exiting."
+            exit 0
+          fi
+
+          # Show the selected files and ask for confirmation
+          echo "Selected files:"
+          echo "$selected_files"
+          echo -n "Are you sure you want to delete the selected files? y/n: "
+          read selection
+
+          # Delete the selected files if the user confirms
+          if [ "$selection" == "y" ] || [ "$selection" == "Y" ]; then
+            echo "$selected_files"
+            echo "Selected files deleted."
+          else
+            echo "Operation cancelled."
+          fi
+        }}
+      '';
       # When opening a file, hide the preview column
       on-redraw = ''
         %{{
@@ -53,7 +82,6 @@
           fi
         }}
       '';
-
       open = ''
         &{{
           file_mime_type=$(${pkgs.file}/bin/file -Lb --mime-type -- "$fx")
@@ -83,6 +111,8 @@
     keybindings = {
       # keys
       r = "rename";
+      dd = "dragon-out";
+      em = "convert-to-mov-file";
       "<esc>" = "quit";
 
       # control + key
@@ -101,6 +131,7 @@
       # Unbind keys
       c = null;
       d = null;
+      e = null;
       f = null;
       F = null;
       gg = null;
