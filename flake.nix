@@ -2,9 +2,12 @@
   description = "NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    home-manager = {
+        url = "github:nix-community/home-manager/release-24.05";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };    
     nur.url = "github:nix-community/nur";
     ags.url = "github:Aylur/ags";
     xremap-flake.url = "github:xremap/nix-flake";
@@ -13,7 +16,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
+    nixpkgs-unstable,
     home-manager,
     nur,
     ags,
@@ -51,7 +54,7 @@
       specialArgs = {
         inherit
           user
-          nixpkgs-stable
+          nixpkgs-unstable
           home-manager
           nur
           ags
