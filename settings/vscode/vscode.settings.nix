@@ -6,7 +6,7 @@
   home-manager.users.${user.name}.programs.vscode.userSettings = {
     # APPAREANCE
     "editor.guides.bracketPairs" = true; # Colorize bracket pairs
-    "workbench.iconTheme" = "file-icons"; # Icons
+    "workbench.iconTheme" = "eq-material-theme-icons"; # Icons
     # Hide menu bar
     "window.menuBarVisibility" = "hidden";
     "window.enableMenuBarMnemonics" = false;
