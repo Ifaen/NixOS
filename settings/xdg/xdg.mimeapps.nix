@@ -14,6 +14,7 @@
       libreoffice-fresh # Open Source microsoft 365. Fresh version
     ];
 
+    # To find .desktop files, do "echo $XDG_DATA_DIRS"
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -21,12 +22,12 @@
         "application/x-httpd-php" = "code.desktop";
         "application/xml" = "code.desktop";
 
-        "application/xhtml+xml" = "firefox.desktop";
-        "scheme-handler/http" = "firefox.desktop";
-        "scheme-handler/https" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
+        "application/xhtml+xml" = "vivaldi-stable.desktop";
+        "scheme-handler/http" = "vivaldi-stable.desktop";
+        "scheme-handler/https" = "vivaldi-stable.desktop";
+        "text/html" = "vivaldi-stable.desktop";
+        "x-scheme-handler/http" = "vivaldi-stable.desktop";
+        "x-scheme-handler/https" = "vivaldi-stable.desktop";
 
         "image/gif" = "vlc.desktop";
       };
