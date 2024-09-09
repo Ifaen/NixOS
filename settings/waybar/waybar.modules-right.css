@@ -1,0 +1,23 @@
+#pulseaudio,
+#group-clock {
+  font-size: 14px;
+  background-color: @background;
+  margin: 0 5px;
+  padding: 0 10px;
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+#pulseaudio {
+  color: @color2;
+  min-width: 70px;
+}
+
+#group-clock {
+  color: @color15;
+  margin-right: 50px;
+}
+#clock.calendar {
+  margin-left: 5px;
+  padding-right: 4px;
+}

@@ -1,0 +1,23 @@
+#idle_inhibitor,
+#custom-power,
+#custom-app-launcher {
+  font-size: 14px;
+  background-color: @background;
+  margin: 0 5px;
+  padding: 0 10px;
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+#custom-power {
+  margin-left: 50px;
+  color: @color6;
+  min-width: 30px;
+  padding-left: 6px;
+}
+
+#idle_inhibitor {
+  color: @color1;
+  min-width: 38px;
+  padding-left: 2px;
+}
