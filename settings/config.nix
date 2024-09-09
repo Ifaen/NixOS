@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  nixpkgs-stable,
+  nixpkgs-unstable,
   nur,
   home-manager,
   xremap-flake,
@@ -20,11 +20,11 @@
   # Enable the usage of NUR and Stable packages globally, with unfree configuration
   nixpkgs.overlays = [
     nur.overlay # Already allows unfree packages in it's own flake
-    # Stable Overlay
+    # Unstable Overlay
     (final: prev: {
-      stable = import nixpkgs-stable {
+      unstable = import nixpkgs-unstable {
         system = user.system;
-        config.allowUnfree = true; # Allow unfree packages for stable nixpkgs
+        config.allowUnfree = true; # Allow unfree packages for unstable nixpkgs
       };
     })
   ];
@@ -32,12 +32,12 @@
 
   networking.hostName = user.machine; # Define your hostname.
 
-  time.timeZone = "America/Punta_Arenas"; # Set your time zone.
+  time.timeZone = "America/Santiago"; # Set your time zone.
 
   users = {
     mutableUsers = false;
     users = {
-      ${user.name} = {
+      "${user.name}" = {
         description = "${user.fullname}";
         extraGroups = [
           "networkmanager"
@@ -50,7 +50,7 @@
     };
   };
 
-  system.stateVersion = "23.11"; # Before changing, read https://nixos.org/nixos/options.html.
+  system.stateVersion = "24.05"; # Before changing, read https://nixos.org/nixos/options.html.
 
   home-manager = {
     useUserPackages = true; # True to move the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
@@ -71,7 +71,13 @@
     kernelParams = ["intel_pstate=active"];
 
     loader = {
-      systemd-boot.enable = true;
+      #systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+        useOSProber = true;
+      };
       efi.canTouchEfiVariables = true;
       timeout = 100;
     };
