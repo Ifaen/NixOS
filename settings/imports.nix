@@ -1,8 +1,6 @@
 {user, ...}: {
   imports =
     [
-      ./ags/ags.config.nix # Widgets
-
       ./discord/discord.config.nix # Voice chat
 
       ./dunst/dunst.config.nix # Notification daemon
@@ -30,6 +28,7 @@
       ./secrets/secrets.polkit.nix
 
       ./services/services.sound.nix
+      ./services/services.sync.nix # Tools to synchronize between systems
 
       ./starship/starship.config.nix # Shell prompt customization
 
@@ -41,16 +40,18 @@
       ./vivaldi/vivaldi.config.nix # Web Browser
 
       ./vscode/vscode.config.nix
+      ./vscode/vscode.extensions.nix
       ./vscode/vscode.keybinds.nix
       ./vscode/vscode.settings.nix
 
       ./waybar/waybar.config.nix # Status bar
-      ./waybar/waybar.settings.nix # Status bar settings
+      ./waybar/waybar.modules-center.nix # Modules Center settings
+      ./waybar/waybar.modules-left.nix # Modules Left settings
+      ./waybar/waybar.modules-right.nix # Modules Right settings
 
       ./waypaper/waypaper.nix # Wallpaper manager
 
-      ./wezterm/wezterm.config.nix # Terminal simulator
-      ./wezterm/wezterm.keybinds.nix # Terminal simulator keybindings
+      ./foot/foot.config.nix # Terminal emulator
 
       ./wlogout/wlogout.config.nix # Logout interface
 
