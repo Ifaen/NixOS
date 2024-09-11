@@ -1,80 +1,80 @@
 {user, ...}: {
-  imports =
-    [
-      ./discord/discord.config.nix # Voice chat
+  imports = [
+    ./davinci-resolve/davinci-resolve.config.nix # Video Editing
+    ./davinci-resolve/davinci-resolve.datafiles.nix # Video Editing data files
 
-      ./dunst/dunst.config.nix # Notification daemon
+    ./discord/discord.config.nix # Voice chat
 
-      ./games/minecraft/minecraft.config.nix
+    ./dunst/dunst.config.nix # Notification daemon
 
-      ./git/git.config.nix # Code version control
+    ./foot/foot.config.nix # Terminal emulator
+    ./foot/foot.settings.nix
 
-      ./hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
-      ./hardware/hardware.drivers.nix # Few drivers depending of the hardware
+    ./games/minecraft/minecraft.config.nix
 
-      ./hypr/hypridle.nix # Idle management daemon
-      ./hypr/hyprland.config.nix # Window manager
-      ./hypr/hyprland.keybinds.nix # Window manager keybindings
-      ./hypr/hyprlock.nix # System password lock
+    ./git/git.config.nix # Code version control
 
-      ./lf/lf.config.nix # Terminal file browser configuration
-      ./lf/lf.keybinds.nix # Terminal file browser keybinds
-      ./lf/lf.previewer.nix # Terminal file browser previewer
+    ./hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+    ./hardware/hardware.drivers.nix # Few drivers depending of the hardware
 
-      ./sddm/sddm.config.nix # Display manager
+    ./hypr/hypridle.nix # Idle management daemon
+    ./hypr/hyprland.config.nix # Window manager
+    ./hypr/hyprland.keybinds.nix # Window manager keybindings
+    ./hypr/hyprlock.nix # System password lock
 
-      ./secrets/secrets.keepassxc.nix
-      ./secrets/secrets.networking.nix
-      ./secrets/secrets.polkit.nix
+    ./lf/lf.config.nix # Terminal file browser configuration
+    ./lf/lf.keybinds.nix # Terminal file browser keybinds
+    ./lf/lf.previewer.nix # Terminal file browser previewer
 
-      ./services/services.sound.nix
-      ./services/services.sync.nix # Tools to synchronize between systems
+    ./obs/obs.config.nix # Screen recorder
 
-      ./starship/starship.config.nix # Shell prompt customization
+    ./sddm/sddm.config.nix # Display manager
 
-      ./themes/themes.config.nix
-      ./themes/themes.fonts.nix
+    ./secrets/secrets.keepassxc.nix
+    ./secrets/secrets.networking.nix
+    ./secrets/secrets.polkit.nix
 
-      ./thunderbird/thunderbird.config.nix # Email manager
+    ./services/services.openvpn.nix
+    ./services/services.sound.nix
+    ./services/services.sync.nix # Tools to synchronize between systems
 
-      ./vivaldi/vivaldi.config.nix # Web Browser
+    ./starship/starship.config.nix # Shell prompt customization
 
-      ./vscode/vscode.config.nix
-      ./vscode/vscode.extensions.nix
-      ./vscode/vscode.keybinds.nix
-      ./vscode/vscode.settings.nix
+    ./themes/themes.config.nix
+    ./themes/themes.fonts.nix
 
-      ./waybar/waybar.config.nix # Status bar
-      ./waybar/waybar.modules-center.nix # Modules Center settings
-      ./waybar/waybar.modules-left.nix # Modules Left settings
-      ./waybar/waybar.modules-right.nix # Modules Right settings
+    ./thunderbird/thunderbird.config.nix # Email manager
 
-      ./waypaper/waypaper.nix # Wallpaper manager
+    ./vivaldi/vivaldi.config.nix # Web Browser
 
-      ./foot/foot.config.nix # Terminal emulator
+    ./vscode/vscode.config.nix
+    ./vscode/vscode.extensions.nix
+    ./vscode/vscode.keybinds.nix
+    ./vscode/vscode.settings.nix
 
-      ./wlogout/wlogout.config.nix # Logout interface
+    ./waybar/waybar.config.nix # Status bar
+    ./waybar/waybar.modules-center.nix # Modules Center settings
+    ./waybar/waybar.modules-left.nix # Modules Left settings
+    ./waybar/waybar.modules-right.nix # Modules settings
 
-      ./wofi/wofi.config.nix # Software selector
+    ./waypaper/waypaper.nix # Wallpaper manager
 
-      ./xdg/xdg.config.nix
-      ./xdg/xdg.directories.nix
-      ./xdg/xdg.mimeapps.nix
-      ./xdg/xdg.portal.nix
+    #./wezterm/wezterm.config.nix
+    #./wezterm/wezterm.keybinds.nix
 
-      ./xremap/xremap.config.nix # Dynamic keybinds service
-      ./xremap/xremap.keybinds.nix # Dynamic keybinds service keybindings
+    ./wlogout/wlogout.config.nix # Logout interface
 
-      ./zsh/zsh.config.nix # Terminal shell configuration
-      ./zsh/zsh.tools.nix # Terminal shell tools..
-    ]
-    ++ (
-      if user.machine == "desktop"
-      then [
-        ./davinci-resolve/davinci-resolve.config.nix # Video Editing
-        ./davinci-resolve/davinci-resolve.datafiles.nix # Video Editing data files
-        ./obs/obs.config.nix # Screen recorder
-      ]
-      else []
-    );
+    ./wofi/wofi.config.nix # Software selector
+
+    ./xdg/xdg.config.nix
+    ./xdg/xdg.directories.nix
+    ./xdg/xdg.mimeapps.nix
+    ./xdg/xdg.portal.nix
+
+    ./xremap/xremap.config.nix # Dynamic keybinds service
+    ./xremap/xremap.keybinds.nix # Dynamic keybinds service keybindings
+
+    ./zsh/zsh.config.nix # Terminal shell configuration
+    ./zsh/zsh.tools.nix # Terminal shell tools..
+  ];
 }
