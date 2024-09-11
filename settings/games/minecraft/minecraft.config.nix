@@ -69,8 +69,8 @@
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<org.prismlauncher.PrismLauncher>" = "󰍳"; # nf-md-minecraft
-      "class<Minecraft.*>" = "󰍳"; # nf-md-minecraft
+      "class<org.prismlauncher.PrismLauncher>" = "󰍳 "; # nf-md-minecraft
+      "class<Minecraft.*>" = "󰍳 "; # nf-md-minecraft
     };
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [

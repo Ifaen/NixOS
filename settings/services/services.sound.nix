@@ -37,8 +37,8 @@
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<Spotify>" = "󰓇";
-      "class<pavucontrol>" = "󰕾"; # nf-md-volume_high
+      "class<Spotify>" = "󰓇 ";
+      "class<pavucontrol>" = "󰕾 "; # nf-md-volume_high
     };
   };
 }

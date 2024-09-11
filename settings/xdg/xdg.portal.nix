@@ -68,18 +68,18 @@
     };
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [
-      "size 60% 80%, class:(xdg-desktop-portal-gtk)"
+      #"size 60% 80%, class:(xdg-desktop-portal-gtk)"
       "float, class:(xdg-desktop-portal-gtk)"
       "float, title:(Save File)"
     ];
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<xdg-desktop-portal-gtk>" = "";
-      "title<Save As>" = "";
-      "title<Save File>" = "";
-      "title<Save Image>" = "";
-      "title<Open Folder>" = "";
-      "title<Enter name of file to save to…>" = "";
+      "class<xdg-desktop-portal-gtk>" = " ";
+      "title<Save As>" = " ";
+      "title<Save File>" = " ";
+      "title<Save Image>" = " ";
+      "title<Open Folder>" = " ";
+      "title<Enter name of file to save to…>" = " ";
     };
   };
 }

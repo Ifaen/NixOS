@@ -35,12 +35,12 @@
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<libreoffice-calc>" = "󱎏";
-      "class<zathura>" = "";
-      "class<vlc>" = "󰕼"; # nf-md-vlc
+      "class<libreoffice-calc>" = "󱎏 ";
+      "class<zathura>" = " ";
+      "class<vlc>" = "󰕼 "; # nf-md-vlc
       "class<mpv>" = "";
       "class<imv>" = "";
-      "class<org.kde.partitionmanager>" = "󰋊"; # nf-md-harddisk
+      "class<org.kde.partitionmanager>" = "󰋊 "; # nf-md-harddisk
     };
   };
 }

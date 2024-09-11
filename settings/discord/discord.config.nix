@@ -13,6 +13,6 @@
       };
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<de.shorsh.discord-screenaudio>" = "";
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<de.shorsh.discord-screenaudio>" = " ";
   };
 }

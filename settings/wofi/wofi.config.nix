@@ -4,6 +4,6 @@
       enable = true;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<wofi>" = "󰼢";
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<wofi>" = "󰼢 ";
   };
 }

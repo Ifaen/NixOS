@@ -1,11 +1,9 @@
 #workspaces button {
   font-size: 20px;
-  min-width: 0;
-  min-height: 0;
+
   padding: 0;
-  padding-left: 6px;
-  padding-right: 11px;
-  margin: 0 3px;
+  padding-left: 7px;
+  margin: 0 2px;
   color: @color6;
   transition-property: color;
   transition-duration: 0.5s;
