@@ -4,7 +4,10 @@
   ...
 }: {
   home-manager.users.${user.name}.programs.foot.settings = {
-    colors.background = "FFFFFFaa";
+    colors = {
+      alpha = "0.5";
+      background = "FFFFFF";
+    };
     mouse.hide-when-typing = "yes";
   };
 }
