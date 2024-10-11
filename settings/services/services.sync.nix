@@ -23,6 +23,11 @@
         devices = ["mobile"];
       };
 
+      "Notes" = {
+        path = "${config.services.syncthing.dataDir}/Notes";
+        devices = ["mobile"];
+      };
+
       "Wallpapers" = {
         path = "${config.home-manager.users.${user.name}.xdg.userDirs.pictures}/Wallpapers/Mobile";
         type = "sendonly";
