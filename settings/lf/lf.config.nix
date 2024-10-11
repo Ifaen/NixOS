@@ -25,6 +25,15 @@
       };
     };
 
+    programs.zsh = {
+      # lf to navigate, lfc to navigate and change directory on exit
+      initExtra = ''
+        lfc() {
+          cd "$(command lf -print-last-dir "$@")"
+        }
+      '';
+    };
+
     xdg.configFile."lf/icons".source = ./lf.icons.txt;
   };
 }
