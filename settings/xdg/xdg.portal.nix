@@ -68,9 +68,12 @@
     };
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [
-      #"size 60% 80%, class:(xdg-desktop-portal-gtk)"
+      "size 60% 80%, class:(xdg-desktop-portal-gtk)"
+      "size 60% 80%, class:(Xdg-desktop-portal-gtk)"
       "float, class:(xdg-desktop-portal-gtk)"
       "float, title:(Save File)"
+      "float, title:(Save Video)"
+      "float, title:(Save Image)"
     ];
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {

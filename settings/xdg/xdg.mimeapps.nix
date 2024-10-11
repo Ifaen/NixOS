@@ -30,13 +30,13 @@
         "x-scheme-handler/https" = "vivaldi-stable.desktop";
 
         "image/gif" = "vlc.desktop";
+        "application/pdf" = "org.pwmt.zathura.desktop";
       };
-      #"application/pdf" = "org.pwmt.zathura.desktop";
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
       "class<libreoffice-calc>" = "󱎏 ";
-      "class<zathura>" = " ";
+      "class<org.pwmt.zathura>" = " ";
       "class<vlc>" = "󰕼 "; # nf-md-vlc
       "class<mpv>" = "";
       "class<imv>" = "";

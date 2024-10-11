@@ -12,7 +12,7 @@
       text = ''
         [General]
         BackupBeforeSave=true
-        BackupFilePathPattern=${user.home}/Sync/.keepass/{DB_FILENAME}.old.kdbx
+        BackupFilePathPattern=${user.home}/Sync/Keepass/{DB_FILENAME}.old.kdbx
         FaviconDownloadTimeout=15
         NumberOfRememberedLastDatabases=1
         RememberLastKeyFiles=false
@@ -34,7 +34,7 @@
         [PasswordGenerator]
         AdditionalChars=
         ExcludedChars=
-        Length=30
+        Length=20
 
         [Security]
         ClearClipboardTimeout=30
@@ -52,30 +52,14 @@
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<org.keepassxc.KeePassXC>" = "󰌋";
-      "class<polkit-kde-authentication-agent-1>" = "󰌾"; # nf-md-lock
+      "class<org.keepassxc.KeePassXC>" = "󰌋 ";
+      "class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock
     };
   };
 
-  ## SYNCTHING
-  services.syncthing = {
-    enable = true;
-    user = "${user.name}";
-
-    dataDir = "${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.sync}"; # Obtain the name of sync folder in the extraconfig of xdg
-    configDir = "${user.home}/.config/syncthing";
-
-    settings = {
-      devices."mobile".id = "FDD6P6K-OV6LVEX-BPUKI6F-2CCANDX-KAHGOSV-5JTU4BC-NISJSGW-3YES5QX";
-
-      folders."Keepass" = {
-        path = "${config.services.syncthing.dataDir}/.keepass";
-        devices = ["mobile"];
-      };
-    };
-
-    # overrides any folders and devices added or deleted through the WebUI
-    overrideDevices = true;
-    overrideFolders = true;
+  ## Sync folder with mobile device
+  services.syncthing.settings.folders."Keepass" = {
+    path = "${config.services.syncthing.dataDir}/Keepass";
+    devices = ["mobile"];
   };
 }

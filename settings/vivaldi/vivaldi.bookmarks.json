@@ -37,6 +37,12 @@
               "type": "url"
             },
             {
+                "meta_info": { "Nickname": "reddit" },
+                "name": "Reddit",
+                "url": "https://Reddit.com",
+                "type": "url"
+            },
+            {
               "name": "Manganato",
               "url": "https://manganato.com",
               "type": "url"
@@ -167,6 +173,12 @@
                   "meta_info": { "Nickname": "yt" },
                   "name": "Youtube",
                   "url": "https://youtube.com",
+                  "type": "url"
+                },
+                {
+                  "meta_info": { "Nickname": "reddit" },
+                  "name": "Reddit",
+                  "url": "https://Reddit.com",
                   "type": "url"
                 },
                 {
