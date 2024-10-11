@@ -65,28 +65,31 @@
 
     # Pywal
     ${pkgs.pywal}/bin/wal -q -i ${wallpaper-directory}"/$file" # Create color scheme of file
-    colors="${wal-directory}/colors"                           # Obtain new color scheme
+    colors="${wal-directory}/colors" # Obtain new color scheme
 
     # Make wal for hyprland
-    > "${wal-directory}/colors-hyprland.conf"                  # Clean file
+    > "${wal-directory}/colors-hyprland.conf" # Clean file
 
     i=0
     while IFS= read -r line; do
-      echo "\$color$i = ''${line#"#"}" >> "${wal-directory}/colors-hyprland.conf"  # Append to file
+      echo "\$color$i = ''${line#"#"}" >> "${wal-directory}/colors-hyprland.conf" # Append to file
       ((i++))
-    done < "$colors"                                                              # Read from the path inside the $colors variable
+    done < "$colors" # Read from the path inside the $colors variable
 
     #sleep 1
     ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image $file"
   ''}";
 
   workspace-change = "${pkgs.writeShellScript "workspace-change" ''
+    # Kill every wofi instance, in case there was one
+    pkill wofi
+    # Change to provided workspace
     hyprctl dispatch workspace $1
-
+    # Check if workspace is empty
     is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
-
-    if [ $is_empty == 0 ] && [ $1 != 13 ]; then
-      ${pkgs.wofi}/bin/wofi --normal-window --allow-images --show drun
+    # If empty, open wofi
+    if [ $is_empty == 0 ]; then
+      hyprctl dispatch exec wofi -- --normal-window --allow-images --show drun
     fi
   ''}";
 in {
@@ -95,7 +98,7 @@ in {
     {
       name = "applications";
       remap = {
-        control-q.launch = [
+        super-q.launch = [
           "hyprctl"
           "dispatch"
           "killactive"
