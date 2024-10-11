@@ -15,43 +15,43 @@
       initExtra = ''
         ${pkgs.fastfetch}/bin/fastfetch
 
+        # Allow to use nh without putting os, also configure
         nh() {
-          rm ${user.home}/.config/vivaldi/Default/Bookmarks
-
-          if [[ ($1 == "switch" || $1 == "test" || $1 == "boot") && $2 == "" ]]; then
-            command nh os "$1" --ask
-          elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && $3 == "" ]]; then
-            command nh clean "$2" --ask
+          if [[ ($1 == "switch" || $1 == "boot") && -z "$2" ]]; then
+            command nh os "$1" --ask # Always ask when updating system
+          elif [[ $1 == "test" ]]; then
+            command nh os test "''${@:2}" # Normal behaviour
+          elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && -z "$3" ]]; then
+            command nh clean "$2" --ask # Always ask when cleaning system
           else
-            command nh "$@"
+            command nh "$@" # Usual usage of nh
           fi
-
-          systemctl --user restart xremap
         }
+
+        eval "$(direnv hook zsh)" # Allow to use direnv
       '';
 
       shellAliases = {
-        stop = "systemctl --user stop";
-        status = "systemctl --user status";
-        restart = "systemctl --user restart";
         l = "eza -l";
         ll = "eza -la";
         ls = "eza";
         la = "eza -a";
         lg = "eza -l | grep";
-        cls = "clear";
+        cls = "cd $HOME && clear";
         ".." = "cd ..";
       };
+    };
+
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
 
     # A BETTER CHANGE DIRECTORY
     programs.zoxide = {
       enable = true;
       options = ["--cmd cd"];
-    };
-
-    programs.fzf = {
-      enable = true; # For cdi, which means Change Directory Interactively
     };
 
     # A BETTER LS WITH ICONS
