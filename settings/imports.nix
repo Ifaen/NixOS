@@ -27,6 +27,7 @@
     ./lf/lf.previewer.nix # Terminal file browser previewer
 
     ./obs/obs.config.nix # Screen recorder
+    ./obs/obs.settings.nix # Profile settings
 
     ./sddm/sddm.config.nix # Display manager
 
@@ -43,7 +44,7 @@
     ./themes/themes.config.nix
     ./themes/themes.fonts.nix
 
-    ./thunderbird/thunderbird.config.nix # Email manager
+    #./thunderbird/thunderbird.config.nix # Email manager
 
     ./vivaldi/vivaldi.config.nix # Web Browser
 
@@ -55,7 +56,7 @@
     ./waybar/waybar.config.nix # Status bar
     ./waybar/waybar.modules-center.nix # Modules Center settings
     ./waybar/waybar.modules-left.nix # Modules Left settings
-    ./waybar/waybar.modules-right.nix # Modules settings
+    ./waybar/waybar.modules-right.nix # Modules Right settings
 
     ./waypaper/waypaper.nix # Wallpaper manager
 
