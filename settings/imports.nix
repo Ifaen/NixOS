@@ -10,7 +10,7 @@
     ./foot/foot.config.nix # Terminal emulator
     ./foot/foot.settings.nix
 
-    ./games/minecraft/minecraft.config.nix
+    #./games/minecraft/minecraft.config.nix
 
     ./git/git.config.nix # Code version control
 
