@@ -8,6 +8,5 @@
       alpha = "0.5";
       background = "FFFFFF";
     };
-    mouse.hide-when-typing = "yes";
   };
 }

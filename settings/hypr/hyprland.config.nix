@@ -27,6 +27,8 @@
         */
       };
 
+      monitor = ", highres, auto, 1";
+
       decoration = {
         rounding = 0;
 
@@ -54,6 +56,8 @@
 
         layout = "master";
       };
+
+      cursor.hide_on_key_press = true;
 
       gestures.workspace_swipe = "off";
 
