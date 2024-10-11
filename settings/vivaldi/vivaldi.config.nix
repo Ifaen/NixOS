@@ -30,6 +30,9 @@
     wayland.windowManager.hyprland.settings.exec-once = ["[workspace 1 silent] vivaldi"];
 
     # Other browsers
-    home.packages = [pkgs.brave];
+    home.packages = with pkgs; [
+      brave # Second browser in case primary throws an error
+      vdhcoapp # Companion application for the Video DownloadHelper browser add-on.
+    ];
   };
 }
