@@ -37,17 +37,14 @@
         withWlroots = true; # To work in wayland
 
         watch = true; # Watch for devices connected after service started
-        /*
-         deviceNames =
-        if user.machine == "desktop"
-        then [
-          "2.4G Mouse"
+
+        mouse = true;
+
+        deviceNames = [
           "2.4G RF Keyboard & Mouse"
           "Kingston HyperX Cloud Stinger Core Wireless" # Wireless headphones
           "ydotoold virtual device" # ydotool
-        ]
-        else [];
-        */
+        ];
       };
 
       # Workaround to reset the service of xremap after logout of hyprland
