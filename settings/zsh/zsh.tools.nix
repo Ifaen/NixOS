@@ -42,11 +42,14 @@
       };
     };
 
+    # Tool to enter automatically a nix shell
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+
+    home.packages = [pkgs.devenv];
 
     # A BETTER CHANGE DIRECTORY
     programs.zoxide = {
