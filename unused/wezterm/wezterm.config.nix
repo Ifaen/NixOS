@@ -3,6 +3,8 @@
   user,
   ...
 }: {
+  # UNUSED BECAUSE OF: https://github.com/wez/wezterm/issues/3968
+
   home-manager.users.${user.name} = {
     programs.wezterm = {
       enable = true;
