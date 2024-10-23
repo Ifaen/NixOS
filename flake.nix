@@ -1,6 +1,4 @@
 {
-  description = "NixOS Flake";
-
   inputs = {
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs.url = "nixpkgs/nixos-24.05";
@@ -9,7 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/nur";
-    ags.url = "github:Aylur/ags";
     xremap-flake.url = "github:xremap/nix-flake";
   };
 
@@ -19,7 +16,6 @@
     nixpkgs-unstable,
     home-manager,
     nur,
-    ags,
     xremap-flake,
   }: let
     user = {
@@ -43,7 +39,6 @@
           nixpkgs-unstable
           home-manager
           nur
-          ags
           xremap-flake
           ;
       };
