@@ -9,7 +9,8 @@
     commands = {
       ## Open with
       editor-open = ''$$EDITOR $f'';
-      vlc-open = "%vlc $fx";
+      vlc-open = "%vlc .";
+      thunar-open = "%thunar";
 
       ## Utilities
       drag-file = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"''; # TODO Replace with ripdrag
@@ -116,6 +117,7 @@
       "<esc>" = "quit";
       ## open with
       ov = "vlc-open";
+      ot = "thunar-open";
 
       # control + key
       "<c-c>" = "copy";

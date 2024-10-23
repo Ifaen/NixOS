@@ -3,7 +3,22 @@
   user,
   ...
 }: {
-  programs.thunar.enable = true; # Just when needed
+  # -- Using thunar as a folder image previewer
+  programs = {
+    thunar = {
+      enable = true; # Just when needed
+
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+    xfconf.enable = true; # To keep preferences changes
+  };
+
+  services.tumbler.enable = true; # Thumbnail support for images
+
+  # -- lf as terminal folder manager
 
   home-manager.users.${user.name} = {
     programs.lf = {
@@ -25,14 +40,12 @@
       };
     };
 
-    programs.zsh = {
-      # lf to navigate, lfc to navigate and change directory on exit
-      initExtra = ''
-        lfc() {
-          cd "$(command lf -print-last-dir "$@")"
-        }
-      '';
-    };
+    # lf to navigate, lfc to navigate and change directory on exit
+    programs.zsh.initExtra = ''
+      lfc() {
+        cd "$(command lf -print-last-dir "$@")"
+      }
+    '';
 
     xdg.configFile."lf/icons".source = ./lf.icons.txt;
   };
