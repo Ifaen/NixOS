@@ -5,6 +5,8 @@
 }: {
   programs.hyprland.enable = true; # Windows Manager.
 
+  services.getty.autologinUser = user.name; # Autologin
+
   # Configuration of window manager
   home-manager.users.${user.name}.wayland.windowManager.hyprland = {
     enable = true;
@@ -12,20 +14,7 @@
     settings = {
       source = "${user.home}/.cache/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
-      animations = {
-        enabled = "yes";
-        /*
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-        */
-      };
+      animations.enabled = "yes";
 
       monitor = ", highres, auto, 1";
 
@@ -57,7 +46,7 @@
         layout = "master";
       };
 
-      cursor.hide_on_key_press = true;
+      cursor.hide_on_key_press = true; # Hide cursor when writing
 
       gestures.workspace_swipe = "off";
 

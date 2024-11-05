@@ -16,8 +16,6 @@
       /foot/foot.keybinds.nix
       /foot/foot.settings.nix
 
-      #/games/minecraft/minecraft.config.nix
-
       /git/git.config.nix # Code version control
 
       /hardware/hardware.config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
@@ -35,8 +33,6 @@
       /obs/obs.config.nix # Screen recorder
       /obs/obs.settings.nix # Profile settings
 
-      /sddm/sddm.config.nix # Display manager
-
       /secrets/secrets.keepassxc.nix
       /secrets/secrets.networking.nix
       /secrets/secrets.polkit.nix
@@ -49,8 +45,6 @@
 
       /themes/themes.config.nix
       /themes/themes.fonts.nix
-
-      #/thunderbird/thunderbird.config.nix # Email manager
 
       /vivaldi/vivaldi.config.nix # Web Browser
 
@@ -65,9 +59,6 @@
       /waybar/waybar.modules-right.nix # Modules Right settings
 
       /waypaper/waypaper.nix # Wallpaper manager
-
-      #/wezterm/wezterm.config.nix
-      #/wezterm/wezterm.keybinds.nix
 
       /wlogout/wlogout.config.nix # Logout interface
 
