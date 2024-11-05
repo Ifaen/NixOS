@@ -1,23 +1,15 @@
 {
   inputs = {
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nur.url = "github:nix-community/nur";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     xremap-flake.url = "github:xremap/nix-flake";
+    nix-tagstudio.url = "github:zierf/TagStudio/poetry2nix"; # https://github.com/TagStudioDev/TagStudio/issues/200
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    # nur.url = "github:nix-community/nur"; # -- Unused (maybe for now)
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    nur,
-    xremap-flake,
-  }: let
+  outputs = {self, ...} @ inputs: let
     user = {
       fullname = "Santiago Fuentes";
       name = "sfuentes";
@@ -30,22 +22,15 @@
       monitor = "HDMI-A-1";
     };
   in {
-    nixosConfigurations.${user.machine} = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${user.machine} = inputs.nixpkgs.lib.nixosSystem {
       system = user.system;
 
-      specialArgs = {
-        inherit
-          user
-          nixpkgs-unstable
-          home-manager
-          nur
-          xremap-flake
-          ;
-      };
+      specialArgs = {inherit inputs user;};
 
-      modules = map (path: ./settings + path) [
-        /config.nix
+      modules = map (path: ./config + path) [
         /imports.nix
+        /config.system.nix
+        /config.user.nix
         /packages.nix
       ];
     };
