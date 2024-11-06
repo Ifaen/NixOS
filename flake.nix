@@ -4,9 +4,10 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     xremap-flake.url = "github:xremap/nix-flake";
     nix-tagstudio.url = "github:zierf/TagStudio/poetry2nix"; # https://github.com/TagStudioDev/TagStudio/issues/200
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    # nur.url = "github:nix-community/nur"; # -- Unused (maybe for now)
+    # -- Unused (maybe for now)
+    # nur.url = "github:nix-community/nur";
+    # nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -29,9 +30,9 @@
 
       modules = map (path: ./config + path) [
         /imports.nix
-        /config.system.nix
-        /config.user.nix
         /packages.nix
+        /system.nix
+        /user.nix
       ];
     };
   };
