@@ -13,8 +13,9 @@
       /secrets/polkit.nix
 
       /services/openvpn.nix
-      /services/sound.nix
+      /services/sound.nix # Every sound related service
       /services/sync.nix # Tools to synchronize between systems
+      /services/ydotool.nix # Tool to move cursor using the keyboard
 
       /shell/git.nix # Code version control
       /shell/starship.nix # Shell prompt

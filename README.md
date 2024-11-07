@@ -33,6 +33,6 @@ Nixos/
 
 **unused/**: A storage area for currently unused configurations. I keep these files around as a reference or for potential future needs.
 
-### Modular Configuration Philosophy
+## Modular Configuration Philosophy
 
 Some settings are grouped in a single file to prevent dependencies between applications. This way, if I decide to remove an app, I won’t need to search through other configurations to check for potential dependencies.
