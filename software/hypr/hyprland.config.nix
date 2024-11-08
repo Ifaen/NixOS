@@ -17,7 +17,10 @@
 
       animations.enabled = "yes";
 
-      monitor = ", highres, auto, 1";
+      monitor = [
+        "HDMI-A-1, 1920x1080@74.97, 0x0, 1"
+        "DP-3, 1920x1080@60, 1920x0, 1"
+      ];
 
       decoration = {
         rounding = 0;
@@ -53,7 +56,7 @@
 
       input = {
         follow_mouse = 1;
-        sensitivity = 1; # range [-1.0, 1.0], 0 means no modification.
+        accel_profile = "flat"; # Also useful for ydotool for consistency with `mousemove` command
       };
 
       misc.disable_hyprland_logo = true;

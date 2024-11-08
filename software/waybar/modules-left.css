@@ -1,7 +1,8 @@
 #idle_inhibitor,
 #custom-power,
 #custom-vpn,
-#custom-app-launcher {
+#custom-app-launcher,
+#custom-wallpaper-launcher {
   background-color: @background;
   margin: 0 5px;
   padding: 0 10px;
@@ -24,16 +25,23 @@
   padding-left: 6px;
 }
 
+#custom-wallpaper-launcher {
+  font-size: 14px;
+  color: @color5;
+  min-width: 34px;
+  padding-left: 6px;
+}
+
 #custom-vpn {
   font-size: 17px;
-  color: @color5;
+  color: @color7;
   min-width: 34px;
   padding-left: 4px;
 }
 
 #idle_inhibitor {
   font-size: 14px;
-  color: @color7;
+  color: @color9;
   min-width: 38px;
   padding-left: 2px;
 }

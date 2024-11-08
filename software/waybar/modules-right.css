@@ -9,12 +9,12 @@
 }
 
 #pulseaudio {
-  color: @color2;
+  color: @color11;
   min-width: 70px;
 }
 
 #group-clock {
-  color: @color15;
+  color: @color13;
   margin-right: 50px;
 }
 #clock.calendar {

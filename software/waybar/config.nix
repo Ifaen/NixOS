@@ -10,10 +10,10 @@
 
       style = ''
         @import "${user.home}/.cache/wal/colors-waybar.css";        /* For the color scheme */
-        @import "${user.flake}/settings/waybar/waybar.config.css";  /* For the styling*/
-        @import "${user.flake}/settings/waybar/waybar.modules-center.css";
-        @import "${user.flake}/settings/waybar/waybar.modules-left.css";
-        @import "${user.flake}/settings/waybar/waybar.modules-right.css";
+        @import "${user.flake}/software/waybar/config.css";         /* For the styling*/
+        @import "${user.flake}/software/waybar/modules-center.css";
+        @import "${user.flake}/software/waybar/modules-left.css";
+        @import "${user.flake}/software/waybar/modules-right.css";
       '';
 
       settings.statusBar = {

@@ -28,6 +28,14 @@
       swww_transition_duration = 2
     '';
 
-    wayland.windowManager.hyprland.settings.exec-once = ["swww-daemon"];
+    wayland.windowManager.hyprland.settings = {
+      windowrulev2 = ["float, class:(waypaper)"];
+
+      exec-once = ["swww-daemon"]; # Start swww daemon
+    };
+
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+      "class<waypaper>" = " ";
+    };
   };
 }

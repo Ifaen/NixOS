@@ -3,11 +3,32 @@
   pkgs,
   user,
   ...
-}: {
+}: let
+  move-cursor-to-center = "${pkgs.writeShellScript "move-cursor-to-center" ''
+    # Set target screen center (assuming 1920x1080 screen resolution)
+    target_x=$((1920 / 2))
+    target_y=$((1080 / 2))
+
+    # Get current cursor position as JSON
+    coords=$(hyprctl cursorpos -j)
+
+    # Parse the x and y values
+    current_x=$(echo "$coords" | ${pkgs.jq}/bin/jq '.x')
+    current_y=$(echo "$coords" | ${pkgs.jq}/bin/jq '.y')
+
+    # Calculate offsets needed to center cursor, adjusted for ydotool doubling
+    move_x=$((target_x - current_x))
+    move_y=$((target_y - current_y))
+
+    # Move the cursor
+    ydotool mousemove -- "$move_x" "$move_y"
+  ''}";
+in {
   home-manager.users.${user.name}.programs.waybar.settings.statusBar = {
     modules-left = [
       "custom/power"
       "custom/app-launcher"
+      "custom/wallpaper-launcher"
       "custom/vpn"
       "idle_inhibitor"
     ];
@@ -15,19 +36,44 @@
     "custom/power" = {
       format = "";
       tooltip = false;
-      on-click = "wlogout";
+      on-click = "wlogout & ${move-cursor-to-center}";
     };
 
     "custom/app-launcher" = {
       format = "󱄅";
       tooltip = false;
-      on-click = "pkill wofi || wofi --normal-window --allow-images --show drun";
+      on-click = "${pkgs.writeShellScript "toggle-wofi" ''
+        if pgrep wofi; then
+          pkill wofi
+        else
+          ${move-cursor-to-center}
+
+          # If wofi is not running, start it
+          hyprctl dispatch exec 'wofi --normal-window --allow-images --show drun &'
+        fi
+      ''}";
+    };
+
+    "custom/wallpaper-launcher" = {
+      format = "";
+      tooltip = false;
+      on-click = "${pkgs.writeShellScript "toggle-waypaper" ''
+        if pgrep waypaper; then
+          pkill waypaper
+        else
+          ${move-cursor-to-center}
+
+          hyprctl dispatch exec ${pkgs.waypaper}/bin/waypaper
+        fi
+      ''}";
     };
 
     "custom/vpn" = {
       format = "󰖂";
       tooltip = false;
       on-click = "${pkgs.writeShellScript "toggle-vpn" ''
+        ${move-cursor-to-center}
+
         SERVICE_NAME="openvpn-protonvpn.service"
 
         VPN_STATUS=$(systemctl is-active $SERVICE_NAME) # Check if is active
