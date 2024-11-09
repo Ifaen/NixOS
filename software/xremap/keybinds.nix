@@ -7,7 +7,8 @@
   wal-directory = "${user.home}/.cache/wal";
 
   wallpaper-change = "${pkgs.writeShellScript "wallpaper-change" ''
-    current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/${user.monitor}))  # Obtain the current wallpaper filename
+    # Obtain the current wallpaper filename
+    current_wallpaper=$(basename $(cat ${user.home}/.cache/swww/HDMI-A-1)) # TODO Change this to be dynamic
 
     case $1 in
       "up")
@@ -111,7 +112,7 @@ in {
           "hyprctl"
           "dispatch"
           "exec"
-          "${pkgs.writeShellScript "toggle-wofi" "pkill wofi || wofi --normal-window --allow-images --show drun"}"
+          "${pkgs.writeShellScript "toggle-wofi" "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun"}"
         ];
 
         super-shift-w.launch = [
@@ -222,13 +223,11 @@ in {
         volumedown.launch = ["${pkgs.pulseaudio}/bin/pactl" "set-sink-volume" "0" "-5%"];
       };
     }
-    # Laziness Mode
+    # Laziness Mode (To ease closing apps opened inside lf)
     {
       name = "laziness-mode";
-      application.only = ["imv" "mpv"];
-      remap = {
-        delete.launch = ["hyprctl" "dispatch" "killactive"];
-      };
+      application.only = ["imv" "mpv" "vlc"];
+      remap.delete.launch = ["hyprctl" "dispatch" "killactive"];
     }
   ];
 }

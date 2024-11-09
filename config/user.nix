@@ -5,10 +5,10 @@
   user,
   ...
 }: {
-  users.users."${user.name}" = {
+  users.users.${user.name} = {
     isNormalUser = true;
 
-    description = "${user.fullname}";
+    description = user.fullname;
 
     extraGroups = [
       "networkmanager"
