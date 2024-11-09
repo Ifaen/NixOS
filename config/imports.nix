@@ -45,6 +45,10 @@
       /obs/config.nix # Screen recorder
       /obs/settings.nix # Profile settings
 
+      /rofi/config.nix # App / Menu Launcher
+
+      /spotify/config.nix # Music provider
+
       /vivaldi/config.nix # Web Browser
 
       /vscode/config.nix

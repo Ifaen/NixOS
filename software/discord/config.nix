@@ -4,13 +4,14 @@
   ...
 }: {
   home-manager.users.${user.name} = {
-    home = {
-      packages = [pkgs.discord-screenaudio];
+    home.packages = [pkgs.vesktop];
 
-      file.discordcss = {
-        target = ".config/discord-screenaudio/userstyles.css";
-        text = "";
-      };
+    xdg.desktopEntries.discord-rofi = {
+      name = "Vesktop";
+      exec = "${pkgs.vesktop}/bin/vesktop %U";
+      terminal = false;
+      icon = "discord";
+      categories = ["X-Rofi" "Network" "InstantMessaging"];
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<de.shorsh.discord-screenaudio>" = " ";

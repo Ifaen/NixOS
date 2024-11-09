@@ -7,6 +7,20 @@
   home-manager.users.${user.name} = {
     home.packages = [pkgs.keepassxc];
 
+    xdg.desktopEntries.keepassxc-rofi = {
+      name = "KeePassXC";
+      exec = "${pkgs.keepassxc}/bin/keepassxc";
+      mimeType = ["application/x-keepass2"];
+      categories = ["X-Rofi" "Utility" "Security"];
+      icon = "keepassxc";
+      startupNotify = true;
+      terminal = false;
+      settings = {
+        SingleMainWindow = "true";
+        X-GNOME-SingleWindow = "true";
+      };
+    };
+
     xdg.configFile."keepassxc/keepassxc.ini" = {
       enable = true;
       text = ''
