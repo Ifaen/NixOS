@@ -1,5 +1,5 @@
 {user, ...}: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     services.dunst = {
       enable = true;
     };

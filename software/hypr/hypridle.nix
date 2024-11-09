@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.services.hypridle = {
+  user.manage.services.hypridle = {
     enable = true;
 
     settings = {

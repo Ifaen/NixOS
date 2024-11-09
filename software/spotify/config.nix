@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {config, ...}: {
+  user.manage = {config, ...}: {
     # When `libcurl-gnutls.so.4: no version information` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
     home.packages = [pkgs.spotify];
 

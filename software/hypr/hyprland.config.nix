@@ -8,7 +8,7 @@
   services.getty.autologinUser = user.name; # Autologin
 
   # Configuration of window manager
-  home-manager.users.${user.name}.wayland.windowManager.hyprland = {
+  user.manage.wayland.windowManager.hyprland = {
     enable = true;
 
     # SETTINGS

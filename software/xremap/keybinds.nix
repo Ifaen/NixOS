@@ -13,7 +13,7 @@
     case $1 in
       "up")
         bool="0"
-        for file in ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers}/*; do                   # Loop directory and rename the file variable
+        for file in ${config.user.manage.xdg.userDirs.extraConfig.wallpapers}/*; do                   # Loop directory and rename the file variable
           if [ -f "$file" ]; then                                 # Check if it's a regular file
             file=$(basename "$file")                              # Keep only the filename
 
@@ -29,13 +29,13 @@
         done
 
         if [ "$bool" == "1" ]; then                               # If the boolean is still true
-          file=$(ls -1 ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers} | head -n 1)         # Select 1st file from directory
+          file=$(ls -1 ${config.user.manage.xdg.userDirs.extraConfig.wallpapers} | head -n 1)         # Select 1st file from directory
         fi
       ;;
 
       "down")
         file=""
-        for current_file in ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers}/*; do           # Loop directory and rename the file variable
+        for current_file in ${config.user.manage.xdg.userDirs.extraConfig.wallpapers}/*; do           # Loop directory and rename the file variable
           if [ -f "$current_file" ]; then                         # Check if it's a regular file
             current_file=$(basename "$current_file")              # Keep only the filename
 
@@ -48,7 +48,7 @@
         done
 
         if [ "$file" == "" ]; then                            # If the variable is empty
-          file=$(ls -1 ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers} | tail -n 1)     # Select last file from directory
+          file=$(ls -1 ${config.user.manage.xdg.userDirs.extraConfig.wallpapers} | tail -n 1)     # Select last file from directory
         fi
       ;;
       *)
@@ -57,7 +57,7 @@
     esac
 
     # Change the wallpaper with specific parameters. ACCEPTED FILE TYPES: jpg | jpeg | png | gif | pnm | tga | tiff | webp | bmp | farbfeld
-    ${pkgs.swww}/bin/swww img ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers}"/$file" \
+    ${pkgs.swww}/bin/swww img ${config.user.manage.xdg.userDirs.extraConfig.wallpapers}"/$file" \
       --transition-bezier .43,1.19,1,.4 \
       --transition-fps=60 \
       --transition-type="wipe" \
@@ -65,7 +65,7 @@
       --transition-pos "$(hyprctl cursorpos)"
 
     # Pywal
-    ${pkgs.pywal}/bin/wal -q -i ${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers}"/$file" # Create color scheme of file
+    ${pkgs.pywal}/bin/wal -q -i ${config.user.manage.xdg.userDirs.extraConfig.wallpapers}"/$file" # Create color scheme of file
     colors="${wal-directory}/colors" # Obtain new color scheme
 
     # Make wal for hyprland
@@ -97,7 +97,7 @@
     fi
   ''}";
 in {
-  home-manager.users.${user.name}.services.xremap.config.keymap = [
+  user.manage.services.xremap.config.keymap = [
     # Applications
     {
       name = "applications";

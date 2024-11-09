@@ -5,7 +5,7 @@
 }: {
   environment.systemPackages = [pkgs.prismlauncher];
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     xdg.dataFile."PrismLauncher/prismlauncher.cfg" = {
       enable = false;
       text = ''

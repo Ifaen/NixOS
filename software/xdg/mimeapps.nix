@@ -5,7 +5,7 @@
   ...
 }: {
   # Allow management of XDG base directories
-  home-manager.users.${user.name} = {
+  user.manage = {
     home.packages = with pkgs; [
       imv # Image viewer
       mpv # Video viewer

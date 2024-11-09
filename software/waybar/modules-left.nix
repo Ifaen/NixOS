@@ -24,7 +24,7 @@
     ydotool mousemove -- "$move_x" "$move_y"
   ''}";
 in {
-  home-manager.users.${user.name}.programs.waybar.settings.statusBar = {
+  user.manage.programs.waybar.settings.statusBar = {
     modules-left = [
       "custom/power"
       "custom/app-launcher"

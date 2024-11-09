@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.programs.wezterm.extraConfig = ''
+  user.manage.programs.wezterm.extraConfig = ''
     local modified_keybindings = {
       -- Change Control+C to copy
       {

@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.programs.vscode.keybindings = [
+  user.manage.programs.vscode.keybindings = [
     # Disable normal behaviour
     {
       key = "alt+f4";

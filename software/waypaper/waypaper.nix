@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {config, ...}: {
+  user.manage = {config, ...}: {
     home.packages = [
       pkgs.waypaper # GUI for Wallpaper management
       pkgs.swww # Software to change wallpapers, used by waypar as backend

@@ -9,7 +9,7 @@
     flake = user.flake;
   };
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     # SHELLS
     programs.zsh = {
       initExtra = ''

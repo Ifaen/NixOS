@@ -1,7 +1,7 @@
 {user, ...}: let
   media-folder = "${user.home}/Media";
 in {
-  home-manager.users.${user.name} = {config, ...}: {
+  user.manage = {config, ...}: {
     xdg.userDirs = {
       enable = true; # Enable xdg to manage $XDG_CONFIG_HOME/user-dirs.dirs
 

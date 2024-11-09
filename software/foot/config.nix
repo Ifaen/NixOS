@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.foot = {
       enable = true;
       server.enable = false;

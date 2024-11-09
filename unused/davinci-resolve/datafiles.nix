@@ -1,5 +1,5 @@
 {user, ...}: {
-  home-manager.users.${user.name}.xdg.dataFile = {
+  user.manage.xdg.dataFile = {
     # System configuration
     "DaVinciResolve/configs/config.dat".text = ''
       Site.Count = 1

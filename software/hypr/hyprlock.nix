@@ -5,7 +5,7 @@
 }: {
   security.pam.services.hyprlock = {}; # Essential for swaylock to work properly
 
-  home-manager.users.${user.name}.programs.hyprlock = {
+  user.manage.programs.hyprlock = {
     enable = true;
 
     settings = {

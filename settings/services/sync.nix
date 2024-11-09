@@ -8,7 +8,7 @@
     enable = true;
     user = "${user.name}";
 
-    dataDir = config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.sync; # Obtain the name of sync folder in the extraconfig of xdg
+    dataDir = config.user.manage.xdg.userDirs.extraConfig.sync; # Obtain the name of sync folder in the extraconfig of xdg
     configDir = "${user.home}/.config/syncthing";
 
     # overrides any folders and devices added or deleted through the WebUI
@@ -29,7 +29,7 @@
       };
 
       "Wallpapers" = {
-        path = "${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.wallpapers}/Mobile";
+        path = "${config.user.manage.xdg.userDirs.extraConfig.wallpapers}/Mobile";
         type = "sendonly";
         devices = ["mobile"];
       };

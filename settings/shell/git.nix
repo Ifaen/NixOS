@@ -1,5 +1,5 @@
 {user, ...}: {
-  home-manager.users.${user.name}.programs.git = {
+  user.manage.programs.git = {
     enable = true;
 
     userName = "${user.name}";

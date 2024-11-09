@@ -4,5 +4,5 @@
 
   users.users.${user.name}.extraGroups = ["storage"]; # For disk management in file managers
 
-  home-manager.users.${user.name}.xdg.enable = true; # Allow management of XDG base directories
+  user.manage.xdg.enable = true; # Allow management of XDG base directories
 }

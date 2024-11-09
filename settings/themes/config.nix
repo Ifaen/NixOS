@@ -6,7 +6,7 @@
   cursor-name = "Bibata_Ghost";
   cursor-size = 40;
 in {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.pywal.enable = true; # Generate and change colorschemes on the fly
 
     ## THEME

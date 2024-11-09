@@ -19,7 +19,7 @@
   services.tumbler.enable = true; # Thumbnail support for images
 
   # -- lf as terminal folder manager
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.lf = {
       enable = true;
 

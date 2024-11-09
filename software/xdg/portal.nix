@@ -14,7 +14,7 @@
 
   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
-  home-manager.users.${user.name} = {config, ...}: {
+  user.manage = {config, ...}: {
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;

@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.programs.starship = {
+  user.manage.programs.starship = {
     enable = true;
 
     settings = {

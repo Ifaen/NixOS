@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   pkgs,
   user,
   ...
@@ -19,7 +17,7 @@
     hashedPassword = "$6$mPfCRmBsa0vLp6Hl$kw2/2SpSr9UdqzZ65.4/D0cmgyERlhy0VM.OS8KHmdc5bZW2CY7oyz8JZL2hp1yBi2FIkeJdjFdyI9ketviG11";
   };
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.home-manager.enable = true; # Let Home Manager install and manage itself
 
     home = {
@@ -32,7 +30,7 @@
 
   time.timeZone = "America/Santiago"; # Configure timezone
 
-  console.keyMap = "${user.language}"; # Configure console keymap
+  console.keyMap = user.language; # Configure console keymap
 
   # Select internationalisation properties.
   i18n = {

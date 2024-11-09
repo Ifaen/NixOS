@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.chromium = {
       enable = true;
 

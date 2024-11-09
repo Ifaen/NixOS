@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.vscode = {
       enable = true;
       enableUpdateCheck = false; # Prevent from showing message of update is available.

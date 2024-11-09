@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     # -- Packages
     home.packages = [
       pkgs.unar # To extract files

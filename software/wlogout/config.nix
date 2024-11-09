@@ -5,7 +5,7 @@
 }: let
   iconsPath = "${pkgs.wlogout}/share/wlogout/icons";
 in {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.wlogout = {
       enable = true;
       layout = [
@@ -13,11 +13,6 @@ in {
           label = "lock";
           action = "hyprlock";
           text = "Lock";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
         }
         {
           label = "logout";
@@ -40,9 +35,10 @@ in {
           text = "Reboot";
         }
       ];
+
       style = ''
-        @import "${user.flake}/settings/wlogout/wlogout.style.css"; /* For the styling*/
         @import "${user.home}/.cache/wal/colors-waybar.css"; /* For the color scheme */
+        @import "${user.flake}/software/wlogout/style.css"; /* For the styling*/
 
         #lock {
           background-image: image(url("${iconsPath}/lock.png"));
@@ -52,9 +48,6 @@ in {
         }
         #suspend {
           background-image: image(url("${iconsPath}/suspend.png"));
-        }
-        #hibernate {
-          background-image: image(url("${iconsPath}/hibernate.png"));
         }
         #shutdown {
           background-image: image(url("${iconsPath}/shutdown.png"));

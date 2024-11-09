@@ -10,7 +10,7 @@
     input.members = ["${user.name}"];
   };
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     services.xremap = {
       enable = true;
       withWlroots = true; # To work in wayland

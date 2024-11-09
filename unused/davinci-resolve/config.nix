@@ -22,7 +22,7 @@
   # allow opencl to detect amd gpu
   hardware.opengl.extraPackages = [pkgs.rocm-opencl-icd];
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     home.packages = [pkgs.davinci-resolve];
 
     xdg.desktopEntries.davinci-resolve = {
@@ -30,7 +30,7 @@
       genericName = "Video Editing";
       exec = "env QT_QPA_PLATFORM=xcb davinci-resolve";
       type = "Application";
-      categories = ["AudioVideo" "X-VideoEditing"];
+      categories = ["X-Rofi" "AudioVideo" "X-VideoEditing"];
       comment = "Professional Video Editing Software";
     };
   };

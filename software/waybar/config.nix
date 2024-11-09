@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.waybar = {
       enable = true;
 

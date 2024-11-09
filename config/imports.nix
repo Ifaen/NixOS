@@ -1,4 +1,7 @@
 {
+  config,
+  lib,
+  options,
   inputs,
   user,
   ...
@@ -80,5 +83,18 @@
     ]
     ++ [inputs.home-manager.nixosModules.home-manager]; # Imports home-manager and enables to use it alongside nixos configuration
 
-  home-manager.users.${user.name}.imports = [inputs.xremap-flake.homeManagerModules.default]; # Import xremap-flake
+  # -- After importing home-manager modules, made an alias for home-manager.users.${user.name} and reduce verbosity
+  options = {
+    user.manage = lib.mkOption {
+      type = options.home-manager.users.type.functor.wrapped;
+      default = {};
+      description = "Home-manager configuration to be used for the user";
+    };
+  };
+
+  config = {
+    home-manager.users.${user.name} = lib.mkAliasDefinitions options.user.manage; # Make user.manage to be an alias of home-manager.users.${user.name}
+
+    user.manage.imports = [inputs.xremap-flake.homeManagerModules.default]; # Import xremap-flake home-manager modules
+  };
 }

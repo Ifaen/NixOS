@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {config, ...}: {
+  user.manage = {config, ...}: {
     programs.obs-studio = {
       enable = true;
 

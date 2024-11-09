@@ -24,7 +24,7 @@
   };
 
   # Settings of apps in other modules
-  home-manager.users.${user.name} = {
+  user.manage = {
     wayland.windowManager.hyprland.settings.windowrulev2 = [
       "float, class:(pavucontrol)"
       "size 60% 80%, class:(pavucontrol)"

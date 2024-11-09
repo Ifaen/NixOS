@@ -42,5 +42,5 @@
   };
 
   system.stateVersion = "24.05"; # Before changing, read https://nixos.org/nixos/options.html.
-  home-manager.users.${user.name}.home.stateVersion = config.system.stateVersion; # The same of the system
+  user.manage.home.stateVersion = config.system.stateVersion; # The same of the system
 }

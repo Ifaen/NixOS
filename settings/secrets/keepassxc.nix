@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name} = {
+  user.manage = {
     home.packages = [pkgs.keepassxc];
 
     xdg.desktopEntries.keepassxc-rofi = {

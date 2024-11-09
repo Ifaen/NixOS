@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.xdg.configFile."obs-studio/basic/profiles/Untitled/basic.ini" = {
+  user.manage.xdg.configFile."obs-studio/basic/profiles/Untitled/basic.ini" = {
     enable = true;
     text = ''
       [General]
@@ -28,7 +28,7 @@
       IgnoreRecommended=false
 
       [SimpleOutput]
-      FilePath=${config.home-manager.users.${user.name}.xdg.userDirs.extraConfig.recordings}
+      FilePath=${config.user.manage.xdg.userDirs.extraConfig.recordings}
       RecFormat2=mkv
       VBitrate=2500
       ABitrate=160

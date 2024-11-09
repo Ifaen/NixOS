@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  home-manager.users.${user.name}.programs.waybar.settings.statusBar = {
+  user.manage.programs.waybar.settings.statusBar = {
     modules-right = [
       "pulseaudio"
       "group/group-clock"

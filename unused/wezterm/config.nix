@@ -5,7 +5,7 @@
 }: {
   # UNUSED BECAUSE OF: https://github.com/wez/wezterm/issues/3968
 
-  home-manager.users.${user.name} = {
+  user.manage = {
     programs.wezterm = {
       enable = true;
 
