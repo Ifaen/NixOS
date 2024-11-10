@@ -9,11 +9,12 @@
 
     xdg.desktopEntries.spotify-rofi = {
       name = "Spotify";
-      exec = "${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland %U"; # Use wayland instead of xwayland
+      exec = "${pkgs.spotify}/bin/spotify %U";
       mimeType = ["x-scheme-handler/spotify"];
       categories = ["X-Rofi" "Audio" "Music" "Player" "AudioVideo"];
       icon = "spotify-client";
       terminal = false;
+      settings.StartupWMClass = "spotify";
     };
 
     services.xremap.config.keymap = [
@@ -28,7 +29,7 @@
     ];
 
     wayland.windowManager.hyprland.settings = {
-      workspace = ["12, on-created-empty:${config.xdg.desktopEntries.spotify-rofi.exec}"];
+      workspace = ["12, on-created-empty:spotify"];
 
       windowrulev2 = ["opacity 0.95, class:(Spotify)"];
     };
