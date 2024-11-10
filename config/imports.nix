@@ -64,7 +64,7 @@
       /waybar/modules-left.nix # Modules Left settings
       /waybar/modules-right.nix # Modules Right settings
 
-      /waypaper/waypaper.nix # Wallpaper manager
+      /waypaper/config.nix # Wallpaper manager
 
       /wlogout/config.nix # Logout interface
 
