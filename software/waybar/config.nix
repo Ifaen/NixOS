@@ -22,7 +22,20 @@
       };
     };
 
+    xdg.desktopEntries.waybar-rofi = {
+      name = "Waybar";
+      exec = "${pkgs.writeShellScript "toggle-waybar" ''
+        if pgrep waybar; then
+          pkill waybar
+        else
+          ${pkgs.waybar}/bin/waybar
+        fi
+      ''}";
+      categories = ["X-Rofi"];
+      terminal = false;
+    };
+
     # Settings of waybar in other modules
-    wayland.windowManager.hyprland.settings.exec-once = ["waybar"];
+    wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.waybar}/bin/waybar"];
   };
 }

@@ -68,8 +68,6 @@
 
       /wlogout/config.nix # Logout interface
 
-      /wofi/config.nix # Software selector
-
       /xdg/config.nix
       /xdg/directories.nix
       /xdg/mimeapps.nix

@@ -42,14 +42,14 @@ in {
     "custom/app-launcher" = {
       format = "󱄅";
       tooltip = false;
-      on-click = "${pkgs.writeShellScript "toggle-wofi" ''
-        if pgrep wofi; then
-          pkill wofi
+      on-click = "${pkgs.writeShellScript "toggle-rofi" ''
+        if pgrep rofi; then
+          pkill rofi
         else
           ${move-cursor-to-center}
 
-          # If wofi is not running, start it
-          hyprctl dispatch exec 'wofi --normal-window --allow-images --show drun &'
+          # If rofi is not running, start it
+          rofi -show drun -show-icons -drun-categories "X-Rofi"
         fi
       ''}";
     };

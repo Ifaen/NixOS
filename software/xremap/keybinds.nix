@@ -82,8 +82,8 @@
   ''}";
 
   workspace-change = "${pkgs.writeShellScript "workspace-change" ''
-    # Kill every wofi instance, in case there was one
-    pkill wofi
+    # Kill every instance, in case there was one
+    pkill rofi
 
     # Change to provided workspace
     hyprctl dispatch workspace $1
@@ -91,9 +91,9 @@
     # Check if workspace is empty
     is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
 
-    # If empty, open wofi
+    # If empty, open program
     if [ $is_empty == 0 ]; then
-      hyprctl dispatch exec wofi -- --normal-window --allow-images --show drun
+      rofi -show drun -show-icons -drun-categories "X-Rofi"
     fi
   ''}";
 in {
@@ -112,14 +112,7 @@ in {
           "hyprctl"
           "dispatch"
           "exec"
-          "${pkgs.writeShellScript "toggle-wofi" "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun"}"
-        ];
-
-        super-shift-w.launch = [
-          "hyprctl"
-          "dispatch"
-          "exec"
-          "${pkgs.writeShellScript "toggle-waybar" "pkill waybar || waybar"}"
+          "${pkgs.writeShellScript "toggle-rofi" "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories 'X-Rofi'"}"
         ];
 
         # Screenshot utility
@@ -131,7 +124,7 @@ in {
           "area"
         ];
         shift-sysrq.launch = [
-          # Store the screenshot in the declared XDG_SCREENSHOTS_DIR
+          # Store the screenshot in the declared XDG_SCREENSHOTS_DIR env variable
           "${pkgs.grimblast}/bin/grimblast"
           "--freeze"
           "--notify"
@@ -200,10 +193,10 @@ in {
     {
       name = "cursor-keyboard";
       remap = {
-        control-shift-alt-up.launch = ["ydotool" "mousemove" "-x" "0" "-y" "-5"];
-        control-shift-alt-down.launch = ["ydotool" "mousemove" "-x" "0" "-y" "5"];
-        control-shift-alt-left.launch = ["ydotool" "mousemove" "-x" "-5" "-y" "0"];
-        control-shift-alt-right.launch = ["ydotool" "mousemove" "-x" "5" "-y" "0"];
+        control-shift-alt-up.launch = ["ydotool" "mousemove" "--" "0" "-5"];
+        control-shift-alt-down.launch = ["ydotool" "mousemove" "--" "0" "5"];
+        control-shift-alt-left.launch = ["ydotool" "mousemove" "--" "-5" "0"];
+        control-shift-alt-right.launch = ["ydotool" "mousemove" "--" "5" "0"];
       };
     }
     # Headphones
@@ -223,7 +216,7 @@ in {
         volumedown.launch = ["${pkgs.pulseaudio}/bin/pactl" "set-sink-volume" "0" "-5%"];
       };
     }
-    # Laziness Mode (To ease closing apps opened inside lf)
+    # Laziness Mode (To ease closing apps opened through lf)
     {
       name = "laziness-mode";
       application.only = ["imv" "mpv" "vlc"];

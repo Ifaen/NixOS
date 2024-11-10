@@ -17,5 +17,7 @@
     };
 
     wayland.windowManager.hyprland.settings.windowrulev2 = ["float, class:(Rofi)"];
+
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<Rofi>" = "󰼢 ";
   };
 }
