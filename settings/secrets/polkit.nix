@@ -25,4 +25,15 @@
       TimeoutStopSec = 10;
     };
   };
+
+  user.manage = {
+    wayland.windowManager.hyprland.settings.windowrulev2 = [
+      "stayfocused, class:(polkit-kde-authentication-agent-1)"
+      "rounding 10, class:(polkit-kde-authentication-agent-1)"
+    ];
+
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+      "class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock
+    };
+  };
 }

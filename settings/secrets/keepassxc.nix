@@ -78,10 +78,7 @@
       }
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<org.keepassxc.KeePassXC>" = "󰌋 ";
-      "class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock
-    };
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<org.keepassxc.KeePassXC>" = "󰌋 ";};
   };
 
   ## Sync folder with mobile device

@@ -29,7 +29,11 @@
     '';
 
     wayland.windowManager.hyprland.settings = {
-      windowrulev2 = ["float, class:(waypaper)"];
+      windowrulev2 = [
+        "float, class:(waypaper)"
+        "stayfocused, class:(waypaper)"
+        "rounding 10, class:(waypaper)"
+      ];
 
       exec-once = ["swww-daemon"]; # Start swww daemon
     };
