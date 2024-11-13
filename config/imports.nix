@@ -1,7 +1,4 @@
 {
-  config,
-  lib,
-  options,
   inputs,
   user,
   ...
@@ -38,19 +35,19 @@
       /hypr/hyprcursor.nix # Cursor
       /hypr/hypridle.nix # Idle management daemon
       /hypr/hyprland.config.nix # Window manager
-      /hypr/hyprland.keybinds.nix # Window manager keybindings
+      /hypr/hyprland.keybinds.nix
       /hypr/hyprlock.nix # System password lock
 
       /lf/config.nix # Terminal file browser configuration
-      /lf/keybinds.nix # Terminal file browser keybinds
-      /lf/previewer.nix # Terminal file browser previewer
+      /lf/keybinds.nix
+      /lf/previewer.nix
 
       /obs/config.nix # Screen recorder
-      /obs/settings.nix # Profile settings
+      /obs/settings.nix
+
+      /rofi/theme.nix
 
       /rofi/config.nix # App / Menu Launcher
-
-      /spotify/config.nix # Music provider
 
       /vivaldi/config.nix # Web Browser
 
@@ -59,10 +56,11 @@
       /vscode/keybinds.nix
       /vscode/settings.nix
 
+      /spotify/config.nix # Music provider
       /waybar/config.nix # Status bar
-      /waybar/modules-center.nix # Modules Center settings
-      /waybar/modules-left.nix # Modules Left settings
-      /waybar/modules-right.nix # Modules Right settings
+      /waybar/modules-center.nix
+      /waybar/modules-left.nix
+      /waybar/modules-right.nix
 
       /waypaper/config.nix # Wallpaper manager
 
@@ -74,25 +72,14 @@
       /xdg/portal.nix
 
       /xremap/config.nix # Dynamic keybinds service
-      /xremap/keybinds.nix # Dynamic keybinds service keybindings
+      /xremap/keybinds.nix
 
-      /zsh/config.nix # Terminal shell configuration
-      /zsh/tools.nix # Terminal shell tools
+      /zsh/config.nix # Terminal shell
+      /zsh/tools.nix
     ]
-    ++ [inputs.home-manager.nixosModules.home-manager]; # Imports home-manager and enables to use it alongside nixos configuration
+    ++ [inputs.home-manager.nixosModules.home-manager]; # Imports home-manager as a nixos module
 
-  # -- After importing home-manager modules, made an alias for home-manager.users.${user.name} and reduce verbosity
-  options = {
-    user.manage = lib.mkOption {
-      type = options.home-manager.users.type.functor.wrapped;
-      default = {};
-      description = "Home-manager configuration to be used for the user";
-    };
-  };
-
-  config = {
-    home-manager.users.${user.name} = lib.mkAliasDefinitions options.user.manage; # Make user.manage to be an alias of home-manager.users.${user.name}
-
-    user.manage.imports = [inputs.xremap-flake.homeManagerModules.default]; # Import xremap-flake home-manager modules
-  };
+  user.manage.imports = [
+    inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
+  ];
 }
