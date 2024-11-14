@@ -9,7 +9,6 @@
       pkgs.swww # Software to change wallpapers, used by waypaper as backend
     ];
 
-    # TODO Add to post_command functionality to change hyprland colors too
     xdg.configFile."waypaper/config.ini".text = ''
       [Settings]
       backend = swww

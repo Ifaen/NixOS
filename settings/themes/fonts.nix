@@ -2,9 +2,6 @@
   fonts = {
     fontDir.enable = true;
 
-    packages = with pkgs; [
-      fira-code-nerdfont
-      kdePackages.breeze-icons
-    ];
+    packages = [pkgs.fira-code-nerdfont];
   };
 }
