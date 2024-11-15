@@ -11,7 +11,7 @@
 
     xdg.desktopEntries.vscode-rofi = {
       name = "Visual Studio Code";
-      exec = "${pkgs.vscode}/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland %F"; # Use wayland instead of xwayland
+      exec = "${pkgs.vscode}/bin/code %F"; # Use wayland instead of xwayland
       mimeType = ["text/plain" "inode/directory"];
       categories = ["X-Rofi" "Utility" "TextEditor" "Development" "IDE"];
       icon = "vscode";
@@ -21,6 +21,6 @@
 
     home.packages = [pkgs.alejandra]; # To let alejandra extension to work
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<code-url-handler>" = "󰨞 ";
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<Code>" = "󰨞 ";
   };
 }
