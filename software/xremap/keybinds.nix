@@ -37,6 +37,8 @@
       ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
     ''}";
 
+    open-rofi = "${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories X-Rofi";
+
     workspace-change = "${pkgs.writeShellScript "workspace-change" ''
       # Kill every instance, in case there was one
       pkill rofi
@@ -49,7 +51,7 @@
 
       # If empty, open program
       if [ $is_empty == 0 ]; then
-        hyprctl dispatch exec "rofi -show drun -show-icons -drun-categories X-Rofi"
+        hyprctl dispatch exec "${open-rofi}"
       fi
     ''}";
   in {
@@ -68,7 +70,7 @@
             "hyprctl"
             "dispatch"
             "exec"
-            "${pkgs.writeShellScript "toggle-rofi" "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories 'X-Rofi'"}"
+            "${pkgs.writeShellScript "toggle-rofi" "pkill rofi || ${open-rofi}"}"
           ];
 
           # Screenshot utility

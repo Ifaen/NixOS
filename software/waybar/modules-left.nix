@@ -49,7 +49,7 @@ in {
           ${move-cursor-to-center}
 
           # If rofi is not running, start it
-          rofi -show drun -show-icons -drun-categories "X-Rofi"
+          hyprctl dispatch exec "${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories 'X-Rofi'"
         fi
       ''}";
     };
