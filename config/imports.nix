@@ -5,49 +5,54 @@
 }: {
   imports =
     map (path: ../settings + path) [
-      /hardware/config.nix # INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+      /apps/discord.nix # Voice chat
+      /apps/spotify.nix # Music provider
+
+      /hardware/config.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
       /hardware/drivers.nix # Few drivers depending of the hardware
 
-      /secrets/keepassxc.nix
-      /secrets/networking.nix
-      /secrets/polkit.nix
+      /security/hyprlock.nix # System password lock
+      /security/keepassxc.nix # Password manager
+      /security/networking.nix # Networking
+      /security/openvpn.nix # VPN
+      /security/polkit.nix # Policy kit (to grant system privileges to user)
 
-      /services/openvpn.nix
-      /services/sound.nix # Every sound related service
-      /services/sync.nix # Tools to synchronize between systems
+      /services/hypridle.nix # Idle management daemon
+      /services/getty.nix # Autologin
+      /services/pipewire.nix # Every sound related service
       /services/ydotool.nix # Tool to move cursor using the keyboard
 
+      /shell/direnv.nix # Tool to automatically enter a nix-shell
       /shell/git.nix # Code version control
+      /shell/nh.nix # Nix Helper
       /shell/starship.nix # Shell prompt
 
       /themes/config.nix
       /themes/fonts.nix
+      /themes/hyprcursor.nix # Cursor
     ]
     ++ map (path: ../software + path) [
-      /discord/config.nix # Voice chat
-
-      /dunst/config.nix # Notification daemon
-
       /foot/config.nix # Terminal emulator
       /foot/keybinds.nix
       /foot/settings.nix
 
-      /hypr/hyprcursor.nix # Cursor
-      /hypr/hypridle.nix # Idle management daemon
-      /hypr/hyprland.config.nix # Window manager
-      /hypr/hyprland.keybinds.nix
-      /hypr/hyprlock.nix # System password lock
+      /hyprland/config.nix # Window manager
+      /hyprland/keybinds.nix
 
       /lf/config.nix # Terminal file browser configuration
       /lf/keybinds.nix
       /lf/previewer.nix
 
+      /mako/config.nix # Notification daemon
+
       /obs/config.nix # Screen recorder
       /obs/settings.nix
 
-      /rofi/theme.nix
+      /syncthing/config.nix # Tools to synchronize between systems
+      /syncthing/sync.nix # Tools to synchronize between systems
 
       /rofi/config.nix # App / Menu Launcher
+      /rofi/theme.nix
 
       /vivaldi/config.nix # Web Browser
 
@@ -56,7 +61,6 @@
       /vscode/keybinds.nix
       /vscode/settings.nix
 
-      /spotify/config.nix # Music provider
       /waybar/config.nix # Status bar
       /waybar/modules-center.nix
       /waybar/modules-left.nix

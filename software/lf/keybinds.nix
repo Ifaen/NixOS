@@ -7,12 +7,16 @@
     # % To stay on lf (create a modal)
     # $ To temporarily go back to terminal
     commands = {
-      ## Open with
-      editor-open = ''$$EDITOR $f'';
+      /*
+      -- Open with
+      */
       vlc-open = "%vlc .";
       thunar-open = "%thunar";
 
-      # -- Utilities
+      /*
+      -- Utilities
+      */
+      # Drag a file
       drag-file = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"''; # TODO Replace with ripdrag
       # Convert a .mp4 or H.264 file to .mov, useful to edit videos in davinci!
       convert-to-mov-file = ''%${pkgs.ffmpeg}/bin/ffmpeg -i "$fx" -vcodec mjpeg -q:v 2 -acodec pcm_s16be -q:a 0 -f mov "$fx".mov'';
@@ -92,7 +96,9 @@
         }}
       '';
 
-      # -- Trash Utilities
+      /*
+      -- Trash Utilities
+      */
       # Delete to the trash all selected files
       delete-trash = ''
         %{{
@@ -132,7 +138,9 @@
         }}
       '';
 
-      # -- Overwriting default commands
+      /*
+      -- Overwriting default commands
+      */
       # When opening a file, hide the preview column
       on-redraw = ''
         %{{
@@ -234,64 +242,101 @@
           lf -remote "send $id select ''${renamed_files[0]}"
         }}
       '';
+
+      /*
+      -- Renaming default commands
+      */
+      sort-naturally = ''%{{lf -remote "send $id :set sortby natural; set info"}}'';
+      sort-by-size = ''%{{lf -remote "send $id :set sortby size; set info size"}}'';
+      sort-by-time = ''%{{lf -remote "send $id :set sortby time; set info time"}}'';
+      sort-by-extension = ''%{{lf -remote "send $id :set sortby ext; set info"}}'';
+
+      show-info = ''%{{lf -remote "send $id :set size:time"}}'';
+      show-hidden = ''%{{lf -remote "send $id :set hidden!"}}'';
+      show-reverse = ''%{{lf -remote "send $id :set reverse!"}}'';
     };
 
     keybindings = {
-      # keys
-      r = "rename";
       dd = "drag-file";
       dm = "convert-to-mov-file";
       df = "descompress-file";
       dv = "combine-videos";
-      "<esc>" = "quit";
-      ## open with
+      "<c-d>" = "create-folder"; # Do the custom mkdir command
+
+      # -- open with
       ov = "vlc-open";
       ot = "thunar-open";
 
-      # control + key
-      "<c-c>" = "copy";
-      "<c-x>" = "cut";
-      "<c-v>" = "paste";
-      "<c-r>" = "reload";
-      "<c-u>" = "unselect";
-      "<c-d>" = "create-folder"; # Do the custom mkdir command
-
-      # delete keys
+      # -- Trash utilities
       "<delete><enter>" = "delete-trash";
       "<delete><delete>" = "restore-trash";
       "<delete><backspace2>" = "empty-trash";
 
-      # Unbind keys
-      c = null;
-      d = null;
-      e = null;
-      f = null;
-      F = null;
-      gg = null;
-      G = null;
-      h = null;
-      H = null;
-      j = null;
-      k = null;
-      l = null;
-      L = null;
-      m = null;
-      M = null;
-      p = null;
-      q = null; # Default: quit
-      u = null;
-      v = null;
-      y = null;
-      "<c-b>" = null;
-      "<c-e>" = null;
-      "<c-f>" = null;
-      "<c-j>" = null;
-      "<c-y>" = null;
-      "'['" = null;
-      "']'" = null;
-      "':'" = null;
-      "';'" = null;
-      "','" = null;
+      # -- Overwriting default commands
+      r = "rename";
+
+      # -- Renaming default commands
+      sn = "sort-naturally";
+      ss = "sort-by-size";
+      st = "sort-by-time";
+      se = "sort-by-extension";
+
+      zh = "show-hidden";
+      zr = "show-reverse";
+
+      # -- Remapping default commands
+      zi = "show-info";
+      "<esc>" = "quit";
+      "<c-c>" = "copy";
+      "<c-x>" = "cut";
+      "<c-v>" = "paste";
+      "<c-u>" = "unselect";
+
+      # -- Unbind keys (The comments indicates their default usage)
+      c = null; # clear
+      d = null; # cut
+      e = null; # $$EDITOR "$f"
+      f = null; # find
+      F = null; # find-back
+      gg = null; # top
+      G = null; # bottom
+      i = null; # $$PAGER "$f"
+      h = null; # updir
+      H = null; # High
+      j = null; # down
+      k = null; # up
+      l = null; # open
+      L = null; # Low
+      m = null; # mark-save
+      M = null; # middle
+      p = null; # paste
+      q = null; # quit
+      sa = null; # sort by atime
+      sc = null; # sort by ctime
+      t = null; # tag-toggle
+      u = null; # unselect
+      v = null; # invert
+      w = null; # $$SHELL
+      y = null; # copy
+      zn = null; # :set info
+      zs = null; # :set info size
+      zt = null; # :set info time
+      za = null; # :set info size:time
+      "<c-b>" = null; # page-up
+      "<c-e>" = null; # scroll-down
+      "<c-f>" = null; # page-down
+      "<c-j>" = null; # cmd-enter
+      "<c-y>" = null; # scroll-up
+      "<c-l>" = null; # redraw
+      "<f-1>" = null; # $$lf -doc | $PAGER
+      "'['" = null; # jump-prev
+      "']'" = null; # jump-next
+      "':'" = null; # read
+      "';'" = null; # find-next
+      "','" = null; # find-prev
+      "'?'" = null; # search-back
+      "'\"'" = null; # mark-remove
+      "\"'\"" = null; # mark-load
     };
   };
 }

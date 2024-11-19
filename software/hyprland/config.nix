@@ -5,8 +5,6 @@
 }: {
   programs.hyprland.enable = true; # Windows Manager.
 
-  services.getty.autologinUser = user.name; # Autologin
-
   # Configuration of window manager
   user.manage.wayland.windowManager.hyprland = {
     enable = true;

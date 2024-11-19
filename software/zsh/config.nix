@@ -14,11 +14,9 @@
     enable = true; # Allow home-manager to manage config file
     autosuggestion.enable = true;
 
-    # Autostart Hyprland upon a new session shell is initialized in tt1
-    profileExtra = ''
-      if [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland
-      fi
-    '';
+    shellAliases = {
+      cls = "cd $HOME && clear";
+      ".." = "cd ..";
+    };
   };
 }

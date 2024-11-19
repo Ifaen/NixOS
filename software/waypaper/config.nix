@@ -34,13 +34,13 @@
     '';
 
     wayland.windowManager.hyprland.settings = {
+      exec-once = ["swww-daemon"]; # Start swww daemon
+
       windowrulev2 = [
         "float, class:(waypaper)"
         "stayfocused, class:(waypaper)"
         "rounding 10, class:(waypaper)"
       ];
-
-      exec-once = ["swww-daemon"]; # Start swww daemon
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {

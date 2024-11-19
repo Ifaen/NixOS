@@ -1,10 +1,6 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
-  user.manage = {config, ...}: {
-    # When `libcurl-gnutls.so.4: no version information` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
+{pkgs, ...}: {
+  user.manage = {
+    # When `libcurl-gnutls.so.4: no version information...` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
     home.packages = [pkgs.spotify];
 
     xdg.desktopEntries.spotify-rofi = {
