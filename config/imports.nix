@@ -32,10 +32,6 @@
       /themes/hyprcursor.nix # Cursor
     ]
     ++ map (path: ../software + path) [
-      /foot/config.nix # Terminal emulator
-      /foot/keybinds.nix
-      /foot/settings.nix
-
       /hyprland/config.nix # Window manager
       /hyprland/keybinds.nix
 
@@ -67,6 +63,9 @@
       /waybar/modules-right.nix
 
       /waypaper/config.nix # Wallpaper manager
+
+      /wezterm/config.nix # Terminal emulator
+      /wezterm/keybinds.nix
 
       /wlogout/config.nix # Logout interface
 

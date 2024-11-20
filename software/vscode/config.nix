@@ -11,7 +11,7 @@
 
     xdg.desktopEntries.vscode-rofi = {
       name = "Visual Studio Code";
-      exec = "${pkgs.vscode}/bin/code %F"; # Use wayland instead of xwayland
+      exec = "${pkgs.vscode}/bin/code %F";
       mimeType = ["text/plain" "inode/directory"];
       categories = ["X-Rofi" "Utility" "TextEditor" "Development" "IDE"];
       icon = "vscode";
