@@ -2,22 +2,28 @@
   pkgs,
   user,
   ...
-}: {
-  user.manage.programs.wezterm.extraConfig = ''
+}: let
+  commands = ''
+    wezterm.on("update-status", function(window, pane)
+      local process_name = pane:get_foreground_process_name()
+      -- Prevent the modified keybindings to overwrite the other software keybindings
+      if process_name == "${pkgs.lf}/bin/lf" then
+        window:set_config_overrides({keys = default_keybindings})
+      else
+        window:set_config_overrides({keys = modified_keybindings})
+      end
+    end)
+  '';
+
+  modified-keybindings = ''
     local modified_keybindings = {
-      -- Change Control+C to copy
+      -- Bind control+c to copy
       {
         key="c",
         mods="CTRL",
         action=wezterm.action.CopyTo 'Clipboard',
       },
-      -- Disable Control+Shift+C to copy
-      {
-        key="c",
-        mods="CTRL|SHIFT",
-        action=wezterm.action.Nop,
-      },
-      -- Change Control+V to paste # HACK Workaround because the PasteFrom in Wayland/Hyprland doesn't seem to work
+      -- Bind control+v to paste # HACK because PasteFrom in Wayland doesn't seem to work, obtained from: https://github.com/wez/wezterm/issues/3968
       {
         key="v",
         mods="CTRL",
@@ -28,20 +34,28 @@
           end
         end),
       },
-      -- Disable Control+Shift+V
-      {
-        key="v",
-        mods="CTRL|SHIFT",
-        action=wezterm.action.Nop,
-      },
       -- Make Escape to cancel current process
       {
         key='Escape',
         action=wezterm.action.SendString '\x03'
       },
+      -- Disable default copy
+      {
+        key="c",
+        mods="CTRL|SHIFT",
+        action=wezterm.action.Nop,
+      },
+      -- Disable default paste
+      {
+        key="v",
+        mods="CTRL|SHIFT",
+        action=wezterm.action.Nop,
+      },
     }
+  '';
 
-    -- Allow the software to decide what the keybinding does
+  # Restore the default keybindings while inside other TUI's
+  default-keybindings = ''
     local default_keybindings = {
       {
         key="c",
@@ -68,19 +82,14 @@
         action=wezterm.action.SendKey { key = 'Escape' },
       },
     }
+  '';
+in {
+  user.manage.programs.wezterm.extraConfig = ''
+    ${modified-keybindings}
 
-    wezterm.on("update-status", function(window, pane)
-      local title = pane:get_title()
+    ${default-keybindings}
 
-      -- Prevent the modified keybindings to overwritte the other software keybindings
-      if title == "lf" then
-        window:set_config_overrides({keys = default_keybindings})
-      else
-        window:set_config_overrides({keys = modified_keybindings})
-      end
-    end)
-
-    config.keys = modified_keybindings
+    ${commands}
 
     return config
   '';
