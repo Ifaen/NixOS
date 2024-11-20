@@ -27,9 +27,12 @@
       /shell/nh.nix # Nix Helper
       /shell/starship.nix # Shell prompt
 
-      /themes/config.nix
+      # /themes/config.nix # TODO Testing what happens while disabled
       /themes/fonts.nix
+      /themes/gtk.nix
       /themes/hyprcursor.nix # Cursor
+      /themes/pywal.nix
+      /themes/qt.nix
     ]
     ++ map (path: ../software + path) [
       /hyprland/config.nix # Window manager
