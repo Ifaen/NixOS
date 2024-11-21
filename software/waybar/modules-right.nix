@@ -1,9 +1,4 @@
-# Wiki: https://github.com/Alexays/Waybar/wiki
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   user.manage.programs.waybar.settings.statusBar = {
     modules-right = [
       "pulseaudio"

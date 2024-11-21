@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   user.manage = {
     # A better `cd` with memory
     programs.zoxide = {

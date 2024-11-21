@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: {
-  ## POLKIT
+{pkgs, ...}: {
   security = {
     polkit.enable = true; # To give super user rights to apps when required
     rtkit.enable = true; # A daemon that hands out real-time priority to processes

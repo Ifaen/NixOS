@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  user.manage = {config, ...}: {
+  user.manage = {
     home.packages = [
       pkgs.waypaper # GUI for Wallpaper management
       pkgs.swww # Software to change wallpapers, used by waypaper as backend
@@ -14,7 +14,7 @@
       backend = swww
       color = #ffffff
       fill = Fill
-      folder = ${config.xdg.userDirs.extraConfig.wallpapers}
+      folder = ${user.dir.wallpapers}
       language = en
       monitors = All
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''

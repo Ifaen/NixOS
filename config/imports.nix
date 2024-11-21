@@ -1,8 +1,4 @@
-{
-  inputs,
-  user,
-  ...
-}: {
+{inputs, ...}: {
   imports =
     map (path: ../settings + path) [
       /apps/discord.nix # Voice chat
@@ -27,7 +23,6 @@
       /shell/nh.nix # Nix Helper
       /shell/starship.nix # Shell prompt
 
-      # /themes/config.nix # TODO Testing what happens while disabled
       /themes/fonts.nix
       /themes/gtk.nix
       /themes/hyprcursor.nix # Cursor

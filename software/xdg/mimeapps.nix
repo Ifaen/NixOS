@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   # Allow management of XDG base directories
   user.manage = {
     home.packages = with pkgs; [
@@ -18,16 +13,16 @@
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/json" = "code.desktop";
-        "application/x-httpd-php" = "code.desktop";
-        "application/xml" = "code.desktop";
+        "application/json" = "vscode-rofi.desktop";
+        "application/x-httpd-php" = "vscode-rofi.desktop";
+        "application/xml" = "vscode-rofi.desktop";
 
-        "application/xhtml+xml" = "vivaldi-stable.desktop";
-        "scheme-handler/http" = "vivaldi-stable.desktop";
-        "scheme-handler/https" = "vivaldi-stable.desktop";
-        "text/html" = "vivaldi-stable.desktop";
-        "x-scheme-handler/http" = "vivaldi-stable.desktop";
-        "x-scheme-handler/https" = "vivaldi-stable.desktop";
+        "application/xhtml+xml" = "vivaldi-rofi.desktop";
+        "scheme-handler/http" = "vivaldi-rofi.desktop";
+        "scheme-handler/https" = "vivaldi-rofi.desktop";
+        "text/html" = "vivaldi-rofi.desktop";
+        "x-scheme-handler/http" = "vivaldi-rofi.desktop";
+        "x-scheme-handler/https" = "vivaldi-rofi.desktop";
 
         "image/gif" = "vlc.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
@@ -40,7 +35,6 @@
       "class<vlc>" = "󰕼 "; # nf-md-vlc
       "class<mpv>" = "";
       "class<imv>" = "";
-      "class<org.kde.partitionmanager>" = "󰋊 "; # nf-md-harddisk
     };
   };
 }

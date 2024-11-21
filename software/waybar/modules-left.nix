@@ -1,9 +1,4 @@
-# Wiki: https://github.com/Alexays/Waybar/wiki
-{
-  pkgs,
-  user,
-  ...
-}: let
+{pkgs, ...}: let
   move-cursor-to-center = "${pkgs.writeShellScript "move-cursor-to-center" ''
     # Set target screen center (assuming 1920x1080 screen resolution)
     target_x=$((1920 / 2))

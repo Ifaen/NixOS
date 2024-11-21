@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   sound.enable = true;
 
   environment.systemPackages = with pkgs; [

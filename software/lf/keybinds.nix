@@ -126,10 +126,10 @@
 
           # Delete the selected files if the user confirms
           if [ "$selection" == "y" ] || [ "$selection" == "Y" ]; then
-            rm -rf ${user.home}/.local/share/Trash/files
-            rm -rf ${user.home}/.local/share/Trash/info
+            rm -rf ${user.dir.data}/Trash/files
+            rm -rf ${user.dir.data}/Trash/info
 
-            mkdir -p ${user.home}/.local/share/Trash/files ${user.home}/.local/share/Trash/info
+            mkdir -p ${user.dir.data}/Trash/files ${user.dir.data}/Trash/info
 
             ${pkgs.libnotify}/bin/notify-send "Trash cleared successfully"
           else

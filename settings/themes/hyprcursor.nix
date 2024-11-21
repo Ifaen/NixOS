@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{pkgs, ...}: let
   cursor-name = "Bibata_Ghost";
   cursor-size = 40;
 in {

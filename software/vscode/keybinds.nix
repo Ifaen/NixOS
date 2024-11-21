@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   user.manage.programs.vscode.keybindings = [
     # Disable normal behaviour
     {

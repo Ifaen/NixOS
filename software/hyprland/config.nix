@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   programs.hyprland.enable = true; # Windows Manager.
 
   # Configuration of window manager
@@ -11,7 +7,7 @@
 
     # SETTINGS
     settings = {
-      source = "${user.home}/.cache/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
+      source = "${user.dir.cache}/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
       animations.enabled = "yes";
 

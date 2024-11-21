@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{pkgs, ...}: let
   commands = ''
     wezterm.on("update-status", function(window, pane)
       local process_name = pane:get_foreground_process_name()
@@ -84,13 +80,26 @@
     }
   '';
 in {
-  user.manage.programs.wezterm.extraConfig = ''
-    ${modified-keybindings}
+  user.manage = {
+    programs.wezterm.extraConfig = ''
+      ${modified-keybindings}
 
-    ${default-keybindings}
+      ${default-keybindings}
 
-    ${commands}
+      ${commands}
 
-    return config
-  '';
+      return config
+    '';
+
+    services.xremap.config.keymap = [
+      {
+        name = "workspace";
+
+        remap = {
+          super-space.launch = ["hyprctl" "dispatch" "workspace" "11"];
+          super-shift-space.launch = ["hyprctl" "dispatch" "movetoworkspace" "11"];
+        };
+      }
+    ];
+  };
 }

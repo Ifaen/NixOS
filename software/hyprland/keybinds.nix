@@ -6,7 +6,7 @@
     ];
 
     input = {
-      kb_layout = "${user.language}"; # Keyboard layout to be directed to user language
+      kb_layout = user.language; # Keyboard layout to be directed to user language
       kb_options = "compose:caps"; # Remap Caps-Lock key to be Compose Key
     };
   };

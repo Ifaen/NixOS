@@ -7,26 +7,12 @@
   user.manage = {
     home.packages = [pkgs.keepassxc];
 
-    xdg.desktopEntries.keepassxc-rofi = {
-      name = "KeePassXC";
-      exec = "${pkgs.keepassxc}/bin/keepassxc";
-      mimeType = ["application/x-keepass2"];
-      categories = ["X-Rofi" "Utility" "Security"];
-      icon = "keepassxc";
-      startupNotify = true;
-      terminal = false;
-      settings = {
-        SingleMainWindow = "true";
-        X-GNOME-SingleWindow = "true";
-      };
-    };
-
     xdg.configFile."keepassxc/keepassxc.ini" = {
       enable = true;
       text = ''
         [General]
         BackupBeforeSave=true
-        BackupFilePathPattern=${user.home}/Sync/Keepass/{DB_FILENAME}.old.kdbx
+        BackupFilePathPattern=${user.dir.sync}/Keepass/{DB_FILENAME}.old.kdbx
         FaviconDownloadTimeout=15
         NumberOfRememberedLastDatabases=1
         RememberLastKeyFiles=false
@@ -65,7 +51,19 @@
       '';
     };
 
-    wayland.windowManager.hyprland.settings.workspace = ["13, on-created-empty:keepassxc"];
+    xdg.desktopEntries.keepassxc-rofi = {
+      name = "KeePassXC";
+      exec = "${pkgs.keepassxc}/bin/keepassxc";
+      mimeType = ["application/x-keepass2"];
+      categories = ["X-Rofi" "Utility" "Security"];
+      icon = "keepassxc";
+      startupNotify = true;
+      terminal = false;
+      settings = {
+        SingleMainWindow = "true";
+        X-GNOME-SingleWindow = "true";
+      };
+    };
 
     services.xremap.config.keymap = [
       {
@@ -78,10 +76,12 @@
       }
     ];
 
+    wayland.windowManager.hyprland.settings.workspace = ["13, on-created-empty:keepassxc"];
+
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<org.keepassxc.KeePassXC>" = "󰌋 ";};
   };
 
-  ## Sync folder with mobile device
+  # -- Sync folder with mobile device
   services.syncthing.settings.folders."Keepass" = {
     path = "${config.services.syncthing.dataDir}/Keepass";
     devices = ["mobile"];

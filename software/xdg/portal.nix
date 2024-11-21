@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   # Enable Keyring managing
   services.gnome.gnome-keyring.enable = true;
 

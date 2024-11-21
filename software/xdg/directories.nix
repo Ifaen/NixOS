@@ -1,44 +1,36 @@
-{user, ...}: let
-  media-folder = "${user.home}/Media";
-in {
-  user.manage = {config, ...}: {
+{user, ...}: {
+  user.manage = {
     xdg = {
-      cacheHome = "${user.home}/.cache";
-      configHome = "${user.home}/.config";
+      cacheHome = user.dir.cache;
+      configHome = user.dir.config;
+      dataHome = user.dir.data;
+      stateHome = user.dir.state;
 
       userDirs = {
         enable = true; # Enable xdg to manage $XDG_CONFIG_HOME/user-dirs.dirs
 
         createDirectories = true; # Create the directories if not created already
 
-        # Make all media be stored in the same folder
-        pictures = media-folder;
-        videos = media-folder;
-        music = media-folder;
+        documents = user.dir.documents;
+        download = user.dir.downloads;
+        # - Make all media be stored in the same folder
+        pictures = user.dir.media;
+        videos = user.dir.media;
+        music = user.dir.media;
 
-        extraConfig = {
-          XDG_SCREENSHOTS_DIR = "${media-folder}/Screenshots";
-          recordings = "${media-folder}/Recordings";
-          wallpapers = "${media-folder}/Wallpapers";
-          sync = "${user.home}/Sync";
-          flake = user.flake; # Path were flake is stored
-        };
-
-        # Prevent to create
+        # - Prevent to be created
         desktop = null;
         publicShare = null;
         templates = null;
       };
     };
 
-    gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc"; # Move the gtk config file away from $HOME
-
     gtk.gtk3.bookmarks = [
-      "file://${config.xdg.userDirs.extraConfig.flake}"
-      "file://${config.xdg.userDirs.documents}"
-      "file://${config.xdg.userDirs.download}"
-      "file://${config.xdg.userDirs.pictures}"
-      "file://${config.xdg.userDirs.extraConfig.sync}"
+      "file://${user.dir.flake}"
+      "file://${user.dir.documents}"
+      "file://${user.dir.downloads}"
+      "file://${user.dir.media}"
+      "file://${user.dir.sync}"
     ];
   };
 }

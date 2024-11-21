@@ -2,59 +2,62 @@
   pkgs,
   user,
   ...
-}: {
-  user.manage = {config, ...}: let
-    # Change the wallpaper with specific parameters. ACCEPTED FILE TYPES: jpg | jpeg | png | gif | pnm | tga | tiff | webp | bmp | farbfeld
-    on-wallpaper-change = "${pkgs.writeShellScript "on-wallpaper-change" ''
-      current_wallpaper=$(basename $(${pkgs.swww}/bin/swww query | head -n 1 | awk -F 'image: ' '{print $2}'))
+}: let
+  # Change the wallpaper with specific parameters. ACCEPTED FILE TYPES: jpg | jpeg | png | gif | pnm | tga | tiff | webp | bmp | farbfeld
+  on-wallpaper-change = "${pkgs.writeShellScript "on-wallpaper-change" ''
+    current_wallpaper=$(basename $(${pkgs.swww}/bin/swww query | head -n 1 | awk -F 'image: ' '{print $2}'))
 
-      directory_wallpaper=${config.xdg.userDirs.extraConfig.wallpapers}
+    directory_wallpaper=${user.dir.wallpapers}
 
-      case $1 in
-        "up")
-          new_wallpaper=$(command ls "$directory_wallpaper" -p | grep -v / | grep -A 1 "^$current_wallpaper$" | tail -n 1)
+    case $1 in
+      "up")
+        new_wallpaper=$(command ls "$directory_wallpaper" -p | grep -v / | grep -A 1 "^$current_wallpaper$" | tail -n 1)
 
-          if [[ "$new_wallpaper" == "$current_wallpaper" ]]; then
-            new_wallpaper=$(command ls "$directory_wallpaper" -p | grep -v / | head -n 1)
-          fi
-        ;;
+        if [[ "$new_wallpaper" == "$current_wallpaper" ]]; then
+          new_wallpaper=$(command ls "$directory_wallpaper" -p | grep -v / | head -n 1)
+        fi
+      ;;
 
-        "down")
-          new_wallpaper=$(command ls "$directory_wallpaper" -r -p | grep -v / | grep -A 1 "^$current_wallpaper$" | tail -n 1)
+      "down")
+        new_wallpaper=$(command ls "$directory_wallpaper" -r -p | grep -v / | grep -A 1 "^$current_wallpaper$" | tail -n 1)
 
-          if [[ "$new_wallpaper" == "$current_wallpaper" ]]; then
-            new_wallpaper=$(command ls "$directory_wallpaper" -r -p | grep -v / | head -n 1)
-          fi
-        ;;
-      esac
+        if [[ "$new_wallpaper" == "$current_wallpaper" ]]; then
+          new_wallpaper=$(command ls "$directory_wallpaper" -r -p | grep -v / | head -n 1)
+        fi
+      ;;
+    esac
 
-      ${pkgs.swww}/bin/swww img "$directory_wallpaper/$new_wallpaper" --transition-bezier .43,1.19,1,.4 --transition-fps=60 --transition-type="wipe" --transition-duration=0.7
+    ${pkgs.swww}/bin/swww img "$directory_wallpaper/$new_wallpaper" --transition-bezier .43,1.19,1,.4 --transition-fps=60 --transition-type="wipe" --transition-duration=0.7
 
-      ${pkgs.pywal}/bin/wal -q -n -i "$directory_wallpaper/$new_wallpaper"
+    ${pkgs.pywal}/bin/wal -q -n -i "$directory_wallpaper/$new_wallpaper"
 
-      extended-pywal-schemes
+    extended-pywal-schemes
 
-      ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
-    ''}";
+    ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
+  ''}";
 
-    open-rofi = "${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories X-Rofi";
+  open-rofi = "${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories X-Rofi";
 
-    workspace-change = "${pkgs.writeShellScript "workspace-change" ''
-      # Kill every instance, in case there was one
-      pkill rofi
+  workspace-change = "${pkgs.writeShellScript "workspace-change" ''
+    # Kill every instance, in case there was one
+    pkill rofi
 
-      # Change to provided workspace
-      hyprctl dispatch workspace $1
+    # Change to provided workspace
+    hyprctl dispatch workspace $1
 
-      # Check if workspace is empty
-      is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
+    # Check if workspace is empty
+    is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
 
-      # If empty, open program
-      if [ $is_empty == 0 ]; then
-        hyprctl dispatch exec "${open-rofi}"
-      fi
-    ''}";
-  in {
+    # If empty, open program
+    if [ $is_empty == 0 ]; then
+      hyprctl dispatch exec "${open-rofi}"
+    fi
+  ''}";
+in {
+  user.manage = {
+    # For Grimblast
+    xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR = user.dir.screenshots;
+
     services.xremap.config.keymap = [
       # Applications
       {

@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  user,
+  ...
+}: {
   services.syncthing.settings = {
     devices."mobile".id = "FDD6P6K-OV6LVEX-BPUKI6F-2CCANDX-KAHGOSV-5JTU4BC-NISJSGW-3YES5QX";
 
@@ -14,7 +18,7 @@
       };
 
       "Wallpapers" = {
-        path = "${config.user.manage.xdg.userDirs.extraConfig.wallpapers}/Mobile";
+        path = "${user.dir.wallpapers}/Mobile";
         type = "sendonly";
         devices = ["mobile"];
       };

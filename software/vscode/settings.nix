@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   user.manage.programs.vscode.userSettings = {
     # APPAREANCE
     "editor.guides.bracketPairs" = true; # Colorize bracket pairs

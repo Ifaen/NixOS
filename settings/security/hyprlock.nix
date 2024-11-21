@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   security.pam.services.hyprlock = {}; # Essential for swaylock to work properly
 
   user.manage = {config, ...}: {

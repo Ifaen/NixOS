@@ -1,9 +1,5 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
-  user.manage = {config, ...}: {
+{pkgs, ...}: {
+  user.manage = {
     programs.obs-studio = {
       enable = true;
 

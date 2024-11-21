@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   user.manage.xdg.configFile."obs-studio/basic/profiles/Untitled/basic.ini" = {
     enable = true;
     text = ''
@@ -28,7 +23,7 @@
       IgnoreRecommended=false
 
       [SimpleOutput]
-      FilePath=${config.user.manage.xdg.userDirs.extraConfig.recordings}
+      FilePath=${user.dir.recordings}
       RecFormat2=mkv
       VBitrate=2500
       ABitrate=160

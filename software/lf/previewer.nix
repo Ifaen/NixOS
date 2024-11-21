@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   user.manage.programs.lf.extraConfig = ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
       function createPreview (

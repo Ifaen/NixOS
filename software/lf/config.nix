@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   # -- Using thunar as a folder image previewer
   programs = {
     thunar = {

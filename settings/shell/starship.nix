@@ -1,8 +1,4 @@
-{
-  lib,
-  user,
-  ...
-}: {
+{lib, ...}: {
   user.manage.programs.starship = {
     enable = true;
 

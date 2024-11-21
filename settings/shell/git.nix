@@ -2,8 +2,8 @@
   user.manage.programs.git = {
     enable = true;
 
-    userName = "${user.name}";
-    userEmail = "${user.mail}";
+    userName = user.name;
+    userEmail = user.mail;
 
     extraConfig = {
       init.defaultBranch = "main";

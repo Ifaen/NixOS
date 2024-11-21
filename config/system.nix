@@ -1,8 +1,4 @@
-{
-  config,
-  user,
-  ...
-}: {
+{config, ...}: {
   # Enable flakes and auto optimise /nix/store
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];

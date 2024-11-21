@@ -1,9 +1,4 @@
-# Wiki: https://github.com/Alexays/Waybar/wiki
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   user.manage.programs.waybar.settings.statusBar = {
     modules-center = ["hyprland/workspaces"];
 

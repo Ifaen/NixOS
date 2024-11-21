@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{...}: {
   user.manage.services.hypridle = {
     enable = true;
 

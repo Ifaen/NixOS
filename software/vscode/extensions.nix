@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   user.manage.programs.vscode.extensions = with pkgs.vscode-extensions; [
     bbenoist.nix # Nix language support
     kamadorueda.alejandra # Nix formatting plugin

@@ -1,15 +1,10 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   services.syncthing = {
     enable = true;
     user = user.name;
 
-    dataDir = config.user.manage.xdg.userDirs.extraConfig.sync; # Obtain the name of sync folder in the extraconfig of xdg
-    configDir = "${config.user.manage.xdg.configHome}/syncthing";
+    dataDir = user.dir.sync; # Obtain the name of sync folder in the extraconfig of xdg
+    configDir = "${user.dir.config}/syncthing";
 
     # overrides any folders and devices added or deleted through the WebUI
     overrideDevices = true;

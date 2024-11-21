@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   # Add user to respective groups to allow uinput to work
   hardware.uinput.enable = true;
   users.groups = {
