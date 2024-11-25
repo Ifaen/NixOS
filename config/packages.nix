@@ -10,7 +10,6 @@
       pkgs.unar # To extract files
       pkgs.obsidian # Knowledge database notes
       pkgs.telegram-desktop # groups
-      pkgs.gimp
       inputs.nix-tagstudio.packages.${user.system}.tagstudio
     ];
 

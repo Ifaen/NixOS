@@ -2,7 +2,10 @@
   imports =
     map (path: ../settings + path) [
       /apps/discord.nix # Voice chat
+      /apps/gimp.nix # Image Editor
+      /apps/scrcpy.nix # Mobile screen copy
       /apps/spotify.nix # Music provider
+      /apps/waypaper.nix # Wallpaper manager
 
       /hardware/config.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
       /hardware/drivers.nix # Few drivers depending of the hardware
@@ -24,10 +27,10 @@
       /shell/starship.nix # Shell prompt
 
       /themes/fonts.nix
-      /themes/gtk.nix
+      /themes/gtk.nix # GTK Toolkit configuration
       /themes/hyprcursor.nix # Cursor
       /themes/pywal.nix
-      /themes/qt.nix
+      /themes/qt.nix # QT Toolkit configuration
     ]
     ++ map (path: ../software + path) [
       /hyprland/config.nix # Window manager
@@ -59,8 +62,6 @@
       /waybar/modules-center.nix
       /waybar/modules-left.nix
       /waybar/modules-right.nix
-
-      /waypaper/config.nix # Wallpaper manager
 
       /wezterm/config.nix # Terminal emulator
       /wezterm/keybinds.nix

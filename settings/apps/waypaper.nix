@@ -33,6 +33,14 @@
       swww_transition_duration = 1
     '';
 
+    xdg.desktopEntries.waypaper-rofi = {
+      name = "Waypaper";
+      exec = "${pkgs.waypaper}/bin/waypaper";
+      categories = ["X-Rofi" "Utility" "DesktopSettings"];
+      terminal = false;
+      icon = "waypaper";
+    };
+
     wayland.windowManager.hyprland.settings = {
       exec-once = ["swww-daemon"]; # Start swww daemon
 
