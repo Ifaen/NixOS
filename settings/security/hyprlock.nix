@@ -1,4 +1,4 @@
-{...}: {
+{user, ...}: {
   security.pam.services.hyprlock = {}; # Essential for swaylock to work properly
 
   user.manage = {config, ...}: {
@@ -13,7 +13,7 @@
           no_fade_in = false;
         };
 
-        background = [{path = "${config.xdg.cacheHome}/wallpaper";}];
+        background = [{path = "${user.dir.cache}/wallpaper";}];
 
         input-field = [
           {

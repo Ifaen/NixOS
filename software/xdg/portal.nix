@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  user,
+  ...
+}: {
   # Enable Keyring managing
   services.gnome.gnome-keyring.enable = true;
 
@@ -10,7 +14,7 @@
 
   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
-  user.manage = {config, ...}: {
+  user.manage = {
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
@@ -43,7 +47,7 @@
       ];
 
       # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
-      sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${config.xdg.configHome}/xdg-desktop-portal";
+      sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.dir.config}/xdg-desktop-portal";
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
