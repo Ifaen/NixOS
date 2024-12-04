@@ -10,7 +10,7 @@
       ];
     };
 
-    xdg.desktopEntries.obs-rofi = {
+    xdg.desktopEntries."com.obsproject.Studio" = {
       name = "OBS Studio";
       exec = "${pkgs.obs-studio}/bin/obs --disable-shutdown-check %U";
       categories = ["X-Rofi" "Recorder" "AudioVideo"];

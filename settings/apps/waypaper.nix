@@ -33,7 +33,7 @@
       swww_transition_duration = 1
     '';
 
-    xdg.desktopEntries.waypaper-rofi = {
+    xdg.desktopEntries.waypaper = {
       name = "Waypaper";
       exec = "${pkgs.waypaper}/bin/waypaper";
       categories = ["X-Rofi" "Utility" "DesktopSettings"];

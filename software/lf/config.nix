@@ -1,20 +1,4 @@
 {pkgs, ...}: {
-  # -- Using thunar as a folder image previewer
-  programs = {
-    thunar = {
-      enable = true; # Just when needed
-
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-    xfconf.enable = true; # To keep preferences changes
-  };
-
-  services.tumbler.enable = true; # Thumbnail support for images
-
-  # -- lf as terminal folder manager
   user.manage = {
     programs.lf = {
       enable = true;

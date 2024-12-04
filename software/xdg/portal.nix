@@ -37,21 +37,21 @@
       };
     };
 
-    home = {
-      packages = [
-        pkgs.libsForQt5.qtwayland
-        pkgs.libsForQt5.kio-extras
-        pkgs.libsForQt5.ffmpegthumbs
-        pkgs.libsForQt5.kdegraphics-thumbnailers
-        pkgs.libsForQt5.qtimageformats
-      ];
+    # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
+    home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.dir.config}/xdg-desktop-portal";
 
-      # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
-      sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.dir.config}/xdg-desktop-portal";
-    };
+    wayland.windowManager.hyprland.settings.windowrulev2 = [
+      "float, title:^(.*Save.*)$"
+      "rounding 10, title:^(.*Save.*)$"
+      "opacity 0.75, title:^(.*Save.*)$"
+      "float, class:(Xdg-desktop-portal-kde)"
+      "rounding 10, class:(Xdg-desktop-portal-kde)"
+      "opacity 0.75, class:(Xdg-desktop-portal-kde)"
+      "float, title:(Media viewer)"
+      "rounding 10, title:(Media viewer)"
+      "size 80% 80%, title:(Media viewer)"
+    ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<xdg-desktop-portal-kde>" = "";
-    };
+    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<xdg-desktop-portal-kde>" = "";
   };
 }

@@ -4,9 +4,9 @@
     home.packages = with pkgs; [
       imv # Image viewer
       mpv # Video viewer
-      zathura # PDF viewer
       vlc # Media player
-      libreoffice-fresh # Open Source microsoft 365. Fresh version
+      zathura # PDF viewer
+      #libreoffice-fresh # Open Source microsoft 365. Fresh version
     ];
 
     # To find .desktop files, do "echo $XDG_DATA_DIRS"
@@ -30,11 +30,10 @@
     };
 
     programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<libreoffice-calc>" = "󱎏 ";
-      "class<org.pwmt.zathura>" = " ";
-      "class<vlc>" = "󰕼 "; # nf-md-vlc
-      "class<mpv>" = "";
-      "class<imv>" = "";
+      "imv" = "";
+      "mpv" = "";
+      "org.pwmt.zathura" = " ";
+      "vlc" = "󰕼 "; # nf-md-vlc
     };
   };
 }

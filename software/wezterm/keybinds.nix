@@ -4,25 +4,33 @@
     { key='t', mods='CTRL', action=wezterm.action.SpawnTab 'CurrentPaneDomain' }, -- New tab
     { key='w', mods='CTRL', action=wezterm.action.CloseCurrentTab { confirm = true } }, -- Close tab
 
-    -- Disable defaults
-    { key="C", mods="CTRL|SHIFT", action=wezterm.action.DisableDefaultAssignment },
-    { key="V", mods="CTRL|SHIFT", action=wezterm.action.DisableDefaultAssignment },
-    { key='t', mods='SUPER', action=wezterm.action.DisableDefaultAssignment },
-    { key='T', mods='CTRL|SHIFT', action=wezterm.action.DisableDefaultAssignment },
-    { key="V", mods="CTRL|SHIFT", action=wezterm.action.DisableDefaultAssignment },
-    { key='W', mods='CTRL|SHIFT', action=wezterm.action.DisableDefaultAssignment },
+    { key='V', mods='CTRL|SHIFT', action=wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } }, -- Split horizontal
+    { key='B', mods='CTRL|SHIFT', action=wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } }, -- Split vertical
+    { key='W', mods='CTRL|SHIFT', action=wezterm.action.CloseCurrentPane { confirm = true } }, -- Close pane
 
-    -- Disable key press
-    { key="1", mods="SUPER", action=wezterm.action.Nop },
-    { key="2", mods="SUPER", action=wezterm.action.Nop },
-    { key="3", mods="SUPER", action=wezterm.action.Nop },
-    { key="4", mods="SUPER", action=wezterm.action.Nop },
-    { key="5", mods="SUPER", action=wezterm.action.Nop },
-    { key="6", mods="SUPER", action=wezterm.action.Nop },
-    { key="7", mods="SUPER", action=wezterm.action.Nop },
-    { key="8", mods="SUPER", action=wezterm.action.Nop },
-    { key="9", mods="SUPER", action=wezterm.action.Nop },
-    { key="0", mods="SUPER", action=wezterm.action.Nop },
+    { key='l', mods='CTRL|SHIFT', action=wezterm.action.AdjustPaneSize {"Right", 1} },
+    { key='j', mods='CTRL|SHIFT', action=wezterm.action.AdjustPaneSize {"Left", 1} },
+    { key='i', mods='CTRL|SHIFT', action=wezterm.action.AdjustPaneSize {"Up", 1} },
+    { key='k', mods='CTRL|SHIFT', action=wezterm.action.AdjustPaneSize {"Down", 1} },
+
+    { key='RightArrow', mods='CTRL|SHIFT', action=wezterm.action.ActivatePaneDirection 'Right' },
+    { key='LeftArrow', mods='CTRL|SHIFT', action=wezterm.action.ActivatePaneDirection 'Left' },
+    { key='UpArrow', mods='CTRL|SHIFT', action=wezterm.action.ActivatePaneDirection 'Up' },
+    { key='DownArrow', mods='CTRL|SHIFT', action=wezterm.action.ActivatePaneDirection 'Down' },
+
+
+    { key="1", mods="CTRL", action=wezterm.action.ActivateTab(0) },
+    { key="2", mods="CTRL", action=wezterm.action.ActivateTab(1) },
+    { key="3", mods="CTRL", action=wezterm.action.ActivateTab(2) },
+    { key="4", mods="CTRL", action=wezterm.action.ActivateTab(3) },
+    { key="5", mods="CTRL", action=wezterm.action.ActivateTab(4) },
+    { key="6", mods="CTRL", action=wezterm.action.ActivateTab(5) },
+    { key="7", mods="CTRL", action=wezterm.action.ActivateTab(6) },
+    { key="8", mods="CTRL", action=wezterm.action.ActivateTab(7) },
+    { key="9", mods="CTRL", action=wezterm.action.ActivateTab(8) },
+    { key="0", mods="CTRL", action=wezterm.action.ActivateTab(-1) },
+    { key="RightArrow", mods="CTRL", action=wezterm.action.ActivateTabRelative(1) },
+    { key="LeftArrow", mods="CTRL", action=wezterm.action.ActivateTabRelative(-1) },
   '';
 
   # Modified keybinds
@@ -59,6 +67,8 @@
 in {
   user.manage = {
     programs.wezterm.extraConfig = ''
+      config.disable_default_key_bindings = true
+
       ${commands}
 
       return config

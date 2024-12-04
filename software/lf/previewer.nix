@@ -1,28 +1,38 @@
 {pkgs, ...}: {
   user.manage.programs.lf.extraConfig = ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
-      function createPreview (
+      function createPreview () {
         ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
-      )
+      }
+
+      cache_dir="/tmp/lf"
+      mkdir -p "$cache_dir"
+
+      # Generate a unique cached filename using parent directory and basename
+      parent_dir=$(basename "$(dirname "$1")")
+      file_name=$(basename "$1")
+      cached_file="$cache_dir/''${parent_dir}-''${file_name}.cache"
 
       path=""
 
       case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")" in
         application/pdf)
-          path="/tmp/lf_preview_image" # pdftoppm adds the .jpg at the end anyway (like example.jpg.jpg)
-          ${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "$path"
-          path="/tmp/lf_preview_image.jpg" # so rewrite string
-          break
+          path="$cached_file.jpg"
+          if [ ! -f "$path" ]; then
+            ${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "''${cached_file%.*}"
+          fi
         ;;
         video/*)
-          path="/tmp/lf_preview_image.png"
-          ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$1" -o "$path" -s 0
-          break
+          path="$cached_file.png"
+          if [ ! -f "$path" ]; then
+            ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$1" -o "$path" -s 0
+          fi
         ;;
         image/svg+xml)
-          path="/tmp/lf_preview_image.png"
-          ${pkgs.librsvg}/bin/rsvg-convert -o "$path" "$1"
-          break
+          path="$cached_file.png"
+          if [ ! -f "$path" ]; then
+            ${pkgs.librsvg}/bin/rsvg-convert -o "$path" "$1"
+          fi
         ;;
         image/*)
           createPreview "$1" "$2" "$3"
@@ -35,7 +45,6 @@
       esac
 
       createPreview "$path" "$2" "$3"
-      rm "$path"
     ''}
   '';
 }

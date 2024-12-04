@@ -2,7 +2,7 @@
   user.manage = {
     home.packages = [pkgs.gimp];
 
-    xdg.desktopEntries.gimp-rofi = {
+    xdg.desktopEntries.gimp = {
       name = "Gimp";
       exec = "${pkgs.gimp}/bin/gimp %U";
       icon = "gimp";

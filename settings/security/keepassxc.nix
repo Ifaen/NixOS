@@ -51,7 +51,7 @@
       '';
     };
 
-    xdg.desktopEntries.keepassxc-rofi = {
+    xdg.desktopEntries."org.keepassxc.KeePassXC" = {
       name = "KeePassXC";
       exec = "${pkgs.keepassxc}/bin/keepassxc";
       mimeType = ["application/x-keepass2"];

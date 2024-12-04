@@ -5,7 +5,7 @@
       enableUpdateCheck = false; # Prevent from showing message of update is available.
     };
 
-    xdg.desktopEntries.vscode-rofi = {
+    xdg.desktopEntries.code = {
       name = "Visual Studio Code";
       exec = "${pkgs.vscode}/bin/code %F";
       mimeType = ["text/plain" "inode/directory"];

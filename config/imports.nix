@@ -3,6 +3,9 @@
     map (path: ../settings + path) [
       /apps/discord.nix # Voice chat
       /apps/gimp.nix # Image Editor
+      /apps/obsidian.nix # Notes
+      /apps/ripdrag.nix # Drag utility
+      /apps/tagstudio.nix # Tagging document management system
       /apps/scrcpy.nix # Mobile screen copy
       /apps/spotify.nix # Music provider
       /apps/waypaper.nix # Wallpaper manager
@@ -10,6 +13,7 @@
       /hardware/config.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
       /hardware/drivers.nix # Few drivers depending of the hardware
 
+      /security/getty.nix # Autologin
       /security/hyprlock.nix # System password lock
       /security/keepassxc.nix # Password manager
       /security/networking.nix # Networking
@@ -17,7 +21,6 @@
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
       /services/hypridle.nix # Idle management daemon
-      /services/getty.nix # Autologin
       /services/pipewire.nix # Every sound related service
       /services/ydotool.nix # Tool to move cursor using the keyboard
 
@@ -36,7 +39,7 @@
       /hyprland/config.nix # Window manager
       /hyprland/keybinds.nix
 
-      /lf/config.nix # Terminal file browser configuration
+      /lf/config.nix # Terminal file manager
       /lf/keybinds.nix
       /lf/previewer.nix
 
@@ -45,11 +48,14 @@
       /obs/config.nix # Screen recorder
       /obs/settings.nix
 
-      /syncthing/config.nix # Tools to synchronize between systems
-      /syncthing/sync.nix # Tools to synchronize between systems
-
       /rofi/config.nix # App / Menu Launcher
       /rofi/theme.nix
+
+      /syncthing/config.nix # Synchronization tool
+      /syncthing/sync.nix
+
+      /thunar/config.nix # File manager
+      /thunar/preferences.nix
 
       /vivaldi/config.nix # Web Browser
 

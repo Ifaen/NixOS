@@ -3,7 +3,7 @@
     # When `libcurl-gnutls.so.4: no version information...` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
     home.packages = [pkgs.spotify];
 
-    xdg.desktopEntries.spotify-rofi = {
+    xdg.desktopEntries.spotify = {
       name = "Spotify";
       exec = "${pkgs.spotify}/bin/spotify %U";
       mimeType = ["x-scheme-handler/spotify"];

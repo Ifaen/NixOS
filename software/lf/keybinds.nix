@@ -10,14 +10,30 @@
       /*
       -- Open with
       */
-      vlc-open = "%vlc .";
+      vlc-open = "%vlc $fx";
       thunar-open = "%thunar";
 
       /*
       -- Utilities
       */
-      # Drag a file
-      drag-file = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"''; # TODO Replace with ripdrag
+      # Change the ownership of folders and files for the user
+      change-owner = ''
+        ''${{
+          while IFS= read -r path; do
+            if [ -d "$path" ] || [ -f "$path" ]; then
+              sudo chown ${user.name}:users "$path" -R
+            else
+              ${pkgs.libnotify}/bin/notify-send "Error:" "$path should not be changed its ownership."
+            fi
+          done <<< "$fx"
+
+          lf -remote "send $id select $f"
+        }}
+      '';
+
+      # When moving things, names can change or repeat, so clear previewer cache
+      clear-previewer = ''%rm -f /tmp/lf/*; ${pkgs.libnotify}/bin/notify-send "Previewer cache cleared" -t 2500'';
+
       # Convert a .mp4 or H.264 file to .mov, useful to edit videos in davinci!
       convert-to-mov-file = ''%${pkgs.ffmpeg}/bin/ffmpeg -i "$fx" -vcodec mjpeg -q:v 2 -acodec pcm_s16be -q:a 0 -f mov "$fx".mov'';
 
@@ -28,23 +44,63 @@
           read foldername
           if [ -n "$foldername" ]; then
             mkdir "$foldername"
+            lf -remote "send $id select $foldername"
           else
-            echo "Folder name cannot be empty."
+            ${pkgs.libnotify}/bin/notify-send "Folder name cannot be empty." -t 2000
+            lf -remote "send $id select $f"
           fi
         }}
       '';
 
+      # Drag files
+      drag-file = "%${pkgs.ripdrag}/bin/ripdrag $fx";
+
       # Use unar and delete the file
-      descompress-file = ''
+      descompress-file = let
+        accepted-files = "zip|gzip|bzip2|xz|rar|7z|lzh|tar";
+      in ''
         %{{
-          ${pkgs.unar}/bin/unar "$fx"
-          rm "$fx"
+          if [ "$(echo "$fx" | wc -l)" -gt 1 ]; then
+            foldername="dir_$RANDOM"
+
+            while IFS= read -r path; do
+              if ${pkgs.file}/bin/file "$path" | grep -qE "${accepted-files}"; then
+                name=$(basename "$path" | cut -d. -f1)
+
+                if [ -e "$foldername/$name" ]; then
+                  name="$name$RANDOM"
+                fi
+
+                ${pkgs.unar}/bin/unar "$path" -D -o "$foldername/$name"
+
+                rm "$path"
+              fi
+            done <<< "$fx"
+
+            if [ -e "$foldername" ]; then
+              cd "$foldername"
+            fi
+          else
+            if ${pkgs.file}/bin/file "$f" | grep -qE "${accepted-files}"; then
+              name=$(basename "$f" | cut -d. -f1)
+
+              if [ -e "$name" ]; then
+                name="$name$RANDOM"
+              fi
+
+              ${pkgs.unar}/bin/unar "$f" -D -o "$name"
+
+              rm "$f"
+
+              cd "$name"
+            fi
+          fi
         }}
       '';
 
       # Merge videos into one, using tmp files and converting them to .ts, at the end delete all tmp files
       combine-videos = ''
-        ''${{
+        %{{
           base_output_file="_$(basename "$PWD").mp4"
           output_file="$base_output_file"
 
@@ -96,6 +152,9 @@
         }}
       '';
 
+      # Select all files and folders in the current directory
+      select-all = ":unselect; invert";
+
       /*
       -- Trash Utilities
       */
@@ -120,21 +179,21 @@
       # Clear Trash files and info folders.
       empty-trash = ''
         %{{
-          # Show the selected files and ask for confirmation
           echo -n "Are you sure you want to delete the selected files? y/n: "
           read selection
 
           # Delete the selected files if the user confirms
           if [ "$selection" == "y" ] || [ "$selection" == "Y" ]; then
-            rm -rf ${user.dir.data}/Trash/files
-            rm -rf ${user.dir.data}/Trash/info
-
-            mkdir -p ${user.dir.data}/Trash/files ${user.dir.data}/Trash/info
+            rm -rf ${user.dir.data}/Trash/files/*
+            rm -rf ${user.dir.data}/Trash/info/*
 
             ${pkgs.libnotify}/bin/notify-send "Trash cleared successfully"
+
           else
             ${pkgs.libnotify}/bin/notify-send "Operation cancelled"
           fi
+
+          lf -remote "send $id select $f"
         }}
       '';
 
@@ -143,7 +202,7 @@
       */
       # When opening a file, hide the preview column
       on-redraw = ''
-        %{{
+        &{{
           if [ $lf_width -le 110 ]; then
             lf -remote "send $id :set preview false; set ratios 2:5"
           else
@@ -154,92 +213,93 @@
 
       open = ''
         &{{
-          file_mime_type=$(${pkgs.file}/bin/file -Lb --mime-type -- "$fx")
-          case "$file_mime_type" in
-            text/*)
-              lf -remote "send $id \$$EDITOR \$fx"
-              exit 0
-            ;;
-            video/*)
-              ${pkgs.mpv}/bin/mpv "$fx"
-              exit 0
-            ;;
-            image/*)
-              ${pkgs.imv}/bin/imv "$fx"
-              exit 0
-            ;;
-            *)
-              ${pkgs.xdg_utils}/bin/xdg-open "$fx"
-              echo "$file_mime_type"
-              exit 0
-            ;;
-          esac
+          while IFS= read -r path; do
+            case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$path")" in
+              text/*)
+                ${pkgs.vscode}/bin/code "$path" &
+              ;;
+              video/*)
+                ${pkgs.mpv}/bin/mpv "$path" &
+              ;;
+              image/*)
+                ${pkgs.imv}/bin/imv "$path" &
+              ;;
+              *)
+                ${pkgs.xdg_utils}/bin/xdg-open "$path" &
+              ;;
+            esac
+          done <<< "$fx"
         }}
       '';
 
-      # Instead of just renaming one file, rename all stored in $fx, at the end toggle and select the renamed files
-      rename = ''
-        %{{
-          # Counter variable
-          counter=0
+      # Added functionality to rename multiple files or just one
+      rename = let
+        rename-one = ''
+          # If string is empty
+          if [ -z "$new_name" ]; then
+            ${pkgs.libnotify}/bin/notify-send "Error:" "New name is empty. Rename operation aborted."
+            lf -remote "send $id select $f"
+          # If string is the same
+          elif [ -e "$new_name" ]; then
+            ${pkgs.libnotify}/bin/notify-send "Error:" "The file '$new_name' already exists. Choose a different name."
+            lf -remote "send $id select $f"
+          # Announce the new name
+          else
+            ${pkgs.libnotify}/bin/notify-send "Renamed '$(basename $f)' to '$new_name'."
+            mv "$f" "$new_name"
+            lf -remote "send $id select '$new_name'"
+          fi
+        '';
 
-          # Ask the user for input
-          echo -n "Rename: "
-          read new_name
+        # Rename multiples files, ignores folders
+        rename-multiple = ''
+          # For every path in $fx
+          while IFS= read -r path; do
+            # If path is a file
+            if [[ -f "$path" ]]; then
+              counter=1
+              # Extract the extension from the original path
+              ext=$(basename "$path" | awk -F. '{print "." $NF}')
 
-          renamed_files=() # Array to store new paths
+              # Merge the new path using the new name and original extension
+              new_path="$new_name$ext"
 
-          # Loop through each file in fx
-          while IFS= read -r file; do
-            # Extract the directory, extension, and set current counter
-            dir=$(dirname "$file")
-            ext=$(basename "$file" | awk -F. '{print $NF}')
-            current_counter=$counter
+              # Check if new path exists, if so, add a number
+              while [[ -e "$new_path" ]]; do
+                new_path="''${new_name}_$counter$ext"
 
-             # Check if the file is a directory
-            if [[ -d "$file" ]]; then
-              new_path="''${dir}/''${new_name}"  # Rename folder without a counter
-            else
-              # Skip appending 0 for the first file
-              if [[ $current_counter -eq 0 ]]; then
-                new_path="''${dir}/''${new_name}.''${ext}"
-              else
-                new_path="''${dir}/''${new_name}_''${current_counter}.''${ext}"
-              fi
+                counter=$((counter + 1))
+              done
+
+              # Rename the previous path with the new path
+              mv "$path" "$new_path"
+
+              # Toggle selection
+              lf -remote "send $id toggle $new_path"
             fi
-
-            # Ensure unique name by incrementing until no file exists
-            while [[ -e "$new_path" ]]; do
-              current_counter=$((current_counter + 1))
-              if [[ -d "$file" ]]; then
-                new_path="''${dir}/''${new_name}_''${current_counter}"  # For folder
-              else
-                new_path="''${dir}/''${new_name}_''${current_counter}.''${ext}"
-              fi
-            done
-
-            # Store the new path in the array
-            renamed_files+=("$new_path")
-
-            # Rename the file
-            mv "$file" "$new_path"
-
-            # Increment the main counter
-            counter=$((counter + 1))
           done <<< "$fx"
 
-          # Unselect any previous file
-          lf -remote "send $id unselect"
+          ${pkgs.libnotify}/bin/notify-send "Renamed files with the \"$new_name\" prefix"
 
-          # Keep the new files toggled only if there are multiple renamed files
-          if [ ''${#renamed_files[@]} -gt 1 ]; then
-            for path in "''${renamed_files[@]}"; do
-              lf -remote "send $id toggle $path"
-            done
+          lf -remote "send $id select $new_path"
+        '';
+      in ''
+        %{{
+          # Ask the user for input
+          echo -n "Rename: "
+
+          # Count the amount of files to be renamed
+          if [ "$(echo "$fx" | wc -l)" -gt 1 ]; then
+            lf -remote "send $id push $(basename "$(dirname "$f")")"
+            read new_name
+
+            ${rename-multiple}
+          else
+            lf -remote "send $id push $(basename "$f" | sed 's/ /<space>/g')"
+            read new_name
+
+            ${rename-one}
           fi
-
-          # And select the first from the list
-          lf -remote "send $id select ''${renamed_files[0]}"
         }}
       '';
 
@@ -257,20 +317,20 @@
     };
 
     keybindings = {
+      co = "change-owner";
       dd = "drag-file";
       dm = "convert-to-mov-file";
       df = "descompress-file";
       dv = "combine-videos";
-      "<c-d>" = "create-folder"; # Do the custom mkdir command
-
-      # -- open with
       ov = "vlc-open";
-      ot = "thunar-open";
+      "<c-a>" = "select-all";
+      "<c-d>" = "create-folder";
 
       # -- Trash utilities
       "<delete><enter>" = "delete-trash";
-      "<delete><delete>" = "restore-trash";
-      "<delete><backspace2>" = "empty-trash";
+      "<delete>r" = "restore-trash";
+      "<delete>a" = "empty-trash";
+      "<delete>p" = "clear-previewer";
 
       # -- Overwriting default commands
       r = "rename";
@@ -285,12 +345,13 @@
       zr = "show-reverse";
 
       # -- Remapping default commands
+      i = "thunar-open"; # default: $$PAGER "$f"
       zi = "show-info";
-      "<esc>" = "quit";
       "<c-c>" = "copy";
       "<c-x>" = "cut";
       "<c-v>" = "paste";
       "<c-u>" = "unselect";
+      "<esc>" = "quit";
 
       # -- Unbind keys (The comments indicates their default usage)
       c = null; # clear
@@ -300,7 +361,6 @@
       F = null; # find-back
       gg = null; # top
       G = null; # bottom
-      i = null; # $$PAGER "$f"
       h = null; # updir
       H = null; # High
       j = null; # down

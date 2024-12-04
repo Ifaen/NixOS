@@ -11,7 +11,7 @@
       "class<Brave-browser>" = " ";
     };
 
-    xdg.desktopEntries.vivaldi-rofi = {
+    xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";
       exec = "${pkgs.vivaldi}/bin/vivaldi %U"; # Use wayland instead of xwayland
       terminal = false;

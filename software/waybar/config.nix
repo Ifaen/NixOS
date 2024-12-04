@@ -22,7 +22,7 @@
       };
     };
 
-    xdg.desktopEntries.waybar-rofi = {
+    xdg.desktopEntries.waybar = {
       name = "Waybar";
       exec = "${pkgs.writeShellScript "toggle-waybar" ''
         if pgrep waybar; then

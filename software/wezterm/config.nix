@@ -16,7 +16,7 @@
       '';
     };
 
-    xdg.desktopEntries.wezterm-rofi = {
+    xdg.desktopEntries."org.wezfurlong.wezterm" = {
       name = "Wezterm Terminal";
       exec = ''hyprctl dispatch exec "[float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"'';
       categories = ["X-Rofi" "System" "TerminalEmulator" "Utility"];
