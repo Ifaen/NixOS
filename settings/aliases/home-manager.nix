@@ -1,9 +1,8 @@
-{user, ...}: {
+{...}: {
   user-manage = {
     options,
     config,
     lib,
-    #types,
     ...
   }: {
     options = {

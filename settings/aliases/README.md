@@ -4,11 +4,16 @@ Making an Alias of certain Configuration, to abbreviate, using the same options 
 
 # Basic Structure:
 
-```
+```nix
 {
-    Options = {
+  config,
+  options,
+  lib,
+  ...
+}: {
+    options = {
         `Alias` = lib.mkOption {
-            type = options.`Configuration`.type.functor.wrapped;
+            type = options.`Configuration`.type.functor.wrapped; # Or lib.types.`type`
             default = {}; # The defaults are empty on purpose
             description = `A description`;
         };

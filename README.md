@@ -25,9 +25,9 @@ Nixos/
 
 **flake.nix & flake.lock**: Core files for flake-based reproducibility. **flake.nix** defines the system configuration and dependencies, while **flake.lock** keeps track of pinned versions.
 
-**config/**: Contains base configurations, aliases and system imports. Here, you’ll find general settings and essential packages that don’t fit any specific category and require minimal configuration.
+**config/**: Contains base configurations and system imports. Here, you’ll find general settings and essential packages that don’t fit any specific category and require minimal configuration.
 
-**settings/**: Houses settings for applications that generally fit within a single category, such as system services, themes, or any app that doesn’t need extensive configuration.
+**settings/**: Houses settings for applications that generally fit within a single category, such as system security, services, themes, aliases, or any app that doesn’t need extensive / modularized configuration.
 
 **software/**: Reserved for applications or tools that benefit from being broken down into individual files for easier categorization and modular management.
 

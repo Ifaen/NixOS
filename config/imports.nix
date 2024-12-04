@@ -1,6 +1,9 @@
 {inputs, ...}: {
   imports =
     map (path: ../settings + path) [
+      /aliases/home-manager.nix # Aliases under home-manager
+      /aliases/nixos.nix # Aliases under nixos
+
       /apps/discord.nix # Voice chat
       /apps/gimp.nix # Image Editor
       /apps/obsidian.nix # Notes
@@ -87,9 +90,6 @@
     ]
     ++ [
       inputs.home-manager.nixosModules.home-manager # Imports home-manager as a nixos module
-
-      ./aliases/system.nix
-      ./aliases/user.nix
     ];
 
   user-manage.imports = [
