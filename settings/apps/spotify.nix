@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     # When `libcurl-gnutls.so.4: no version information...` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
     home.packages = [pkgs.spotify];
 
@@ -24,12 +24,12 @@
       }
     ];
 
-    wayland.windowManager.hyprland.settings = {
+    hyprland = {
       workspace = ["12, on-created-empty:spotify"];
 
       windowrulev2 = ["opacity 0.95, class:(Spotify)"];
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<Spotify>" = "󰓇 ";};
+    waybar-workspace-icon."class<Spotify>" = "󰓇 ";
   };
 }

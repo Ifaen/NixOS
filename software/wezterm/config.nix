@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.wl-clipboard-rs];
 
     programs.wezterm = {
@@ -10,7 +10,7 @@
       extraConfig = ''
         local config = {}
 
-        config.default_prog = { 'zsh' }
+        config.default_prog = { 'zsh' } -- Run zsh on startup
         config.font = wezterm.font 'monospace'
         config.window_background_opacity = 0.5
       '';
@@ -25,8 +25,8 @@
     };
 
     # HACK This is a workaround, until Wezterm has a new release that fixes its bug with hyprland
-    wayland.windowManager.hyprland.settings.exec-once = ["[workspace 11 silent;float;tile] wezterm start --always-new-process"];
+    hyprland.exec-once = ["[workspace 11 silent;float;tile] wezterm start --always-new-process"];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<org.wezfurlong.wezterm>" = "󰆍 ";
+    waybar-workspace-icon."class<org.wezfurlong.wezterm>" = "󰆍 ";
   };
 }

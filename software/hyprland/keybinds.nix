@@ -1,5 +1,5 @@
 {user, ...}: {
-  user.manage.wayland.windowManager.hyprland.settings = {
+  user-manage.hyprland = {
     bindm = [
       "SUPER, mouse:272, movewindow" # SUPER + LMB
       "SUPER, mouse:273, resizewindow" # SUPER + RMB

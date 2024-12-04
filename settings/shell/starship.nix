@@ -1,5 +1,5 @@
 {lib, ...}: {
-  user.manage.programs.starship = {
+  user-manage.programs.starship = {
     enable = true;
 
     settings = {

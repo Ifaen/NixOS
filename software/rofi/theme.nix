@@ -1,5 +1,5 @@
 {lib, ...}: {
-  user.manage = {
+  user-manage = {
     xdg.configFile."rofi/style.rasi".source = ./style.rasi;
 
     programs.rofi = {

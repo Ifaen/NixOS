@@ -1,6 +1,7 @@
 {user, ...}: {
-  user.manage.xdg.configFile."obs-studio/basic/profiles/Untitled/basic.ini" = {
+  user-manage.xdg.configFile."obs-studio/basic/profiles/Untitled/basic.ini" = {
     force = true;
+
     text = ''
       [General]
       Name=Untitled

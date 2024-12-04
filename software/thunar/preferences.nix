@@ -1,7 +1,7 @@
 {...}: {
   programs.xfconf.enable = true;
 
-  user.manage.xdg.configFile."xfce4/xfconf/xfce-perchannel-xml/thunar.xml" = {
+  user-manage.xdg.configFile."xfce4/xfconf/xfce-perchannel-xml/thunar.xml" = {
     force = true;
 
     text = ''

@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  user.manage = {
+  user-manage = {
     home.packages = [inputs.nix-tagstudio.packages.${user.system}.tagstudio];
 
     xdg.desktopEntries.tagstudio = {
@@ -14,12 +14,12 @@
       terminal = false;
     };
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+    hyprland.windowrulev2 = [
       "float, class:(tagstudio), title:^(.*Add.*)$"
       "rounding 10, class:(tagstudio), title:^(.*Add.*)$"
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+    waybar-workspace-icon = {
       "class<tagstudio>" = "󰓹 "; # nf-md-tag
       #"class<tagstudio> title<.*Add.*>" = "";
     };

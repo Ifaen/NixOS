@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  user.manage.gtk = {
+  user-manage.gtk = {
     enable = true;
 
     theme = {

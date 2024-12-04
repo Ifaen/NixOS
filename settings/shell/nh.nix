@@ -10,7 +10,7 @@
   };
 
   # Allow to use nh without typing os
-  user.manage.programs.zsh.initExtra = ''
+  user-manage.programs.zsh.initExtra = ''
     nh() {
       if [[ ($1 == "switch" || $1 == "boot") && -z "$2" ]]; then
         command nh os "$1" --ask

@@ -1,5 +1,5 @@
 {user, ...}: {
-  user.manage = {
+  user-manage = {
     programs.thunderbird = {
       enable = true;
 
@@ -8,8 +8,8 @@
       };
     };
 
-    #wayland.windowManager.hyprland.settings.exec-once = ["[workspace 14 silent] thunderbird"];
+    #hyprland.exec-once = ["[workspace 14 silent] thunderbird"];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<thunderbird>" = "󱗆 "; # nf-md-bird
+    waybar-workspace-icon."class<thunderbird>" = "󱗆 "; # nf-md-bird
   };
 }

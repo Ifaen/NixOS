@@ -2,7 +2,7 @@
   programs.hyprland.enable = true; # Windows Manager.
 
   # Configuration of window manager
-  user.manage.wayland.windowManager.hyprland = {
+  user-manage.wayland.windowManager.hyprland = {
     enable = true;
 
     # SETTINGS

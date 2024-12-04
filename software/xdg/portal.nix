@@ -14,7 +14,7 @@
 
   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
-  user.manage = {
+  user-manage = {
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
@@ -40,7 +40,7 @@
     # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
     home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.dir.config}/xdg-desktop-portal";
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+    hyprland.windowrulev2 = [
       "float, title:^(.*Save.*)$"
       "rounding 10, title:^(.*Save.*)$"
       "opacity 0.75, title:^(.*Save.*)$"
@@ -52,6 +52,6 @@
       "size 80% 80%, title:(Media viewer)"
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<xdg-desktop-portal-kde>" = "";
+    waybar-workspace-icon."class<xdg-desktop-portal-kde>" = "";
   };
 }

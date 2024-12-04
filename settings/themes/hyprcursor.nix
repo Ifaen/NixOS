@@ -2,8 +2,8 @@
   cursor-name = "Bibata_Ghost";
   cursor-size = 40;
 in {
-  user.manage = {
-    wayland.windowManager.hyprland.settings.env = [
+  user-manage = {
+    hyprland.env = [
       "HYPRCURSOR_THEME, ${cursor-name}"
       "HYPRCURSOR_SIZE, ${toString cursor-size}"
     ];

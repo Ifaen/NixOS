@@ -10,14 +10,12 @@
 
   services.tumbler.enable = true; # Thumbnail support for images
 
-  user.manage = {
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+  user-manage = {
+    hyprland.windowrulev2 = [
       "float, class:(thunar)"
       "size 80% 80%, class:(thunar)"
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<thunar>" = "";
-    };
+    waybar-workspace-icon."class<thunar>" = "";
   };
 }

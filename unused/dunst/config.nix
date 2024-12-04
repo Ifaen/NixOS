@@ -1,5 +1,5 @@
-{user, ...}: {
-  user.manage = {
+{...}: {
+  user-manage = {
     services.dunst = {
       enable = true;
     };

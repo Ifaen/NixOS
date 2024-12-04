@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     programs.pywal.enable = true; # Generate and change colorschemes on the fly
 
     home.packages = [

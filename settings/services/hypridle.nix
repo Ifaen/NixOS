@@ -1,5 +1,5 @@
 {...}: {
-  user.manage.services.hypridle = {
+  user-manage.services.hypridle = {
     enable = true;
 
     settings = {

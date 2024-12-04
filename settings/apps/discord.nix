@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.vesktop];
 
     xdg.desktopEntries.vesktop = {
@@ -10,6 +10,6 @@
       categories = ["X-Rofi" "Network" "InstantMessaging"];
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<de.shorsh.discord-screenaudio>" = " ";
+    waybar-workspace-icon."class<de.shorsh.discord-screenaudio>" = " ";
   };
 }

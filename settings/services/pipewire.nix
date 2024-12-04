@@ -20,12 +20,12 @@
   };
 
   # Settings of apps in other modules
-  user.manage = {
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+  user-manage = {
+    hyprland.windowrulev2 = [
       "float, class:(pavucontrol)"
       "size 60% 80%, class:(pavucontrol)"
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<pavucontrol>" = "󰕾 ";}; # nf-md-volume_high
+    waybar-workspace-icon."class<pavucontrol>" = "󰕾 "; # nf-md-volume_high
   };
 }

@@ -1,9 +1,9 @@
-{user, ...}: {
-  user.manage = {
+{...}: {
+  user-manage = {
     programs.wofi = {
       enable = true;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<wofi>" = "󰼢 ";
+    waybar-workspace-icon."class<wofi>" = "󰼢 ";
   };
 }

@@ -54,7 +54,7 @@
     fi
   ''}";
 in {
-  user.manage = {
+  user-manage = {
     # For Grimblast
     xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR = user.dir.screenshots;
 

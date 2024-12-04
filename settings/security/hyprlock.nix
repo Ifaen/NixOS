@@ -1,7 +1,7 @@
 {user, ...}: {
   security.pam.services.hyprlock = {}; # Essential for swaylock to work properly
 
-  user.manage.programs.hyprlock = {
+  user-manage.programs.hyprlock = {
     enable = true;
 
     settings = {

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.gimp];
 
     xdg.desktopEntries.gimp = {
@@ -51,8 +51,6 @@
       terminal = false;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<Gimp>" = " ";
-    };
+    waybar-workspace-icon."class<Gimp>" = " ";
   };
 }

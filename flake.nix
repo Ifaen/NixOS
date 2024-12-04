@@ -45,7 +45,6 @@
         /packages.nix
         /system.nix
         /user.nix
-        /aliases.nix
       ];
     };
   };

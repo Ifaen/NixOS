@@ -85,9 +85,14 @@
       /zsh/config.nix # Terminal shell
       /zsh/tools.nix
     ]
-    ++ [inputs.home-manager.nixosModules.home-manager]; # Imports home-manager as a nixos module
+    ++ [
+      inputs.home-manager.nixosModules.home-manager # Imports home-manager as a nixos module
 
-  user.manage.imports = [
+      ./aliases/system.nix
+      ./aliases/user.nix
+    ];
+
+  user-manage.imports = [
     inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
   ];
 }

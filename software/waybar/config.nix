@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  user.manage = {
+  user-manage = {
     programs.waybar = {
       enable = true;
 
@@ -36,6 +36,6 @@
     };
 
     # Settings of waybar in other modules
-    wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.waybar}/bin/waybar"];
+    hyprland.exec-once = ["${pkgs.waybar}/bin/waybar"];
   };
 }

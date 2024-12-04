@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     programs.obs-studio = {
       enable = true;
 
@@ -19,6 +19,6 @@
       terminal = false;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<com.obsproject.Studio>" = "󰄀 "; # nf-md-camera
+    waybar-workspace-icon."class<com.obsproject.Studio>" = "󰄀 "; # nf-md-camera
   };
 }

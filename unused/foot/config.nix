@@ -1,9 +1,5 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
-  user.manage = {
+{pkgs, ...}: {
+  user-manage = {
     programs.foot = {
       enable = true;
       server.enable = false;
@@ -17,8 +13,8 @@
       categories = ["X-Rofi" "System" "TerminalEmulator"];
     };
 
-    wayland.windowManager.hyprland.settings.exec-once = ["[workspace 11 silent] foot"];
+    hyprland.exec-once = ["[workspace 11 silent] foot"];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<foot>" = "󰆍 ";
+    waybar-workspace-icon."class<foot>" = "󰆍 ";
   };
 }

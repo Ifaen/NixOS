@@ -1,5 +1,5 @@
 {user, ...}: {
-  user.manage = {
+  user-manage = {
     # A better `cd` with memory
     programs.zoxide = {
       enable = true;

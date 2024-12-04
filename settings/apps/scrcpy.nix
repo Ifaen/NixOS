@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.scrcpy];
 
     xdg.desktopEntries.scrcpy = {
@@ -10,6 +10,6 @@
       terminal = false;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<.scrcpy-wrapped>" = " ";};
+    waybar-workspace-icon."class<.scrcpy-wrapped>" = " ";
   };
 }

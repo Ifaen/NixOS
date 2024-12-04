@@ -35,4 +35,4 @@ Nixos/
 
 ## Modular Configuration Philosophy
 
-Some settings are grouped in a single file to prevent dependencies between applications. This way, if I decide to remove an app, I won’t need to search through other configurations to check for potential dependencies.
+Some settings are grouped in a single file to prevent dependencies between applications. This way, if I decide to remove an app, I won’t need to search through other files to check for potential dependencies.

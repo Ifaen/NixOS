@@ -4,7 +4,7 @@
   user,
   ...
 }: {
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.keepassxc];
 
     xdg.configFile."keepassxc/keepassxc.ini" = {
@@ -76,9 +76,9 @@
       }
     ];
 
-    wayland.windowManager.hyprland.settings.workspace = ["13, on-created-empty:keepassxc"];
+    hyprland.workspace = ["13, on-created-empty:keepassxc"];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {"class<org.keepassxc.KeePassXC>" = "󰌋 ";};
+    waybar-workspace-icon."class<org.keepassxc.KeePassXC>" = "󰌋 ";
   };
 
   # -- Sync folder with mobile device

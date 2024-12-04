@@ -5,7 +5,7 @@
 }: let
   iconsPath = "${pkgs.wlogout}/share/wlogout/icons";
 in {
-  user.manage = {
+  user-manage = {
     programs.wlogout = {
       enable = true;
       layout = [
@@ -58,6 +58,6 @@ in {
       '';
     };
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = ["float, class:^(wlogout)$"];
+    hyprland.windowrulev2 = ["float, class:^(wlogout)$"];
   };
 }

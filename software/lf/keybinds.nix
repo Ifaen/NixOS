@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  user.manage.programs.lf = {
+  user-manage.programs.lf = {
     # % To stay on lf (create a modal)
     # $ To temporarily go back to terminal
     commands = {

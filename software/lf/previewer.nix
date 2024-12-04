@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage.programs.lf.extraConfig = ''
+  user-manage.programs.lf.extraConfig = ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
       function createPreview () {
         ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1"

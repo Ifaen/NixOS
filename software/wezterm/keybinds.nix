@@ -65,7 +65,7 @@
     end)
   '';
 in {
-  user.manage = {
+  user-manage = {
     programs.wezterm.extraConfig = ''
       config.disable_default_key_bindings = true
 

@@ -5,7 +5,7 @@
 }: {
   environment.systemPackages = [pkgs.prismlauncher];
 
-  user.manage = {
+  user-manage = {
     xdg.dataFile."PrismLauncher/prismlauncher.cfg" = {
       enable = false;
       text = ''
@@ -68,12 +68,12 @@
       '';
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+    waybar-workspace-icon = {
       "class<org.prismlauncher.PrismLauncher>" = "󰍳 "; # nf-md-minecraft
       "class<Minecraft.*>" = "󰍳 "; # nf-md-minecraft
     };
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+    hyprland.windowrulev2 = [
       "tile, class:^(.*Minecraft.*)$"
       "workspace 3, class:^(.*Minecraft.*)$"
       "workspace 3, class:(org.prismlauncher.PrismLauncher)"

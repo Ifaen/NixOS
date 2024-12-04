@@ -3,7 +3,7 @@
   user,
   ...
 }: {
-  user.manage = {
+  user-manage = {
     home.packages = [
       pkgs.waypaper # GUI for Wallpaper management
       pkgs.swww # Software to change wallpapers, used by waypaper as backend
@@ -41,7 +41,7 @@
       icon = "waypaper";
     };
 
-    wayland.windowManager.hyprland.settings = {
+    hyprland = {
       exec-once = ["swww-daemon"]; # Start swww daemon
 
       windowrulev2 = [
@@ -51,8 +51,6 @@
       ];
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
-      "class<waypaper>" = " ";
-    };
+    waybar-workspace-icon."class<waypaper>" = " ";
   };
 }

@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  user.manage = {
+{...}: {
+  user-manage = {
     programs.lf = {
       enable = true;
 

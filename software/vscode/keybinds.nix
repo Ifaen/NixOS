@@ -1,5 +1,5 @@
 {...}: {
-  user.manage.programs.vscode.keybindings = [
+  user-manage.programs.vscode.keybindings = [
     # Disable normal behaviour
     {
       key = "alt+f4";

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{pkgs, ...}: {
   # Making an overlay to bind drivers to correct folder
   nixpkgs.overlays = [
     (final: prev: {
@@ -22,7 +18,7 @@
   # allow opencl to detect amd gpu
   hardware.opengl.extraPackages = [pkgs.rocm-opencl-icd];
 
-  user.manage = {
+  user-manage = {
     home.packages = [pkgs.davinci-resolve];
 
     xdg.desktopEntries.davinci-resolve = {

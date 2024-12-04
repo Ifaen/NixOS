@@ -1,5 +1,5 @@
 {user, ...}: {
-  user.manage.programs.git = {
+  user-manage.programs.git = {
     enable = true;
 
     userName = user.name;

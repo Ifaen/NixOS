@@ -6,7 +6,7 @@
     input.members = ["${user.name}"];
   };
 
-  user.manage = {
+  user-manage = {
     services.xremap = {
       enable = true;
       withWlroots = true; # To work in wayland
@@ -25,6 +25,6 @@
     };
 
     # Workaround to reset the service of xremap after logout of hyprland
-    wayland.windowManager.hyprland.settings.exec-once = ["systemctl --user restart xremap"];
+    hyprland.exec-once = ["systemctl --user restart xremap"];
   };
 }

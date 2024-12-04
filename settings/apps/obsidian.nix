@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     home.packages = [
       pkgs.obsidian # Knowledge database notes
     ];
@@ -13,6 +13,6 @@
       terminal = false;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<obsidian>" = "󰎚 "; # nf-md-note
+    waybar-workspace-icon."class<obsidian>" = "󰎚 "; # nf-md-note
   };
 }

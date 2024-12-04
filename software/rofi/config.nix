@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     programs.rofi = {
       enable = true;
 
@@ -14,12 +14,12 @@
       };
     };
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
+    hyprland.windowrulev2 = [
       "float, class:(Rofi)"
       "stayfocused, class:(Rofi)"
       "rounding 10, class:(Rofi)"
     ];
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite."class<Rofi>" = "󰼢 ";
+    waybar-workspace-icon."class<Rofi>" = "󰼢 ";
   };
 }

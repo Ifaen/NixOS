@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   # Allow management of XDG base directories
-  user.manage = {
+  user-manage = {
     home.packages = with pkgs; [
       imv # Image viewer
       mpv # Video viewer
@@ -29,7 +29,7 @@
       };
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+    waybar-workspace-icon = {
       "imv" = "";
       "mpv" = "";
       "org.pwmt.zathura" = " ";

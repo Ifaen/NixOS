@@ -1,19 +1,19 @@
 {pkgs, ...}: {
-  user.manage = {
+  user-manage = {
     programs.chromium = {
       enable = true;
 
       package = pkgs.vivaldi;
     };
 
-    programs.waybar.settings.statusBar."hyprland/workspaces".window-rewrite = {
+    waybar-workspace-icon = {
       "class<Vivaldi-stable>" = "󰊯 ";
       "class<Brave-browser>" = " ";
     };
 
     xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";
-      exec = "${pkgs.vivaldi}/bin/vivaldi %U"; # Use wayland instead of xwayland
+      exec = "${pkgs.vivaldi}/bin/vivaldi %U";
       terminal = false;
       icon = "vivaldi";
       categories = ["X-Rofi" "Network" "WebBrowser"];

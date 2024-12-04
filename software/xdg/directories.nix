@@ -1,5 +1,5 @@
 {user, ...}: {
-  user.manage = {
+  user-manage = {
     xdg = {
       cacheHome = user.dir.cache;
       configHome = user.dir.config;
