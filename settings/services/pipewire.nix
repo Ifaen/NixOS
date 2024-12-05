@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  sound.enable = true;
-
   environment.systemPackages = with pkgs; [
     pavucontrol # Audio controller
     pw-volume # Basic interface for PipeWire volume controls

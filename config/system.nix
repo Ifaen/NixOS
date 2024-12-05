@@ -19,14 +19,15 @@
   };
 
   boot = {
-    kernelParams = ["intel_pstate=active"];
-
     loader = {
       grub = {
         enable = true;
+
         devices = ["nodev"];
+
+        useOSProber = true; # Append entries for other OSs detected by os-prober
+
         efiSupport = true;
-        useOSProber = true;
       };
 
       efi.canTouchEfiVariables = true;

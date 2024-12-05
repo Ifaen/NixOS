@@ -18,7 +18,7 @@
     # A better `ls` with icons
     programs.eza = {
       enable = true;
-      icons = true; # Display icons of apps or folder
+      icons = "auto"; # Display icons of apps or folder
       git = true; # Display if file is being tracked by git
       extraOptions = ["--no-quotes"];
     };

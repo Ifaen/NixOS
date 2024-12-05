@@ -3,20 +3,24 @@
 
   # Using cpufreq-info | grep "governor" in nix-shell -p cpufrequtils, outputs available options. When doing cat
   # /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor, the output was powersave which made the system slower in theory.
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement = {
+    enable = true;
 
-  boot.supportedFilesystems = ["ntfs"]; # Allow the support for windows file system
+    cpuFreqGovernor = "performance";
+  };
 
   # Drivers
   boot = {
-    #kernelPackages = ;
     kernelModules = ["amdgpu"]; # To boot kernel with amd module
+
+    kernelParams = ["intel_pstate=active"];
+
+    supportedFilesystems = ["ntfs"]; # Allow the support for windows file system
   };
 
-  hardware.opengl = {
-    enable = true; # Mesa
+  hardware.graphics = {
+    enable = true;
 
-    driSupport = true; # radv: an open-source Vulkan driver from freedesktop
-    driSupport32Bit = true; # radv support for 32 bits applications
+    enable32Bit = true; # Support for 32 bits applications
   };
 }

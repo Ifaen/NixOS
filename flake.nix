@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     xremap-flake.url = "github:xremap/nix-flake";
     nix-tagstudio.url = "github:zierf/TagStudio/poetry2nix"; # https://github.com/TagStudioDev/TagStudio/issues/200
 
