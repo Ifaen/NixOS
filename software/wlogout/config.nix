@@ -8,16 +8,12 @@ in {
   user-manage = {
     programs.wlogout = {
       enable = true;
+
       layout = [
         {
           label = "lock";
-          action = "hyprlock";
+          action = "${pkgs.hyprlock}/bin/hyprlock --immediate";
           text = "Lock";
-        }
-        {
-          label = "logout";
-          action = "hyprctl dispatch exit";
-          text = "Exit";
         }
         {
           label = "shutdown";
@@ -43,9 +39,6 @@ in {
         #lock {
           background-image: image(url("${iconsPath}/lock.png"));
         }
-        #logout {
-          background-image: image(url("${iconsPath}/logout.png"));
-        }
         #suspend {
           background-image: image(url("${iconsPath}/suspend.png"));
         }
@@ -58,6 +51,8 @@ in {
       '';
     };
 
-    hyprland.windowrulev2 = ["float, class:^(wlogout)$"];
+    hyprland.windowrulev2 = [
+      "float, class:(wlogout)"
+    ];
   };
 }

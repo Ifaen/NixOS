@@ -2,41 +2,52 @@
   background-image: none;
   box-shadow: none;
   transition: 20ms;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 window {
-  background-color: alpha(@background, 0.2);
+  background-color: alpha(@background, 0.6);
 }
 
 button {
-  color: @color1;
   font-size: 20px;
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25%;
-
-  border-style: solid;
-  background-color: alpha(@background, 0.3);
-  border: 10px solid alpha(@color1, 0.5);
+  min-width: 300px;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition-property: background-color;
   transition-duration: 0.5s;
 }
 
-button:hover {
-  background-color: alpha(@background, 0.6);
-  outline-style: none;
+#lock {
+  background-color: alpha(@color4, 0.6);
+}
+#lock:hover {
+  background-color: @color4;
 }
 
-#lock,
-#logout,
-#suspend,
-#hibernate,
-#shutdown,
+#shutdown {
+  background-color: alpha(@color8, 0.6);
+}
+#shutdown:hover {
+  background-color: @color8;
+}
+
+#suspend {
+  background-color: alpha(@color12, 0.6);
+}
+#suspend:hover {
+  background-color: @color12;
+}
+
 #reboot {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 20px;
+  background-color: alpha(@color14, 0.6);
+}
+#reboot:hover {
+  background-color: @color14;
 }
