@@ -10,14 +10,11 @@
 
       style = ''
         @import "${user.home}/.cache/wal/colors-waybar.css";        /* For the color scheme */
-        @import "${user.dir.flake}/software/waybar/config.css";         /* For the styling*/
-        @import "${user.dir.flake}/software/waybar/modules-center.css";
-        @import "${user.dir.flake}/software/waybar/modules-left.css";
-        @import "${user.dir.flake}/software/waybar/modules-right.css";
+        @import "${user.dir.flake}/software/waybar/style.css";         /* For the styling*/
       '';
 
       settings.statusBar = {
-        layer = "top"; # Enables that when right clicked or hovered, the context menu is upfront
+        layer = "top"; # Contexts menus are on top always
         reload_style_on_change = true;
       };
     };

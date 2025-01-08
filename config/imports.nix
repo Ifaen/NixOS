@@ -7,8 +7,8 @@
       /apps/discord.nix # Voice chat
       /apps/gimp.nix # Image Editor
       /apps/obsidian.nix # Notes
+      /apps/pavucontrol.nix # Audio controller
       /apps/ripdrag.nix # Drag utility
-      /apps/tagstudio.nix # Tagging document management system
       /apps/scrcpy.nix # Mobile screen copy
       /apps/spotify.nix # Music provider
       /apps/waypaper.nix # Wallpaper manager
@@ -25,6 +25,7 @@
 
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
+      /services/udisks2.nix # Allows applications to query and manipulate storage devices
       /services/ydotool.nix # Tool to move cursor using the keyboard
 
       /shell/direnv.nix # Tool to automatically enter a nix-shell
@@ -41,6 +42,7 @@
     ++ map (path: ../software + path) [
       /hyprland/config.nix # Window manager
       /hyprland/keybinds.nix
+      /hyprland/style.nix
 
       /lf/config.nix # Terminal file manager
       /lf/keybinds.nix
@@ -68,9 +70,7 @@
       /vscode/settings.nix
 
       /waybar/config.nix # Status bar
-      /waybar/modules-center.nix
-      /waybar/modules-left.nix
-      /waybar/modules-right.nix
+      /waybar/modules.nix
 
       /wezterm/config.nix # Terminal emulator
       /wezterm/keybinds.nix

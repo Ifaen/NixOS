@@ -15,13 +15,12 @@
     };
 
     hyprland.windowrulev2 = [
-      "float, class:(tagstudio), title:^(.*Add.*)$"
-      "rounding 10, class:(tagstudio), title:^(.*Add.*)$"
+      "float, class:(tagstudio), title:^(.*Add .*)$"
     ];
 
     waybar-workspace-icon = {
       "class<tagstudio>" = "󰓹 "; # nf-md-tag
-      #"class<tagstudio> title<.*Add.*>" = "";
+      "title<.*Add .*>" = "";
     };
   };
 }
