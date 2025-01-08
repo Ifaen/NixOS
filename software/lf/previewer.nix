@@ -2,7 +2,7 @@
   user-manage.programs.lf.extraConfig = ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
       function createPreview () {
-        ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+        ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1" &
       }
 
       cache_dir="/tmp/lf"
@@ -11,7 +11,7 @@
       # Generate a unique cached filename using parent directory and basename
       parent_dir=$(basename "$(dirname "$1")")
       file_name=$(basename "$1")
-      cached_file="$cache_dir/''${parent_dir}-''${file_name}.cache"
+      cached_file="$cache_dir/$parent_dir-$file_name.cache"
 
       path=""
 
@@ -35,11 +35,10 @@
           fi
         ;;
         image/*)
-          createPreview "$1" "$2" "$3"
-          exit
+          path=$1
         ;;
         *)
-          ${pkgs.pistol}/bin/pistol "$1"
+          ${pkgs.pistol}/bin/pistol "$1" &
           exit
         ;;
       esac
