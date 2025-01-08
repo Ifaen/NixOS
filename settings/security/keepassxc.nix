@@ -9,6 +9,7 @@
 
     xdg.configFile."keepassxc/keepassxc.ini" = {
       enable = true;
+
       text = ''
         [General]
         BackupBeforeSave=true
@@ -76,9 +77,17 @@
       }
     ];
 
-    hyprland.workspace = ["13, on-created-empty:keepassxc"];
+    hyprland = {
+      windowrulev2 = [
+        "pin, title:(Unlock Database - KeePassXC)"
+        "pin, title:(KeePassXC - Browser Access Request)"
+      ];
+
+      workspace = ["13, on-created-empty:keepassxc"];
+    };
 
     waybar-workspace-icon."class<org.keepassxc.KeePassXC>" = "󰌋 ";
+    waybar-workspace-icon."class<key-vault>" = "󰌋 ";
   };
 
   # -- Sync folder with mobile device
