@@ -68,6 +68,11 @@ in {
             "dispatch"
             "killactive"
           ];
+          super-shift-q.launch = [
+            "hyprctl"
+            "dispatch"
+            "kill" # Enter kill selection mode
+          ];
 
           super-w.launch = [
             "hyprctl"
@@ -146,6 +151,7 @@ in {
           super-shift-9.launch = ["hyprctl" "dispatch" "movetoworkspace" "9"];
           super-shift-0.launch = ["hyprctl" "dispatch" "movetoworkspace" "10"];
 
+          #super-m.launch = []; # TODO: https://www.reddit.com/r/hyprland/comments/12zesk9/switching_windows_between_monitor_screens/
           super-shift-o.launch = ["hyprctl" "dispatch" "togglesplit"];
           super-shift-v.launch = ["hyprctl" "dispatch" "togglefloating"];
         };

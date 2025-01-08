@@ -20,7 +20,11 @@
     };
 
     # lf to navigate, lfc to navigate and change directory on exit
-    programs.zsh.initExtra = ''lfc() { cd "$(command lf -print-last-dir "$@")" }'';
+    programs.zsh = {
+      initExtra = ''lf() { cd "$(command lf -print-last-dir "$@")" }'';
+
+      shellAliases.lfs = "command lf"; # lf with default behaviour
+    };
 
     xdg.configFile."lf/icons".source = ./icons.txt;
   };

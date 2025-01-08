@@ -13,6 +13,15 @@
         config.default_prog = { 'zsh' } -- Run zsh on startup
         config.font = wezterm.font 'monospace'
         config.window_background_opacity = 0.5
+        config.front_end = "WebGpu"
+
+        config.skip_close_confirmation_for_processes_named = {
+          'bash',
+          'sh',
+          'zsh',
+          'lf',
+        }
+        --config.animation_fps = 60
       '';
     };
 
@@ -24,7 +33,7 @@
       terminal = false;
     };
 
-    # HACK This is a workaround, until Wezterm has a new release that fixes its bug with hyprland
+    # HACK Issue with hyprland, probably fixed next patch
     hyprland.exec-once = ["[workspace 11 silent;float;tile] wezterm start --always-new-process"];
 
     waybar-workspace-icon."class<org.wezfurlong.wezterm>" = "󰆍 ";

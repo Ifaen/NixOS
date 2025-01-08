@@ -6,23 +6,24 @@
       mpv # Video viewer
       vlc # Media player
       zathura # PDF viewer
-      #libreoffice-fresh # Open Source microsoft 365. Fresh version
+      libreoffice # Open Source microsoft 365 alternative
     ];
 
-    # To find .desktop files, do "echo $XDG_DATA_DIRS"
     xdg.mimeApps = {
       enable = true;
-      defaultApplications = {
-        "application/json" = "vscode-rofi.desktop";
-        "application/x-httpd-php" = "vscode-rofi.desktop";
-        "application/xml" = "vscode-rofi.desktop";
 
-        "application/xhtml+xml" = "vivaldi-rofi.desktop";
-        "scheme-handler/http" = "vivaldi-rofi.desktop";
-        "scheme-handler/https" = "vivaldi-rofi.desktop";
-        "text/html" = "vivaldi-rofi.desktop";
-        "x-scheme-handler/http" = "vivaldi-rofi.desktop";
-        "x-scheme-handler/https" = "vivaldi-rofi.desktop";
+      # To find .desktop files, do "echo $XDG_DATA_DIRS"
+      defaultApplications = {
+        "application/json" = "vscode.desktop";
+        "application/x-httpd-php" = "vscode.desktop";
+        "application/xml" = "vscode.desktop";
+
+        "application/xhtml+xml" = "vivaldi.desktop";
+        "scheme-handler/http" = "vivaldi.desktop";
+        "scheme-handler/https" = "vivaldi.desktop";
+        "text/html" = "vivaldi.desktop";
+        "x-scheme-handler/http" = "vivaldi.desktop";
+        "x-scheme-handler/https" = "vivaldi.desktop";
 
         "image/gif" = "vlc.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";

@@ -5,12 +5,13 @@
 }: {
   user-manage.programs.lf = {
     # % To stay on lf (create a modal)
+    # & To stay on lf but continue doing other tasks
     # $ To temporarily go back to terminal
     commands = {
       /*
       -- Open with
       */
-      vlc-open = "%vlc $fx";
+      vlc-open = "&vlc $fx";
       thunar-open = "%thunar";
 
       /*
@@ -225,7 +226,7 @@
                 ${pkgs.imv}/bin/imv "$path" &
               ;;
               *)
-                ${pkgs.xdg_utils}/bin/xdg-open "$path" &
+                ${pkgs.xdg-utils}/bin/xdg-open "$path" &
               ;;
             esac
           done <<< "$fx"

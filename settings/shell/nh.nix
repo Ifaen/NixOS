@@ -16,7 +16,8 @@
         command nh os "$1" --ask
       elif [[ $1 == "test" ]]; then
         command nh os test "''${@:2}"
-        ${pkgs.libnotify}/bin/notify-send "Testing changes applied" -t 2500
+      elif [[ $1 == "update" ]]; then
+        command nh os test --update --ask
       elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && -z "$3" ]]; then
         command nh clean "$2" --ask
       else
