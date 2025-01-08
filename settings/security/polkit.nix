@@ -22,8 +22,10 @@
 
   user-manage = {
     hyprland.windowrulev2 = [
+      "center 1, class:(polkit-kde-authentication-agent-1)"
       "stayfocused, class:(polkit-kde-authentication-agent-1)"
-      "rounding 10, class:(polkit-kde-authentication-agent-1)"
+      "size 30% 25%, class:(polkit-kde-authentication-agent-1)"
+      "focusonactivate, class:(polkit-kde-authentication-agent-1)"
     ];
 
     waybar-workspace-icon."class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock

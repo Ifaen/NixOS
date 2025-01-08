@@ -22,17 +22,14 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-kde
       ];
 
       config."hyprland" = {
         default = [
           "hyprland"
           "gtk"
-          "kde"
         ];
 
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
         "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       };
     };
@@ -41,17 +38,10 @@
     home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.dir.config}/xdg-desktop-portal";
 
     hyprland.windowrulev2 = [
-      "float, title:^(.*Save.*)$"
-      "rounding 10, title:^(.*Save.*)$"
-      "opacity 0.75, title:^(.*Save.*)$"
-      "float, class:(Xdg-desktop-portal-kde)"
-      "rounding 10, class:(Xdg-desktop-portal-kde)"
-      "opacity 0.75, class:(Xdg-desktop-portal-kde)"
-      "float, title:(Media viewer)"
-      "rounding 10, title:(Media viewer)"
-      "size 80% 80%, title:(Media viewer)"
+      "float, class:(.*dg-desktop-portal.*)"
+      "stayfocused, class:(.*dg-desktop-portal.*)"
     ];
 
-    waybar-workspace-icon."class<xdg-desktop-portal-kde>" = "";
+    waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";
   };
 }

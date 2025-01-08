@@ -17,7 +17,6 @@
     hyprland.windowrulev2 = [
       "float, class:(Rofi)"
       "stayfocused, class:(Rofi)"
-      "rounding 10, class:(Rofi)"
     ];
 
     waybar-workspace-icon."class<Rofi>" = "󰼢 ";

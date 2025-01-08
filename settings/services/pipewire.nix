@@ -1,7 +1,6 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    pavucontrol # Audio controller
-    pw-volume # Basic interface for PipeWire volume controls
+  environment.systemPackages = [
+    pkgs.pw-volume # Basic interface for PipeWire volume controls
   ];
 
   services.pipewire = {
@@ -15,15 +14,5 @@
     pulse.enable = true;
 
     wireplumber.enable = true;
-  };
-
-  # Settings of apps in other modules
-  user-manage = {
-    hyprland.windowrulev2 = [
-      "float, class:(pavucontrol)"
-      "size 60% 80%, class:(pavucontrol)"
-    ];
-
-    waybar-workspace-icon."class<pavucontrol>" = "󰕾 "; # nf-md-volume_high
   };
 }

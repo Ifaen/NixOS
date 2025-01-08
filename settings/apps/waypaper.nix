@@ -48,6 +48,7 @@
         "float, class:(waypaper)"
         "stayfocused, class:(waypaper)"
         "rounding 10, class:(waypaper)"
+        "size 50% 70%, class:(waypaper)"
       ];
     };
 

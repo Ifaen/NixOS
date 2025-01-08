@@ -6,10 +6,10 @@
       package = pkgs.vivaldi;
     };
 
-    waybar-workspace-icon = {
-      "class<Vivaldi-stable>" = "󰊯 ";
-      "class<Brave-browser>" = " ";
-    };
+    home.packages = with pkgs; [
+      brave # Second browser in case primary throws an error
+      vdhcoapp # Companion application for the Video DownloadHelper browser add-on.
+    ];
 
     xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";
@@ -19,9 +19,13 @@
       categories = ["X-Rofi" "Network" "WebBrowser"];
     };
 
-    home.packages = with pkgs; [
-      brave # Second browser in case primary throws an error
-      vdhcoapp # Companion application for the Video DownloadHelper browser add-on.
+    hyprland.windowrulev2 = [
+      "tile, class:(Vivaldi-stable)"
     ];
+
+    waybar-workspace-icon = {
+      "class<Vivaldi-stable>" = "󰊯 ";
+      "class<Brave-browser>" = " ";
+    };
   };
 }

@@ -17,6 +17,14 @@
 
     home.packages = [pkgs.alejandra]; # To let alejandra extension to work
 
-    waybar-workspace-icon."class<Code>" = "󰨞 ";
+    hyprland.windowrulev2 = [
+      "center 1, class:(Code), title:(.*Open .*)"
+      "stayfocused, class:(Code), title:(.*Open .*)"
+    ];
+
+    waybar-workspace-icon = {
+      "class<Code>" = "󰨞 ";
+      "title<.*Open .*>" = "";
+    };
   };
 }
