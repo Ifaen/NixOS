@@ -33,43 +33,74 @@
     { key="LeftArrow", mods="CTRL", action=wezterm.action.ActivateTabRelative(-1) },
   '';
 
-  # Modified keybinds
-  modified-keybindings = ''
-    { key='c', mods='CTRL', action=wezterm.action.CopyTo 'Clipboard' }, -- Copy
+  # HACK because window:set_config_overrides are not working for me, not sure why. Inefficient but it works.
+  hybrid-keybindings = ''
     {
-      key='v', mods='CTRL', -- Paste
-      -- # HACK because PasteFrom in Wayland doesn't seem to work, obtained from: https://github.com/wez/wezterm/issues/3968
+      key='c', mods='CTRL',
       action=wezterm.action_callback(function(window, pane)
-        local success, stdout = wezterm.run_child_process({"${pkgs.wl-clipboard-rs}/bin/wl-paste", "--no-newline"})
-        if success then
-          pane:paste(stdout)
+        local process_name = get_process_name(pane)
+
+        if process_name == "lf\n" then
+          window:perform_action(wezterm.action.SendKey { key = 'c', mods = 'CTRL' }, pane) -- Default behaviour
+        else
+          window:perform_action(wezterm.action.CopyTo 'Clipboard', pane) -- Copy
         end
       end),
     },
-    { key='Escape', action=wezterm.action.SendString '\x03' }, -- Make Escape to cancel current process
+    {
+      key='v', mods='CTRL', -- Paste
+      action=wezterm.action_callback(function(window, pane)
+        local process_name = get_process_name(pane)
+
+        if process_name == "lf\n" then
+          window:perform_action(wezterm.action.SendKey { key = 'v', mods = 'CTRL' }, pane) -- Default behaviour
+        else
+          -- # HACK because PasteFrom in Wayland doesn't seem to work, obtained from: https://github.com/wez/wezterm/issues/3968
+          local success, stdout = wezterm.run_child_process({"${pkgs.wl-clipboard-rs}/bin/wl-paste", "--no-newline"})
+          if success then
+            pane:paste(stdout)
+          end
+        end
+      end),
+    },
+    {
+      key='Escape',
+      action=wezterm.action_callback(function(window, pane)
+        local process_name = get_process_name(pane)
+
+        if process_name == "lf\n" then
+          window:perform_action(wezterm.action.SendKey { key = 'Escape' }, pane) -- Default behaviour
+        else
+          window:perform_action(wezterm.action.SendString '\x03', pane) -- Make Escape to cancel current process
+        end
+      end),
+    },
   '';
 
-  commands = ''
-    wezterm.on("update-status", function(window, pane)
+  functions = ''
+    function get_process_name(pane)
       local tty = pane:get_tty_name()
 
+      -- Get process_name with ps and use bash to split lf string
       local _, process_name, _ = wezterm.run_child_process({
         "${pkgs.bash}/bin/bash", "-c", "ps -t " .. tty .. " | grep '[l]f' | awk '{print $4}'"
       })
 
-      if process_name == "lf\n" then
-        window:set_config_overrides({keys = {${general-keybindings}}})
-      else
-        window:set_config_overrides({keys = {${general-keybindings}${modified-keybindings}}})
-      end
-    end)
+      -- Use it to check the process_name and perform different actions
+      return process_name
+    end
   '';
 in {
   user-manage = {
     programs.wezterm.extraConfig = ''
       config.disable_default_key_bindings = true
 
-      ${commands}
+      ${functions}
+
+      config.keys = {
+        ${general-keybindings}
+        ${hybrid-keybindings}
+      }
 
       return config
     '';
