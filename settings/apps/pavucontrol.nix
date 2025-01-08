@@ -5,7 +5,7 @@
     ];
 
     xdg.desktopEntries.pavucontrol = {
-      name = "Scrcpy";
+      name = "Pavucontrol";
       exec = "${pkgs.pavucontrol}/bin/pavucontrol";
       categories = ["X-Rofi" "AudioVideo" "Audio" "Mixer" "Settings"];
       icon = "multimedia-volume-control";
