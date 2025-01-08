@@ -7,14 +7,12 @@
   }: {
     options = {
       hyprland = lib.mkOption {
-        type = options.wayland.windowManager.hyprland.settings.type.functor.wrapped;
-        default = {};
+        type = lib.types.attrsOf lib.types.anything;
         description = "Hyprland settings";
       };
 
       waybar-workspace-icon = lib.mkOption {
-        type = lib.types.anything;
-        default = {};
+        type = lib.types.attrsOf lib.types.anything;
         description = "Hyprland settings";
       };
     };

@@ -7,14 +7,12 @@
 }: {
   options = {
     user-configuration = lib.mkOption {
-      type = options.users.users.type.functor.wrapped;
-      default = {};
+      type = lib.types.attrsOf lib.types.anything;
       description = "User configuration";
     };
 
     user-manage = lib.mkOption {
-      type = options.home-manager.users.type.functor.wrapped;
-      default = {};
+      type = lib.types.attrsOf lib.types.anything;
       description = "Home-manager configuration to be used for the user";
     };
   };

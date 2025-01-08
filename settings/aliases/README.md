@@ -13,8 +13,7 @@ Creating an alias for a specific configuration to abbreviate it, while retaining
 }: {
     options = {
         "An Alias" = lib.mkOption {
-            type = options."A Configuration".type.functor.wrapped; # Or lib.types.`type`
-            default = {}; # The defaults are empty on purpose
+            type = lib.types.attrsOf lib.types.anything; # Or lib.types.`type`
             description = "A description";
         };
     };
