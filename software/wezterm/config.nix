@@ -34,7 +34,7 @@
     };
 
     # HACK Issue with hyprland, probably fixed next patch
-    hyprland.exec-once = ["[workspace 11 silent;float;tile] wezterm start --always-new-process"];
+    hyprland.exec-once = ["[workspace 3 silent;float;tile] wezterm start --always-new-process"];
 
     waybar-workspace-icon."class<org.wezfurlong.wezterm>" = "󰆍 ";
   };

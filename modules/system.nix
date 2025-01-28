@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  user,
+  ...
+}: {
   # Enable flakes and auto optimise /nix/store
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
@@ -6,6 +11,8 @@
   };
 
   nixpkgs.config.allowUnfree = true; # Allows unfree packages for nixpkgs
+
+  networking.hostName = user.machine; # Hostname of system
 
   users = {
     mutableUsers = false; # Prevents to create or modify new users besides the declared
@@ -16,19 +23,23 @@
   home-manager = {
     useUserPackages = true; # Moves the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
     useGlobalPkgs = true; # To use the same nixpkgs configuration as the nixos system
+
+    backupFileExtension = "backup";
   };
 
   boot = {
     loader = {
-      grub = {
-        enable = true;
+      grub =
+        {
+          enable = true;
 
-        devices = ["nodev"];
+          devices = ["nodev"];
 
-        useOSProber = true; # Append entries for other OSs detected by os-prober
-
-        efiSupport = true;
-      };
+          efiSupport = true;
+        }
+        // lib.optionalAttrs (user.machine == "desktop") {
+          useOSProber = true; # Append entries for other OSs detected by os-prober
+        };
 
       efi.canTouchEfiVariables = true;
 

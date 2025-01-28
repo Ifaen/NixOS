@@ -6,10 +6,8 @@
       package = pkgs.vivaldi;
     };
 
-    home.packages = with pkgs; [
-      brave # Second browser in case primary throws an error
-      vdhcoapp # Companion application for the Video DownloadHelper browser add-on.
-    ];
+    # Companion application for the Video DownloadHelper browser add-on.
+    home.packages = with pkgs; [vdhcoapp];
 
     xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";

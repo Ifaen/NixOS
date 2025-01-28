@@ -109,6 +109,7 @@ button:hover {
 }
 
 /* Modules Right */
+#battery,
 #pulseaudio,
 #group-clock {
   font-size: 14px;
@@ -119,9 +120,14 @@ button:hover {
   border-radius: 10px;
 }
 
+#battery {
+  color: @color7;
+  min-width: 60px;
+}
+
 #pulseaudio {
   color: @color11;
-  min-width: 70px;
+  min-width: 60px;
 }
 
 #group-clock {
