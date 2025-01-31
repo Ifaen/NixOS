@@ -10,8 +10,8 @@
     home.sessionVariables._ZO_EXCLUDE_DIRS = builtins.concatStringsSep ":" [
       "${user.home}"
       "${user.dir.downloads}/*"
-      "${user.dir.media}/.Private"
-      "${user.dir.media}/.Private/*"
+      "${user.dir.media}/.Secrets"
+      "${user.dir.media}/.Secrets/*"
       "${user.dir.media}/Personal/*"
     ];
 
