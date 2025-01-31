@@ -80,7 +80,10 @@
     hyprland = {
       windowrulev2 = [
         "pin, title:(Unlock Database - KeePassXC)"
+        "focusonactivate, title:(Unlock Database - KeePassXC)"
+
         "pin, title:(KeePassXC - Browser Access Request)"
+        "focusonactivate, title:(KeePassXC - Browser Access Request)"
       ];
 
       workspace = ["13, on-created-empty:keepassxc"];
