@@ -2,7 +2,7 @@
   user-manage.programs.vscode.userSettings = {
     # APPAREANCE
     "editor.guides.bracketPairs" = true; # Colorize bracket pairs
-    "workbench.iconTheme" = "material-icon-theme"; # Icons
+    "workbench.iconTheme" = "eq-material-theme-icons"; # Icons
     # Hide menu bar
     "window.menuBarVisibility" = "hidden";
     "window.enableMenuBarMnemonics" = false;
@@ -14,7 +14,6 @@
     # UTILITIES
     "editor.multiCursorModifier" = "ctrlCmd"; # Change multi cursor keymod
     #Formatting
-    "editor.defaultFormatter" = "esbenp.prettier-vscode"; # Use prettier to format the code
     "editor.formatOnSave" = true;
     "editor.detectIndentation" = false;
     # Change / Update the imports when file is moved / renamed

@@ -24,8 +24,6 @@
     };
   };
 
-  networking.hostName = user.machine; # Hostname of system
-
   time = {
     timeZone = "America/Santiago"; # Configure timezone
     hardwareClockInLocalTime = true; # Keep the hardware clock in local time instead of UTC

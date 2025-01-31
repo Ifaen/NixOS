@@ -6,20 +6,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap-flake.url = "github:xremap/nix-flake";
-
-    # -- Unused (maybe for now)
-    # nur.url = "github:nix-community/nur";
-    # nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
   };
 
   outputs = {self, ...} @ inputs: let
     user = {
       fullname = "Santiago Fuentes";
       name = "sfuentes";
-      mail = "sfuentes@mail.com";
+      mail = "dev@sfuentes.cl";
       language = "us";
       system = "x86_64-linux";
-      machine = "desktop";
       home = "/home/${user.name}";
       dir = {
         documents = "${user.home}/Documents";
@@ -37,17 +32,39 @@
       };
     };
   in {
-    nixosConfigurations.${user.machine} = inputs.nixpkgs.lib.nixosSystem {
-      system = user.system;
+    nixosConfigurations = {
+      desktop = inputs.nixpkgs.lib.nixosSystem {
+        system = user.system;
 
-      specialArgs = {inherit inputs user;};
+        specialArgs = {
+          inherit inputs;
 
-      modules = map (path: ./config + path) [
-        /imports.nix
-        /packages.nix
-        /system.nix
-        /user.nix
-      ];
+          user = user // {machine = "desktop";};
+        };
+
+        modules = map (path: ./config + path) [
+          /imports.nix
+          /packages.nix
+          /system.nix
+          /user.nix
+        ];
+      };
+
+      notebook = inputs.nixpkgs.lib.nixosSystem {
+        system = user.system;
+
+        specialArgs = {
+          inherit inputs;
+
+          user = user // {machine = "notebook";};
+        };
+
+        modules = map (path: ./modules + path) [
+          /imports.nix
+          /system.nix
+          /user.nix
+        ];
+      };
     };
   };
 }

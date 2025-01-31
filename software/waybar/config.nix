@@ -9,7 +9,7 @@
       enable = true;
 
       style = ''
-        @import "${user.home}/.cache/wal/colors-waybar.css";        /* For the color scheme */
+        @import "${user.home}/.cache/wal/colors-waybar.css";          /* For the color scheme */
         @import "${user.dir.flake}/software/waybar/style.css";         /* For the styling*/
       '';
 
@@ -32,7 +32,6 @@
       terminal = false;
     };
 
-    # Settings of waybar in other modules
-    hyprland.exec-once = ["${pkgs.waybar}/bin/waybar"];
+    hyprland.exec-once = ["${pkgs.waybar}/bin/waybar"]; # Executes waybar on-start
   };
 }
