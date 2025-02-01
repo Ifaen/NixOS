@@ -85,7 +85,7 @@
       /zsh/tools.nix
     ]
     ++ lib.optional (user.machine == "notebook") ../settings/hardware/notebook.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
-    ++ lib.optional (user.machine == "desktop") [
+    ++ lib.optionals (user.machine == "desktop") [
       ../settings/apps/gimp.nix # Image Editor
       ../settings/apps/discord.nix # Voice chat
       ../settings/apps/spotify.nix # Music provider

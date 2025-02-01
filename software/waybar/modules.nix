@@ -16,7 +16,7 @@
           "custom/wallpaper-launcher"
           "idle_inhibitor"
         ]
-        ++ lib.optional (user.machine == "desktop") [
+        ++ lib.optionals (user.machine == "desktop") [
           "custom/vpn"
         ];
 
