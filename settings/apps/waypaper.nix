@@ -14,7 +14,7 @@
       backend = swww
       color = #ffffff
       fill = Fill
-      folder = ${user.dir.wallpapers}
+      folder = ${user.wallpapers}
       language = en
       monitors = All
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''

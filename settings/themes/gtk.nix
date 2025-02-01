@@ -21,7 +21,7 @@
       size = 13;
     };
 
-    gtk2.configLocation = "${user.dir.config}/gtk-2.0/gtkrc"; # Move the gtk config file away from $HOME
+    gtk2.configLocation = "${user.config}/gtk-2.0/gtkrc"; # Move the gtk config file away from $HOME
 
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
   };

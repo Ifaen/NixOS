@@ -15,21 +15,21 @@
       mail = "dev@sfuentes.cl";
       language = "us";
       system = "x86_64-linux";
+
+      # -- Directories
       home = "/home/${user.name}";
-      dir = {
-        documents = "${user.home}/Documents";
-        downloads = "${user.home}/Downloads";
-        media = "${user.home}/Media";
-        wallpapers = "${user.dir.media}/Wallpapers";
-        recordings = "${user.dir.media}/Recordings";
-        screenshots = "${user.dir.media}/Screenshots";
-        flake = "${user.home}/NixOS";
-        sync = "${user.home}/Sync";
-        cache = "${user.home}/.cache";
-        config = "${user.home}/.config";
-        data = "${user.home}/.local/share";
-        state = "${user.home}/.local/state";
-      };
+      flake = "${user.home}/NixOS";
+      documents = "${user.home}/Documents";
+      downloads = "${user.home}/Downloads";
+      media = "${user.home}/Media";
+      sync = "${user.home}/Sync";
+      wallpapers = "${user.media}/Wallpapers";
+      recordings = "${user.media}/Recordings";
+      screenshots = "${user.media}/Screenshots";
+      cache = "${user.home}/.cache";
+      config = "${user.home}/.config";
+      data = "${user.home}/.local/share";
+      state = "${user.home}/.local/state";
     };
   in {
     nixosConfigurations = {
@@ -42,7 +42,7 @@
           user = user // {machine = "desktop";};
         };
 
-        modules = map (path: ./config + path) [
+        modules = map (path: ./modules + path) [
           /imports.nix
           /packages.nix
           /system.nix

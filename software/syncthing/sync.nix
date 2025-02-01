@@ -18,7 +18,7 @@
       };
 
       "Wallpapers" = {
-        path = "${user.dir.wallpapers}/Mobile";
+        path = "${user.wallpapers}/Mobile";
         type = "sendonly";
         devices = ["mobile"];
       };

@@ -6,7 +6,7 @@
   user-manage.programs.firefox.policies =
     {
       # Downloads
-      DefaultDownloadDirectory = user.dir.downloads;
+      DefaultDownloadDirectory = user.downloads;
       StartDownloadsInTempDirectory = true;
 
       # Visual bloat

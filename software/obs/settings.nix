@@ -24,7 +24,7 @@
       IgnoreRecommended=false
 
       [SimpleOutput]
-      FilePath=${user.dir.recordings}
+      FilePath=${user.recordings}
       RecFormat2=mkv
       VBitrate=2500
       ABitrate=160

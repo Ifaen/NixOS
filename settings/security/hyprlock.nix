@@ -12,7 +12,7 @@
         no_fade_in = false;
       };
 
-      background = [{path = "${user.dir.cache}/wallpaper";}];
+      background = [{path = "${user.cache}/wallpaper";}];
 
       input-field = [
         {

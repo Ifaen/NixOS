@@ -10,7 +10,7 @@
 
       style = ''
         @import "${user.home}/.cache/wal/colors-waybar.css";          /* For the color scheme */
-        @import "${user.dir.flake}/software/waybar/style.css";         /* For the styling*/
+        @import "${user.flake}/software/waybar/style.css";         /* For the styling*/
       '';
 
       settings.statusBar = {

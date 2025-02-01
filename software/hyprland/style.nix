@@ -1,6 +1,6 @@
 {user, ...}: {
   user-manage.hyprland = {
-    source = "${user.dir.cache}/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
+    source = "${user.cache}/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
     windowrulev2 = [
       #"suppressevent maximize, class:.*" # Prevent maximize event

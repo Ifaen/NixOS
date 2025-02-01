@@ -6,7 +6,7 @@
   # Yet another nix cli helper
   programs.nh = {
     enable = true;
-    flake = user.dir.flake;
+    flake = user.flake;
   };
 
   # Allow to use nh without typing os

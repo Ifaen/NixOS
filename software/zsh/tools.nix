@@ -9,10 +9,10 @@
     # Exclude certain paths and their subfolders
     home.sessionVariables._ZO_EXCLUDE_DIRS = builtins.concatStringsSep ":" [
       "${user.home}"
-      "${user.dir.downloads}/*"
-      "${user.dir.media}/.Secrets"
-      "${user.dir.media}/.Secrets/*"
-      "${user.dir.media}/Personal/*"
+      "${user.downloads}/*"
+      "${user.media}/.Secrets"
+      "${user.media}/.Secrets/*"
+      "${user.media}/Personal/*"
     ];
 
     # A better `ls` with icons

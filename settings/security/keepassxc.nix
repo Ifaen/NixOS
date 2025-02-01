@@ -13,7 +13,7 @@
       text = ''
         [General]
         BackupBeforeSave=true
-        BackupFilePathPattern=${user.dir.sync}/Keepass/{DB_FILENAME}.old.kdbx
+        BackupFilePathPattern=${user.sync}/Keepass/{DB_FILENAME}.old.kdbx
         FaviconDownloadTimeout=15
         NumberOfRememberedLastDatabases=1
         RememberLastKeyFiles=false

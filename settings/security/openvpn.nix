@@ -15,7 +15,7 @@
     myvpnpassword
     </auth-user-pass>
     */
-    config = "config ${user.dir.documents}/Services/Internet/VPN/protonvpn.udp.ovpn";
+    config = "config ${user.documents}/Services/Internet/VPN/protonvpn.udp.ovpn";
 
     updateResolvConf = true;
   };

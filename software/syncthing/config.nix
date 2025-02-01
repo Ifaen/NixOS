@@ -3,8 +3,8 @@
     enable = true;
     user = user.name;
 
-    dataDir = user.dir.sync; # Obtain the name of sync folder in the extraconfig of xdg
-    configDir = "${user.dir.config}/syncthing";
+    dataDir = user.sync; # Obtain the name of sync folder in the extraconfig of xdg
+    configDir = "${user.config}/syncthing";
 
     # overrides any folders and devices added or deleted through the WebUI
     overrideDevices = true;

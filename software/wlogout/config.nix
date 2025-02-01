@@ -34,7 +34,7 @@ in {
 
       style = ''
         @import "${user.home}/.cache/wal/colors-waybar.css"; /* For the color scheme */
-        @import "${user.dir.flake}/software/wlogout/style.css"; /* For the styling*/
+        @import "${user.flake}/software/wlogout/style.css"; /* For the styling*/
 
         #lock {
           background-image: image(url("${iconsPath}/lock.png"));
