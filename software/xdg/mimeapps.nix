@@ -14,16 +14,16 @@
 
       # To find .desktop files, do "echo $XDG_DATA_DIRS"
       defaultApplications = {
-        "application/json" = "vscode.desktop";
-        "application/x-httpd-php" = "vscode.desktop";
-        "application/xml" = "vscode.desktop";
+        "application/json" = "code.desktop";
+        "application/x-httpd-php" = "code.desktop";
+        "application/xml" = "code.desktop";
 
-        "application/xhtml+xml" = "vivaldi.desktop";
-        "scheme-handler/http" = "vivaldi.desktop";
-        "scheme-handler/https" = "vivaldi.desktop";
-        "text/html" = "vivaldi.desktop";
-        "x-scheme-handler/http" = "vivaldi.desktop";
-        "x-scheme-handler/https" = "vivaldi.desktop";
+        "application/xhtml+xml" = "firefox.desktop";
+        "scheme-handler/http" = "firefox.desktop";
+        "scheme-handler/https" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
 
         "image/gif" = "vlc.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
