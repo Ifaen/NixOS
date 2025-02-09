@@ -2,6 +2,6 @@
   fonts = {
     fontDir.enable = true;
 
-    packages = [pkgs.nerd-fonts.fira-code];
+    packages = [pkgs.fira-code-nerdfont];
   };
 }
