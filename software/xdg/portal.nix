@@ -37,9 +37,10 @@
     # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
     home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.config}/xdg-desktop-portal";
 
-    hyprland.windowrulev2 = [
-      "float, class:(.*dg-desktop-portal.*)"
-      "stayfocused, class:(.*dg-desktop-portal.*)"
+    hyprland.windowrulev2 = map (rule: rule + ", class:(.*dg-desktop-portal.*)") [
+      "float"
+      "focusonactivate"
+      "center 1"
     ];
 
     waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";
