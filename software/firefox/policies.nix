@@ -3,55 +3,20 @@
   user,
   ...
 }: {
-  user-manage.programs.firefox.policies =
-    {
-      # Downloads
-      DefaultDownloadDirectory = user.downloads;
-      StartDownloadsInTempDirectory = true;
+  user-manage.programs.firefox.policies = {
+    DisableFeedbackCommands = true; # Disable the menus for reporting sites (Submit Feedback, Report Deceptive Site).
 
-      # Visual bloat
-      DisableFeedbackCommands = true;
-      DisableFirefoxAccounts = true;
-      DisableFirefoxScreenshots = true;
-      DisableForgetButton = true;
-      DisablePocket = true;
-      DisablePrivateBrowsing = true;
-      DisableSetDesktopBackground = true;
-      PrintingEnabled = false;
-      PictureInPicture.Enabled = false;
-      ShowHomeButton = false;
+    DisableForgetButton = true; # Disable the “Forget” button
 
-      # Features
-      DisableBultinPDFViewer = true;
-      DisableProfileImport = true;
-      DisableSafeMode = true;
-      DontCheckDefaultBrowser = true;
-      FirefoxSuggest = {
-        WebSuggestions = false;
-        SponseredSuggestions = false;
-        ImproveSuggest = false;
-        Locked = true;
-      };
-      TranslateEnabled = false;
+    PrivateBrowsingModeAvailability = 1; # Disable the option for private browsing
+    DisableSetDesktopBackground = true; # Remove the “Set As Desktop Background…” menuitem when right clicking on an image
+    ShowHomeButton = false;
 
-      #Performance
-      DisableAppUpdate = true;
+    # Features
+    DisableProfileImport = true; # Disables the “Import data from another browser” option in the bookmarks window.
+    DisableSafeMode = true; # Disable safe mode within the browser.
 
-      # Privacy
-      DisableFirefoxStudies = true;
-      DisableMasterPasswordCreation = true;
-      DisableTelemetry = true;
-      EnableTrackingProtection = {
-        Value = true;
-        Cryptomining = true;
-        EmailTracking = true;
-      };
-      HttpsOnlyMode = "enabled";
-      OfferToSaveLogins = false;
-      PasswordManagerEnabled = false;
-    }
-    // lib.optionalAttrs (user.machine == "desktop") {
-      HardwareAcceleration = true; # Performance
-      PromptForDownloadLocation = true; # Downloads
-    };
+    # Privacy
+    DisableMasterPasswordCreation = true; # Require or prevent using a primary (formerly master) password
+  };
 }

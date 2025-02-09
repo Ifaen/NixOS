@@ -5,14 +5,17 @@
 }: {
   user-manage = {
     programs.firefox = {
-      enable = true;
-
-      #profiles.${user.name} = {};
+      enable = true; # Install firefox
+      profiles.${user.name} = {
+        id = 0;
+        isDefault = true;
+      };
     };
 
+    # Create an entry for Rofi
     xdg.desktopEntries.firefox = {
       name = "Firefox";
-      exec = "${pkgs.firefox}/bin/firefox --name firefox %U";
+      exec = "firefox --name firefox %U";
       terminal = false;
       icon = "firefox";
       categories = ["X-Rofi" "Network" "WebBrowser"];
@@ -25,12 +28,7 @@
         "x-scheme-handler/https"
       ];
     };
-    /*
-    hyprland.windowrulev2 = [
-      "tile, class:(firefox)"
-    ];
-    */
 
-    waybar-workspace-icon."class<firefox>" = "󰊯 ";
+    waybar-workspace-icon."class<firefox>" = "󰈹 "; # Icon
   };
 }

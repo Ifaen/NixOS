@@ -8,6 +8,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager # Imports home-manager as a nixos module
+      inputs.nur.modules.nixos.default # Adds the NUR overlay
     ]
     ++ map (path: ../settings + path) [
       /aliases/home-manager.nix # Aliases under home-manager
@@ -42,8 +43,11 @@
       /themes/qt.nix # QT Toolkit configuration
     ]
     ++ map (path: ../software + path) [
+      /firefox/bookmarks.nix
       /firefox/config.nix
+      /firefox/extensions.nix
       /firefox/policies.nix
+      /firefox/settings.nix
 
       /hyprland/config.nix # Window manager
       /hyprland/keybinds.nix
