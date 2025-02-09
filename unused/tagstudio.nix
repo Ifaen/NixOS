@@ -8,7 +8,7 @@
 
     xdg.desktopEntries.tagstudio = {
       name = "Tagstudio";
-      exec = "${inputs.nix-tagstudio.packages.${user.system}.tagstudio}/bin/tagstudio";
+      exec = "tagstudio";
       icon = "tagstudio";
       categories = ["X-Rofi" "AudioVideo" "Qt"];
       terminal = false;

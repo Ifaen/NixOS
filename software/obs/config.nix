@@ -12,7 +12,7 @@
 
     xdg.desktopEntries."com.obsproject.Studio" = {
       name = "OBS Studio";
-      exec = "${pkgs.obs-studio}/bin/obs --disable-shutdown-check %U";
+      exec = "obs --disable-shutdown-check %U";
       categories = ["X-Rofi" "Recorder" "AudioVideo"];
       icon = "com.obsproject.Studio";
       startupNotify = true;

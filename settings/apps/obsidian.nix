@@ -1,12 +1,10 @@
 {pkgs, ...}: {
   user-manage = {
-    home.packages = [
-      pkgs.obsidian # Knowledge database notes
-    ];
+    home.packages = [pkgs.obsidian]; # Knowledge database notes
 
     xdg.desktopEntries.obsidian = {
       name = "Obsidian";
-      exec = "${pkgs.obsidian}/bin/obsidian %u";
+      exec = "obsidian %u";
       categories = ["X-Rofi" "Office"];
       mimeType = ["x-scheme-handler/obsidian"];
       icon = "obsidian";

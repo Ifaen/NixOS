@@ -27,7 +27,7 @@
 
     xdg.desktopEntries."org.wezfurlong.wezterm" = {
       name = "Wezterm Terminal";
-      exec = ''hyprctl dispatch exec "[float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"'';
+      exec = ''hyprctl dispatch exec "[float;tile] wezterm start --always-new-process"''; # HACK Issue with hyprland, probably fixed next patch
       categories = ["X-Rofi" "System" "TerminalEmulator" "Utility"];
       icon = "org.wezfurlong.wezterm";
       terminal = false;

@@ -38,7 +38,7 @@
         Length=20
 
         [Security]
-        ClearClipboardTimeout=30
+        ClearClipboardTimeout=60
         ClearSearch=true
         ClearSearchTimeout=2
         EnableCopyOnDoubleClick=true
@@ -54,7 +54,7 @@
 
     xdg.desktopEntries."org.keepassxc.KeePassXC" = {
       name = "KeePassXC";
-      exec = "${pkgs.keepassxc}/bin/keepassxc";
+      exec = "keepassxc";
       mimeType = ["application/x-keepass2"];
       categories = ["X-Rofi" "Utility" "Security"];
       icon = "keepassxc";

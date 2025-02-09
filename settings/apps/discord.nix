@@ -4,7 +4,7 @@
 
     xdg.desktopEntries.vesktop = {
       name = "Discord";
-      exec = "${pkgs.vesktop}/bin/vesktop %U";
+      exec = "vesktop %U";
       terminal = false;
       icon = "discord";
       categories = ["X-Rofi" "Network" "InstantMessaging"];

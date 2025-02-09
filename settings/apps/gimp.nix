@@ -4,7 +4,7 @@
 
     xdg.desktopEntries.gimp = {
       name = "Gimp";
-      exec = "${pkgs.gimp}/bin/gimp %U";
+      exec = "gimp %U";
       icon = "gimp";
       categories = ["X-Rofi" "Graphics" "2DGraphics" "RasterGraphics"];
       mimeType = [

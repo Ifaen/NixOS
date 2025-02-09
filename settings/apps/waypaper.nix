@@ -35,7 +35,7 @@
 
     xdg.desktopEntries.waypaper = {
       name = "Waypaper";
-      exec = "${pkgs.waypaper}/bin/waypaper";
+      exec = "waypaper";
       categories = ["X-Rofi" "Utility" "DesktopSettings"];
       terminal = false;
       icon = "waypaper";

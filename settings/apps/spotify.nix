@@ -10,7 +10,7 @@
 
     xdg.desktopEntries.spotify = {
       name = "Spotify";
-      exec = "${pkgs.spotify}/bin/spotify %U";
+      exec = "spotify %U";
       mimeType = ["x-scheme-handler/spotify"];
       categories = ["X-Rofi" "Audio" "Music" "Player" "AudioVideo"];
       icon = "spotify-client";

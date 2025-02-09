@@ -7,7 +7,7 @@
 
     xdg.desktopEntries.code = {
       name = "Visual Studio Code";
-      exec = "${pkgs.vscode}/bin/code %F";
+      exec = "code %F";
       mimeType = ["text/plain" "inode/directory"];
       categories = ["X-Rofi" "Utility" "TextEditor" "Development" "IDE"];
       icon = "vscode";

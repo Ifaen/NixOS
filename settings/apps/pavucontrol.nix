@@ -1,12 +1,10 @@
 {pkgs, ...}: {
   user-manage = {
-    home.packages = [
-      pkgs.pavucontrol
-    ];
+    home.packages = [pkgs.pavucontrol];
 
     xdg.desktopEntries.pavucontrol = {
       name = "Pavucontrol";
-      exec = "${pkgs.pavucontrol}/bin/pavucontrol";
+      exec = "pavucontrol";
       categories = ["X-Rofi" "AudioVideo" "Audio" "Mixer" "Settings"];
       icon = "multimedia-volume-control";
       startupNotify = true;

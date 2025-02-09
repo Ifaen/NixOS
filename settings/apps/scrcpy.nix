@@ -4,7 +4,7 @@
 
     xdg.desktopEntries.scrcpy = {
       name = "Scrcpy";
-      exec = "${pkgs.scrcpy}/bin/scrcpy -w %U";
+      exec = "scrcpy -w %U";
       categories = ["X-Rofi"];
       icon = "scrcpy";
       terminal = false;

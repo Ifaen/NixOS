@@ -11,7 +11,7 @@
 
     xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";
-      exec = "${pkgs.vivaldi}/bin/vivaldi %U";
+      exec = "vivaldi %U";
       terminal = false;
       icon = "vivaldi";
       categories = ["X-Rofi" "Network" "WebBrowser"];

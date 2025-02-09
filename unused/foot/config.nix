@@ -7,7 +7,7 @@
 
     xdg.desktopEntries.foot-rofi = {
       name = "Foot Terminal";
-      exec = "${pkgs.foot}/bin/foot %U";
+      exec = "foot %U";
       terminal = false;
       icon = "foot";
       categories = ["X-Rofi" "System" "TerminalEmulator"];
