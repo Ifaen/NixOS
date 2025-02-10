@@ -4,68 +4,86 @@
   user,
   ...
 }: {
-  # Enable flakes and auto optimise /nix/store
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    auto-optimise-store = true;
-  };
+  config =
+    {
+      # Enable flakes and auto optimise /nix/store
+      nix.settings = {
+        experimental-features = ["nix-command" "flakes"];
+        auto-optimise-store = true;
+      };
 
-  nixpkgs.config.allowUnfree = true; # Allows unfree packages for nixpkgs
+      nixpkgs.config.allowUnfree = true; # Allows unfree packages for nixpkgs
 
-  networking.hostName = user.machine; # Hostname of system
+      networking.hostName = user.machine; # Hostname of system
 
-  users = {
-    mutableUsers = false; # Prevents to create or modify new users besides the declared
+      home-manager = {
+        useUserPackages = true; # Moves the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
+        useGlobalPkgs = true; # To use the same nixpkgs configuration as the nixos system
 
-    users.root.hashedPassword = "!"; # Disable root user
-  };
+        backupFileExtension = "backup";
+      };
 
-  home-manager = {
-    useUserPackages = true; # Moves the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
-    useGlobalPkgs = true; # To use the same nixpkgs configuration as the nixos system
-
-    backupFileExtension = "backup";
-  };
-
-  boot = {
-    loader = {
-      grub =
-        {
+      system.stateVersion = "24.05"; # Before changing, read https://nixos.org/nixos/options.html.
+      user-manage.home.stateVersion = config.system.stateVersion; # The same of the system
+    }
+    // (
+      if user.machine == "wsl"
+      then {
+        wsl = {
           enable = true;
 
-          devices = ["nodev"];
+          defaultUser = user.name;
 
-          efiSupport = true;
-        }
-        // lib.optionalAttrs (user.machine == "desktop") {
-          useOSProber = true; # Append entries for other OSs detected by os-prober
+          useWindowsDriver = true; # Use OpenGL from windows
         };
 
-      efi.canTouchEfiVariables = true;
+        environment.sessionVariables.DONT_PROMPT_WSL_INSTALL = 1; # Disable prompt for apps that are installed under wsl and not windows
+      }
+      else {
+        users = {
+          mutableUsers = false; # Prevents to create or modify new users besides the declared
 
-      timeout = 100;
-    };
+          users.root.hashedPassword = "!"; # Disable root user
+        };
 
-    tmp.cleanOnBoot = true;
-  };
+        # Select internationalisation properties.
+        i18n = {
+          defaultLocale = "en_US.UTF-8";
 
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
+          extraLocaleSettings = {
+            LC_ADDRESS = "es_CL.UTF-8";
+            LC_IDENTIFICATION = "es_CL.UTF-8";
+            LC_MEASUREMENT = "es_CL.UTF-8";
+            LC_MONETARY = "es_CL.UTF-8";
+            LC_NAME = "es_CL.UTF-8";
+            LC_NUMERIC = "es_CL.UTF-8";
+            LC_PAPER = "es_CL.UTF-8";
+            LC_TELEPHONE = "es_CL.UTF-8";
+            LC_TIME = "es_CL.UTF-8";
+          };
+        };
 
-    extraLocaleSettings = {
-      LC_ADDRESS = "es_CL.UTF-8";
-      LC_IDENTIFICATION = "es_CL.UTF-8";
-      LC_MEASUREMENT = "es_CL.UTF-8";
-      LC_MONETARY = "es_CL.UTF-8";
-      LC_NAME = "es_CL.UTF-8";
-      LC_NUMERIC = "es_CL.UTF-8";
-      LC_PAPER = "es_CL.UTF-8";
-      LC_TELEPHONE = "es_CL.UTF-8";
-      LC_TIME = "es_CL.UTF-8";
-    };
-  };
+        boot = {
+          loader = {
+            grub =
+              {
+                enable = true;
 
-  system.stateVersion = "24.05"; # Before changing, read https://nixos.org/nixos/options.html.
-  user-manage.home.stateVersion = config.system.stateVersion; # The same of the system
+                devices = ["nodev"];
+
+                efiSupport = true;
+              }
+              // lib.optionalAttrs (user.machine == "desktop") {
+                useOSProber = true; # Append entries for other OSs detected by os-prober
+              };
+
+            efi.canTouchEfiVariables = true;
+
+            timeout = 100;
+          };
+
+          tmp.cleanOnBoot = true;
+        };
+      }
+    );
 }

@@ -3,6 +3,8 @@
   user,
   ...
 }: {
+  programs.dconf.enable = true;
+
   user-manage.gtk = {
     enable = true;
 

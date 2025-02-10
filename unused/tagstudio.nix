@@ -4,7 +4,7 @@
   ...
 }: {
   user-manage = {
-    home.packages = [inputs.nix-tagstudio.packages.${user.system}.tagstudio];
+    home.packages = [inputs.nix-tagstudio.packages."x86_64-linux".tagstudio];
 
     xdg.desktopEntries.tagstudio = {
       name = "Tagstudio";
