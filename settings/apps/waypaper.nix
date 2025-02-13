@@ -44,11 +44,11 @@
     hyprland = {
       exec-once = ["swww-daemon"]; # Start swww daemon
 
-      windowrulev2 = [
-        "float, class:(waypaper)"
-        "stayfocused, class:(waypaper)"
-        "rounding 10, class:(waypaper)"
-        "size 50% 70%, class:(waypaper)"
+      windowrulev2 = map (rule: rule + ", class:(waypaper)") [
+        "float"
+        "stayfocused"
+        "rounding 10"
+        "size 50% 70%"
       ];
     };
 

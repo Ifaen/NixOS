@@ -38,9 +38,10 @@
     home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.config}/xdg-desktop-portal";
 
     hyprland.windowrulev2 = map (rule: rule + ", class:(.*dg-desktop-portal.*)") [
-      "float"
-      "focusonactivate"
+      "float" # makes sure to be a floating window
       "center 1"
+      "stayfocused"
+      "size <60% <50%"
     ];
 
     waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";

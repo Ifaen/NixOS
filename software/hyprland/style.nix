@@ -3,7 +3,7 @@
     source = "${user.cache}/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
     windowrulev2 = [
-      "suppressevent maximize, class:.*" # Prevent maximize event
+      "suppressevent maximize, class:(.*)" # Prevent maximize event
       "rounding 10, floating:1" # Rounding for all floating windows
     ];
 

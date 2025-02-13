@@ -17,13 +17,17 @@
 
     home.packages = [pkgs.alejandra]; # To let alejandra extension to work
 
-    hyprland.windowrulev2 = [
-      "center 1, class:(Code), title:(.*Open .*)"
-      "stayfocused, class:(Code), title:(.*Open .*)"
+    # FIXME Currently vscode is not using xdg portal file picker
+    hyprland.windowrulev2 = map (rule: rule + ", class:(Code), title:(.*)(Open)(.*)") [
+      "float"
+      "center 1"
+      "stayfocused"
+      "size <60% <50%"
     ];
 
     waybar-workspace-icon = {
       "class<Code>" = "󰨞 ";
+      "title<code>" = "";
       "title<.*Open .*>" = "";
     };
   };

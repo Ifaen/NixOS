@@ -11,11 +11,11 @@
       terminal = false;
     };
 
-    hyprland.windowrulev2 = [
-      "float, class:(pavucontrol)"
-      "size 60% 80%, class:(pavucontrol)"
+    hyprland.windowrulev2 = map (rule: rule + ", class:(org.pulseaudio.pavucontrol)") [
+      "float"
+      "size 60% 80%"
     ];
 
-    waybar-workspace-icon."class<pavucontrol>" = "󰕾 "; # nf-md-volume_high
+    waybar-workspace-icon."class<org.pulseaudio.pavucontrol>" = "󰕾 "; # nf-md-volume_high
   };
 }

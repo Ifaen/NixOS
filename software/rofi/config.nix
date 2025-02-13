@@ -14,9 +14,9 @@
       };
     };
 
-    hyprland.windowrulev2 = [
-      "float, class:(Rofi)"
-      "stayfocused, class:(Rofi)"
+    hyprland.windowrulev2 = map (rule: rule + ", class:(Rofi)") [
+      "float"
+      "stayfocused"
     ];
 
     waybar-workspace-icon."class<Rofi>" = "󰼢 ";

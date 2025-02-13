@@ -11,9 +11,9 @@
   services.tumbler.enable = true; # Thumbnail support for images
 
   user-manage = {
-    hyprland.windowrulev2 = [
-      "float, class:(thunar)"
-      "size 80% 80%, class:(thunar)"
+    hyprland.windowrulev2 = map (rule: rule + ", class:(thunar)") [
+      "float"
+      "size 80% 80%"
     ];
 
     waybar-workspace-icon."class<thunar>" = "";

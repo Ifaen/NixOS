@@ -15,7 +15,7 @@
     };
 
     hyprland.windowrulev2 = [
-      "float, class:(tagstudio), title:^(.*Add .*)$"
+      "float, class:(tagstudio), title:(.*)(Add)(.*)"
     ];
 
     waybar-workspace-icon = {
