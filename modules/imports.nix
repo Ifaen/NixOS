@@ -88,7 +88,10 @@
       /zsh/config.nix # Terminal shell
       /zsh/tools.nix
     ]
-    ++ lib.optional (user.machine == "notebook") ../settings/hardware/notebook.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+    ++ lib.optionals (user.machine == "notebook") [
+      ../settings/hardware/notebook.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+      ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
+    ]
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/apps/gimp.nix # Image Editor
       ../settings/apps/discord.nix # Voice chat
