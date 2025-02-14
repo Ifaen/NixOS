@@ -19,7 +19,7 @@
       /apps/ripdrag.nix # Drag utility
       /apps/waypaper.nix # Wallpaper manager
 
-      /hardware/drivers.nix # Few drivers depending of the hardware
+      /hardware/drivers.nix # Few drivers, depending of the hardware
 
       /security/getty.nix # Autologin
       /security/hyprlock.nix # System password lock
@@ -36,56 +36,65 @@
       /shell/nh.nix # Nix Helper
       /shell/starship.nix # Shell prompt
 
-      /themes/fonts.nix
+      /themes/fonts.nix # Characters fonts
       /themes/gtk.nix # GTK Toolkit configuration
       /themes/hyprcursor.nix # Cursor
-      /themes/pywal.nix
+      /themes/pywal.nix # Color palettes extracted from wallpapers/images
       /themes/qt.nix # QT Toolkit configuration
     ]
     ++ map (path: ../software + path) [
+      # Web Browser
       /firefox/bookmarks.nix
       /firefox/config.nix
       /firefox/extensions.nix
       /firefox/policies.nix
       /firefox/settings.nix
 
-      /hyprland/config.nix # Window manager
+      # Window manager
+      /hyprland/config.nix
       /hyprland/keybinds.nix
       /hyprland/style.nix
 
-      /lf/config.nix # Terminal file manager
+      # Terminal file manager
+      /lf/config.nix
       /lf/keybinds.nix
       /lf/previewer.nix
 
-      /mako/config.nix # Notification daemon
+      # Notification daemon
+      /mako/config.nix
 
-      /rofi/config.nix # App / Menu Launcher
+      # App / Menu Launcher
+      /rofi/config.nix
       /rofi/theme.nix
 
-      /thunar/config.nix # File manager
+      # File manager
+      /thunar/config.nix
       /thunar/preferences.nix
 
-      /vivaldi/config.nix # Web Browser
-
+      # Code editor
       /vscode/config.nix
       /vscode/extensions.nix
       /vscode/keybinds.nix
       /vscode/settings.nix
 
-      /waybar/config.nix # Status bar
+      # Status bar
+      /waybar/config.nix
       /waybar/modules.nix
 
-      /wezterm/config.nix # Terminal emulator
+      # Terminal emulator
+      /wezterm/config.nix
       /wezterm/keybinds.nix
 
-      /wlogout/config.nix # Logout interface
+      # Logout interface
+      /wlogout/config.nix
 
       /xdg/config.nix
       /xdg/directories.nix
       /xdg/mimeapps.nix
       /xdg/portal.nix
 
-      /zsh/config.nix # Terminal shell
+      # Terminal shell
+      /zsh/config.nix
       /zsh/tools.nix
     ]
     ++ lib.optionals (user.machine == "notebook") [
@@ -104,13 +113,16 @@
 
       ../settings/security/openvpn.nix # VPN
 
-      ../software/obs/config.nix # Screen recorder
+      # Screen recorder
+      ../software/obs/config.nix
       ../software/obs/settings.nix
 
-      ../software/syncthing/config.nix # Synchronization tool
+      # Synchronization tool
+      ../software/syncthing/config.nix
       ../software/syncthing/sync.nix
 
-      ../software/xremap/config.nix # Dynamic keybinds service
+      # Dynamic keybinds service
+      ../software/xremap/config.nix
       ../software/xremap/keybinds.nix
     ];
 
