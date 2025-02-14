@@ -27,7 +27,7 @@
       user-manage.home.stateVersion = config.system.stateVersion; # The same of the system
     }
     // (
-      if user.machine == "wsl"
+      if (user.machine == "wsl")
       then {
         wsl = {
           enable = true;

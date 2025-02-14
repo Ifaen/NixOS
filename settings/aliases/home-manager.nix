@@ -13,7 +13,7 @@
 
       waybar-workspace-icon = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
-        description = "Hyprland settings";
+        description = "Waybar settings";
       };
     };
 
