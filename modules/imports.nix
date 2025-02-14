@@ -49,6 +49,7 @@
       ../software/xdg/config.nix
       ../software/xdg/directories.nix
       ../software/xdg/mimeapps.nix
+      ../software/xdg/portal.nix
 
       ../software/zsh/config.nix # Terminal shell
       ../software/zsh/tools.nix
@@ -89,8 +90,6 @@
       ../software/waybar/modules.nix
 
       ../software/wlogout/config.nix # Logout interface
-
-      ../software/xdg/portal.nix
     ]
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/apps/gimp.nix # Image Editor
