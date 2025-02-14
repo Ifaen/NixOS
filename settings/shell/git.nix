@@ -2,7 +2,7 @@
   user-manage.programs.git = {
     enable = true;
 
-    userName = user.name;
+    userName = "${user.name}-${user.machine}";
     userEmail = user.mail;
 
     extraConfig = {
