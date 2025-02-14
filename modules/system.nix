@@ -32,9 +32,12 @@
         wsl = {
           enable = true;
 
-          defaultUser = user.name;
+          defaultUser = user.name; # Default: "nixos"
+          wslConf.user.default = user.name; # Which user to start commands in this WSL distro as. Default: "root"
 
           useWindowsDriver = true; # Use OpenGL from windows
+
+          startMenuLaunchers = true; # Whether to enable shortcuts for GUI applications in the windows start menu
         };
 
         environment.sessionVariables.DONT_PROMPT_WSL_INSTALL = 1; # Disable prompt for apps that are installed under wsl and not windows
