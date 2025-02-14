@@ -58,6 +58,16 @@
       ];
     }
     {
+      name = "Firefox sites";
+      bookmarks = [
+        {
+          name = "Firefox Configuration";
+          keyword = "config";
+          url = "about:config";
+        }
+      ];
+    }
+    {
       name = "Entertainment";
       bookmarks = [
         {
@@ -210,6 +220,7 @@
       bookmarks = [
         {
           name = "syncthing";
+          keyword = "sync";
           url = "http://localhost:8384";
         }
         {
