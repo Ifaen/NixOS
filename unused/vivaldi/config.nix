@@ -6,9 +6,6 @@
       package = pkgs.vivaldi;
     };
 
-    # Companion application for the Video DownloadHelper browser add-on.
-    home.packages = with pkgs; [vdhcoapp];
-
     xdg.desktopEntries.vivaldi-stable = {
       name = "Vivaldi";
       exec = "vivaldi %U";
@@ -21,9 +18,6 @@
       "tile, class:(Vivaldi-stable)"
     ];
 
-    waybar-workspace-icon = {
-      "class<Vivaldi-stable>" = "󰊯 ";
-      "class<Brave-browser>" = " ";
-    };
+    waybar-workspace-icon."class<Vivaldi-stable>" = "󰊯 ";
   };
 }

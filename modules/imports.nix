@@ -25,25 +25,30 @@
       ../settings/themes/gtk.nix # GTK Toolkit configuration
       ../settings/themes/qt.nix # QT Toolkit configuration
 
+      # Web browser
       ../software/firefox/bookmarks.nix
       ../software/firefox/config.nix
       ../software/firefox/extensions.nix
       ../software/firefox/policies.nix
       ../software/firefox/settings.nix
 
-      ../software/lf/config.nix # Terminal file manager
+      # Terminal file manager
+      ../software/lf/config.nix
       ../software/lf/keybinds.nix
       ../software/lf/previewer.nix
 
-      ../software/rofi/config.nix # App / Menu Launcher
+      # App / Menu Launcher
+      ../software/rofi/config.nix
       ../software/rofi/theme.nix
 
+      # Code editor
       ../software/vscode/config.nix
       ../software/vscode/extensions.nix
       ../software/vscode/keybinds.nix
       ../software/vscode/settings.nix
 
-      ../software/wezterm/config.nix # Terminal emulator
+      # Terminal emulator
+      ../software/wezterm/config.nix
       ../software/wezterm/keybinds.nix
 
       ../software/xdg/config.nix
@@ -51,7 +56,8 @@
       ../software/xdg/mimeapps.nix
       ../software/xdg/portal.nix
 
-      ../software/zsh/config.nix # Terminal shell
+      # Terminal shell
+      ../software/zsh/config.nix
       ../software/zsh/tools.nix
     ]
     ++ lib.optionals (user.machine != "wsl") [
@@ -77,19 +83,24 @@
       ../settings/apps/pavucontrol.nix # Audio controller
       ../settings/apps/waypaper.nix # Wallpaper manager
 
-      ../software/hyprland/config.nix # Window manager
+      # Window manager
+      ../software/hyprland/config.nix
       ../software/hyprland/keybinds.nix
       ../software/hyprland/style.nix
 
-      ../software/mako/config.nix # Notification daemon
+      # Notification daemon
+      ../software/mako/config.nix
 
-      ../software/thunar/config.nix # File manager
+      # File manager
+      ../software/thunar/config.nix
       ../software/thunar/preferences.nix
 
-      ../software/waybar/config.nix # Status bar
+      # Status bar
+      ../software/waybar/config.nix
       ../software/waybar/modules.nix
 
-      ../software/wlogout/config.nix # Logout interface
+      # Logout interface
+      ../software/wlogout/config.nix
     ]
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/apps/gimp.nix # Image Editor
@@ -103,17 +114,21 @@
 
       ../settings/security/openvpn.nix # VPN
 
-      ../software/obs/config.nix # Screen recorder
+      # Screen recorder
+      ../software/obs/config.nix
       ../software/obs/settings.nix
 
-      ../software/syncthing/config.nix # Synchronization tool
+      # Synchronization tool
+      ../software/syncthing/config.nix
       ../software/syncthing/sync.nix
 
-      ../software/xremap/config.nix # Dynamic keybinds service
+      # Dynamic keybinds service
+      ../software/xremap/config.nix
       ../software/xremap/keybinds.nix
     ]
     ++ lib.optionals (user.machine == "notebook") [
       ../settings/hardware/notebook.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+      ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
     ]
     ++ lib.optionals (user.machine == "wsl") [
       inputs.nixos-wsl.nixosModules.default # wsl options

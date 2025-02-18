@@ -9,9 +9,13 @@
     keepassxc-browser # Official browser plugin for the KeePassXC password manager
     privacy-badger # Automatically learns to block invisible trackers
     return-youtube-dislikes # Returns ability to see dislike statistics on youtube
+    stylus # Customize the look of any website
+    tampermonkey # Userscript management
     ublock-origin # Efficient ad blocker
     video-downloadhelper # Download videos from the web. Easy, smart, no tracking
     youtube-shorts-block # Play the Youtube shorts video as if it were a normal video.and hide “shorts" tab and videos (optional)
     wappalyzer # Identify technologies on websites
   ];
+
+  # IN CASE IS NEEDED IN THE FUTURE: https://discourse.nixos.org/t/add-custom-addons-to-firefox-directly-from-https-addons-mozilla-org/48730
 }

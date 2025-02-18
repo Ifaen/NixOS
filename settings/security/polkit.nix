@@ -30,11 +30,11 @@
     }
     // lib.optionalAttrs (user.machine != "wsl") {
       user-manage = {
-        hyprland.windowrulev2 = [
-          "center 1, class:(polkit-kde-authentication-agent-1)"
-          "stayfocused, class:(polkit-kde-authentication-agent-1)"
-          "size 30% 25%, class:(polkit-kde-authentication-agent-1)"
-          "focusonactivate, class:(polkit-kde-authentication-agent-1)"
+        hyprland.windowrulev2 = map (rule: rule + ", class:(polkit-kde-authentication-agent-1)") [
+          "center 1"
+          "stayfocused"
+          "size 30% 25%"
+          "focusonactivate"
         ];
 
         waybar-workspace-icon."class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock

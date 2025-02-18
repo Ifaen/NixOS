@@ -64,9 +64,10 @@
     }
     // lib.optionalAttrs (user.machine != "wsl") {
       hyprland.windowrulev2 = map (rule: rule + ", class:(.*dg-desktop-portal.*)") [
-        "float"
-        "focusonactivate"
+        "float" # makes sure to be a floating window
         "center 1"
+        "stayfocused"
+        "size <60% <50%"
       ];
 
       waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";

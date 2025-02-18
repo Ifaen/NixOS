@@ -17,7 +17,7 @@
       networking.hostName = user.machine; # Hostname of system
 
       home-manager = {
-        useUserPackages = true; # Moves the home-manager packages to /etc/profiles instead of $HOME/.nix-profile
+        useUserPackages = false; # If true, moves the home-manager packages from $HOME/.nix-profile to /etc/profiles
         useGlobalPkgs = true; # To use the same nixpkgs configuration as the nixos system
 
         backupFileExtension = "backup";

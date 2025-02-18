@@ -13,21 +13,26 @@
       text = ''
         [General]
         BackupBeforeSave=true
+        UseGroupIconOnEntryCreation=false
         BackupFilePathPattern=${user.sync}/Keepass/{DB_FILENAME}.old.kdbx
         FaviconDownloadTimeout=15
         NumberOfRememberedLastDatabases=1
         RememberLastKeyFiles=false
-        UseGroupIconOnEntryCreation=false
+        UseAtomicSaves=false
 
         [Browser]
         CustomProxyLocation=
+        Enabled=true
+
+        [FdoSecrets]
         Enabled=true
 
         [GUI]
         ApplicationTheme=dark
         ColorPasswords=true
         CompactMode=true
-        HidePreviewPanel=false
+        HideMenubar=true
+        HidePreviewPanel=true
         HideToolbar=false
         HideUsernames=false
         TrayIconAppearance=monochrome-light
@@ -37,6 +42,9 @@
         ExcludedChars=
         Length=20
 
+        [SSHAgent]
+        Enabled=true
+
         [Security]
         ClearClipboardTimeout=60
         ClearSearch=true
@@ -45,10 +53,12 @@
         HidePasswordPreviewPanel=true
         HideTotpPreviewPanel=true
         IconDownloadFallback=true
-        LockDatabaseIdle=true
+        LockDatabaseIdle=false
+        LockDatabaseIdleSeconds=600
         LockDatabaseMinimize=true
         NoConfirmMoveEntryToRecycleBin=false
         Security_HideNotes=true
+        PasswordEmptyPlaceholder=true
       '';
     };
 
