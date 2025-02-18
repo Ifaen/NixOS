@@ -1,7 +1,5 @@
 {...}: {
-  networking.networkmanager.enable = true; # Enable networking
+  networking.networkmanager.enable = true; # Enable networkork manager
 
-  networking.firewall = {
-    enable = true;
-  };
+  networking.firewall.enable = true;
 }
