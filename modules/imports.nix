@@ -80,9 +80,6 @@
       /thunar/config.nix
       /thunar/preferences.nix
 
-      # Logout interface
-      /wlogout/config.nix
-
       # XDG configuration
       /xdg/config.nix
       /xdg/directories.nix
