@@ -83,10 +83,6 @@
       /thunar/config.nix
       /thunar/preferences.nix
 
-      # Terminal emulator
-      /wezterm/config.nix
-      /wezterm/keybinds.nix
-
       # Logout interface
       /wlogout/config.nix
 
