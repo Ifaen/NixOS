@@ -10,21 +10,12 @@
     auto-optimise-store = true;
   };
 
-  nixpkgs.config.allowUnfree = true; # Allows unfree packages for nixpkgs
-
   networking.hostName = user.machine; # Hostname of system
 
   users = {
     mutableUsers = false; # Prevents to create or modify new users besides the declared
 
     users.root.hashedPassword = "!"; # Disable root user
-  };
-
-  home-manager = {
-    useUserPackages = false; # If true, moves the home-manager packages from $HOME/.nix-profile to /etc/profiles
-    useGlobalPkgs = true; # To use the same nixpkgs configuration as the nixos system
-
-    backupFileExtension = "backup";
   };
 
   boot = {
