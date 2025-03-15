@@ -13,7 +13,6 @@
       fullname = "Santiago Fuentes";
       name = "sfuentes";
       mail = "dev@sfuentes.cl";
-      language = "us";
       system = "x86_64-linux";
 
       # -- Directories

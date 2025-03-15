@@ -28,9 +28,4 @@
     timeZone = "America/Santiago"; # Configure timezone
     hardwareClockInLocalTime = true; # Keep the hardware clock in local time instead of UTC
   };
-
-  console = {
-    enable = true; # Whether to enable virtual console
-    keyMap = user.language; # Configure console keymap
-  };
 }
