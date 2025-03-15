@@ -98,7 +98,6 @@
       ../settings/apps/gimp.nix # Image Editor
       ../settings/apps/discord.nix # Voice chat
       ../settings/apps/spotify.nix # Music provider
-      ../settings/apps/scrcpy.nix # Mobile screen copy
 
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
