@@ -81,10 +81,6 @@
       /vscode/keybinds.nix
       /vscode/settings.nix
 
-      # Status bar
-      /waybar/config.nix
-      /waybar/modules.nix
-
       # Terminal emulator
       /wezterm/config.nix
       /wezterm/keybinds.nix
