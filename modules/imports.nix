@@ -55,6 +55,10 @@
       /hyprland/keybinds.nix
       /hyprland/style.nix
 
+      # Status bar
+      /hyprpanel/config.nix
+      /hyprpanel/settings.nix
+
       # Terminal file manager
       /lf/config.nix
       /lf/keybinds.nix
@@ -129,6 +133,7 @@
   config = lib.optionalAttrs (user.machine == "desktop") {
     user-manage.imports = [
       inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
+      inputs.hyprpanel.homeManagerModules.hyprpanel # Import hyprpanel home-manager modules
     ];
   };
 }
