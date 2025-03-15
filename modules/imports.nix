@@ -104,7 +104,7 @@
 
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
 
-      ../settings/security/openvpn.nix # VPN
+      ../settings/security/protonvpn.nix # VPN GUI
 
       # Screen recorder
       ../software/obs/config.nix
