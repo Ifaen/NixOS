@@ -16,7 +16,6 @@
 
       /apps/obsidian.nix # Notes
       /apps/ripdrag.nix # Drag utility
-      /apps/waypaper.nix # Wallpaper manager
 
       /hardware/drivers.nix # Few drivers, depending of the hardware
 
@@ -40,6 +39,7 @@
       /themes/hyprcursor.nix # Cursor
       /themes/pywal.nix # Color palettes extracted from wallpapers/images
       /themes/qt.nix # QT Toolkit configuration
+      /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
       # Web Browser

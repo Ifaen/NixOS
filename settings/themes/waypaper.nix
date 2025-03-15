@@ -24,7 +24,7 @@
 
         pkill waypaper
       ''} $wallpaper
-      show_hidden = True
+      show_hidden = False
       sort = name
       subfolders = False
       swww_transition_angle = 60
@@ -46,7 +46,7 @@
 
       windowrulev2 = map (rule: rule + ", class:(waypaper)") [
         "float"
-        "stayfocused"
+        "focusonactivate"
         "rounding 10"
         "size 50% 70%"
       ];
