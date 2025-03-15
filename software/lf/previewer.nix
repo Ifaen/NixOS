@@ -1,49 +1,63 @@
 {pkgs, ...}: {
   user-manage.programs.lf.extraConfig = ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
-      function createPreview () {
-        ${pkgs.chafa}/bin/chafa -f sixel -s "$2x$3" --animate off --polite on "$1" &
+      draw() {
+        kitten icat --stdin no --transfer-mode memory --place "''${w}x''${h}@''${x}x''${y}" "$1" </dev/null >/dev/tty
+        exit 1
       }
 
-      cache_dir="/tmp/lf"
-      mkdir -p "$cache_dir"
+      vidthumb() {
+        if ! [ -f "$1" ]; then
+          exit 1
+        fi
 
-      # Generate a unique cached filename using parent directory and basename
-      parent_dir=$(basename "$(dirname "$1")")
-      file_name=$(basename "$1")
-      cached_file="$cache_dir/$parent_dir-$file_name.cache"
+        cache="/tmp/.cache/vidthumb"
+        index="$cache/index.json"
+        movie="$(realpath "$1")"
 
-      path=""
+        mkdir -p "$cache"
 
-      case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")" in
-        application/pdf)
-          path="$cached_file.jpg"
-          if [ ! -f "$path" ]; then
-            ${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "''${cached_file%.*}"
+        if [ -f "$index" ]; then
+          thumbnail="$(jq -r --arg movie "$movie" '.[$movie] // empty' "$index")"
+          if [[ -n "$thumbnail" && -f "$cache/$thumbnail" ]]; then
+            echo "$cache/$thumbnail"
+            exit 0
           fi
-        ;;
-        video/*)
-          path="$cached_file.png"
-          if [ ! -f "$path" ]; then
-            ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$1" -o "$path" -s 0
-          fi
-        ;;
-        image/svg+xml)
-          path="$cached_file.png"
-          if [ ! -f "$path" ]; then
-            ${pkgs.librsvg}/bin/rsvg-convert -o "$path" "$1"
-          fi
-        ;;
-        image/*)
-          path=$1
-        ;;
-        *)
-          ${pkgs.pistol}/bin/pistol "$1" &
-          exit
-        ;;
+        fi
+
+        thumbnail="$(uuidgen).jpg"
+
+        if ! ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$movie" -o "$cache/$thumbnail" -s 0 2>/dev/null; then
+          exit 1
+        fi
+
+        if [[ ! -f "$index" ]]; then
+          echo "{}" > "$index"
+        fi
+
+        json="$(${pkgs.jq}/bin/jq --arg movie "$movie" --arg thumb "$thumbnail" '. + {($movie): $thumb}' "$index")"
+        echo "$json" > "$index"
+
+        echo "$cache/$thumbnail"
+      }
+
+
+      file="$1"
+      w="$2"
+      h="$3"
+      x="$4"
+      y="$5"
+
+      case "$(file -Lb --mime-type "$file")" in
+        image/*) draw "$file" ;;
+        video/*) draw "$(vidthumb "$file")";;
       esac
 
-      createPreview "$path" "$2" "$3"
+      ${pkgs.pistol}/bin/pistol "$file"
+    ''}
+
+    set cleaner ${pkgs.writeShellScript "lf-cleaner.sh" ''
+      exec kitten icat --clear --stdin no --transfer-mode memory </dev/null >/dev/tty
     ''}
   '';
 }

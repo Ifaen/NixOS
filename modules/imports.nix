@@ -64,6 +64,9 @@
       /hyprpanel/config.nix
       /hyprpanel/settings.nix
 
+      # Terminal emulator
+      /kitty/config.nix
+
       # Terminal file manager
       /lf/config.nix
       /lf/keybinds.nix
