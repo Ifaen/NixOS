@@ -15,7 +15,6 @@
       /aliases/nixos.nix # Aliases under nixos
 
       /apps/obsidian.nix # Notes
-      /apps/pavucontrol.nix # Audio controller
       /apps/ripdrag.nix # Drag utility
       /apps/waypaper.nix # Wallpaper manager
 
