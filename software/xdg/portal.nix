@@ -37,12 +37,23 @@
     # Re-direct variable towards the correct path so the xdg-desktop-portal.service finds the DE-portals.conf
     home.sessionVariables.NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR = "${user.config}/xdg-desktop-portal";
 
-    hyprland.windowrulev2 = map (rule: rule + ", class:(.*dg-desktop-portal.*)") [
-      "float" # makes sure to be a floating window
-      "center 1"
-      "stayfocused"
-      "size <60% <50%"
-    ];
+    hyprland.windowrulev2 = let
+      commonRules = [
+        "float"
+        "center 1"
+        "size <60% <50%"
+      ];
+      applyRulesToConditions = conditions:
+        builtins.concatLists (map
+          (condition: map (rule: rule + ", " + condition) commonRules)
+          conditions);
+    in
+      # Apply common rules to all windows that match the following conditions
+      applyRulesToConditions [
+        "class:(.*dg-desktop-portal.*)"
+        "title:(Save Video)"
+        "title:(Save Image)"
+      ];
 
     waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";
   };
