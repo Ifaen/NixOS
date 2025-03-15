@@ -8,7 +8,7 @@
     home.packages = [pkgs.keepassxc];
 
     xdg.configFile."keepassxc/keepassxc.ini" = {
-      enable = true;
+      force = true;
 
       text = ''
         [General]
@@ -25,7 +25,7 @@
         Enabled=true
 
         [FdoSecrets]
-        Enabled=true
+        Enabled=false
 
         [GUI]
         ApplicationTheme=dark
