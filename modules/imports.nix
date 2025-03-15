@@ -42,6 +42,12 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
+      # Code editor
+      /cursor/config.nix
+      /cursor/extensions.nix
+      /cursor/keybinds.nix
+      /cursor/settings.nix
+
       # Web Browser
       /firefox/bookmarks.nix
       /firefox/config.nix
@@ -74,12 +80,6 @@
       /thunar/config.nix
       /thunar/preferences.nix
 
-      # Code editor
-      /vscode/config.nix
-      /vscode/extensions.nix
-      /vscode/keybinds.nix
-      /vscode/settings.nix
-
       # Terminal emulator
       /wezterm/config.nix
       /wezterm/keybinds.nix
@@ -87,6 +87,7 @@
       # Logout interface
       /wlogout/config.nix
 
+      # XDG configuration
       /xdg/config.nix
       /xdg/directories.nix
       /xdg/mimeapps.nix
