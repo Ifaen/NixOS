@@ -19,7 +19,6 @@
 
       /hardware/drivers.nix # Few drivers, depending of the hardware
 
-      /security/getty.nix # Autologin
       /security/hyprlock.nix # System password lock
       /security/keepassxc.nix # Password manager
       /security/networking.nix # Networking

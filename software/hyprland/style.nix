@@ -40,7 +40,7 @@
 
     general.layout = "dwindle";
     dwindle = {
-      preserve_split = true; # The split (side/top) will not change regardless of what happens to the container
+      preserve_split = true; # If enabled, the split (side/top) will not change regardless of what happens to the container
     };
 
     misc.disable_hyprland_logo = true;
