@@ -34,7 +34,13 @@
             "HDMI-A-1, 1920x1080@60, 0x0, 1"
             "DP-3, 1920x1080@60, 1920x0, 1"
           ];
-      };
+
+          workspace = [
+            "1, monitor:HDMI-A-1, default:1"
+            "9, monitor:DP-3"
+            "10, monitor:DP-3, default:1"
+          ];
+        };
     };
 
     # Autostart Hyprland upon a new session shell is initialized in tt1

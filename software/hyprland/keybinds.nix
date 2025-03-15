@@ -45,15 +45,12 @@
     # Change to provided workspace
     hyprctl dispatch workspace $1
 
-    # If the workspace is not the 9 or 10 (Reserved by others)
-    if [[ $1 != 9 || $1 != 10 ]]; then
-        # Check if workspace is empty
-        is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
+    # Check if workspace is empty
+    is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
 
-        # If empty, open program
-        if [ $is_empty == 0 ]; then
-        hyprctl dispatch exec "${open-rofi}"
-        fi
+    # If empty, open program
+    if [ $is_empty == 0 ]; then
+      hyprctl dispatch exec "${open-rofi}"
     fi
   ''}";
 in {
@@ -77,8 +74,8 @@ in {
       "super, 6, exec, ${workspace-change} 6"
       "super, 7, exec, ${workspace-change} 7"
       "super, 8, exec, ${workspace-change} 8"
-      "super, 9, exec, ${workspace-change} 9"
-      "super, 0, exec, ${workspace-change} 10"
+      "super, 9, workspace, 9"
+      "super, 0, workspace, 10"
 
       "super shift, 1, movetoworkspace, 1"
       "super shift, 2, movetoworkspace, 2"
