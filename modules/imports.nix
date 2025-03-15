@@ -72,9 +72,6 @@
       /lf/keybinds.nix
       /lf/previewer.nix
 
-      # Notification daemon
-      /mako/config.nix
-
       # App / Menu Launcher
       /rofi/config.nix
       /rofi/theme.nix
