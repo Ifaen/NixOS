@@ -76,9 +76,9 @@
           url = "https://www.youtube.com";
         }
         {
-          name = "manganato";
-          keyword = "manga";
-          url = "https://manganato.com";
+          name = "natomanga";
+          keyword = "nato";
+          url = "https://natomanga.com";
         }
         {
           name = "zonatmo";

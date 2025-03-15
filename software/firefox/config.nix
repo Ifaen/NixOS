@@ -29,6 +29,14 @@
       ];
     };
 
+    hyprland.windowrulev2 = map (rule: rule + ", title:(Picture-in-Picture)") [
+      "center 1"
+      "float"
+      "pin" # Show in all workspaces. Float only
+      "noinitialfocus"
+      "size 30% 30%"
+    ];
+
     waybar-workspace-icon."class<firefox>" = "󰈹 "; # Icon
   };
 }
