@@ -40,11 +40,6 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
-      # Code editor
-      /cursor/config.nix
-      /cursor/extensions.nix
-      /cursor/keybinds.nix
-      /cursor/settings.nix
 
       # Web Browser
       /firefox/bookmarks.nix
@@ -80,6 +75,12 @@
       # File manager
       /thunar/config.nix
       /thunar/preferences.nix
+
+      # Code editor
+      /windsurf/config.nix
+      /windsurf/extensions.nix
+      /windsurf/keybinds.nix
+      /windsurf/settings.nix
 
       # XDG configuration
       /xdg/config.nix
