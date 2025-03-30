@@ -31,8 +31,6 @@
 
     ${pkgs.pywal}/bin/wal -q -n -i "$directory_wallpaper/$new_wallpaper"
 
-    extended-pywal-schemes
-
     ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
   ''}";
 

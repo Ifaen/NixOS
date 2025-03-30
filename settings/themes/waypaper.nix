@@ -20,8 +20,6 @@
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
         ${pkgs.pywal}/bin/wal -q -n -i $1
 
-        extended-pywal-schemes &
-
         pkill waypaper
       ''} $wallpaper
       show_hidden = False

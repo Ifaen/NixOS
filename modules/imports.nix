@@ -36,7 +36,6 @@
       /themes/fonts.nix # Characters fonts
       /themes/gtk.nix # GTK Toolkit configuration
       /themes/hyprcursor.nix # Cursor
-      /themes/pywal.nix # Color palettes extracted from wallpapers/images
       /themes/qt.nix # QT Toolkit configuration
       /themes/waypaper.nix # Wallpaper manager
     ]
@@ -70,6 +69,9 @@
       /lf/config.nix
       /lf/keybinds.nix
       /lf/previewer.nix
+
+      # Dynamic color palettes from wallpapers
+      /pywal/config.nix
 
       # App / Menu Launcher
       /rofi/config.nix
