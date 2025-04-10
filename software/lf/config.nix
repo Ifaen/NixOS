@@ -26,6 +26,7 @@
       shellAliases.lfs = "command lf"; # lf with default behaviour
     };
 
+    # Icons
     xdg.configFile."lf/icons".source = ./icons.txt;
   };
 }

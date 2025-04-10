@@ -64,6 +64,7 @@
       /lf/config.nix
       /lf/keybinds.nix
       /lf/previewer.nix
+      /lf/unbinds.nix
 
       # Dynamic color palettes from wallpapers
       /pywal/config.nix
