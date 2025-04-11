@@ -1,0 +1,16 @@
+@use "/home/sfuentes/.cache/wal/colors.scss" as colors;
+
+window.Bar {
+  font-weight: bold;
+
+  > centerbox {
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  button {
+    background: colors.$color2;
+    border-radius: 8px;
+    margin: 2px;
+  }
+}

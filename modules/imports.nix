@@ -39,6 +39,8 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
+      #
+      /astal/config.nix
 
       # Web Browser
       /firefox/bookmarks.nix

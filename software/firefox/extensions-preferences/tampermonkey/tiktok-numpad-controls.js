@@ -45,12 +45,31 @@
     }
   }
 
-  document.addEventListener("keydown", (e) => {
-    // Download video with button extension
-    if (e.code === "Numpad5") {
-      pressButton(e, ".ttdb__button_browser");
+  function saveVideo(e) {
+    e.preventDefault();
+    // Select all the buttons you want to check
+    const buttons = document.querySelectorAll(".css-1ncfmqs-ButtonActionItem");
 
-      giveLike();
+    buttons.forEach((button) => {
+      // Select the SVG inside the button
+      const svg = button.querySelector("svg");
+
+      // Get the xlink:href value from the <use> element
+      const xlinkHref = svg.querySelector("use").getAttribute("xlink:href");
+
+      // If is uncollect, save it
+      if (xlinkHref.includes("uncollect")) {
+        button.click();
+
+        // Download video with button extension
+        pressButton(e, ".ttdb__button_browser");
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Numpad5") {
+      saveVideo(e);
     }
 
     // Give like to video
@@ -60,18 +79,12 @@
 
     // Go to prev video
     else if (e.code === "Numpad4") {
-      pressButton(
-        e,
-        ".css-1w6o9i7-ButtonBasicButtonContainer-StyledVideoSwitch.e11s2kul11"
-      );
+      simulateButton(e, "ArrowUp", 38);
     }
 
     // Go to next video
     else if (e.code === "Numpad6") {
-      pressButton(
-        e,
-        ".css-1s9jpf8-ButtonBasicButtonContainer-StyledVideoSwitch.e11s2kul11"
-      );
+      simulateButton(e, "ArrowDown", 40);
     }
 
     // Return few seconds in the video

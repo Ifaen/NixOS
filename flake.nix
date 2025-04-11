@@ -6,6 +6,8 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     xremap-flake.url = "github:xremap/nix-flake";
     hyprpanel.url = "github:Ifaen/HyprPanel"; # Hyprpanel fork of hyprpanel.url = "github:jas-singhfsu/hyprpanel";
+    astal.url = "github:aylur/astal";
+    ags.url = "github:aylur/ags";
   };
 
   outputs = {self, ...} @ inputs: let
