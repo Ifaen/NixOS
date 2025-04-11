@@ -54,7 +54,5 @@
         "title:(Save Video)"
         "title:(Save Image)"
       ];
-
-    waybar-workspace-icon."class<.*dg-desktop-portal.*>" = "";
   };
 }

@@ -87,8 +87,6 @@
 
       workspace = ["9, on-created-empty:keepassxc"];
     };
-
-    waybar-workspace-icon."class<org.keepassxc.KeePassXC>" = "󰌋 ";
   };
 
   # -- Sync folder with mobile device

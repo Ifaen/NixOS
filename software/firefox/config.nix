@@ -36,7 +36,5 @@
       "noinitialfocus"
       "size 30% 30%"
     ];
-
-    waybar-workspace-icon."class<firefox>" = "󰈹 "; # Icon
   };
 }

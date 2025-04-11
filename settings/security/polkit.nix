@@ -27,7 +27,5 @@
       "size 30% 25%"
       "focusonactivate"
     ];
-
-    waybar-workspace-icon."class<polkit-kde-authentication-agent-1>" = "󰌾 "; # nf-md-lock
   };
 }

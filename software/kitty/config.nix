@@ -15,9 +15,6 @@
       icon = "kitty";
     };
 
-    # HACK Issue with hyprland, probably fixed next patch
-    hyprland.exec-once = ["[workspace 3] kitty"];
-
-    waybar-workspace-icon."class<kitty>" = "󰆍 ";
+    hyprland.exec-once = ["[workspace 3 silent] kitty"];
   };
 }

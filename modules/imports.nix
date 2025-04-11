@@ -15,7 +15,6 @@
       /aliases/nixos.nix # Aliases under nixos
 
       /apps/obsidian.nix # Notes
-      /apps/ripdrag.nix # Drag utility
 
       /hardware/drivers.nix # Few drivers, depending of the hardware
 

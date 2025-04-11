@@ -13,7 +13,5 @@
     hyprland.windowrulev2 = map (rule: rule + ", class:(.protonvpn-app-wrapped)") [
       "size <55% <55%"
     ];
-
-    waybar-workspace-icon."class<.protonvpn-app-wrapped>" = "󰖂 ";
   };
 }

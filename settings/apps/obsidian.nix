@@ -10,7 +10,5 @@
       icon = "obsidian";
       terminal = false;
     };
-
-    waybar-workspace-icon."class<obsidian>" = "󰎚 "; # nf-md-note
   };
 }

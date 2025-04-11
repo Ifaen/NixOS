@@ -29,12 +29,5 @@
         "application/pdf" = "org.pwmt.zathura.desktop";
       };
     };
-
-    waybar-workspace-icon = {
-      "imv" = "";
-      "mpv" = "";
-      "org.pwmt.zathura" = " ";
-      "vlc" = "󰕼 "; # nf-md-vlc
-    };
   };
 }

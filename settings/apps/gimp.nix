@@ -50,7 +50,5 @@
       ];
       terminal = false;
     };
-
-    waybar-workspace-icon."class<Gimp>" = " ";
   };
 }

@@ -18,7 +18,5 @@
       startupNotify = true;
       terminal = false;
     };
-
-    waybar-workspace-icon."class<com.obsproject.Studio>" = "󰄀 "; # nf-md-camera
   };
 }

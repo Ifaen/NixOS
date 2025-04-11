@@ -18,7 +18,5 @@
       "float"
       "stayfocused"
     ];
-
-    waybar-workspace-icon."class<Rofi>" = "󰼢 ";
   };
 }

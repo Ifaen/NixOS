@@ -23,7 +23,5 @@
 
       windowrulev2 = ["opacity 0.95, class:(Spotify)"];
     };
-
-    waybar-workspace-icon."class<Spotify>" = "󰓇 ";
   };
 }
