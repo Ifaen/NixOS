@@ -14,12 +14,16 @@
     bar.workspaces.spacing = 1.7;
     bar.workspaces.applicationIconMap = {
       "class:vesktop" = "󰙯";
-      "class:cursor-url-handler" = "󰨞";
+      "class:windsurf-url-handler" = "󰨞";
+      "class:brave-browser" = "󰊯"; # nf-md-google_chrome
     };
 
     # Dashboard
     menus.dashboard.directories.enabled = false;
     menus.dashboard.stats.enable_gpu = false;
+
+    # Notifications
+    notifications.timeout = 3000;
 
     theme.font = {
       #name = "FiraCode NF";

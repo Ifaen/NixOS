@@ -15,9 +15,9 @@
       layout = {
         "bar.layouts" = {
           "0" = {
-            left = ["dashboard" "media"];
+            left = ["dashboard" "clock" "hypridle"];
             middle = ["workspaces"];
-            right = ["volume" "clock" "notifications"];
+            right = ["media" "volume" "notifications"];
           };
           "1" = {
             left = ["windowtitle"];
