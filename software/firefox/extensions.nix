@@ -7,6 +7,7 @@
   user-manage.programs.firefox.profiles.${user.name}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     darkreader # Dark mode for every website
     privacy-badger # Automatically learns to block invisible trackers
+    pywalfox # Pywal integration
     return-youtube-dislikes # Returns ability to see dislike statistics on youtube
     stylus # Customize the look of any website
     tampermonkey # Userscript management

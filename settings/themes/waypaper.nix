@@ -20,6 +20,13 @@
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
         ${pkgs.pywal}/bin/wal -q -n -i $1
 
+        # For Vesktop
+        mkdir -p "${user.config}/vesktop/themes" # Create folder if doesn't exist
+        cp ${user.cache}/wal/colors-discord.css ${user.config}/vesktop/themes/pywal-vencord.theme.css # Copy file
+
+        # For Firefox
+        ${pkgs.pywalfox-native}/bin/pywalfox update
+
         pkill waypaper
       ''} $wallpaper
       show_hidden = False
@@ -49,7 +56,5 @@
         "size 50% 70%"
       ];
     };
-
-    waybar-workspace-icon."class<waypaper>" = " ";
   };
 }
