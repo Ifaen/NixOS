@@ -17,6 +17,13 @@
       cls = "cd ${user.home} && clear";
       ".." = "cd ..";
     };
+
+    # Force nix-shell to use the $SHELL variable instead to default to bash
+    initExtra = ''
+      nix-shell() {
+        command nix-shell "$@" --run $SHELL
+      }
+    '';
   };
 
   environment.pathsToLink = ["/share/zsh"]; # To allow completation of zsh and bash
