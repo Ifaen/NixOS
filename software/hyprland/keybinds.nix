@@ -27,9 +27,7 @@
       ;;
     esac
 
-    ${pkgs.swww}/bin/swww img "$directory_wallpaper/$new_wallpaper" --transition-bezier .43,1.19,1,.4 --transition-fps=60 --transition-type="wipe" --transition-duration=0.7
-
-    ${pkgs.pywal}/bin/wal -q -n -i "$directory_wallpaper/$new_wallpaper"
+    ${pkgs.waypaper}/bin/waypaper --wallpaper $directory_wallpaper/$new_wallpaper
 
     ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
   ''}";
