@@ -19,7 +19,7 @@
     };
 
     hyprland = {
-      workspace = ["10, on-created-empty:spotify"];
+      exec-once = ["[workspace 10 silent] spotify"];
 
       windowrulev2 = ["opacity 0.95, class:(Spotify)"];
     };
