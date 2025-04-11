@@ -1,44 +1,52 @@
-{pkgs, ...}: {
-  user-manage.programs.lf.extraConfig = ''
+{
+  pkgs,
+  user,
+  ...
+}: {
+  # Script adapted from: https://github.com/gokcehan/lf/wiki/Previews
+  user-manage.programs.lf.extraConfig = let
+    cache = "${user.cache}/thumbnails/lf";
+    index = "${cache}/index.json";
+  in ''
     set previewer ${pkgs.writeShellScript "lf-previewer.sh" ''
       draw() {
         kitten icat --stdin no --transfer-mode memory --place "''${w}x''${h}@''${x}x''${y}" "$1" </dev/null >/dev/tty
         exit 1
       }
 
+      # Function adapted from: https://raw.githubusercontent.com/duganchen/kitty-pistol-previewer/main/vidthumb
       vidthumb() {
         if ! [ -f "$1" ]; then
           exit 1
         fi
 
-        cache="/tmp/.cache/vidthumb"
-        index="$cache/index.json"
         movie="$(realpath "$1")"
 
-        mkdir -p "$cache"
+        mkdir -p "${cache}"
 
-        if [ -f "$index" ]; then
-          thumbnail="$(jq -r --arg movie "$movie" '.[$movie] // empty' "$index")"
-          if [[ -n "$thumbnail" && -f "$cache/$thumbnail" ]]; then
-            echo "$cache/$thumbnail"
+        if [ -f "${index}" ]; then
+          thumbnail="$(${pkgs.jq}/bin/jq -r --arg movie "$movie" '.[$movie] // empty' "${index}")"
+
+          if [[ -n "$thumbnail" && -f "${cache}/$thumbnail" ]]; then
+            echo "${cache}/$thumbnail"
             exit 0
           fi
         fi
 
         thumbnail="$(uuidgen).jpg"
 
-        if ! ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$movie" -o "$cache/$thumbnail" -s 0 2>/dev/null; then
+        if ! ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$movie" -o "${cache}/$thumbnail" -s 0 2>/dev/null; then
           exit 1
         fi
 
-        if [[ ! -f "$index" ]]; then
-          echo "{}" > "$index"
+        if [[ ! -f "${index}" ]]; then
+          echo "{}" > "${index}"
         fi
 
-        json="$(${pkgs.jq}/bin/jq --arg movie "$movie" --arg thumb "$thumbnail" '. + {($movie): $thumb}' "$index")"
-        echo "$json" > "$index"
+        json="$(${pkgs.jq}/bin/jq --arg movie "$movie" --arg thumb "$thumbnail" '. + {($movie): $thumb}' "${index}")"
+        echo "$json" > "${index}"
 
-        echo "$cache/$thumbnail"
+        echo "${cache}/$thumbnail"
       }
 
 
@@ -48,12 +56,11 @@
       x="$4"
       y="$5"
 
-      case "$(file -Lb --mime-type "$file")" in
+      case "$(${pkgs.file}/bin/file -Lb --mime-type "$file")" in
         image/*) draw "$file" ;;
         video/*) draw "$(vidthumb "$file")";;
+        *) ${pkgs.pistol}/bin/pistol "$file";;
       esac
-
-      ${pkgs.pistol}/bin/pistol "$file"
     ''}
 
     set cleaner ${pkgs.writeShellScript "lf-cleaner.sh" ''
