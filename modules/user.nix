@@ -25,7 +25,7 @@
   };
 
   time = {
-    timeZone = "America/Santiago"; # Configure timezone
+    timeZone = "America/Punta_Arenas"; # Configure timezone
     hardwareClockInLocalTime = true; # Keep the hardware clock in local time instead of UTC
   };
 }
