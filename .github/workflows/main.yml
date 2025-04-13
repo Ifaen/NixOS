@@ -3,19 +3,22 @@ name: Mirror to GitLab
 on:
   push:
     branches:
-      - '*'
+      - main
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
+      - name: Checkout the repository
+        uses: actions/checkout@v3
 
-      - name: Push to GitLab
+      - name: Set up Git identity
         run: |
           git config --global user.name "sfuentes"
           git config --global user.email "dev@sfuentes.cl"
-          git remote add gitlab https://Ifaen:${{ secrets.GITLAB_TOKEN }}@gitlab.com/Ifaen/NixOS.git
-          git push gitlab --all
-          git push gitlab --tags
+
+      - name: Add GitLab remote
+        run: git remote add gitlab https://Ifaen:${{ secrets.GITLAB_TOKEN }}@gitlab.com/Ifaen/NixOS.git
+
+      - name: Force push to GitLab
+        run: git push --force gitlab main
