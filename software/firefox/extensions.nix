@@ -14,7 +14,6 @@
     ublock-origin # Efficient ad blocker
     video-downloadhelper # Download videos from the web. Easy, smart, no tracking
     youtube-shorts-block # Play the Youtube shorts video as if it were a normal video.and hide “shorts" tab and videos (optional)
-    wappalyzer # Identify technologies on websites
   ];
 
   # IN CASE IS NEEDED IN THE FUTURE: https://discourse.nixos.org/t/add-custom-addons-to-firefox-directly-from-https-addons-mozilla-org/48730
