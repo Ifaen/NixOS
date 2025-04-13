@@ -23,7 +23,7 @@
     menus.dashboard.stats.enable_gpu = false;
 
     # Notifications
-    notifications.timeout = 3000;
+    notifications.timeout = 2000;
 
     theme.font = {
       #name = "FiraCode NF";
