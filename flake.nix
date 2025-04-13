@@ -32,39 +32,33 @@
       data = "${user.home}/.local/share";
       state = "${user.home}/.local/state";
     };
+
+    modules = map (path: ./modules + path) [
+      /imports.nix
+      /packages.nix
+      /system.nix
+      /user.nix
+    ];
   in {
     nixosConfigurations = {
       desktop = inputs.nixpkgs.lib.nixosSystem {
-        system = user.system;
-
         specialArgs = {
           inherit inputs;
 
           user = user // {machine = "desktop";};
         };
 
-        modules = map (path: ./modules + path) [
-          /imports.nix
-          /packages.nix
-          /system.nix
-          /user.nix
-        ];
+        inherit modules;
       };
 
       notebook = inputs.nixpkgs.lib.nixosSystem {
-        system = user.system;
-
         specialArgs = {
           inherit inputs;
 
           user = user // {machine = "notebook";};
         };
 
-        modules = map (path: ./modules + path) [
-          /imports.nix
-          /system.nix
-          /user.nix
-        ];
+        inherit modules;
       };
     };
   };
