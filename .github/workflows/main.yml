@@ -1,0 +1,21 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Push to GitLab
+        run: |
+          git config --global user.name "sfuentes"
+          git config --global user.email "dev@sfuentes.cl"
+          git remote add gitlab https://Ifaen:${{ GITLAB_TOKEN }}@gitlab.com/Ifaen/NixOS.git
+          git push gitlab --all
+          git push gitlab --tags
