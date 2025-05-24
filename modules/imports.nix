@@ -14,8 +14,6 @@
       /aliases/home-manager.nix # Aliases under home-manager
       /aliases/nixos.nix # Aliases under nixos
 
-      /apps/obsidian.nix # Notes
-
       /hardware/drivers.nix # Few drivers, depending of the hardware
 
       /security/hyprlock.nix # System password lock
@@ -99,10 +97,6 @@
       ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
     ]
     ++ lib.optionals (user.machine == "desktop") [
-      ../settings/apps/gimp.nix # Image Editor
-      ../settings/apps/discord.nix # Voice chat
-      ../settings/apps/spotify.nix # Music provider
-
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
