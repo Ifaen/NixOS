@@ -21,6 +21,7 @@
       /security/networking.nix # Networking
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
+      /services/arr_suite.nix # Arr Suite
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
       /services/udisks2.nix # Allows applications to query and manipulate storage devices
@@ -100,6 +101,7 @@
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
+      ../settings/services/jellyfin.nix # Media server
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
 
       ../settings/security/protonvpn.nix # VPN GUI

@@ -7,6 +7,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "media"
     ];
 
     # NOTE: To generate a hashed password run `mkpasswd`
