@@ -8,7 +8,7 @@
     accepted-files = "zip|gzip|bzip2|xz|rar|7z|lzh|tar";
     open = ''
       case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")" in
-        text/*) ${unstable-pkgs.windsurf}/bin/windsurf "$f" & ;;
+        text/* | inode/x-empty | application/json) ${unstable-pkgs.windsurf}/bin/windsurf "$f" & ;;
         video/*) ${pkgs.mpv}/bin/mpv "$f" & ;;
         image/*) ${pkgs.imv}/bin/imv "$f" & ;;
         *) ${pkgs.xdg-utils}/bin/xdg-open "$f" & ;;
@@ -19,7 +19,18 @@
     # & To stay on lf but continue doing other tasks
     # $ To temporarily go back to terminal
 
-    ## MARK: Utilities
+    ## MARK: Open
+    # Open current file
+    commands.open = ''&{{${open}}}'';
+
+    # Open the current viewed file, ignoring the other selected files
+    commands.open-multiple = ''
+      &{{
+        while IFS= read -r f; do
+          ${open}
+        done <<< "$fx"
+      }}'';
+    keybindings."<a-right>" = "open-multiple";
 
     # Open VLC
     commands.vlc-open = "&${pkgs.vlc}/bin/vlc $fx";
@@ -44,23 +55,24 @@
       }}'';
     keybindings.os = "script-open";
 
-    # Change the ownership of folders and files for the user
-    commands.change-owner = ''
-      ''${{
-        while IFS= read -r path; do
-          if [ -d "$path" ] || [ -f "$path" ]; then
-            sudo chown ${user.name}:users "$path" -R
-          else
-            ${pkgs.libnotify}/bin/notify-send "Error:" "$path should not be changed its ownership."
-          fi
-        done <<< "$fx"
-
-        lf -remote "send $id select $f"
+    # MARK: Make
+    # Make a new file
+    commands.make-file = ''
+      %{{
+        echo -n " Enter file name: "
+        read filename
+        if [ -n "$filename" ]; then
+          touch "$filename"
+          lf -remote "send $id select $filename"
+        else
+          ${pkgs.libnotify}/bin/notify-send "File name cannot be empty." -t 2000
+          lf -remote "send $id select $f"
+        fi
       }}'';
-    keybindings.co = "change-owner";
+    keybindings.mf = "make-file";
 
-    # Create new folder
-    commands.create-folder = ''
+    # Make a new folder
+    commands.make-folder = ''
       %{{
         echo -n " Enter folder name: "
         read foldername
@@ -72,53 +84,72 @@
           lf -remote "send $id select $f"
         fi
       }}'';
-    keybindings."<c-d>" = "create-folder";
+    keybindings.md = "make-folder";
 
-    # Use unar to descompress files and delete the file
-    commands.descompress-file = ''
+    # Make a symlink for each selected file
+    commands.make-symlink = ''
       %{{
-        if [ "$(echo "$fx" | wc -l)" -gt 1 ]; then
-          foldername="dir_$RANDOM"
+        while IFS= read -r path; do
+          ln -s "$path" "$PWD/link_$(basename $(dirname "$path"))_$(basename "$path")"
+        done <<< "$fx"
 
-          while IFS= read -r path; do
-            if ${pkgs.file}/bin/file "$path" | grep -qE "${accepted-files}"; then
-              name=$(basename "$path" | cut -d. -f1)
+        lf -remote "send $id unselect"
+      }}'';
+    keybindings.ms = "make-symlink";
 
-              if [ -e "$foldername/$name" ]; then
-                name="$name$RANDOM"
-              fi
+    # MARK: Modify
+    # Modify the ownership of folders and files for the user. If empty, automatically use own username
+    commands.modify-owner = ''
+      ''${{
+        echo -n " Enter user name (if empty, use ${user.name}): "
+        read username
 
-              ${pkgs.unar}/bin/unar "$path" -D -o "$foldername/$name"
-
-              rm "$path"
+        while IFS= read -r path; do
+          if [ -d "$path" ] || [ -f "$path" ]; then
+            if [ -z "$username" ]; then
+              username=${user.name}
             fi
-          done <<< "$fx"
-
-          if [ -e "$foldername" ]; then
-            cd "$foldername"
+            sudo chown -R "$username" "$path" 
+          else
+            ${pkgs.libnotify}/bin/notify-send "Error:" "$path should not be changed its ownership."
           fi
-        else
-          if ${pkgs.file}/bin/file "$f" | grep -qE "${accepted-files}"; then
-            name=$(basename "$f" | cut -d. -f1)
+        done <<< "$fx"
 
-            if [ -e "$name" ]; then
-              name="$name$RANDOM"
+        lf -remote "send $id select $f"
+      }}'';
+    keybindings."<a-m>o" = "modify-owner";
+
+    # Modify the group of folders and files for the user. If empty, automatically use current group
+    commands.modify-group = ''
+      ''${{
+        echo -n " Enter group name (if empty, use current group): "
+        read groupname
+
+        while IFS= read -r path; do
+          if [ -d "$path" ] || [ -f "$path" ]; then
+            if [ -z "$groupname" ]; then
+              groupname=$(id -gn)
             fi
-
-            ${pkgs.unar}/bin/unar "$f" -D -o "$name"
-
-            rm "$f"
-
-            cd "$name"
+            sudo chgrp -R "$groupname" "$path"
+          else
+            ${pkgs.libnotify}/bin/notify-send "Error:" "$path should not be changed its group."
           fi
+        done <<< "$fx"
+
+        lf -remote "send $id select $f"
+      }}'';
+    keybindings."<a-m>g" = "modify-group";
+
+    # Modify file to be executable
+    commands.modify-executable = ''
+      %{{
+        if [ -f "$f" ]; then
+          chmod +x "$f"
         fi
       }}'';
-    keybindings.df = "descompress-file";
+    keybindings."<a-m>e" = "modify-executable";
 
-    # Select all files and folders in the current directory
-    commands.select-all = ":unselect; invert";
-    keybindings."<c-a>" = "select-all";
-
+    # MARK: Sort
     # Sort files
     commands.sort-naturally = ''%{{lf -remote "send $id :set sortby natural; set info"}}'';
     keybindings.sn = "sort-naturally";
@@ -135,6 +166,7 @@
     commands.sort-by-extension = ''%{{lf -remote "send $id :set sortby ext; set info"}}'';
     keybindings.se = "sort-by-extension";
 
+    # MARK: Show
     # Show information about files
     commands.show-info = ''%{{lf -remote "send $id :set size:time"}}'';
     keybindings.zi = "show-info";
@@ -143,26 +175,15 @@
     commands.show-hidden = ''%{{lf -remote "send $id :set hidden!"}}'';
     keybindings.zh = "show-hidden";
 
-    # Invert order of files
+    # Show reverse (Invert order of files)
     commands.show-reverse = ''%{{lf -remote "send $id :set reverse!"}}'';
     keybindings.zr = "show-reverse";
-
-    # Open current file
-    commands.open = ''&{{${open}}}'';
-
-    # Open the current viewed file, ignoring the other selected files
-    commands.open-multiple = ''
-      &{{
-        while IFS= read -r f; do
-          ${open}
-        done <<< "$fx"
-      }}'';
-    keybindings."<c-right>" = "open-multiple";
 
     # Delete to the trash the current file
     commands.delete-trash = ''&${delete}'';
     keybindings."<delete><enter>" = "delete-trash";
 
+    # MARK: Trash
     # Delete multiple files
     commands.delete-multiple-trash = ''
       %{{
@@ -170,7 +191,7 @@
           ${delete}
         done <<< "$fx"
       }}'';
-    keybindings."<c-delete><enter>" = "delete-multiple-trash";
+    keybindings."<a-delete><enter>" = "delete-multiple-trash";
 
     # Using fzf to restore selected items from trash by id in the list
     commands.restore-trash = ''
@@ -204,6 +225,7 @@
       }}'';
     keybindings."<delete>a" = "empty-trash";
 
+    # MARK: Change
     # Rename current file
     commands.rename = ''
       %{{
@@ -274,30 +296,7 @@
 
         lf -remote "send $id select $new_path"
       }}'';
-    keybindings."<c-r>" = "rename-multiple";
-
-    # Create a symlink for each selected file
-    # The name of the symlink is the name of the folder and the name of the file
-    commands.create-symlink = ''
-      %{{
-        while IFS= read -r path; do
-          ln -s "$path" "$PWD/link_$(basename $(dirname "$path"))_$(basename "$path")"
-        done <<< "$fx"
-
-        lf -remote "send $id unselect"
-      }}'';
-    keybindings.cs = "create-symlink";
-
-    # When opening a file, hide the preview column
-    commands.on-redraw = ''
-      &{{
-        if [ $lf_width -le 110 ]; then
-          lf -remote "send $id :set preview false; set ratios 2:5"
-        else
-          lf -remote "send $id :set preview true; set ratios 1:2:3"
-        fi
-      }}
-    '';
+    keybindings."<a-r>" = "rename-multiple";
 
     # Change wallpaper with current file
     commands.change-wallpaper = ''
@@ -308,14 +307,99 @@
           ${pkgs.libnotify}/bin/notify-send "Error:" "Not an image file"
         fi
       }}'';
-    keybindings.cw = "change-wallpaper";
+    keybindings."<a-c>w" = "change-wallpaper";
 
-    # Remapping commands
-    keybindings."<c-c>" = "copy";
-    keybindings."<c-x>" = "cut";
-    keybindings."<c-v>" = "paste";
-    keybindings."<c-u>" = "unselect";
-    keybindings."<esc>" = "quit";
+    # MARK: Go to
+    # Go to the top of the current directory
+    keybindings."gt" = "top";
+
+    # Go to the bottom of the current directory
+    keybindings."gb" = "bottom";
+
+    # Go to the home directory
+    commands.go-to-home = "cd ~";
+    keybindings."gh" = "go-to-home";
+
+    # Go to the root directory
+    commands.go-to-root = "cd /";
+    keybindings."Gr" = "go-to-root";
+
+    # Go to the documents directory
+    commands.go-to-documents = "cd ${user.documents}";
+    keybindings."Gd" = "go-to-documents";
+
+    # Go to the downloads directory
+    commands.go-to-downloads = "cd ${user.downloads}";
+    keybindings."GD" = "go-to-downloads";
+
+    # Go to the media directory
+    commands.go-to-media = "cd ${user.media}";
+    keybindings."Gm" = "go-to-media";
+
+    # Go to the sync directory
+    commands.go-to-sync = "cd ${user.sync}";
+    keybindings."Gs" = "go-to-sync";
+
+    # Go to the nixos flake directory
+    commands.go-to-nixos = "cd ${user.flake}";
+    keybindings."Gn" = "go-to-nixos";
+
+    # Go to the nixos store directory
+    commands.go-to-nixos-store = "cd /nix/store";
+    keybindings."GN" = "go-to-nixos-store";
+
+    # MARK: Utilities
+    # Use unar to descompress files and delete the file
+    commands.descompress-file = ''
+      %{{
+        if [ "$(echo "$fx" | wc -l)" -gt 1 ]; then
+          foldername="dir_$RANDOM"
+
+          while IFS= read -r path; do
+            if ${pkgs.file}/bin/file "$path" | grep -qE "${accepted-files}"; then
+              name=$(basename "$path" | cut -d. -f1)
+
+              if [ -e "$foldername/$name" ]; then
+                name="$name$RANDOM"
+              fi
+
+              ${pkgs.unar}/bin/unar "$path" -D -o "$foldername/$name"
+
+              rm "$path"
+            fi
+          done <<< "$fx"
+
+          if [ -e "$foldername" ]; then
+            cd "$foldername"
+          fi
+        else
+          if ${pkgs.file}/bin/file "$f" | grep -qE "${accepted-files}"; then
+            name=$(basename "$f" | cut -d. -f1)
+
+            if [ -e "$name" ]; then
+              name="$name$RANDOM"
+            fi
+
+            ${pkgs.unar}/bin/unar "$f" -D -o "$name"
+
+            rm "$f"
+
+            cd "$name"
+          fi
+        fi
+      }}'';
+    keybindings.Uf = "descompress-file";
+    # Select all files and folders in the current directory
+    commands.select-all = ":unselect; invert";
+    keybindings.a = "select-all";
+
+    # MARK: Mapping commands
+    keybindings.c = "copy";
+    keybindings.x = "cut";
+    keybindings.v = "paste";
+    keybindings.u = "unselect";
+    keybindings.q = "quit";
+    keybindings.f = "search";
     keybindings."<space>" = "toggle";
   };
 }
