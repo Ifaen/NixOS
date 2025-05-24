@@ -8,6 +8,7 @@
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
+    warn-dirty = false; # Hide the warning when the store is dirty
   };
 
   networking.hostName = user.machine; # Hostname of system

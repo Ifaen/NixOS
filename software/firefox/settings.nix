@@ -5,6 +5,7 @@
 }: {
   user-manage.programs.firefox.profiles.${user.name}.settings =
     {
+      "app.update.auto" = false; # Disable auto update
       ## -- Downloads
       "browser.download.dir" = user.downloads;
       "browser.download.start_downloads_in_tmp_dir" = true;
@@ -17,10 +18,11 @@
       "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # Disables picture in picture option
       "browser.newtabpage.activity-stream.showSponsoredTopSites" = false; # It removes sponsored sites from the new tab page
       "browser.aboutConfig.showWarning" = false; # Disable warning when entering about:config
+      "browser.toolbars.bookmarks.visibility" = "never"; # Hides the bookmarks bar
 
       ## -- Features
       "app.normandy.first_run" = false; # Prevents firefox from noticing first time run
-      "pdfjs.disabled" = true; # Disable built in pdf viewer
+      "pdfjs.disabled" = false; # Enable built in pdf viewer
       "browser.shell.checkDefaultBrowser" = false; # Don’t check if Firefox is the default browser at startup
       "browser.translations.enable" = false; # Disable webpage translation
       "extensions.autoDisableScopes" = 0; # Automatically enable extensions
@@ -28,11 +30,6 @@
       "browser.urlbar.quicksuggest.dataCollection.enabled" = false;
       "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
       "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-
-      ## -- Performance
-      "app.update.auto" = false; # Disable auto update
-      "browser.startup.page" = 1; # Startup in homepage
-      "browser.sessionstore.resume_from_crash" = false; # Disable restore the session after a crash
 
       ## -- Privacy (Also performance I hope, since is not sending anything)
       "dom.security.https_only_mode" = true; # Configure HTTPS-Only Mode
@@ -53,5 +50,10 @@
     }
     // lib.optionalAttrs (user.machine == "desktop") {
       "layers.acceleration.disabled" = false; # Performance - Control hardware acceleration
+
+      ## -- Restore session
+      "browser.startup.page" = 3; # 0 = blank page, 1 = homepage, 3 = restore previous session
+      "browser.sessionstore.resume_session_once" = false; # If true, only restore the session once, if false, always restore session
+      "browser.sessionstore.resume_from_crash" = true; # Try to restore the session after a crash
     };
 }

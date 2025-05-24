@@ -2,10 +2,16 @@
   user-manage.hyprland = {
     source = "${user.cache}/wal/colors-hyprland.conf"; # Obtain color scheme from pywal
 
-    windowrulev2 = [
-      "suppressevent maximize, class:(.*)" # Prevent maximize event
-      "rounding 10, floating:1" # Rounding for all floating windows
-    ];
+    windowrulev2 =
+      [
+        "suppressevent maximize, class:(.*)" # Prevent maximize event
+        "rounding 10, floating:1" # Rounding for all floating windows
+      ]
+      # Spawn it using: nix run nixpkgs#libsForQt5.kruler & disown
+      ++ map (rule: rule + ", class:(org.kde.kruler)") [
+        "float"
+        "pin"
+      ];
 
     animations = {
       enabled = true;

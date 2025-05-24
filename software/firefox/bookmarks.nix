@@ -4,6 +4,32 @@
   ...
 }: {
   user-manage.programs.firefox.profiles.${user.name}.bookmarks = [
+    # MARK: Favorites
+    {
+      name = "Favorites";
+      bookmarks = [
+        {
+          name = "Youtube";
+          url = "https://www.youtube.com";
+        }
+        {
+          name = "Reddit";
+          keyword = "redd";
+          url = "https://www.reddit.com";
+        }
+        {
+          name = "Natomanga";
+          keyword = "manga";
+          url = "https://natomanga.com";
+        }
+        {
+          name = "ZonaTMO";
+          keyword = "tmo";
+          url = "https://zonatmo.com";
+        }
+      ];
+    }
+    # MARK: Nix Sites
     {
       name = "Nix sites";
       bookmarks = [
@@ -48,26 +74,7 @@
         }
       ];
     }
-    {
-      name = "Linux sites";
-      bookmarks = [
-        {
-          name = "kernel.org";
-          keyword = "kernel";
-          url = "https://www.kernel.org";
-        }
-      ];
-    }
-    {
-      name = "Firefox sites";
-      bookmarks = [
-        {
-          name = "Firefox Configuration";
-          keyword = "config";
-          url = "about:config";
-        }
-      ];
-    }
+    # MARK: Entertainment
     {
       name = "Entertainment";
       bookmarks = [
@@ -87,7 +94,7 @@
         }
         {
           name = "Natomanga";
-          keyword = "nato";
+          keyword = "manga";
           url = "https://natomanga.com";
         }
         {
@@ -102,6 +109,7 @@
         }
       ];
     }
+    # MARK: Social Media
     {
       name = "Social Media";
       bookmarks = [
@@ -140,6 +148,7 @@
         }
       ];
     }
+    # MARK: Project Management
     {
       name = "Project Management";
       bookmarks = [
@@ -159,9 +168,15 @@
         }
       ];
     }
+    # MARK: Tools
     {
       name = "Tools";
       bookmarks = [
+        {
+          name = "LanguageTool";
+          keyword = "lt";
+          url = "https://languagetool.org";
+        }
         {
           name = "ChatGPT";
           keyword = "gpt";
@@ -192,12 +207,20 @@
           url = "https://app.diagrams.net";
         }
         {
-          name = "Google Translate";
-          keyword = "trad";
-          url = "https://translate.google.com";
+          name = "Wappalyzer";
+          url = "https://www.wappalyzer.com";
+        }
+        {
+          name = "DevEnv";
+          url = "https://devenv.sh";
+        }
+        {
+          name = "DirEnv";
+          url = "https://direnv.net";
         }
       ];
     }
+    # MARK: Utilities
     {
       name = "Utilities";
       bookmarks = [
@@ -226,18 +249,19 @@
           name = "Proton Drive";
           url = "https://drive.proton.me";
         }
+      ];
+    }
+    # MARK: Apps
+    {
+      name = "Apps";
+      bookmarks = [
         {
-          # Cloud storage
-          name = "Google Drive";
-          url = "https://drive.google.com";
-        }
-        {
-          # Maps
-          name = "Google Maps";
-          url = "https://maps.google.com";
+          name = "Hyprland";
+          url = "https://hyprland.org";
         }
       ];
     }
+    # MARK: Services
     {
       name = "Services";
       bookmarks = [
@@ -247,11 +271,13 @@
           url = "http://localhost:8384";
         }
         {
-          name = "Google Firebase";
-          url = "https://firebase.google.com";
+          name = "Jellyfin";
+          keyword = "jelly";
+          url = "http://localhost:8096";
         }
       ];
     }
+    # MARK: E-Commerce
     {
       name = "E-Commerce";
       bookmarks = [
@@ -269,6 +295,7 @@
         }
       ];
     }
+    # MARK: Wallpapers
     {
       name = "Wallpapers";
       bookmarks = [
@@ -286,6 +313,7 @@
         }
       ];
     }
+    # MARK: Icons
     {
       name = "Icons";
       bookmarks = [
@@ -316,6 +344,7 @@
         }
       ];
     }
+    # MARK: Games Related
     {
       name = "Games Related";
       bookmarks = [
@@ -325,12 +354,95 @@
         }
       ];
     }
+    # MARK: Country Wide
     {
       name = "Country Wide";
       bookmarks = [
         {
           name = "AyudaMineduc";
           url = "https://ayudamineduc.cl";
+        }
+        {
+          name = "Banco de Chile";
+          url = "https://bancochile.cl";
+        }
+        {
+          name = "Banco Estado";
+          url = "https://www.bancoestado.cl";
+        }
+      ];
+    }
+    # MARK: Linux Sites
+    {
+      name = "Linux sites";
+      bookmarks = [
+        {
+          name = "kernel.org";
+          keyword = "kernel";
+          url = "https://www.kernel.org";
+        }
+      ];
+    }
+    # MARK: Firefox Sites
+    {
+      name = "Firefox sites";
+      bookmarks = [
+        {
+          name = "Firefox Configuration";
+          keyword = "config";
+          url = "about:config";
+        }
+      ];
+    }
+    # MARK: Google Sites
+    {
+      name = "Google Sites";
+      bookmarks = [
+        {
+          name = "Google Translate";
+          keyword = "trad";
+          url = "https://translate.google.com";
+        }
+        {
+          name = "Google Maps";
+          keyword = "gmaps";
+          url = "https://maps.google.com";
+        }
+        {
+          # Cloud storage
+          name = "Google Drive";
+          url = "https://drive.google.com";
+        }
+        {
+          # Cloud Database
+          name = "Google Firebase";
+          url = "https://firebase.google.com";
+        }
+      ];
+    }
+    # Arr Suite
+    {
+      name = "Arr Suite";
+      bookmarks = [
+        {
+          name = "Prowlarr";
+          url = "http://localhost:9696";
+        }
+        {
+          name = "Radarr";
+          url = "http://localhost:7878";
+        }
+        {
+          name = "Sonarr";
+          url = "http://localhost:8989";
+        }
+        {
+          name = "Lidarr";
+          url = "http://localhost:8686";
+        }
+        {
+          name = "Bazarr";
+          url = "http://localhost:6767";
         }
       ];
     }

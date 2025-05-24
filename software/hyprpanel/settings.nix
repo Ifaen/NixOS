@@ -16,6 +16,7 @@
       "class:vesktop" = "󰙯";
       "class:windsurf" = "󰨞";
       "class:brave-browser" = "󰊯"; # nf-md-google_chrome
+      "class:com.github.iwalton3.jellyfin-media-player" = "󰟞"; # nf-md-movie_roll
     };
 
     bar.workspaces.workspaces = 0;

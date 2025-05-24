@@ -22,6 +22,7 @@
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
       /services/arr_suite.nix # Arr Suite
+      /services/getty.nix # Autologin in TTY1
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
       /services/udisks2.nix # Allows applications to query and manipulate storage devices
@@ -38,7 +39,7 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
-      #
+      # Status bar
       /astal/config.nix
 
       # Web Browser
@@ -60,6 +61,7 @@
 
       # Terminal emulator
       /kitty/config.nix
+      /kitty/keybinds.nix
 
       # Terminal file manager
       /lf/config.nix
