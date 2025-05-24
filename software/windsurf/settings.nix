@@ -16,6 +16,8 @@
     #Formatting
     "editor.formatOnSave" = true;
     "editor.detectIndentation" = false;
+    "editor.insertSpaces" = true; # Replace tabs with spaces
+    "editor.tabSize" = 2; # Make the tab size to be 2 spaces
     # Change / Update the imports when file is moved / renamed
     "javascript.updateImportsOnFileMove.enabled" = "always";
     "typescript.updateImportsOnFileMove.enabled" = "always";

@@ -14,7 +14,7 @@
     bar.workspaces.spacing = 1.7;
     bar.workspaces.applicationIconMap = {
       "class:vesktop" = "󰙯";
-      "class:windsurf-url-handler" = "󰨞";
+      "class:windsurf" = "󰨞";
       "class:brave-browser" = "󰊯"; # nf-md-google_chrome
     };
 
