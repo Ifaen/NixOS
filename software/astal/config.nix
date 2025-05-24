@@ -4,6 +4,8 @@
   ...
 }: {
   user-manage = {
-    home.packages = [inputs.astal.packages.${user.system}.default];
+    home.packages = [
+      inputs.astal.packages.${user.system}.default
+    ];
   };
 }

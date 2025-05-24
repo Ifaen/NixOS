@@ -19,7 +19,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                 hexpand
                 halign={Gtk.Align.CENTER}
             >
-                Welcome to AGS!
+                Welcome to AGS! aaa
             </button>
             <box />
             <menubutton
