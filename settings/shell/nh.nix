@@ -9,17 +9,18 @@
     flake = user.flake;
   };
 
-  # Allow to use nh without typing os
+  # Modify nh commands to be opinionated
   user-manage.programs.zsh.initExtra = ''
     nh() {
-      if [[ ($1 == "switch" || $1 == "boot") && -z "$2" ]]; then
-        command nh os "$1" --ask
-      elif [[ $1 == "test" ]]; then
+      if [[ $1 == "test" ]]; then
+        sudo -n true 2>/dev/null || sudo -v || return 1
         command nh os test "''${@:2}"
       elif [[ $1 == "update" ]]; then
         command nh os test --update --ask
-      elif [[ $1 == "clean" && ($2 == "all" || $2 == "user" || $2 == "profile") && -z "$3" ]]; then
-        command nh clean "$2" --ask
+      elif [[ ($1 == "switch" || $1 == "boot") && -z "$2" ]]; then
+        command nh os "$1" --ask
+      elif [[ $1 == "clean" && -z "$2" ]]; then
+        command nh clean all --ask
       else
         command nh "$@"
       fi
