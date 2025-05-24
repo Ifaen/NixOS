@@ -46,6 +46,7 @@
       /firefox/extensions.nix
       /firefox/policies.nix
       /firefox/settings.nix
+      /firefox/style.nix
 
       # Window manager
       /hyprland/config.nix
