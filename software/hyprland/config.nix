@@ -46,7 +46,7 @@
     # Autostart Hyprland upon a new session shell is initialized in tt1
     programs.zsh.profileExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland
+        exec Hyprland &>/dev/null
       fi
     '';
   };

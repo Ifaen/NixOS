@@ -31,4 +31,6 @@
       ];
     };
   };
+
+  user-manage.hyprland.exec-once = ["hyprlock --immediate --immediate-render --no-fade-in"];
 }
