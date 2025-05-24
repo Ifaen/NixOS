@@ -39,7 +39,6 @@
       ''}";
       icon = "${user.flake}/software/hyprpanel/icon.png";
       categories = ["X-Rofi"];
-      terminal = false;
     };
   };
 }

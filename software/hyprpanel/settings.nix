@@ -18,6 +18,8 @@
       "class:brave-browser" = "󰊯"; # nf-md-google_chrome
     };
 
+    bar.workspaces.workspaces = 0;
+
     # Dashboard
     menus.dashboard.directories.enabled = false;
     menus.dashboard.stats.enable_gpu = false;

@@ -11,10 +11,10 @@
     xdg.desktopEntries."kitty" = {
       name = "Kitty Terminal";
       exec = "kitty";
-      categories = ["X-Rofi" "System" "TerminalEmulator"];
+      categories = ["X-Rofi"];
       icon = "kitty";
     };
 
-    hyprland.exec-once = ["[workspace 3 silent] kitty"];
+    hyprland.exec-once = ["[workspace 1 silent] kitty"];
   };
 }

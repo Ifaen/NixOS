@@ -1,6 +1,7 @@
 {
   lib,
   user,
+  pkgs,
   ...
 }: {
   programs.hyprland.enable = true; # Enable hyprland and install all its dependencies
@@ -22,23 +23,46 @@
 
           input = {
             follow_mouse = 1;
-            focus_on_close = true; # When set to 0, focus will shift to the next window candidate. When set to 1, focus will shift to the window under the cursor
+            focus_on_close = true; # When false, focus will shift to the next window candidate. When true, focus will shift to the window under the cursor
             float_switch_override_focus = 2;
-            accel_profile = "flat"; # Also useful for ydotool for consistency with `mousemove` command
+            accel_profile = "flat";
           };
 
-          misc.focus_on_activate = true;
+          misc = {
+            focus_on_activate = true;
+            initial_workspace_tracking = 2;
+          };
         }
         // lib.optionalAttrs (user.machine == "desktop") {
           monitor = [
             "HDMI-A-1, 1920x1080@60, 0x0, 1"
-            "DP-3, 1920x1080@60, 1920x0, 1"
+            "DP-3, 1920x1080@60, 1920x0, 1" # Second monitor to the left
           ];
 
           workspace = [
+            # First monitor
             "1, monitor:HDMI-A-1, default:1"
-            "9, monitor:DP-3"
-            "10, monitor:DP-3, default:1"
+            "2, monitor:HDMI-A-1"
+            "3, monitor:HDMI-A-1"
+            "4, monitor:HDMI-A-1"
+            "5, monitor:HDMI-A-1"
+            "6, monitor:HDMI-A-1"
+            "7, monitor:HDMI-A-1"
+            "8, monitor:HDMI-A-1"
+            "9, monitor:HDMI-A-1"
+            "10, monitor:HDMI-A-1"
+
+            # Second monitor
+            "11, monitor:DP-3, default:1"
+            "12, monitor:DP-3"
+            "13, monitor:DP-3"
+            "14, monitor:DP-3"
+            "15, monitor:DP-3"
+            "16, monitor:DP-3"
+            "17, monitor:DP-3"
+            "18, monitor:DP-3"
+            "19, monitor:DP-3"
+            "20, monitor:DP-3"
           ];
         };
     };

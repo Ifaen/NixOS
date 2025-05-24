@@ -41,8 +41,7 @@
     xdg.desktopEntries.waypaper = {
       name = "Waypaper";
       exec = "waypaper";
-      categories = ["X-Rofi" "Utility" "DesktopSettings"];
-      terminal = false;
+      categories = ["X-Rofi"];
       icon = "waypaper";
     };
 

@@ -13,10 +13,9 @@
     xdg.desktopEntries."com.obsproject.Studio" = {
       name = "OBS Studio";
       exec = "obs --disable-shutdown-check %U";
-      categories = ["X-Rofi" "Recorder" "AudioVideo"];
+      categories = ["X-Rofi"];
       icon = "com.obsproject.Studio";
       startupNotify = true;
-      terminal = false;
     };
   };
 }

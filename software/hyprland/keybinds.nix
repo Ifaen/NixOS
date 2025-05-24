@@ -38,8 +38,8 @@
     # Kill every instance, in case there was one
     pkill rofi
 
-    # Change to provided workspace
-    hyprctl dispatch workspace $1
+    # Move to numbered workspace within the same monitor
+    hyprctl dispatch workspace r~$1
 
     # Check if workspace is empty
     is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
@@ -54,14 +54,18 @@ in {
     input = {
       kb_layout = "latam"; # Keyboard layout
       kb_options = "compose:caps"; # Remap Caps-Lock key to be Compose Key
+      #drag_threshold = 10; # Amount of pixels before drag even triggers TODO: Reenable this when hyprland gets updated
     };
 
-    bind = [
-      ## -- Workspaces
-      # Change workspace with super + left and right buttons
-      "super, left, workspace, e-1"
-      "super, right, workspace, e+1"
+    #bindc = "ALT, mouse:272, togglefloating"; TODO: Reenable this when hyprland gets updated
 
+    bind = [
+      # MARK: Workspaces and Windows
+      # Move to another workspace within same monitor
+      "super, left, workspace, m-1"
+      "super, right, workspace, m+1"
+
+      # Move to numbered workspace within same monitor
       "super, 1, exec, ${workspace-change} 1"
       "super, 2, exec, ${workspace-change} 2"
       "super, 3, exec, ${workspace-change} 3"
@@ -70,61 +74,58 @@ in {
       "super, 6, exec, ${workspace-change} 6"
       "super, 7, exec, ${workspace-change} 7"
       "super, 8, exec, ${workspace-change} 8"
-      "super, 9, workspace, 9"
-      "super, 0, workspace, 10"
+      "super, 9, exec, ${workspace-change} 9"
+      "super, 0, exec, ${workspace-change} 10"
 
-      "super shift, 1, movetoworkspace, 1"
-      "super shift, 2, movetoworkspace, 2"
-      "super shift, 3, movetoworkspace, 3"
-      "super shift, 4, movetoworkspace, 4"
-      "super shift, 5, movetoworkspace, 5"
-      "super shift, 6, movetoworkspace, 6"
-      "super shift, 7, movetoworkspace, 7"
-      "super shift, 8, movetoworkspace, 8"
-      "super shift, 9, movetoworkspace, 9"
-      "super shift, 0, movetoworkspace, 10"
+      # Move window within same workspace (Also moves to the other monitor)
+      "super shift, up, movewindow, u"
+      "super shift, down, movewindow, d"
+      "super shift, left, movewindow, l"
+      "super shift, right, movewindow, r"
 
-      ## -- Windows
-      "super, q, killactive" # Kill active Window
-      #"SUPER SHIFT, Q, killwindow" # Enter kill selection mode
+      # Move window to numbered workspace within same monitor
+      "super shift, 1, movetoworkspace, r~1"
+      "super shift, 2, movetoworkspace, r~2"
+      "super shift, 3, movetoworkspace, r~3"
+      "super shift, 4, movetoworkspace, r~4"
+      "super shift, 5, movetoworkspace, r~5"
+      "super shift, 6, movetoworkspace, r~6"
+      "super shift, 7, movetoworkspace, r~7"
+      "super shift, 8, movetoworkspace, r~8"
+      "super shift, 9, movetoworkspace, r~9"
+      "super shift, 0, movetoworkspace, r~10"
 
-      # Change window with super + shift + arrow keys
-      "super shift, up, movefocus, u"
-      "super shift, down, movefocus, d"
-      "super shift, left, movefocus, l"
-      "super shift, right, movefocus, r"
+      # Change focus of window (Also changes focus to the other monitor)
+      "super alt, up, movefocus, u"
+      "super alt, down, movefocus, d"
+      "super alt, left, movefocus, l"
+      "super alt, right, movefocus, r"
 
-      # Move window in the same workspace with super + alt + arrow keys
-      "super alt, up, movewindow, u"
-      "super alt, down, movewindow, d"
-      "super alt, left, movewindow, l"
-      "super alt, right, movewindow, r"
-
-      # Change size of window with super + ctrl + arrow keys
+      # Resize active window (If there's more than one window in the workspace)
       "super control, up, resizeactive, 0 -10"
       "super control, down, resizeactive, 0 10"
       "super control, left, resizeactive, -10 0"
       "super control, right, resizeactive, 10 0"
 
-      # Change state of window # TODO: https://www.reddit.com/r/hyprland/comments/12zesk9/switching_windows_between_monitor_screens/
-      "super shift, o, togglesplit"
-      "super shift, v, togglefloating"
-
-      ## -- Utilities
-      "super, w, exec, pkill rofi || ${open-rofi}"
-
       # Screenshots
-      ", print, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copy area"
-      "shift, print, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copysave area"
+      "super, s, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copy area" # Copy only
+      ", print, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copysave area" # Copy and save
 
       # Change wallpaper with super + up and down buttons
       "super, page_up, exec, ${on-wallpaper-change} up"
       "super, page_down, exec, ${on-wallpaper-change} down"
+
+      # MARK: Others
+      "super, q, killactive" # Kill active Window
+      #"SUPER SHIFT, Q, killwindow" # Enter kill selection mode
+      "super, w, exec, pkill rofi || ${open-rofi}" # Open Rofi
+      "super, o, togglesplit" # Change orientation of window
+      "super, v, togglefloating" # Toggle floating attribute of window
     ];
 
     bindm = [
-      "SUPER, mouse:272, movewindow" # SUPER + LMB
-      "SUPER, mouse:273, resizewindow" # SUPER + RMB
+      "super, mouse:272, movewindow" # SUPER + LMB
+      "super, mouse:273, resizewindow" # SUPER + RMB
     ];
   };
 }

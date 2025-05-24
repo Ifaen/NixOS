@@ -16,17 +16,9 @@
     xdg.desktopEntries.firefox = {
       name = "Firefox";
       exec = "firefox --name firefox %U";
-      terminal = false;
       icon = "firefox";
-      categories = ["X-Rofi" "Network" "WebBrowser"];
-      mimeType = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/vnd.mozilla.xul+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
+      categories = ["X-Rofi"];
+      mimeType = ["text/html" "text/xml" "application/xhtml+xml" "application/vnd.mozilla.xul+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
     };
 
     hyprland.windowrulev2 = map (rule: rule + ", title:(Picture-in-Picture)") [

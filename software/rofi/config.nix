@@ -16,7 +16,7 @@
 
     hyprland.windowrulev2 = map (rule: rule + ", class:(Rofi)") [
       "float"
-      "stayfocused"
+      "pin"
     ];
   };
 }
