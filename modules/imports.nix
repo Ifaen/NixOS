@@ -39,8 +39,7 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
-      # Status bar
-      /astal/config.nix
+      /astal/config.nix # Status bar
 
       # Web Browser
       /firefox/bookmarks.nix
@@ -69,12 +68,9 @@
       /lf/previewer.nix
       /lf/unbinds.nix
 
-      # Dynamic color palettes from wallpapers
-      /pywal/config.nix
+      /pywal/config.nix # Dynamic color palettes from wallpapers
 
-      # App / Menu Launcher
-      /rofi/config.nix
-      /rofi/theme.nix
+      /rofi/config.nix # App / Menu Launcher
 
       # File manager
       /thunar/config.nix
