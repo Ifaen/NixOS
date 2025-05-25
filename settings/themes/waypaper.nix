@@ -20,6 +20,8 @@
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
         ${pkgs.pywal}/bin/wal -q -n -i $1
 
+        cp $1 ${user.cache}/wal/current-wallpaper
+
         # For Vesktop
         mkdir -p "${user.config}/vesktop/themes" # Create folder if doesn't exist
         cp ${user.cache}/wal/colors-discord.css ${user.config}/vesktop/themes/pywal-vencord.theme.css # Copy file

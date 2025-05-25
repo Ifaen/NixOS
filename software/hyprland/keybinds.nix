@@ -29,6 +29,8 @@
 
     ${pkgs.waypaper}/bin/waypaper --wallpaper $directory_wallpaper/$new_wallpaper
 
+    cp $directory_wallpaper/$new_wallpaper ~/.cache/wal/current-wallpaper
+
     ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
   ''}";
 
