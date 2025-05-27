@@ -1,5 +1,5 @@
-{...}: {
-  user-manage.programs.vscode.userSettings = {
+{user, ...}: {
+  user-manage.programs.vscode.profiles.${user.name}.userSettings = {
     # APPAREANCE
     "editor.guides.bracketPairs" = true; # Colorize bracket pairs
     "workbench.iconTheme" = "material-icon-theme"; # Icons

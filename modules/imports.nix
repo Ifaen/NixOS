@@ -77,10 +77,10 @@
       /thunar/preferences.nix
 
       # Code editor
-      /windsurf/config.nix
-      /windsurf/extensions.nix
-      /windsurf/keybinds.nix
-      /windsurf/settings.nix
+      /vscode/config.nix
+      /vscode/extensions.nix
+      /vscode/keybinds.nix
+      /vscode/settings.nix
 
       # XDG configuration
       /xdg/config.nix

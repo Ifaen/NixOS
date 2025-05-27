@@ -1,18 +1,16 @@
 {
+  user,
   pkgs,
   unstable-pkgs,
   ...
 }: {
   user-manage = {
-    # To use Windsurf (syncing with the VSCode configuration)
-    home.packages = [unstable-pkgs.windsurf];
-
+    home.packages = [pkgs.windsurf]; # Using windsurf instead and sync with vscode settings and extensions
+    
     programs.vscode = {
       enable = true;
-      enableUpdateCheck = false; # Whether to prevent from showing message of "update is available"
+      profiles.default.enableUpdateCheck = false; # Whether to prevent from showing message of "update is available"
       mutableExtensionsDir = false; # Whether extensions can be installed or updated manually or by Visual Studio Code
-
-      #package = pkgs.windsurf; # FIXME: Wait until next home-manager update
     };
 
     xdg.desktopEntries.windsurf = {

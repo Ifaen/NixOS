@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  user,
+  pkgs,
+  ...
+}: {
   user-manage = {
     home.packages = [pkgs.alejandra];
 
-    programs.vscode.extensions = with pkgs.vscode-extensions;
+    programs.vscode.profiles.${user.name}.extensions = with pkgs.vscode-extensions;
       [
         jnoortheen.nix-ide # Nix language support
         kamadorueda.alejandra # Nix formatting plugin
