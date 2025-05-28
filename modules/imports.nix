@@ -21,7 +21,6 @@
       /security/networking.nix # Networking
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
-      /services/arr_suite.nix # Arr Suite
       /services/getty.nix # Autologin in TTY1
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
@@ -81,6 +80,7 @@
       /vscode/extensions.nix
       /vscode/keybinds.nix
       /vscode/settings.nix
+      /vscode/snippets.nix
 
       # XDG configuration
       /xdg/config.nix
@@ -99,7 +99,7 @@
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
-      ../settings/services/jellyfin.nix # Media server
+      ../settings/services/ollama.nix # Ollama
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
 
       ../settings/security/protonvpn.nix # VPN GUI
@@ -115,6 +115,11 @@
       # Dynamic keybinds service
       ../software/xremap/config.nix
       ../software/xremap/keybinds.nix
+    ]
+    ++ lib.optionals (user.machine == "home-server") [
+      # TODO: Make a Home Server
+      #../settings/services/arr_suite.nix # Arr Suite
+      #../settings/services/jellyfin.nix # Media server
     ];
 
   config = lib.optionalAttrs (user.machine == "desktop") {
