@@ -5,6 +5,8 @@
     enable = true;
 
     settings = {
+      source = "${user.cache}/wal/colors-hyprland.conf";
+
       general = {
         disable_loading_bar = true;
         grace = 10; # Unlock upon mouse movement within 10 seconds after lock
@@ -21,9 +23,9 @@
           monitor = "";
           dots_center = true;
           fade_on_empty = false;
-          font_color = "rgb(202, 211, 245)";
-          inner_color = "rgb(91, 96, 120)";
-          outer_color = "rgb(24, 25, 38)";
+          font_color = "rgb($color5)";
+          inner_color = "rgb($color1)";
+          outer_color = "rgb($color5)";
           outline_thickness = 5;
           placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
           shadow_passes = 2;
