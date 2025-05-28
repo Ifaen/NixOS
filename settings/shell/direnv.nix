@@ -8,7 +8,7 @@
     };
 
     # Allows to use direnv with zsh
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       eval "$(direnv hook zsh)"
     '';
 

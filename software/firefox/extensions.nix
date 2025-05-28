@@ -34,7 +34,7 @@
     });
 in {
   # Mostly using the descriptions of Rycee firefox-addons repository
-  user-manage.programs.firefox.profiles.${user.name}.extensions =
+  user-manage.programs.firefox.profiles.${user.name}.extensions.packages =
     # Getting addons from Rycee NUR
     (with pkgs.nur.repos.rycee.firefox-addons; [
       darkreader # Dark mode for every website

@@ -10,7 +10,7 @@
   };
 
   # Modify nh commands to be opinionated
-  user-manage.programs.zsh.initExtra = ''
+  user-manage.programs.zsh.initContent = ''
     nh() {
       if [[ $1 == "test" ]]; then
         sudo -n true 2>/dev/null || sudo -v || return 1

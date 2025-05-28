@@ -3,7 +3,10 @@
   user,
   ...
 }: {
-  user-manage.programs.firefox.profiles.${user.name}.bookmarks = [
+  user-manage.programs.firefox.profiles.${user.name}.bookmarks = {
+    force = true;
+
+    settings = [
     # MARK: Favorites
     {
       name = "Favorites";

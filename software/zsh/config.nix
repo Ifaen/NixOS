@@ -19,7 +19,7 @@
     };
 
     # Force nix-shell to use the $SHELL variable instead to default to bash
-    initExtra = ''
+    initContent = ''
       nix-shell() {
         command nix-shell "$@" --run $SHELL
       }

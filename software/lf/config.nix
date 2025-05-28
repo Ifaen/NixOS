@@ -21,7 +21,7 @@
 
     # lf to navigate, lfc to navigate and change directory on exit
     programs.zsh = {
-      initExtra = ''lf() { cd "$(command lf -print-last-dir "$@")" }'';
+      initContent = ''lf() { cd "$(command lf -print-last-dir "$@")" }'';
 
       shellAliases.lfs = "command lf"; # lf with default behaviour
     };

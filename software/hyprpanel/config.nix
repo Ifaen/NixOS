@@ -12,7 +12,7 @@
       hyprland.enable = true; # Autostart with hyprland
       overwrite.enable = true;
 
-      layout = {
+      settings.layout = {
         "bar.layouts" = {
           "0" = {
             left = ["dashboard" "clock" "hypridle"];

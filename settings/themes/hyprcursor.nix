@@ -1,23 +1,16 @@
-{pkgs, ...}: let
-  cursor-name = "Bibata_Ghost";
-  cursor-size = 40;
-in {
-  user-manage = {
-    hyprland.env = [
-      "HYPRCURSOR_THEME, ${cursor-name}"
-      "HYPRCURSOR_SIZE, ${toString cursor-size}"
-    ];
+{
+  pkgs,
+  ...
+}: {
+  user-manage.home.pointerCursor = {
+    enable = true;
 
-    home = {
-      packages = [pkgs.hyprcursor];
+    package = pkgs.borealis-cursors;
 
-      pointerCursor = {
-        gtk.enable = true;
+    name = "Borealis-cursors";
 
-        package = pkgs.bibata-cursors-translucent;
-        name = cursor-name;
-        size = cursor-size;
-      };
-    };
+    hyprcursor.enable = true; # Whether to enable hyprcursor config generation. Supported by Qt, Chromium, Electron and Hypr Ecosystem
+
+    gtk.enable = true; # Whether to enable gtk config generation for home.pointerCursor. Gtk does not support hyprcursor currently.
   };
 }
