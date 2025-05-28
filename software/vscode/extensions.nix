@@ -13,20 +13,8 @@
         esbenp.prettier-vscode # General formatting plugin
         pkief.material-icon-theme # Icons
       ])
-      ++
-      # Extensions obtained directly from the vscode marketplace
       # NOTE: dlasagno.wal-theme is installed manually because the wal.json file is incompatible with declarative configuration
-      (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        /*
-        {
-          publisher = "";
-          name = "";
-          version = "";
-          sha256 = lib.fakeSha256;
-        }
-        */
-      ])
-      # Extensions built from source
+      # Extensions built from source. Used sha256=lib.fakeSha256; to get the correct sha256
       ++ [
         # Continue extension. Allows to run local Ollama models
         pkgs.vscode-utils.buildVscodeMarketplaceExtension
@@ -38,15 +26,12 @@
             sha256 = "sha256-P4rhoj4Juag7cfB9Ca8eRmHRA10Rb4f7y5bNGgVZt+E=";
             arch = "linux-x64";
           };
-          nativeBuildInputs = [
-            pkgs.autoPatchelfHook
-          ];
+          # Patch obtained from: https://github.com/continuedev/continue/issues/821
+          nativeBuildInputs = [pkgs.autoPatchelfHook];
           buildInputs = [pkgs.stdenv.cc.cc.lib];
         }
       ];
 
-    programs.vscode.profiles.default.enableAutoUpdateCheck = false; # Whether to prevent auto update messages
+    programs.vscode.profiles.default.enableExtensionUpdateCheck = false; # Whether to prevent auto update messages
   };
-
-  #programs.nix-ld.enable = true;
 }
