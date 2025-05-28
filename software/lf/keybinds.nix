@@ -212,11 +212,9 @@
 
         # Delete the selected files if the user confirms
         if [ "$selection" == "y" ] || [ "$selection" == "Y" ]; then
-          rm -rf ${user.data}/Trash/files/*
-          rm -rf ${user.data}/Trash/info/*
+          rm -rf ${user.data}/Trash/*
 
           ${pkgs.libnotify}/bin/notify-send "Trash cleared successfully"
-
         else
           ${pkgs.libnotify}/bin/notify-send "Operation cancelled"
         fi
@@ -247,7 +245,7 @@
         elif [ -e "$new_name" ]; then
           ${pkgs.libnotify}/bin/notify-send "Error:" "The file '$new_name' already exists. Choose a different name."
           lf -remote "send $id select $f"
-      
+        
         # Announce the new name
         else
           ${pkgs.libnotify}/bin/notify-send "Renamed '$(basename $f)' to '$new_name'."
