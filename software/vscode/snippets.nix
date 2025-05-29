@@ -4,7 +4,7 @@
       template = {
         body = [
           "{...}: {"
-          " $0"
+          "  $0"
           "}"
         ];
         description = "Simple template for new .nix files";

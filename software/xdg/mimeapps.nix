@@ -14,9 +14,9 @@
 
       # To find .desktop files, do "echo $XDG_DATA_DIRS"
       defaultApplications = {
-        "application/json" = "windsurf.desktop";
-        "application/x-httpd-php" = "windsurf.desktop";
-        "application/xml" = "windsurf.desktop";
+        "application/json" = "code.desktop";
+        "application/x-httpd-php" = "code.desktop";
+        "application/xml" = "code.desktop";
 
         "application/xhtml+xml" = "firefox.desktop";
         "scheme-handler/http" = "firefox.desktop";
