@@ -57,6 +57,8 @@
       /hyprpanel/config.nix
       /hyprpanel/settings.nix
 
+      /kando/config.nix # App / Menu Launcher
+
       # Terminal emulator
       /kitty/config.nix
       /kitty/keybinds.nix
