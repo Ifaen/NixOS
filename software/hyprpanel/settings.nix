@@ -29,13 +29,15 @@
     notifications.timeout = 2000;
 
     theme.font = {
-      #name = "FiraCode NF";
+      name = "FiraCode Nerd Font";
       size = "16px";
     };
 
-    wallpaper = {
+    /*
+       wallpaper = {
       enable = true;
       pywal = true;
     };
+    */
   };
 }
