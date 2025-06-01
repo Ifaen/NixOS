@@ -3,14 +3,7 @@
   user,
   ...
 }: {
-  user-manage = let
-    hexperiment = pkgs.fetchFromGitHub {
-      owner = "kando-menu";
-      repo = "menu-themes";
-      rev = "39ce2639a7413d5ccf3b50a2b87e58727eaf2ad9";
-      sha256 = "sha256-cdx4YX73nH3tEisR0p4xQU889Dz4kpgGr68JARbIXp4=";
-    };
-  in {
+  user-manage = {
     home.packages = [
       pkgs.kando
       pkgs.gnomeExtensions.kando-integration # Allows kando to work in wayland
@@ -27,9 +20,25 @@
         "noborder"
         "noanim"
         "opaque"
+        "stayfocused"
       ];
+
+      bind = ["super, super_l, exec, kando --menu 'HexMenu'"];
+      bindo = ["super, super_l, exec, nothing"]; # On purpose to have a way to only allow menu on short press
     };
 
-    xdg.configFile."kando/menu-themes/hexperiment".source = "${hexperiment}/themes/hexperiment"; # Theme for kando
+    # Symlink files
+    xdg.configFile = {
+      # Hexperiment
+      "kando/menu-themes/hexperiment/theme.json5".source = ./menu-themes/hexperiment/theme.json5;
+      "kando/menu-themes/hexperiment/REUSE.toml".source = ./menu-themes/hexperiment/REUSE.toml;
+      "kando/menu-themes/hexperiment/border.svg".source = ./menu-themes/hexperiment/border.svg;
+      "kando/menu-themes/hexperiment/preview.jpg".source = ./menu-themes/hexperiment/preview.jpg;
+      # This way allows to work with pywal while being compatible with nixos
+      "kando/menu-themes/hexperiment/theme.css".text = ''
+        @import "${user.cache}/wal/colors-kando.css";
+        @import "${user.flake}/software/kando/menu-themes/hexperiment/theme.css";
+      '';
+    };
   };
 }

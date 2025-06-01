@@ -29,6 +29,9 @@
         # For Firefox
         ${pkgs.pywalfox-native}/bin/pywalfox update
 
+        # For Kando
+        ${pkgs.kando}/bin/kando --reload-menu-theme
+
         pkill waypaper
       ''} $wallpaper
       show_hidden = False

@@ -7,6 +7,7 @@
       "wal/templates/colors-discord.css".source = ./templates/colors-discord.css; # For Vencord
       "wal/templates/colors-hyprland.conf".source = ./templates/colors-hyprland.conf; # For Hyprland
       "wal/templates/colors-rofi.rasi".source = ./templates/colors-rofi.rasi; # For Rofi
+      "wal/templates/colors-kando.css".source = ./templates/colors-kando.css; # For Kando
     };
   };
 }

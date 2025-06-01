@@ -1,0 +1,7 @@
+* {{
+  --background-color:{background};
+  --text-color:{foreground};
+  --line-color:{color5};
+  --glow-color:rgba({color1.rgb}, 0.85);
+  --hover-color:{color2};
+}}
