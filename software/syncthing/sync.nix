@@ -4,7 +4,7 @@
   ...
 }: {
   services.syncthing.settings = {
-    devices."mobile".id = "FDD6P6K-OV6LVEX-BPUKI6F-2CCANDX-KAHGOSV-5JTU4BC-NISJSGW-3YES5QX";
+    devices."mobile".id = "ROD5HSV-O44ZROZ-JONTSKH-M5TODM6-3NLS5RR-YOSQUEJ-JIWCKM4-LJUFDQM";
 
     folders = {
       "MoveTo" = {
