@@ -8,8 +8,9 @@
       };
     };
 
-    xdg.desktopEntries."kitty" = {
+    xdg.desktopEntries.kitty = {
       name = "Kitty Terminal";
+      genericName = "Terminal";
       exec = "kitty";
       categories = ["X-Rofi"];
       icon = "kitty";

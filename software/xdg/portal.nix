@@ -43,12 +43,9 @@
         "center 1"
         "size <60% <50%"
       ];
-      applyRulesToConditions = conditions:
-        builtins.concatLists (map
-          (condition: map (rule: rule + ", " + condition) commonRules)
-          conditions);
-    in
       # Apply common rules to all windows that match the following conditions
+      applyRulesToConditions = conditions: builtins.concatLists (map (condition: map (rule: rule + ", " + condition) commonRules) conditions);
+    in
       applyRulesToConditions [
         "class:(.*dg-desktop-portal.*)"
         "title:(Save Video)"

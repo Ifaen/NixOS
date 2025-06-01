@@ -29,7 +29,7 @@
           };
 
           misc = {
-            focus_on_activate = true;
+            focus_on_activate = false; # Whether Hyprland should focus an app that requests to be focused (an activate request)
             initial_workspace_tracking = 2;
           };
         }
