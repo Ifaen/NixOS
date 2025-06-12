@@ -51,10 +51,6 @@
       /hyprland/keybinds.nix
       /hyprland/style.nix
 
-      # Status bar
-      /hyprpanel/config.nix
-      /hyprpanel/settings.nix
-
       /kando/config.nix # App / Menu Launcher
 
       # Terminal emulator
@@ -125,7 +121,6 @@
   config = lib.optionalAttrs (user.machine == "desktop") {
     user-manage.imports = [
       inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
-      inputs.hyprpanel.homeManagerModules.hyprpanel # Import hyprpanel home-manager modules
     ];
   };
 }
