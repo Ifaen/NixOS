@@ -2,5 +2,9 @@
   "files.associations": {
     "*.css": "less"
   },
+  "files.exclude": {
+    "**/.vscode": true,
+    "**/flake.lock": true
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

@@ -8,9 +8,9 @@
     accepted-files = "zip|gzip|bzip2|xz|rar|7z|lzh|tar";
     open = ''
       case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")" in
-        text/* | inode/x-empty | application/json) ${pkgs.vscode}/bin/code "$f" & ;;
-        video/*) ${pkgs.mpv}/bin/mpv "$f" & ;;
-        image/*) ${pkgs.imv}/bin/imv "$f" & ;;
+        text/* | inode/x-empty | application/json) windsurf "$f" & ;;
+        video/*) mpv "$f" & ;;
+        image/*) imv "$f" & ;;
         *) ${pkgs.xdg-utils}/bin/xdg-open "$f" & ;;
       esac'';
     delete = ''${pkgs.trashy}/bin/trash put "$f"'';
@@ -245,7 +245,7 @@
         elif [ -e "$new_name" ]; then
           ${pkgs.libnotify}/bin/notify-send "Error:" "The file '$new_name' already exists. Choose a different name."
           lf -remote "send $id select $f"
-      
+          
         # Announce the new name
         else
           ${pkgs.libnotify}/bin/notify-send "Renamed '$(basename $f)' to '$new_name'."

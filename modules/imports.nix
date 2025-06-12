@@ -72,11 +72,11 @@
       /thunar/preferences.nix
 
       # Code editor
-      /vscode/config.nix
-      /vscode/extensions.nix
-      /vscode/keybinds.nix
-      /vscode/settings.nix
-      /vscode/snippets.nix
+      /windsurf/config.nix
+      /windsurf/extensions.nix
+      /windsurf/keybinds.nix
+      /windsurf/settings.nix
+      /windsurf/snippets.nix
 
       # XDG configuration
       /xdg/config.nix
@@ -95,7 +95,6 @@
     ++ lib.optionals (user.machine == "desktop") [
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
-      ../settings/services/ollama.nix # Ollama
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
 
       ../settings/security/protonvpn.nix # VPN GUI
