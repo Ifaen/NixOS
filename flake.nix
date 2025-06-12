@@ -12,7 +12,6 @@
       fullname = "Santiago Fuentes";
       name = "sfuentes";
       mail = "dev@sfuentes.cl";
-      system = "x86_64-linux";
 
       # -- Directories
       home = "/home/${user.name}";
