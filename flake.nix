@@ -8,54 +8,47 @@
   };
 
   outputs = {self, ...} @ inputs: let
-    user = {
-      fullname = "Santiago Fuentes";
-      name = "sfuentes";
-      mail = "dev@sfuentes.cl";
+    systemFor = hostname:
+      inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
 
-      # -- Directories
-      home = "/home/${user.name}";
-      flake = "${user.home}/NixOS";
-      documents = "${user.home}/Documents";
-      downloads = "${user.home}/Downloads";
-      media = "${user.home}/Media";
-      sync = "${user.home}/Sync";
-      wallpapers = "${user.media}/Wallpapers";
-      recordings = "${user.media}/Recordings";
-      screenshots = "${user.media}/Screenshots";
-      cache = "${user.home}/.cache";
-      config = "${user.home}/.config";
-      data = "${user.home}/.local/share";
-      state = "${user.home}/.local/state";
-    };
+          user = rec {
+            fullname = "Santiago Fuentes";
+            name = "sfuentes";
+            mail = "dev@sfuentes.cl";
+            inherit hostname;
 
-    modules = map (path: ./modules + path) [
-      /imports.nix
-      /packages.nix
-      /system.nix
-      /user.nix
-    ];
+            # -- Directories
+            home = "/home/${name}";
+            flake = "${home}/NixOS";
+            documents = "${home}/Documents";
+            downloads = "${home}/Downloads";
+            media = "${home}/Media";
+            sync = "${home}/Sync";
+            wallpapers = "${media}/Wallpapers";
+            recordings = "${media}/Recordings";
+            screenshots = "${media}/Screenshots";
+            cache = "${home}/.cache";
+            config = "${home}/.config";
+            data = "${home}/.local/share";
+            state = "${home}/.local/state";
+          };
+        };
+
+        modules = [
+          ./hosts/${hostname}/configuration.nix # TODO: Have toggles of each module for a more modular configuration, replacing imports.nix
+          ./hosts/${hostname}/hardware-configuration.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+          ./modules/imports.nix # TODO: Remove this after the previous TODO is done
+          ./modules/packages.nix
+          ./modules/system.nix
+          ./modules/user.nix
+        ];
+      };
   in {
     nixosConfigurations = {
-      desktop = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-
-          user = user // {machine = "desktop";};
-        };
-
-        inherit modules;
-      };
-
-      notebook = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-
-          user = user // {machine = "notebook";};
-        };
-
-        inherit modules;
-      };
+      desktop = systemFor "desktop";
+      notebook = systemFor "notebook";
     };
   };
 }
