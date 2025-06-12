@@ -79,7 +79,7 @@
         };
       };
     }
-    // lib.optionalAttrs (user.machine == "desktop") {
+    // lib.optionalAttrs (user.hostname == "desktop") {
       hyprland = {
         exec-once = ["[workspace 11 silent] ${pkgs.spotify}/bin/spotify"];
 

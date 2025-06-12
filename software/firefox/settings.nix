@@ -48,7 +48,7 @@
       "privacy.trackingprotection.cryptomining.enabled" = true;
       "privacy.trackingprotection.fingerprinting.enabled" = true;
     }
-    // lib.optionalAttrs (user.machine == "desktop") {
+    // lib.optionalAttrs (user.hostname == "desktop") {
       "layers.acceleration.disabled" = false; # Performance - Control hardware acceleration
 
       ## -- Restore session

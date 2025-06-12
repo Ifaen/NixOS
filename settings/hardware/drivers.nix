@@ -11,7 +11,7 @@
     {
       supportedFilesystems = ["ntfs"]; # Allow the support for windows file system
     }
-    // lib.optionalAttrs (user.machine == "desktop") {
+    // lib.optionalAttrs (user.hostname == "desktop") {
       kernelModules = ["amdgpu"]; # To boot kernel with amd module
 
       kernelParams = ["intel_pstate=active"];
@@ -23,12 +23,12 @@
 
       enable32Bit = true; # Support for 32 bits applications
     }
-    // lib.optionalAttrs (user.machine == "desktop") {
+    // lib.optionalAttrs (user.hostname == "desktop") {
       extraPackages = [pkgs.amdvlk];
 
       extraPackages32 = [pkgs.driversi686Linux.amdvlk];
     }
-    // lib.optionalAttrs (user.machine == "notebook") {
+    // lib.optionalAttrs (user.hostname == "notebook") {
       # TODO In NixOS Desktop, check if intel igpu is enabled, if not, these drivers are not needed there.
       extraPackages = [
         pkgs.intel-media-driver

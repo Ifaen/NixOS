@@ -11,7 +11,7 @@
     warn-dirty = false; # Hide the warning when the store is dirty
   };
 
-  networking.hostName = user.machine; # Hostname of system
+  networking.hostName = user.hostname; # Hostname of system
 
   users = {
     mutableUsers = false; # Prevents to create or modify new users besides the declared
@@ -29,7 +29,7 @@
 
           efiSupport = true;
         }
-        // lib.optionalAttrs (user.machine == "desktop") {
+        // lib.optionalAttrs (user.hostname == "desktop") {
           useOSProber = true; # Append entries for other OSs detected by os-prober
         };
 

@@ -33,7 +33,7 @@
             initial_workspace_tracking = 2;
           };
         }
-        // lib.optionalAttrs (user.machine == "desktop") {
+        // lib.optionalAttrs (user.hostname == "desktop") {
           monitor = [
             "HDMI-A-1, 1920x1080@60, 0x0, 1"
             "DP-3, 1920x1080@60, 1920x0, 1" # Second monitor to the left

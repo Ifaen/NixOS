@@ -88,11 +88,10 @@
       /zsh/config.nix
       /zsh/tools.nix
     ]
-    ++ lib.optionals (user.machine == "notebook") [
-      ../settings/hardware/notebook.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+    ++ lib.optionals (user.hostname == "notebook") [
       ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
     ]
-    ++ lib.optionals (user.machine == "desktop") [
+    ++ lib.optionals (user.hostname == "desktop") [
       ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
 
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
@@ -111,13 +110,13 @@
       ../software/xremap/config.nix
       ../software/xremap/keybinds.nix
     ]
-    ++ lib.optionals (user.machine == "home-server") [
+    ++ lib.optionals (user.hostname == "home-server") [
       # TODO: Make a Home Server
       #../settings/services/arr_suite.nix # Arr Suite
       #../settings/services/jellyfin.nix # Media server
     ];
 
-  config = lib.optionalAttrs (user.machine == "desktop") {
+  config = lib.optionalAttrs (user.hostname == "desktop") {
     user-manage.imports = [
       inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
     ];
