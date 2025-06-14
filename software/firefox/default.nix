@@ -21,6 +21,15 @@
       mimeType = ["text/html" "text/xml" "application/xhtml+xml" "application/vnd.mozilla.xul+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
     };
 
+    xdg.mimeApps.defaultApplications = {
+      "application/xhtml+xml" = "firefox.desktop";
+      "scheme-handler/http" = "firefox.desktop";
+      "scheme-handler/https" = "firefox.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+    };
+
     hyprland.windowrulev2 = map (rule: rule + ", title:(Picture-in-Picture)") [
       "center 1"
       "float"
@@ -29,4 +38,12 @@
       "size 30% 30%"
     ];
   };
+
+  imports = [
+    ./bookmarks.nix
+    ./extensions.nix
+    ./policies.nix
+    ./settings.nix
+    ./style.nix
+  ];
 }

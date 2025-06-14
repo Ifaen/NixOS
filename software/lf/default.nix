@@ -29,4 +29,10 @@
     # Icons
     xdg.configFile."lf/icons".source = ./icons.txt;
   };
+
+  imports = [
+    ./previewer.nix
+    ./keybinds.nix
+    ./unbinds.nix
+  ];
 }

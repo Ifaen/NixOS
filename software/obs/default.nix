@@ -18,4 +18,6 @@
       startupNotify = true;
     };
   };
+
+  imports = [./settings.nix];
 }

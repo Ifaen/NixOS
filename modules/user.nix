@@ -5,9 +5,9 @@
     description = user.fullname;
 
     extraGroups = [
-      "networkmanager"
-      "wheel"
-      "media"
+      "networkmanager" # To allow NetworkManager to connect to the internet
+      "wheel" # To allow sudo
+      "storage" # For disk management in file managers
     ];
 
     # NOTE: To generate a hashed password run `mkpasswd`
@@ -23,6 +23,8 @@
       username = user.name;
       homeDirectory = user.home;
     };
+
+    xdg.enable = true;
   };
 
   time = {

@@ -18,4 +18,6 @@
 
     hyprland.exec-once = ["[workspace 1 silent] kitty"];
   };
+
+  imports = [./keybinds.nix];
 }

@@ -22,4 +22,6 @@
       21027 # UDP for discovery
     ];
   };
+
+  imports = [./sync.nix];
 }

@@ -27,4 +27,6 @@
     # Workaround to reset the service of xremap after logout of hyprland
     hyprland.exec-once = ["systemctl --user restart xremap"];
   };
+
+  imports = [./keybinds.nix];
 }

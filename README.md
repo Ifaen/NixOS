@@ -15,6 +15,7 @@ My configuration is organized as follows:
 Nixos/
 ├── flake.nix   # Main configuration entry point
 ├── flake.lock  # Lock file for flake versions
+├── hosts/      # Host-specific configurations
 ├── modules/    # Basic system configurations and essential package imports
 ├── settings/   # One-off settings, usually grouped by type (e.g., themes, services)
 ├── software/   # Modularized configurations for applications, separated by app or function
@@ -24,6 +25,8 @@ Nixos/
 ## Folder Breakdown
 
 **flake.nix & flake.lock**: Core files for flake-based reproducibility. **flake.nix** defines the system configuration and dependencies, while **flake.lock** keeps track of pinned versions.
+
+**hosts/**: Contains host-specific toggled modules (WIP)
 
 **modules/**: Contains base configurations and system imports. Here, you’ll find general settings and essential packages that don’t fit any specific category and require minimal configuration.
 

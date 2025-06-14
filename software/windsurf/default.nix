@@ -22,4 +22,11 @@
       "application/xml" = "windsurf.desktop";
     };
   };
+
+  imports = [
+    ./settings.nix
+    ./extensions.nix
+    ./keybinds.nix
+    ./snippets.nix
+  ];
 }

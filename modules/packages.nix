@@ -24,10 +24,16 @@
 
   user-manage =
     {
-      home.packages = with pkgs; [
-        brave # Second browser in case primary throws an error
-        vdhcoapp # Companion application for the Video DownloadHelper browser add-on
-        efibootmgr
+      home.packages = [
+        pkgs.brave # Second browser in case primary throws an error
+        pkgs.vdhcoapp # Companion application for the Video DownloadHelper browser add-on
+        pkgs.efibootmgr
+        pkgs.gtk3-x11 # Tool to open .desktop files from terminal or commands using gtk-launch
+        pkgs.imv # Image viewer
+        pkgs.mpv # Video viewer
+        pkgs.vlc # Media player
+        pkgs.zathura # PDF viewer
+        pkgs.libreoffice # Open Source microsoft 365 alternative
       ];
 
       # Desktop Entries. Simplified and added to Rofi
@@ -62,7 +68,7 @@
         # Note: When `libcurl-gnutls.so.4: no version information...` appears, clear Spotify's cache with `rm -rf ~/.cache/spotify`
         spotify = {
           name = "Spotify";
-          exec = "${pkgs.spotify}/bin/spotify %U";
+          exec = "env NIXOS_OZONE_WL=1 ${pkgs.spotify}/bin/spotify %U";
           icon = "spotify-client";
           mimeType = ["x-scheme-handler/spotify"];
           settings.StartupWMClass = "spotify";
@@ -76,6 +82,15 @@
           icon = "qbittorrent";
           mimeType = ["application/x-bittorrent" "x-scheme-handler/magnet"];
           categories = ["X-Rofi"];
+        };
+      };
+
+      # Allow management of XDG base directories located on $XDG_DATA_DIRS
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "image/gif" = "vlc.desktop";
+          "application/pdf" = "org.pwmt.zathura.desktop";
         };
       };
     }

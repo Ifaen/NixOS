@@ -74,4 +74,9 @@
       fi
     '';
   };
+
+  imports = [
+    ./keybinds.nix
+    ./style.nix
+  ];
 }

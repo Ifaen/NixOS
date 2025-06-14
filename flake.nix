@@ -37,8 +37,7 @@
         };
 
         modules = [
-          ./hosts/${hostname}/configuration.nix # TODO: Have toggles of each module for a more modular configuration, replacing imports.nix
-          ./hosts/${hostname}/hardware-configuration.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+          ./hosts/${hostname} # TODO: Have toggles of each module for a more modular configuration, replacing imports.nix
           ./modules/imports.nix # TODO: Remove this after the previous TODO is done
           ./modules/packages.nix
           ./modules/system.nix

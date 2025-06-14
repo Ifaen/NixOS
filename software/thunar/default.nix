@@ -14,4 +14,6 @@
     "float"
     "size 80% 80%"
   ];
+
+  imports = [./preferences.nix];
 }

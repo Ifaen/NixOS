@@ -23,8 +23,7 @@
         "stayfocused"
       ];
 
-      bind = ["super, super_l, exec, kando --menu 'HexMenu'"];
-      bindo = ["super, super_l, exec, nothing"]; # On purpose to have a way to only allow menu on short press
+      bind = ["super, alt_l, exec, kando --menu 'HexMenu'"];
     };
 
     # Symlink files

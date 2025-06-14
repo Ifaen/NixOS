@@ -21,9 +21,11 @@
       /security/networking.nix # Networking
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
+      /services/directories.nix # XDG directories
       /services/getty.nix # Autologin in TTY1
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
+      /services/portal.nix # XDG desktop portal
       /services/udisks2.nix # Allows applications to query and manipulate storage devices
 
       /shell/direnv.nix # Tool to automatically enter a nix-shell
@@ -38,55 +40,17 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
-      # Web Browser
-      /firefox/bookmarks.nix
-      /firefox/config.nix
-      /firefox/extensions.nix
-      /firefox/policies.nix
-      /firefox/settings.nix
-      /firefox/style.nix
-
-      # Window manager
-      /hyprland/config.nix
-      /hyprland/keybinds.nix
-      /hyprland/style.nix
-
-      /kando/config.nix # App / Menu Launcher
-
-      # Terminal emulator
-      /kitty/config.nix
-      /kitty/keybinds.nix
-
-      # Terminal file manager
-      /lf/config.nix
-      /lf/keybinds.nix
-      /lf/previewer.nix
-      /lf/unbinds.nix
-
-      /pywal/config.nix # Dynamic color palettes from wallpapers
-
-      /rofi/config.nix # App / Menu Launcher
-
-      # File manager
-      /thunar/config.nix
-      /thunar/preferences.nix
-
-      # Code editor
-      /windsurf/config.nix
-      /windsurf/extensions.nix
-      /windsurf/keybinds.nix
-      /windsurf/settings.nix
-      /windsurf/snippets.nix
-
-      # XDG configuration
-      /xdg/config.nix
-      /xdg/directories.nix
-      /xdg/mimeapps.nix
-      /xdg/portal.nix
-
-      # Terminal shell
-      /zsh/config.nix
-      /zsh/tools.nix
+      /firefox # Web Browser
+      /hyprland # Window manager
+      /kando # App / Menu Launcher
+      /kitty # Terminal emulator
+      /lf # Terminal file manager
+      /pywal # Dynamic color palettes from wallpapers
+      /rofi # App / Menu Launcher
+      /thunar # File manager
+      /waybar # Status bar
+      /windsurf # Code editor
+      /zsh # Terminal shell
     ]
     ++ lib.optionals (user.hostname == "notebook") [
       ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
@@ -98,17 +62,9 @@
 
       ../settings/security/protonvpn.nix # VPN GUI
 
-      # Screen recorder
-      ../software/obs/config.nix
-      ../software/obs/settings.nix
-
-      # Synchronization tool
-      ../software/syncthing/config.nix
-      ../software/syncthing/sync.nix
-
-      # Dynamic keybinds service
-      ../software/xremap/config.nix
-      ../software/xremap/keybinds.nix
+      ../software/obs # Screen recorder
+      ../software/syncthing # Synchronization tool
+      ../software/xremap # Dynamic keybinds service
     ]
     ++ lib.optionals (user.hostname == "home-server") [
       # TODO: Make a Home Server

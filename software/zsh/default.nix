@@ -29,4 +29,6 @@
   # To allow completation of zsh
   user-manage.programs.zsh.enableCompletion = true;
   environment.pathsToLink = ["/share/zsh"]; # To enable completion for system packages (e.g. systemd)
+
+  imports = [./tools.nix];
 }
