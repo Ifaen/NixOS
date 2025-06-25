@@ -12,6 +12,46 @@
 (function () {
   "use strict";
 
+  function simulateKeyPress(e, key, code) {
+    e.preventDefault();
+
+    const event = new KeyboardEvent("keydown", {
+      key: key,
+      code: code,
+      bubbles: true,
+      composed: true,
+    });
+
+    document.activeElement.dispatchEvent(event);
+  }
+
+  function clickLikeButton() {
+    // Step 1: Find the post <section>
+    const postSection = document.querySelector(
+      'section.x78zum5.x1q0g3np.xwib8y2.x1yrsyyn.x1xp8e9x.x13fuv20.x178xt8z.xdj266r.x14z9mp.xat24cr.x1lziwak.xo1ph6p.xv54qhq.xf7dkkf'
+    );
+
+    if (!postSection) {
+      console.warn("Post section not found");
+      return;
+    }
+
+    // Step 2: Inside that section, find all role="button" elements
+    const buttons = postSection.querySelectorAll('div[role="button"][tabindex="0"]');
+
+    // Step 3: Search for the button that contains a <svg> with title "Like"
+    for (const btn of buttons) {
+      const svg = btn.querySelector('svg[aria-label="Like"]');
+      if (svg) {
+        btn.click();
+        console.log("Like button clicked!");
+        return;
+      }
+    }
+
+    console.warn("Like button not found in section");
+  }
+
   function pressButton(e, classes) {
     e.preventDefault();
 
@@ -34,13 +74,6 @@
     }
   }
 
-  function giveLike() {
-    findButtonByAriaLabel(
-      ".x1i10hfl.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x16tdsg8.x1hl2dhg.xggy1nq.x1a2a7pz.x6s0dn4.xjbqb8w.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x1ypdohk.x78zum5.xl56j7k.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha.xcdnw81",
-      "Like"
-    );
-  }
-
   document.addEventListener("keydown", (e) => {
     if (e.code === "Numpad5") {
       //Find the download button
@@ -57,7 +90,7 @@
       }
 
       // Give like
-      giveLike();
+      clickLikeButton();
 
       // Unsave if needed
       findButtonByAriaLabel(
@@ -68,17 +101,17 @@
 
     // Give like
     if (e.code === "Numpad2") {
-      giveLike();
+      clickLikeButton();
     }
 
     // Previous page
     else if (e.code === "Numpad4") {
-      findButtonByAriaLabel("._abl-", "Go back");
+      simulateKeyPress(e, "ArrowLeft", "ArrowLeft");
     }
 
     // Next page
     else if (e.code === "Numpad6") {
-      findButtonByAriaLabel("._abl-", "Next");
+      simulateKeyPress(e, "ArrowRight", "ArrowRight");
     }
 
     // Previous Slide
