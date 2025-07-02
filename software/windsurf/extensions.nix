@@ -1,14 +1,29 @@
-{pkgs, ...}: {
-  user-manage = {
-    home.packages = [pkgs.alejandra]; # Needed for extension to work correctly
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
 
-    programs.vscode.profiles.default.extensions =
-      (with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide # Nix language support
-        kamadorueda.alejandra # Nix formatting plugin
-        esbenp.prettier-vscode # General formatting plugin
+  user-manage = {
+    # Needed for extensions to work correctly
+    home.packages = [
+      pkgs.alejandra
+      pkgs.nixd
+    ];
+
+    programs.vscode.profiles.default.extensions = with pkgs.nix-vscode-extensions.open-vsx;
+      [
+        jnoortheen.nix-ide # Nix language support. Used with nixd
+        kamadorueda.alejandra # Nix formatter
+        ms-python.black-formatter # Python formatter
+        esbenp.prettier-vscode # Web dev languages formatter (JS, TS, HTML, CSS, JSON)
         pkief.material-icon-theme # Icons
-      ])
+        bradlc.vscode-tailwindcss # Tailwind CSS support
+        heybourn.headwind # Sorting tailwind classes
+        bungcip.better-toml # TOML syntax support
+        formulahendry.auto-rename-tag # Autorename HTML tags
+      ]
       # NOTE: dlasagno.wal-theme is installed manually because the wal.json file is incompatible with declarative configuration
       # Extensions obtained directly from marketplace. Used sha256=pkgs.lib.fakeSha256; to get the correct sha256
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
