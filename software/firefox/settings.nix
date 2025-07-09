@@ -8,10 +8,10 @@
       "app.update.auto" = false; # Disable auto update
       ## -- Downloads
       "browser.download.dir" = user.downloads;
-      "browser.download.start_downloads_in_tmp_dir" = true;
+      "browser.download.start_downloads_in_tmp_dir" = true; # Downloads files are initialized in the /tmp folder, then moved to the browser.download.dir
 
       ## -- Visual debloat
-      "identity.fxaccounts.enabled" = false; # Disable Firefox Accounts integration (Sync)
+      "identity.fxaccounts.enabled" = true; # Enable Firefox Accounts integration (Sync)
       "extensions.screenshots.disabled" = true; # Remove access to Firefox Screenshots.
       "extensions.pocket.enabled" = false; # Remove Pocket in the Firefox UI. It does not remove it from the new tab page.
       "print.enabled" = false; # Disables print this page option
@@ -26,10 +26,9 @@
       "browser.shell.checkDefaultBrowser" = false; # Don’t check if Firefox is the default browser at startup
       "browser.translations.enable" = false; # Disable webpage translation
       "extensions.autoDisableScopes" = 0; # Automatically enable extensions
-      # Customize Firefox Suggest
-      "browser.urlbar.quicksuggest.dataCollection.enabled" = false;
-      "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
-      "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+      "browser.urlbar.quicksuggest.dataCollection.enabled" = false; # Disable quick suggest data collection
+      "browser.urlbar.suggest.quicksuggest.nonsponsored" = false; # Disable quick suggest non-sponsored
+      "browser.urlbar.suggest.quicksuggest.sponsored" = false; # Disable quick suggest sponsored
 
       ## -- Privacy (Also performance I hope, since is not sending anything)
       "dom.security.https_only_mode" = true; # Configure HTTPS-Only Mode
