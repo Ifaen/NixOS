@@ -37,7 +37,6 @@
       /themes/gtk.nix # GTK Toolkit configuration
       /themes/hyprcursor.nix # Cursor
       /themes/qt.nix # QT Toolkit configuration
-      /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
       /dunst # Notification daemon
