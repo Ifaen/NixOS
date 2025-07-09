@@ -24,16 +24,17 @@
       grub =
         {
           enable = true;
-
           devices = ["nodev"];
-
           efiSupport = true;
         }
         // lib.optionalAttrs (user.hostname == "desktop") {
           useOSProber = true; # Append entries for other OSs detected by os-prober
         };
 
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
 
       timeout = 100;
     };
@@ -58,6 +59,6 @@
     };
   };
 
-  system.stateVersion = "24.05"; # Before changing, read https://nixos.org/nixos/options.html.
+  system.stateVersion = "25.05"; # Before changing, read https://nixos.org/nixos/options.html.
   user-manage.home.stateVersion = config.system.stateVersion; # The same of the system
 }

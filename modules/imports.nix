@@ -56,7 +56,7 @@
       ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
     ]
     ++ lib.optionals (user.hostname == "desktop") [
-      ../settings/hardware/desktop.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
+      ../settings/themes/waypaper.nix # Wallpaper manager
 
       ../settings/services/ydotool.nix # Tool to move cursor using the keyboard
 
