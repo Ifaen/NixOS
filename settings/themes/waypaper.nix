@@ -20,7 +20,9 @@
       post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
         ${pkgs.pywal}/bin/wal -q -n -i $1
 
-        cp $1 ${user.cache}/wal/current-wallpaper
+        # Replace symlink of current wallpaper
+        rm ${user.cache}/wal/current-wallpaper
+        ln -s $1 ${user.cache}/wal/current-wallpaper
 
         # For Vesktop
         mkdir -p "${user.config}/vesktop/themes" # Create folder if doesn't exist
