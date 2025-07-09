@@ -28,6 +28,16 @@
   // This theme draws child items below their parent items.
   drawChildrenBelow: false,
 
+  // These colors can be configured by the user and are vailable in the CSS file as CSS
+  // variables. The default values are used if the user does not provide any values.
+  colors: {
+    "background-color": "rgb(0, 0, 0)",
+    "text-color": "rgb(255, 255, 255)",
+    "line-color": "rgb(255, 227, 233)",
+    "glow-color": "rgba(255, 30, 195, 0.85)",
+    "hover-color": "rgb(60, 28, 64)",
+  },
+
   // This theme is very simple and only uses one layer for the menu items.
   layers: [{ class: "glow-layer" }, { class: "icon-layer", content: "icon" }],
 }
