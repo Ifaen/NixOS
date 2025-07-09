@@ -40,6 +40,7 @@
       /themes/waypaper.nix # Wallpaper manager
     ]
     ++ map (path: ../software + path) [
+      /dunst # Notification daemon
       /firefox # Web Browser
       /hyprland # Window manager
       /kando # App / Menu Launcher
