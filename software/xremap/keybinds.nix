@@ -2,16 +2,6 @@
 in {
   user-manage = {
     services.xremap.config.keymap = [
-      # Cursor Keyboard
-      {
-        name = "cursor-keyboard";
-        remap = {
-          control-shift-alt-up.launch = ["ydotool" "mousemove" "--" "0" "-5"];
-          control-shift-alt-down.launch = ["ydotool" "mousemove" "--" "0" "5"];
-          control-shift-alt-left.launch = ["ydotool" "mousemove" "--" "-5" "0"];
-          control-shift-alt-right.launch = ["ydotool" "mousemove" "--" "5" "0"];
-        };
-      }
       # Headphones
       {
         name = "headphones";

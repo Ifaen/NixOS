@@ -34,100 +34,121 @@
     ${pkgs.libnotify}/bin/notify-send "Colors and Wallpaper updated" "with image: $new_wallpaper"
   ''}";
 
-  open-rofi = "${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories X-Rofi";
+  workspace-swap = "${pkgs.writeShellScript "workspace-swap" ''
+    # 1. Get the two active workspaces
+    active_ws=($(hyprctl monitors -j | ${pkgs.jq}/bin/jq '.[] | .activeWorkspace.id'))
 
-  workspace-change = "${pkgs.writeShellScript "workspace-change" ''
-    # Kill every instance, in case there was one
-    pkill rofi
-
-    # Move to numbered workspace within the same monitor
-    hyprctl dispatch workspace r~$1
-
-    # Check if workspace is empty
-    is_empty=$(hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq '.windows')
-
-    # If empty, open program
-    if [ $is_empty == 0 ]; then
-      hyprctl dispatch exec "${open-rofi}"
+    # Check if we have exactly two active workspaces
+    if [ "''${#active_ws[@]}" -ne 2 ]; then
+      echo "Error: Expected 2 active workspaces, found ''${#active_ws[@]}"
+      exit 1
     fi
+
+    ws_a="''${active_ws[0]}"
+    ws_b="''${active_ws[1]}"
+
+    # 2. Get all clients with window address, workspace, and class
+    clients_json=$(hyprctl clients -j)
+
+    # 3. Move windows from ws_a to ws_b
+    echo "$clients_json" | ${pkgs.jq}/bin/jq -r --arg wsa "$ws_a" '.[] | select(.workspace.id == ($wsa | tonumber)) | .address' | while read -r addr; do
+      hyprctl dispatch movetoworkspacesilent "$ws_b,address:$addr"
+    done
+
+    # 4. Move windows from ws_b to ws_a
+    echo "$clients_json" | ${pkgs.jq}/bin/jq -r --arg wsb "$ws_b" '.[] | select(.workspace.id == ($wsb | tonumber)) | .address' | while read -r addr; do
+      hyprctl dispatch movetoworkspacesilent "$ws_a,address:$addr"
+    done
   ''}";
 in {
-  user-manage.hyprland = {
-    input = {
-      kb_layout = "latam"; # Keyboard layout
-      kb_options = "compose:caps"; # Remap Caps-Lock key to be Compose Key
-      #drag_threshold = 10; # Amount of pixels before drag even triggers TODO: Reenable this when hyprland gets updated
+  user-manage = {
+    hyprland = {
+      input = {
+        kb_layout = "latam"; # Keyboard layout
+        kb_options = "compose:caps"; # Remap Caps-Lock key to be Compose Key
+        #drag_threshold = 10; # Amount of pixels before drag even triggers TODO: Reenable this when hyprland gets updated
+      };
+
+      #bindc = "ALT, mouse:272, togglefloating"; TODO: Reenable this when hyprland gets updated
+
+      bind = [
+        "super, s, exec, ${workspace-swap}"
+
+        # Move to numbered workspace within same monitor
+        ", F1, workspace, r~1"
+        ", F2, workspace, r~2"
+        ", F3, workspace, r~3"
+        ", F4, workspace, r~4"
+        ", F5, workspace, r~5"
+        ", F6, workspace, r~6"
+        ", F7, workspace, r~7"
+        ", F8, workspace, r~8"
+
+        # Move to adjacent workspace within same monitor
+        "super, left, workspace, m-1"
+        "super, right, workspace, m+1"
+
+        # Move window within same workspace (Also moves to the other monitor)
+        "super shift, up, movewindow, u"
+        "super shift, down, movewindow, d"
+        "super shift, left, movewindow, l"
+        "super shift, right, movewindow, r"
+
+        # Move window to numbered workspace within same monitor
+        "super, F1, movetoworkspace, r~1"
+        "super, F2, movetoworkspace, r~2"
+        "super, F3, movetoworkspace, r~3"
+        "super, F4, movetoworkspace, r~4"
+        "super, F5, movetoworkspace, r~5"
+        "super, F6, movetoworkspace, r~6"
+        "super, F7, movetoworkspace, r~7"
+        "super, F8, movetoworkspace, r~8"
+
+        # Change focus of window (Also changes focus to the other monitor)
+        "super alt, up, movefocus, u"
+        "super alt, down, movefocus, d"
+        "super alt, left, movefocus, l"
+        "super alt, right, movefocus, r"
+
+        # Screenshots
+        "super shift, s, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copy area" # Copy only
+        ", print, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copysave area" # Copy and save
+
+        # Change wallpaper with super + up and down buttons
+        "super, page_up, exec, ${on-wallpaper-change} up"
+        "super, page_down, exec, ${on-wallpaper-change} down"
+
+        # MARK: Others
+        "super, w, killactive" # Kill active Window
+        "super shift, w, killwindow" # Enter kill selection mode
+        "super, space, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons -drun-categories X-Rofi" # Open Rofi
+        ", F11, togglesplit" # Change orientation of window
+        ", F12, togglefloating" # Toggle floating attribute of window
+      ];
+
+      bindm = [
+        "super, mouse:272, movewindow" # SUPER + LMB
+        "super, mouse:273, resizewindow" # SUPER + RMB
+      ];
     };
 
-    #bindc = "ALT, mouse:272, togglefloating"; TODO: Reenable this when hyprland gets updated
+    wayland.windowManager.hyprland.extraConfig = ''
+      # Window Resize
+      bind = super, r, submap, resize
+      submap = resize
+      binde = , right, resizeactive, 10 0
+      binde = , left, resizeactive, -10 0
+      binde = , up, resizeactive, 0 -10
+      binde = , down, resizeactive, 0 10
+      bind = , escape, submap, reset
+      submap = reset
 
-    bind = [
-      # MARK: Workspaces and Windows
-      # Move to another workspace within same monitor
-      "super, left, workspace, m-1"
-      "super, right, workspace, m+1"
-
-      # Move to numbered workspace within same monitor
-      "super, 1, exec, ${workspace-change} 1"
-      "super, 2, exec, ${workspace-change} 2"
-      "super, 3, exec, ${workspace-change} 3"
-      "super, 4, exec, ${workspace-change} 4"
-      "super, 5, exec, ${workspace-change} 5"
-      "super, 6, exec, ${workspace-change} 6"
-      "super, 7, exec, ${workspace-change} 7"
-      "super, 8, exec, ${workspace-change} 8"
-      "super, 9, exec, ${workspace-change} 9"
-      "super, 0, exec, ${workspace-change} 10"
-
-      # Move window within same workspace (Also moves to the other monitor)
-      "super shift, up, movewindow, u"
-      "super shift, down, movewindow, d"
-      "super shift, left, movewindow, l"
-      "super shift, right, movewindow, r"
-
-      # Move window to numbered workspace within same monitor
-      "super shift, 1, movetoworkspace, r~1"
-      "super shift, 2, movetoworkspace, r~2"
-      "super shift, 3, movetoworkspace, r~3"
-      "super shift, 4, movetoworkspace, r~4"
-      "super shift, 5, movetoworkspace, r~5"
-      "super shift, 6, movetoworkspace, r~6"
-      "super shift, 7, movetoworkspace, r~7"
-      "super shift, 8, movetoworkspace, r~8"
-      "super shift, 9, movetoworkspace, r~9"
-      "super shift, 0, movetoworkspace, r~10"
-
-      # Change focus of window (Also changes focus to the other monitor)
-      "super alt, up, movefocus, u"
-      "super alt, down, movefocus, d"
-      "super alt, left, movefocus, l"
-      "super alt, right, movefocus, r"
-
-      # Resize active window (If there's more than one window in the workspace)
-      "super control, up, resizeactive, 0 -10"
-      "super control, down, resizeactive, 0 10"
-      "super control, left, resizeactive, -10 0"
-      "super control, right, resizeactive, 10 0"
-
-      # Screenshots
-      "super, s, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copy area" # Copy only
-      ", print, exec, ${pkgs.grimblast}/bin/grimblast --freeze --notify copysave area" # Copy and save
-
-      # Change wallpaper with super + up and down buttons
-      "super, page_up, exec, ${on-wallpaper-change} up"
-      "super, page_down, exec, ${on-wallpaper-change} down"
-
-      # MARK: Others
-      "super, q, killactive" # Kill active Window
-      #"SUPER SHIFT, Q, killwindow" # Enter kill selection mode
-      "super, w, exec, pkill rofi || ${open-rofi}" # Open Rofi
-      "super, o, togglesplit" # Change orientation of window
-      "super, v, togglefloating" # Toggle floating attribute of window
-    ];
-
-    bindm = [
-      "super, mouse:272, movewindow" # SUPER + LMB
-      "super, mouse:273, resizewindow" # SUPER + RMB
-    ];
+      # Move cursor with keys
+      #bind = super shift, r, submap, cursor
+      #submap = cursor
+      # TODO: USE YDOTOOL TO MOVE THE CURSOR WITH THE ARROW KEYS
+      #bind = , escape, submap, reset
+      #submap = reset
+    '';
   };
 }
