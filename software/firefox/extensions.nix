@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   user,
   ...
@@ -58,9 +57,9 @@ in {
         addonId = "{876119d0-ddb9-47bb-9620-bc8d2489e857}"; # Obtained from about:debugging#/runtime/this-firefox after downloading the addon under "Internal UUID"
         url = "https://addons.mozilla.org/firefox/downloads/file/4476258/${pname}-${version}.xpi";
         sha256 = "053r16bzpwxfdppq95rr17qr5v312jl91wmh2rbg9m2lbyx2rhxk"; # Obtained with nix-prefetch-url ${url}
-        meta = with pkgs.lib; {
-          homepage = "https://addons.mozilla.org/en-US/firefox/addon/visual-bookmarks-firefox/";
-          description = "Simple speed dial bookmarks page with search, add, edit, delete, and drag-and-drop functionality.";
+        meta = {
+          pkgs.lib.homepage = "https://addons.mozilla.org/en-US/firefox/addon/visual-bookmarks-firefox/";
+          pkgs.lib.description = "Simple speed dial bookmarks page with search, add, edit, delete, and drag-and-drop functionality.";
         };
       })
     ];

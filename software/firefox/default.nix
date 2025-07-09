@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   user-manage = {
     programs.firefox = {
       enable = true; # Install firefox

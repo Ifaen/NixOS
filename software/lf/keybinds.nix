@@ -1,5 +1,4 @@
 {
-  unstable-pkgs,
   pkgs,
   user,
   ...

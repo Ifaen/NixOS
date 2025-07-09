@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{pkgs, ...}: let
 in {
   user-manage = {
     services.xremap.config.keymap = [

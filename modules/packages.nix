@@ -26,7 +26,6 @@
     {
       home.packages = [
         pkgs.brave # Second browser in case primary throws an error
-        pkgs.vdhcoapp # Companion application for the Video DownloadHelper browser add-on
         pkgs.efibootmgr
         pkgs.gtk3-x11 # Tool to open .desktop files from terminal or commands using gtk-launch
         pkgs.imv # Image viewer

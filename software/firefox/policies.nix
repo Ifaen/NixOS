@@ -1,8 +1,4 @@
-{
-  lib,
-  user,
-  ...
-}: {
+{...}: {
   user-manage.programs.firefox.policies = {
     DisableFeedbackCommands = true; # Disable the menus for reporting sites (Submit Feedback, Report Deceptive Site).
 

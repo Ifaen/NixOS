@@ -1,5 +1,5 @@
 {user, ...}: {
-  security.pam.services.hyprlock = {}; # Essential for swaylock to work properly
+  security.pam.services.hyprlock = {}; # Essential for hyprlock to work properly
 
   user-manage.programs.hyprlock = {
     enable = true;

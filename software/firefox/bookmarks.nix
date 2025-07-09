@@ -1,8 +1,4 @@
-{
-  lib,
-  user,
-  ...
-}: {
+{user, ...}: {
   user-manage.programs.firefox.profiles.${user.name}.bookmarks = {
     force = true;
 
@@ -221,6 +217,10 @@
             name = "DirEnv";
             url = "https://direnv.net";
           }
+          {
+            name = "PCPartPicker";
+            url = "https://pcpartpicker.com";
+          }
         ];
       }
       # MARK: Utilities
@@ -420,6 +420,11 @@
             # Cloud Database
             name = "Google Firebase";
             url = "https://firebase.google.com";
+          }
+          {
+            # Web Fonts
+            name = "Google Fonts";
+            url = "https://fonts.google.com";
           }
         ];
       }
