@@ -70,20 +70,20 @@
       }}'';
     keybindings.mf = "make-file";
 
-    # Make a new folder
-    commands.make-folder = ''
+    # Make a new directory
+    commands.make-directory = ''
       %{{
-        echo -n " Enter folder name: "
-        read foldername
-        if [ -n "$foldername" ]; then
-          mkdir "$foldername"
-          lf -remote "send $id select $foldername"
+        echo -n " Enter directory name: "
+        read directoryname
+        if [ -n "$directoryname" ]; then
+          mkdir "$directoryname"
+          lf -remote "send $id select $directoryname"
         else
-          ${pkgs.libnotify}/bin/notify-send "Folder name cannot be empty." -t 2000
+          ${pkgs.libnotify}/bin/notify-send "Directory name cannot be empty." -t 2000
           lf -remote "send $id select $f"
         fi
       }}'';
-    keybindings.md = "make-folder";
+    keybindings.md = "make-directory";
 
     # Make a symlink for each selected file
     commands.make-symlink = ''
@@ -317,35 +317,11 @@
     commands.go-to-home = "cd ~";
     keybindings."gh" = "go-to-home";
 
-    # Go to the root directory
-    commands.go-to-root = "cd /";
-    keybindings."Gr" = "go-to-root";
-
-    # Go to the documents directory
-    commands.go-to-documents = "cd ${user.documents}";
-    keybindings."Gd" = "go-to-documents";
-
-    # Go to the downloads directory
-    commands.go-to-downloads = "cd ${user.downloads}";
-    keybindings."GD" = "go-to-downloads";
-
-    # Go to the media directory
-    commands.go-to-media = "cd ${user.media}";
-    keybindings."Gm" = "go-to-media";
-
-    # Go to the sync directory
-    commands.go-to-sync = "cd ${user.sync}";
-    keybindings."Gs" = "go-to-sync";
-
-    # Go to the nixos flake directory
-    commands.go-to-nixos = "cd ${user.flake}";
-    keybindings."Gn" = "go-to-nixos";
-
-    # Go to the nixos store directory
-    commands.go-to-nixos-store = "cd /nix/store";
-    keybindings."GN" = "go-to-nixos-store";
-
     # MARK: Utilities
+    # Select all files and folders in the current directory
+    commands.select-all = ":unselect; invert";
+    keybindings.a = "select-all";
+
     # Use unar to descompress files and delete the file
     commands.descompress-file = ''
       %{{
@@ -385,10 +361,47 @@
           fi
         fi
       }}'';
-    keybindings.Uf = "descompress-file";
-    # Select all files and folders in the current directory
-    commands.select-all = ":unselect; invert";
-    keybindings.a = "select-all";
+    keybindings.Rmf = "descompress-file";
+
+    commands.rotate-media-left = ''
+      %{{
+        name="''${f%.*}"                          # removes the last extension
+        extension="''${f##*.}"                    # extracts the last extension
+
+        file_type="$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")"
+
+        if [[ "$file_type" == image/* ]]; then
+          ${pkgs.imagemagick}/bin/convert "$f" -rotate 90 "''${name}_$RANDOM.$extension"
+        elif [[ "$file_type" == video/* ]]; then
+          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=1" "''${name}_$RANDOM.$extension"
+        else
+          ${pkgs.libnotify}/bin/notify-send "Error:" "Not an image or video file"
+        fi
+      }}'';
+    keybindings.Rl = "rotate-media-left";
+
+    commands.rotate-media-right = ''
+      %{{
+        name="''${f%.*}"                          # removes the last extension
+        extension="''${f##*.}"                    # extracts the last extension
+
+        file_type="$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")"
+
+        if [[ "$file_type" == image/* ]]; then
+          ${pkgs.imagemagick}/bin/convert "$f" -rotate -90 "''${name}_$RANDOM.$extension"
+        elif [[ "$file_type" == video/* ]]; then
+          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=2" "''${name}_$RANDOM.$extension"
+        else
+          ${pkgs.libnotify}/bin/notify-send "Error:" "Not an image or video file"
+        fi
+      }}'';
+    keybindings.Rr = "rotate-media-right";
+
+    commands.drag-and-drop = ''%{{ ${pkgs.ripdrag}/bin/ripdrag $fx }}'';
+    keybindings.Rd = "drag-and-drop";
+
+    commands.drag-and-drop-all = ''%{{ ${pkgs.ripdrag}/bin/ripdrag -A $fx }}'';
+    keybindings.RD = "drag-and-drop-all";
 
     # MARK: Mapping commands
     keybindings.c = "copy";
