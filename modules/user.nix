@@ -23,8 +23,6 @@
       username = user.name;
       homeDirectory = user.home;
     };
-
-    xdg.enable = true;
   };
 
   time = {

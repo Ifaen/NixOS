@@ -1,6 +1,8 @@
 {user, ...}: {
   user-manage = {
     xdg = {
+      enable = true; # Whether to enable management of XDG base directories
+
       cacheHome = user.cache;
       configHome = user.config;
       dataHome = user.data;
