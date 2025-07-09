@@ -33,11 +33,22 @@
         pkgs.mpv # Video viewer
         pkgs.vlc # Media player
         pkgs.zathura # PDF viewer
+        pkgs.pavucontrol # Manage audio sources
         pkgs.libreoffice # Open Source microsoft 365 alternative
+        unstable-pkgs.vdhcoapp # Companion application for the Video DownloadHelper browser add-on
       ];
 
       # Desktop Entries. Simplified and added to Rofi
       xdg.desktopEntries = {
+
+        # PavuControl. Audio manager
+        pavucontrol = {
+          name = "PavuControl";
+          exec = "${pkgs.pavucontrol}/bin/pavucontrol";
+          icon = "pavucontrol";
+          categories = ["X-Rofi"];
+        };
+
         # Discord. Chat client
         vesktop = {
           name = "Discord";
