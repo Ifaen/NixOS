@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   inputs,
   user,
@@ -22,10 +21,11 @@
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
       /services/directories.nix # XDG directories
-      /services/getty.nix # Autologin in TTY1
+      /services/gnome-keyring.nix # Keyring managing
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
       /services/portal.nix # XDG desktop portal
+      /services/sddm.nix # Autologin in TTY1
       /services/udisks2.nix # Allows applications to query and manipulate storage devices
 
       /shell/direnv.nix # Tool to automatically enter a nix-shell
