@@ -8,7 +8,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = {self, ...} @ inputs: let
+  outputs = {...} @ inputs: let
     systemFor = hostname:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -38,6 +38,7 @@
         };
 
         modules = [
+          ./hosts/imports.nix
           ./hosts/${hostname} # TODO: Have toggles of each module for a more modular configuration, replacing imports.nix
           ./modules/imports.nix # TODO: Remove this after the previous TODO is done
           ./modules/packages.nix
