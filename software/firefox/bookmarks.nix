@@ -238,11 +238,6 @@
             url = "https://www.devjobsscanner.com";
           }
           {
-            # To check if certain mail have been pwned
-            name = "haveibeenpwned";
-            url = "https://haveibeenpwned.com";
-          }
-          {
             # Compare electronics prices
             name = "SoloTodo";
             url = "https://www.solotodo.cl";
@@ -251,6 +246,27 @@
             # Cloud storage
             name = "Proton Drive";
             url = "https://drive.proton.me";
+          }
+        ];
+      }
+      # MARK: Informative
+      {
+        name = "Informative";
+        bookmarks = [
+          {
+            # Submarine Cable map
+            name = "Submarine Cable Map";
+            url = "https://www.submarinecablemap.com";
+          }
+          {
+            # To check if certain mail have been pwned
+            name = "haveibeenpwned";
+            url = "https://haveibeenpwned.com";
+          }
+          {
+            # PlanetScale Blogs
+            name = "PlanetScale Blogs";
+            url = "https://planetscale.com/blog";
           }
         ];
       }

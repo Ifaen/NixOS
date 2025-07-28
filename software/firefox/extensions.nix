@@ -38,15 +38,12 @@ in {
     (with pkgs.nur.repos.rycee.firefox-addons; [
       darkreader # Dark mode for every website
       istilldontcareaboutcookies # Get rid of cookie warnings
-      languagetool # AI-Based grammar checker
       privacy-badger # Automatically learns to block invisible trackers
       pywalfox # Pywal integration
       return-youtube-dislikes # Returns ability to see dislike statistics on youtube
       stylus # Customize the look of any website
       tampermonkey # Userscript management
       ublock-origin # Efficient ad blocker
-      video-downloadhelper # Download videos from the web. Easy, smart, no tracking
-      youtube-shorts-block # Play the Youtube shorts video as if it were a normal video.and hide “shorts" tab and videos (optional)
     ])
     # Manually added addons
     ++ [

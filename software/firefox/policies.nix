@@ -12,6 +12,11 @@
     DisableProfileImport = true; # Disables the “Import data from another browser” option in the bookmarks window.
     DisableSafeMode = true; # Disable safe mode within the browser.
 
+    # UI and Behaviour
+    DontCheckDefaultBrowser = true;
+    HardwareAcceleration = true;
+    OfferToSaveLogins = false;
+
     # Privacy
     DisableMasterPasswordCreation = true; # Require or prevent using a primary (formerly master) password
   };

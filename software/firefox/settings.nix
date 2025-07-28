@@ -48,11 +48,16 @@
       "privacy.trackingprotection.fingerprinting.enabled" = true;
     }
     // lib.optionalAttrs (user.hostname == "desktop") {
-      "layers.acceleration.disabled" = false; # Performance - Control hardware acceleration
+      #"layers.acceleration.disabled" = false; # Performance - Control hardware acceleration
 
       ## -- Restore session
       "browser.startup.page" = 3; # 0 = blank page, 1 = homepage, 3 = restore previous session
       "browser.sessionstore.resume_session_once" = false; # If true, only restore the session once, if false, always restore session
       "browser.sessionstore.resume_from_crash" = true; # Try to restore the session after a crash
+
+      ## -- TESTING
+      "gfx.webrender.all" = true;
+      "media.hardware-video-decoding.force-enabled" = true;
+      #"network.dns.disableIPv6" = true;
     };
 }

@@ -20,10 +20,21 @@
       }
 
       /* Hide close, alltabs and menu button */
+      #firefox-view-button,
+      #sidebar-button,
       .titlebar-buttonbox-container .titlebar-close,
       #alltabs-button,
       #PanelUI-button {
         display: none !important;
+      }
+
+      /* ▾ 2. shrink the title text of a tab-group ▾ */
+      .tabbrowser-tab[group] .tab-label,
+      .tabbrowser-tab[grouping="true"] .tab-label,
+      .tabbrowser-tab[group-tab]  .tab-label
+      {
+        font-size: 6px !important;
+        line-height: 1.2 !important;
       }
     '';
   };
