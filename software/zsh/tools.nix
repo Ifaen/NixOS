@@ -10,9 +10,11 @@
     home.sessionVariables._ZO_EXCLUDE_DIRS = builtins.concatStringsSep ":" [
       "${user.home}"
       "${user.downloads}/*"
-      "${user.media}/.Secrets"
-      "${user.media}/.Secrets/*"
-      "${user.media}/Personal/*"
+      # Don't store secrets and passwords in zoxide
+      "${user.documents}/.Secrets"
+      "${user.documents}/.Secrets/*"
+      # Don't store personal data in zoxide
+      "${user.documents}/Personal/*"
     ];
 
     # A better `ls` with icons

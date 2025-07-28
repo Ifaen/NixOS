@@ -5,11 +5,7 @@
   ...
 }: {
   imports =
-    [
-      inputs.home-manager.nixosModules.home-manager # Imports home-manager as a nixos module
-      inputs.nur.modules.nixos.default # Adds the NUR overlay
-    ]
-    ++ map (path: ../settings + path) [
+    map (path: ../settings + path) [
       /aliases/home-manager.nix # Aliases under home-manager
       /aliases/nixos.nix # Aliases under nixos
 
@@ -42,7 +38,7 @@
       /dunst # Notification daemon
       /firefox # Web Browser
       /hyprland # Window manager
-      /kando # App / Menu Launcher
+      #/kando # App / Menu Launcher FIXME: Make it declarative
       /kitty # Terminal emulator
       /lf # Terminal file manager
       /pywal # Dynamic color palettes from wallpapers

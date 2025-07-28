@@ -22,10 +22,7 @@
     backupFileExtension = "backup";
   };
 
-  user-manage =
-    {
-      home.packages = [
-        pkgs.brave # Second browser in case primary throws an error
+  user-manage.home.packages = [
         pkgs.efibootmgr
         pkgs.gtk3-x11 # Tool to open .desktop files from terminal or commands using gtk-launch
         pkgs.imv # Image viewer
@@ -38,8 +35,7 @@
       ];
 
       # Desktop Entries. Simplified and added to Rofi
-      xdg.desktopEntries = {
-
+  user-manage.xdg.desktopEntries = {
         # PavuControl. Audio manager
         pavucontrol = {
           name = "PavuControl";
@@ -96,19 +92,18 @@
       };
 
       # Allow management of XDG base directories located on $XDG_DATA_DIRS
-      xdg.mimeApps = {
+  user-manage.xdg.mimeApps = {
         enable = true;
         defaultApplications = {
           "image/gif" = "vlc.desktop";
           "application/pdf" = "org.pwmt.zathura.desktop";
         };
       };
-    }
-    // lib.optionalAttrs (user.hostname == "desktop") {
-      hyprland = {
-        exec-once = ["[workspace 11 silent] ${pkgs.spotify}/bin/spotify"];
 
-        windowrulev2 = ["opacity 0.95, class:(Spotify)"];
-      };
+  user-manage.hyprland = {
+        exec-once = ["[workspace 11 silent] ${pkgs.spotify}/bin/spotify"];
+    windowrulev2 = [
+      "opacity 0.95, class:(Spotify)"
+    ];
     };
 }

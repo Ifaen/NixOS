@@ -4,6 +4,14 @@
   ];
 
   config = {
-    davinciResolve.enable = true;
+    # Browsers
+    brave.enable = true;
+    google-chrome.enable = true;
+
+    # Tools
+    olive-editor.enable = true;
+
+    # Utilities
+    ripdrag.enable = true;
   };
 }

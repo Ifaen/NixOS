@@ -13,12 +13,12 @@
 
         createDirectories = true; # Create the directories if not created already
 
-        documents = user.documents;
         download = user.downloads;
-        # - Make all media be stored in the same folder
-        pictures = user.media;
-        videos = user.media;
-        music = user.media;
+        # - Make all media and documents be stored in the same folder
+        documents = user.documents;
+        pictures = user.documents;
+        videos = user.documents;
+        music = user.documents;
 
         extraConfig.XDG_SCREENSHOTS_DIR = user.screenshots; # Used by Grimblast
 
@@ -33,7 +33,6 @@
       "file://${user.flake}"
       "file://${user.documents}"
       "file://${user.downloads}"
-      "file://${user.media}"
       "file://${user.sync}"
     ];
   };

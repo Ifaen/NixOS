@@ -9,41 +9,44 @@
       pkgs.swww # Software to change wallpapers, used by waypaper as backend
     ];
 
-    xdg.configFile."waypaper/config.ini".text = ''
-      [Settings]
-      backend = swww
-      color = #ffffff
-      fill = Fill
-      folder = ${user.wallpapers}
-      language = en
-      monitors = All
-      post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
-        ${pkgs.pywal}/bin/wal -q -n -i $1
+    xdg.configFile."waypaper/config.ini" = {
+      force = true;
+      text = ''
+        [Settings]
+        backend = swww
+        color = #ffffff
+        fill = Fill
+        folder = ${user.wallpapers}
+        language = en
+        monitors = All
+        post_command = ${pkgs.writeShellScript "on-wallpaper-change" ''
+          ${pkgs.pywal}/bin/wal -q -n -i $1
 
-        # Replace symlink of current wallpaper
-        rm ${user.cache}/wal/current-wallpaper
-        ln -s $1 ${user.cache}/wal/current-wallpaper
+          # Replace symlink of current wallpaper
+          rm ${user.cache}/wal/current-wallpaper
+          ln -s $1 ${user.cache}/wal/current-wallpaper
 
-        # For Vesktop
-        mkdir -p "${user.config}/vesktop/themes" # Create folder if doesn't exist
-        cp ${user.cache}/wal/colors-discord.css ${user.config}/vesktop/themes/pywal-vencord.theme.css # Copy file
+          # For Vesktop
+          mkdir -p "${user.config}/vesktop/themes" # Create folder if doesn't exist
+          cp ${user.cache}/wal/colors-discord.css ${user.config}/vesktop/themes/pywal-vencord.theme.css # Copy file
 
-        # For Firefox
-        ${pkgs.pywalfox-native}/bin/pywalfox update
+          # For Firefox
+          ${pkgs.pywalfox-native}/bin/pywalfox update
 
-        # For Kando
-        ${pkgs.kando}/bin/kando --reload-menu-theme
+          # For Kando
+          # ${pkgs.kando}/bin/kando --reload-menu-theme
 
-        pkill waypaper
-      ''} $wallpaper
-      show_hidden = False
-      sort = name
-      subfolders = False
-      swww_transition_angle = 60
-      swww_transition_fps = 60
-      swww_transition_type = wipe
-      swww_transition_duration = 1
-    '';
+          pkill waypaper
+        ''} $wallpaper
+        show_hidden = False
+        sort = name
+        subfolders = False
+        swww_transition_angle = 60
+        swww_transition_fps = 60
+        swww_transition_type = wipe
+        swww_transition_duration = 1
+      '';
+    };
 
     xdg.desktopEntries.waypaper = {
       name = "Waypaper";

@@ -1,0 +1,19 @@
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  options.olive-editor.enable = lib.mkEnableOption "Enable Olive Editor";
+
+  config = lib.mkIf config.olive-editor.enable {
+    user-manage.home.packages = [pkgs.olive-editor];
+
+    user-manage.xdg.desktopEntries."olive-editor" = {
+      name = "Olive Editor";
+      exec = "env XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:XDG_DATA_DIRS olive-editor";
+      icon = "olive-editor";
+      categories = ["X-Rofi"];
+    };
+  };
+}

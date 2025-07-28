@@ -50,9 +50,9 @@
     "d ${user.downloads} 0701 ${user.name} users -" # Allows All to traverse Downloads folder
     "d ${user.downloads}/QBitTorrent 0770 ${user.name} media -" # Allows Media group to control QBitTorrent folder
     # Allows Media group to control Entertainment folder and subdirectories
-    "d ${user.media}/Entertainment 0750 ${user.name} media -"
-    "d ${user.media}/Entertainment/Shows 0770 ${user.name} media -"
-    "d ${user.media}/Entertainment/Movies 0770 ${user.name} media -"
-    "d ${user.media}/Entertainment/Music 0770 ${user.name} media -"
+    "d ${user.documents}/Entertainment 0750 ${user.name} media -"
+    "d ${user.documents}/Entertainment/Shows 0770 ${user.name} media -"
+    "d ${user.documents}/Entertainment/Movies 0770 ${user.name} media -"
+    "d ${user.documents}/Entertainment/Music 0770 ${user.name} media -"
   ];
 }

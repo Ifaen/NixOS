@@ -397,11 +397,11 @@
       }}'';
     keybindings.Rr = "rotate-media-right";
 
-    commands.drag-and-drop = ''%{{ ${pkgs.ripdrag}/bin/ripdrag $fx }}'';
-    keybindings.Rd = "drag-and-drop";
+    commands.drag-and-drop = ''%{{ ripdrag $fx }}'';
+    keybindings.dd = "drag-and-drop";
 
-    commands.drag-and-drop-all = ''%{{ ${pkgs.ripdrag}/bin/ripdrag -A $fx }}'';
-    keybindings.RD = "drag-and-drop-all";
+    commands.drag-and-drop-all = ''%{{ ripdrag -A $fx }}'';
+    keybindings.dD = "drag-and-drop-all";
 
     # MARK: Mapping commands
     keybindings.c = "copy";
