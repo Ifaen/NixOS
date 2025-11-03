@@ -20,7 +20,7 @@
         esbenp.prettier-vscode # Web dev languages formatter (JS, TS, HTML, CSS, JSON)
         pkief.material-icon-theme # Icons
         bradlc.vscode-tailwindcss # Tailwind CSS support
-        heybourn.headwind # Sorting tailwind classes
+        #heybourn.headwind # Sorting tailwind classes
         bungcip.better-toml # TOML syntax support
         formulahendry.auto-rename-tag # Autorename HTML tags
       ]

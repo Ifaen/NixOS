@@ -26,13 +26,16 @@
       "x-scheme-handler/https" = "firefox.desktop";
     };
 
-    hyprland.windowrulev2 = map (rule: rule + ", title:(Picture-in-Picture)") [
-      "center 1"
-      "float"
-      "pin" # Show in all workspaces. Float only
-      "noinitialfocus"
-      "size 30% 30%"
-    ];
+    hyprland = {
+      exec-once = ["[workspace 2] firefox"];
+      windowrulev2 = map (rule: rule + ", title:(Picture-in-Picture)") [
+        "center 1"
+        "float"
+        "pin" # Show in all workspaces. Float only
+        "noinitialfocus"
+        "size 30% 30%"
+      ];
+    };
   };
 
   imports = [

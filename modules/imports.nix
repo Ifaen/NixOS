@@ -17,7 +17,6 @@
       /security/polkit.nix # Policy kit (to grant system privileges to user)
 
       /services/directories.nix # XDG directories
-      /services/gnome-keyring.nix # Keyring managing
       /services/hypridle.nix # Idle management daemon
       /services/pipewire.nix # Every sound related service
       /services/portal.nix # XDG desktop portal
@@ -35,7 +34,7 @@
       /themes/qt.nix # QT Toolkit configuration
     ]
     ++ map (path: ../software + path) [
-      /dunst # Notification daemon
+      #/dunst # Notification daemon
       /firefox # Web Browser
       /hyprland # Window manager
       #/kando # App / Menu Launcher FIXME: Make it declarative
@@ -47,9 +46,6 @@
       /waybar # Status bar
       /windsurf # Code editor
       /zsh # Terminal shell
-    ]
-    ++ lib.optionals (user.hostname == "notebook") [
-      ../settings/hardware/power-management.nix # Control cpu performance with battery and charger
     ]
     ++ lib.optionals (user.hostname == "desktop") [
       ../settings/themes/waypaper.nix # Wallpaper manager

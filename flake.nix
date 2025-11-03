@@ -6,6 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     xremap-flake.url = "github:xremap/nix-flake";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    caelestia-shell.url = "github:caelestia-dots/shell";
   };
 
   outputs = {...} @ inputs: let

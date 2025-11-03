@@ -86,7 +86,7 @@
     keybindings.md = "make-directory";
 
     # Make a symlink for each selected file
-    commands.make-symlink = ''
+    commands.make-symlink-absolute = ''
       %{{
         while IFS= read -r path; do
           ln -s "$path" "$PWD/link_$(basename $(dirname "$path"))_$(basename "$path")"
@@ -94,7 +94,18 @@
 
         lf -remote "send $id unselect"
       }}'';
-    keybindings.ms = "make-symlink";
+    keybindings.msa = "make-symlink-absolute";
+
+    # Make a symlink for each selected file
+    commands.make-symlink-relative = ''
+      %{{
+        while IFS= read -r path; do
+          ln -s "$(realpath --relative-to="$PWD" "$path")" "$PWD/link_$(basename "$(dirname "$path")")_$(basename "$path")"
+        done <<< "$fx"
+
+        lf -remote "send $id unselect"
+      }}'';
+    keybindings.msr = "make-symlink-relative";
 
     # MARK: Modify
     # Modify the ownership of folders and files for the user. If empty, automatically use own username
@@ -244,7 +255,7 @@
         elif [ -e "$new_name" ]; then
           ${pkgs.libnotify}/bin/notify-send "Error:" "The file '$new_name' already exists. Choose a different name."
           lf -remote "send $id select $f"
-          
+        
         # Announce the new name
         else
           ${pkgs.libnotify}/bin/notify-send "Renamed '$(basename $f)' to '$new_name'."
@@ -371,14 +382,14 @@
         file_type="$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")"
 
         if [[ "$file_type" == image/* ]]; then
-          ${pkgs.imagemagick}/bin/convert "$f" -rotate 90 "''${name}_$RANDOM.$extension"
+          ${pkgs.imagemagick}/bin/convert "$f" -rotate -90 "''${name}_$RANDOM.$extension"
         elif [[ "$file_type" == video/* ]]; then
-          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=1" "''${name}_$RANDOM.$extension"
+          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=2" "''${name}_$RANDOM.$extension"
         else
           ${pkgs.libnotify}/bin/notify-send "Error:" "Not an image or video file"
         fi
       }}'';
-    keybindings.Rl = "rotate-media-left";
+    keybindings."R<left>" = "rotate-media-left";
 
     commands.rotate-media-right = ''
       %{{
@@ -388,14 +399,14 @@
         file_type="$(${pkgs.file}/bin/file -Lb --mime-type -- "$f")"
 
         if [[ "$file_type" == image/* ]]; then
-          ${pkgs.imagemagick}/bin/convert "$f" -rotate -90 "''${name}_$RANDOM.$extension"
+          ${pkgs.imagemagick}/bin/convert "$f" -rotate 90 "''${name}_$RANDOM.$extension"
         elif [[ "$file_type" == video/* ]]; then
-          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=2" "''${name}_$RANDOM.$extension"
+          ${pkgs.ffmpeg}/bin/ffmpeg -i "$f" -vf "transpose=1" "''${name}_$RANDOM.$extension"
         else
           ${pkgs.libnotify}/bin/notify-send "Error:" "Not an image or video file"
         fi
       }}'';
-    keybindings.Rr = "rotate-media-right";
+    keybindings."R<right>" = "rotate-media-right";
 
     commands.drag-and-drop = ''%{{ ripdrag $fx }}'';
     keybindings.dd = "drag-and-drop";
