@@ -6,7 +6,6 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     xremap-flake.url = "github:xremap/nix-flake";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    caelestia-shell.url = "github:caelestia-dots/shell";
   };
 
   outputs = {...} @ inputs: let
@@ -39,9 +38,7 @@
 
         modules = [
           ./imports.nix
-          ./hosts/${hostname} # TODO: Have toggles of each module for a more modular configuration, replacing imports.nix
-          ./modules/imports.nix # TODO: Remove this after the previous TODO is done
-          ./modules/packages.nix
+          ./hosts/${hostname}
           ./modules/system.nix
           ./modules/user.nix
         ];

@@ -1,5 +1,5 @@
 {user, ...}: {
-  user-configuration = {
+  users.users.${user.name} = {
     isNormalUser = true;
 
     description = user.fullname;
@@ -23,6 +23,8 @@
       username = user.name;
       homeDirectory = user.home;
     };
+
+    xdg.mimeApps.enable = true;
   };
 
   time = {

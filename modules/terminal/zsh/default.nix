@@ -5,7 +5,7 @@
 }: {
   # Make ZSH the default shell for users
   users.defaultUserShell = pkgs.zsh;
-  user-configuration.useDefaultShell = true; # If true, the user's shell will be set to users.defaultUserShell
+  users.users.${user.name}.useDefaultShell = true; # If true, the user's shell will be set to users.defaultUserShell
 
   programs.zsh.enable = true; # Enable zsh
   user-manage.programs.zsh.enable = true; # Allow home-manager to manage config file

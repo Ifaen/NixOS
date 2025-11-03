@@ -1,7 +1,6 @@
 {...}: {
   user-manage = {
     options,
-    config,
     lib,
     ...
   }: {

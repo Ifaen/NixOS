@@ -21,7 +21,6 @@
   };
 
   user-manage.home.packages = [
-    pkgs.efibootmgr
     pkgs.gtk3-x11 # Tool to open .desktop files from terminal or commands using gtk-launch
     pkgs.imv # Image viewer
     pkgs.mpv # Video viewer
@@ -30,16 +29,6 @@
     pkgs.pavucontrol # Manage audio sources
     pkgs.libreoffice # Open Source microsoft 365 alternative
     unstable-pkgs.vdhcoapp # Companion application for the Video DownloadHelper browser add-on
-
-    pkgs.hunspell # Spell checker
-    pkgs.hunspellDicts.en_US # English spell checker
-    pkgs.hunspellDicts.es_ES # Spanish spell checker
-    pkgs.hunspellDicts.de_DE # German spell checker
-
-    inputs.caelestia-shell.packages.${pkgs.system}.default
-
-    unstable-pkgs.signal-desktop
-    unstable-pkgs.telegram-desktop
   ];
 
   # Desktop Entries. Simplified and added to Rofi
@@ -100,14 +89,12 @@
   };
 
   # Allow management of XDG base directories located on $XDG_DATA_DIRS
-  user-manage.xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "image/gif" = "vlc.desktop";
-      "application/pdf" = "org.pwmt.zathura.desktop";
-    };
+  user-manage.xdg.mimeApps.defaultApplications = {
+    "image/gif" = "vlc.desktop";
+    "application/pdf" = "org.pwmt.zathura.desktop";
   };
 
+  # Hyprland specific settings
   user-manage.hyprland = {
     exec-once = ["[workspace 11 silent] ${pkgs.spotify}/bin/spotify"];
     windowrulev2 = [

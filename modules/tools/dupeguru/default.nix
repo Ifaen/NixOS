@@ -1,19 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
-  options.dupeguru.enable = lib.mkEnableOption "Enable DupeGuru";
+{pkgs, ...}: {
+  user-manage.home.packages = [pkgs.dupeguru];
 
-  config = lib.mkIf config.dupeguru.enable {
-    user-manage.home.packages = [pkgs.dupeguru];
-
-    user-manage.xdg.desktopEntries."dupeguru" = {
-      name = "DupeGuru";
-      exec = "dupeguru";
-      icon = "dupeguru";
-      categories = ["X-Rofi"];
-    };
+  user-manage.xdg.desktopEntries."dupeguru" = {
+    name = "DupeGuru";
+    exec = "dupeguru";
+    icon = "dupeguru";
+    categories = ["X-Rofi"];
   };
 }
