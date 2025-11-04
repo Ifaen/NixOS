@@ -29,6 +29,15 @@
     pkgs.pavucontrol # Manage audio sources
     pkgs.libreoffice # Open Source microsoft 365 alternative
     unstable-pkgs.vdhcoapp # Companion application for the Video DownloadHelper browser add-on
+
+    # pkgs.efibootmgr
+    unstable-pkgs.signal-desktop
+    unstable-pkgs.telegram-desktop
+
+    pkgs.hunspell # Spell checker
+    pkgs.hunspellDicts.en_US # English spell checker
+    pkgs.hunspellDicts.es_ES # Spanish spell checker
+    pkgs.hunspellDicts.de_DE # German spell checker
   ];
 
   # Desktop Entries. Simplified and added to Rofi

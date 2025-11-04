@@ -1,14 +1,19 @@
-{user, ...}: {
+{
+  lib,
+  user,
+  ...
+}: {
   users.users.${user.name} = {
     isNormalUser = true;
 
     description = user.fullname;
 
-    extraGroups = [
-      "networkmanager" # To allow NetworkManager to connect to the internet
-      "wheel" # To allow sudo
-      "storage" # For disk management in file managers
-    ];
+    extraGroups =
+      [
+        "networkmanager" # To allow NetworkManager to connect to the internet
+        "wheel" # To allow sudo
+      ]
+      ++ lib.optional (user.hostname == "desktop") "storage"; # For disk management in file managers
 
     # NOTE: To generate a hashed password run `mkpasswd`
     hashedPassword = "$6$mPfCRmBsa0vLp6Hl$kw2/2SpSr9UdqzZ65.4/D0cmgyERlhy0VM.OS8KHmdc5bZW2CY7oyz8JZL2hp1yBi2FIkeJdjFdyI9ketviG11";

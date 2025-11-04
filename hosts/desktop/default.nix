@@ -24,6 +24,7 @@
       /security/networking.nix # Networking
       /security/polkit.nix # Policy kit (to grant system privileges to user)
       /security/protonvpn.nix # VPN GUI
+      /security/ssh.nix # SSH configuration
       # /security/sudo.nix # Sudo configuration
 
       #/services/kando # App / Menu Launcher FIXME: Make it declarative
@@ -65,7 +66,6 @@
       /themes/qt.nix # QT Toolkit configuration
 
       /utilities/ripdrag # Drag and drop application
-      /utilities/power-management # Power management
     ];
 
   user-manage.imports = [

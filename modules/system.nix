@@ -36,7 +36,10 @@
         efiSysMountPoint = "/boot";
       };
 
-      timeout = 100;
+      timeout =
+        if user.hostname == "desktop"
+        then 100 # Timeout for desktop is longer because of dual boot
+        else 5;
     };
 
     tmp.cleanOnBoot = true;

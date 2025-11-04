@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: {
+{user, ...}: {
   # Yet another nix cli helper
   programs.nh = {
     enable = true;
