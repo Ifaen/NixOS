@@ -36,7 +36,7 @@
       # This way allows to work with pywal while being compatible with nixos
       "kando/menu-themes/hexperiment/theme.css".text = ''
         @import "${user.cache}/wal/colors-kando.css";
-        @import "${user.flake}/software/kando/menu-themes/hexperiment/theme.css";
+        @import "${user.flake}/modules/tools/kando/menu-themes/hexperiment/theme.css";
       '';
     };
   };

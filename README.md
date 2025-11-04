@@ -16,9 +16,7 @@ Nixos/
 ├── flake.nix   # Main configuration entry point
 ├── flake.lock  # Lock file for flake versions
 ├── hosts/      # Host-specific configurations
-├── modules/    # Basic system configurations and essential package imports
-├── settings/   # One-off settings, usually grouped by type (e.g., themes, services)
-├── software/   # Modularized configurations for applications, separated by app or function
+├── modules/    # Configuration files separated by application, function or category
 └── unused/     # Archived configurations for apps/settings not currently in use
 ```
 
@@ -26,13 +24,9 @@ Nixos/
 
 **flake.nix & flake.lock**: Core files for flake-based reproducibility. **flake.nix** defines the system configuration and dependencies, while **flake.lock** keeps track of pinned versions.
 
-**hosts/**: Contains host-specific toggled modules (WIP)
+**hosts/**: Contains specific modules imports and hardware configurations for each host
 
-**modules/**: Contains base configurations and system imports. Here, you’ll find general settings and essential packages that don’t fit any specific category and require minimal configuration.
-
-**settings/**: Houses settings for applications that generally fit within a single category, such as system security, services, themes, aliases, or any app that doesn’t need extensive / modularized configuration.
-
-**software/**: Reserved for applications or tools that benefit from being broken down into individual files for easier categorization and modular management.
+**modules/**: Contains configurations files separated by application, function or category
 
 **unused/**: A storage area for currently unused configurations. I keep these files around as a reference or for potential future needs.
 

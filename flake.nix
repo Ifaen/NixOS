@@ -37,7 +37,6 @@
         };
 
         modules = [
-          ./imports.nix
           ./hosts/${hostname}
           ./modules/system.nix
           ./modules/user.nix

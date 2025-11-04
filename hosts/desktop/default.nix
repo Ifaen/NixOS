@@ -6,14 +6,14 @@
       inputs.home-manager.nixosModules.home-manager # Imports home-manager as a nixos module
       inputs.nur.modules.nixos.default # Adds the NUR overlay
     ]
-    ++ map (path: ./modules + path) [
+    ++ map (path: ../../modules + path) [
       /aliases/home-manager.nix # Aliases under home-manager
       /aliases/nixos.nix # Aliases under nixos
 
-      /browsers/brave # Brave browser
+      /browsers/brave.nix # Brave browser
       /browsers/firefox # Firefox browser
-      /browsers/google-chrome # Google Chrome browser
-      /browsers/mullvad # Mullvad browser
+      /browsers/google-chrome.nix # Google Chrome browser
+      /browsers/mullvad.nix # Mullvad browser
 
       /hyprland # Window manager
 
@@ -67,4 +67,8 @@
       /utilities/ripdrag # Drag and drop application
       /utilities/power-management # Power management
     ];
+
+  user-manage.imports = [
+    inputs.xremap-flake.homeManagerModules.default # Import xremap-flake home-manager modules
+  ];
 }

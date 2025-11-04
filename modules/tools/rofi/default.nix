@@ -12,7 +12,7 @@
 
       terminal = "${pkgs.foot}/bin/foot";
 
-      theme = lib.mkForce "${user.flake}/software/rofi/style.rasi";
+      theme = lib.mkForce "${user.flake}/modules/tools/rofi/style.rasi";
 
       extraConfig = {
         show-icons = true;
