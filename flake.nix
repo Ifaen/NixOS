@@ -46,6 +46,7 @@
     nixosConfigurations = {
       desktop = systemFor "desktop";
       notebook = systemFor "notebook";
+      server = systemFor "server";
     };
   };
 }

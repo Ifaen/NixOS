@@ -34,7 +34,7 @@
         };
       };
     }
-    ++ lib.optionalAttrs (user.hostname != "server") {
+    // lib.optionalAttrs (user.hostname != "server") {
       gtk.gtk3.bookmarks = [
         "file://${user.flake}"
         "file://${user.documents}"

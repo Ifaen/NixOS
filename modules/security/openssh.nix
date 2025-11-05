@@ -5,14 +5,14 @@ in {
     enable = true;
     settings = {
       Port = port;
-      PermitRootLogin = false;
+      PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
   };
 
-  networking.firewall = {
-    allowedTCPPorts = [port];
-  };
+  #networking.firewall = {
+  #  allowedTCPPorts = [port];
+  #};
 
   ## Prevent brute force attacks
   # Ban IP that try to connect to SSH
@@ -24,9 +24,9 @@ in {
   };
 
   # SSH tarpit that slows down malicious or automated SSH connection attempts by indefinitely delaying connections
-  services.endlessh = {
-    enable = true;
-    port = port;
-    openFirewall = true;
-  };
+  #services.endlessh = {
+  #  enable = true;
+  #  port = port;
+  #  openFirewall = true;
+  #};
 }
