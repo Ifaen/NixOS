@@ -1,0 +1,6 @@
+{...}:{
+  services.nextcloud = {
+    enable = true;
+    
+  };
+}

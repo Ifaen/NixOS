@@ -34,6 +34,7 @@
       /services/portal.nix # XDG desktop portal
       /services/sddm.nix # Autologin in TTY1
       /services/syncthing # Synchronization tool
+      /services/tailscale.nix # Tailscale services for remote access
       /services/udisks2.nix # Allows applications to query and manipulate storage devices
       #/services/wireguard.nix # VPN service
       /services/xremap # Dynamic keybinds service
@@ -65,7 +66,7 @@
       /themes/hyprcursor.nix # Cursor
       /themes/qt.nix # QT Toolkit configuration
 
-      /utilities/ripdrag # Drag and drop application
+      /utilities/ripdrag.nix # Drag and drop application
     ];
 
   user-manage.imports = [

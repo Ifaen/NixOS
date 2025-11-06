@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   port = 5432;
 in {
   services.openssh = {
@@ -7,21 +7,37 @@ in {
       Port = port;
       PermitRootLogin = "no";
       PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
   };
 
-  #networking.firewall = {
-  #  allowedTCPPorts = [port];
-  #};
+  # Allow firewall port to accept SSH connections
+  /*networking.firewall = {
+    allowedTCPPorts = [port];
+    allowedUDPPorts = [port];
+  };*/
+
+  # Allow Windsurf to connect to SSH
+  /*programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      zlib
+      openssl
+      curl
+      libssh2
+    ];
+  };*/
+
 
   ## Prevent brute force attacks
   # Ban IP that try to connect to SSH
-  services.fail2ban = {
+  /*services.fail2ban = {
     enable = true;
     ignoreIP = ["192.168.0.0/16"]; # Local Subnet
     maxretry = 5; # Ban IP after 5 failures
     bantime = "24h"; # Ban IPs for one day on the first ban
-  };
+  };*/
 
   # SSH tarpit that slows down malicious or automated SSH connection attempts by indefinitely delaying connections
   #services.endlessh = {
