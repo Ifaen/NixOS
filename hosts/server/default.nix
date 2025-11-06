@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports =
     [
       ./hardware-configuration.nix # WARNING: INITIALLY REPLACE CONTENT WITH /etc/nixos/hardware-configuration.nix
@@ -20,7 +24,7 @@
       /terminal/zsh # Terminal shell
       /terminal/git.nix # Code version control
       /terminal/nh.nix # Nix Helper
-      
+
       /utilities/auto-cpufreq.nix # Change the CPU governor based on the power source
     ];
 
