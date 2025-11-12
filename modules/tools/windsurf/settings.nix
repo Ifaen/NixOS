@@ -20,6 +20,9 @@
     "editor.tabSize" = 2; # Make the tab size to be 2 spaces
 
     # Language specific options
+    "[less]" = {
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
+    };
     "[javascript]" = {
       "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "javascript.updateImportsOnFileMove.enabled" = "always";
@@ -43,6 +46,7 @@
       "editor.defaultFormatter" = "ms-python.black-formatter";
       "editor.tabSize" = 4;
     };
+
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "nixd";
     "[nix]" = {

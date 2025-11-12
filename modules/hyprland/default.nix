@@ -52,20 +52,16 @@
           "6, monitor:HDMI-A-1"
           "7, monitor:HDMI-A-1"
           "8, monitor:HDMI-A-1"
-          "9, monitor:HDMI-A-1"
-          "10, monitor:HDMI-A-1"
 
           # Second monitor
-          "11, monitor:DP-3, default:1"
+          "9, monitor:DP-3, default:1"
+          "10, monitor:DP-3"
+          "11, monitor:DP-3"
           "12, monitor:DP-3"
           "13, monitor:DP-3"
           "14, monitor:DP-3"
           "15, monitor:DP-3"
           "16, monitor:DP-3"
-          "17, monitor:DP-3"
-          "18, monitor:DP-3"
-          "19, monitor:DP-3"
-          "20, monitor:DP-3"
         ];
       };
   };

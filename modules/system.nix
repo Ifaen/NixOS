@@ -38,7 +38,7 @@
 
       timeout =
         if user.hostname == "desktop"
-        then 100 # Timeout for desktop is longer because of dual boot
+        then 60 # Timeout for desktop is longer because of dual boot
         else 5;
     };
 

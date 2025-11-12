@@ -29,7 +29,7 @@
 
       #/services/kando # App / Menu Launcher FIXME: Make it declarative
       /services/hypridle.nix # Idle management daemon
-      /services/mako # Notification daemon
+      /services/mako.nix # Notification daemon
       /services/pipewire.nix # Every sound related service
       /services/portal.nix # XDG desktop portal
       /services/sddm.nix # Autologin in TTY1

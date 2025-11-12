@@ -23,7 +23,7 @@
         #heybourn.headwind # Sorting tailwind classes
         bungcip.better-toml # TOML syntax support
         formulahendry.auto-rename-tag # Autorename HTML tags
-        tailscale.tailscale # Needed to connect to server repository
+        tailscale.vscode-tailscale # Needed to connect to server repository
       ]
       # NOTE: dlasagno.wal-theme is installed manually because the wal.json file is incompatible with declarative configuration
       # Extensions obtained directly from marketplace. Used sha256=pkgs.lib.fakeSha256; to get the correct sha256

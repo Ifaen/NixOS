@@ -1,0 +1,25 @@
+#custom-user,
+#window label,
+#mpris,
+tooltip label {
+	font-weight: normal;
+}
+
+#workspaces button.active label {
+	font-size: 20px;
+}
+
+#custom-distro {
+	font-size: 22px;
+}
+
+#custom-power_menu {
+	font-size: 19px;
+}
+
+#custom-left_div,
+#custom-left_inv,
+#custom-right_div,
+#custom-right_inv {
+	font-size: 22px;
+}

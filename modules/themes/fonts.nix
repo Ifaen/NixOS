@@ -1,11 +1,21 @@
 {pkgs, ...}: {
-  fonts = {
-    fontDir.enable = true;
+  user-manage = {
+    home.packages = with pkgs.nerd-fonts;
+      [
+        fira-code
+        fira-mono
+        symbols-only
+      ]
+      ++ [pkgs.font-awesome];
 
-    packages = with pkgs.nerd-fonts; [
-      fira-code
-      fira-mono
-      symbols-only
-    ];
+    fonts.fontconfig = {
+      enable = true;
+
+      defaultFonts = {
+        monospace = [
+          "FiraCodeNerdFont"
+        ];
+      };
+    };
   };
 }

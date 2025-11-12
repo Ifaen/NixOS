@@ -1,12 +1,11 @@
 {user, ...}: {
   programs.ssh = {
-    extraConfig =
-      ''
-        Host gitlab.com
-          User git
-          IdentityFile ~/.ssh/gitlab
-      ''
-      ++ (
+    extraConfig = ''
+      Host gitlab.com
+        User git
+        IdentityFile ~/.ssh/gitlab
+
+      ${
         if user.hostname == "desktop"
         then ''
           Host homelab
@@ -16,6 +15,7 @@
             IdentityFile ~/.ssh/homelab
         ''
         else ""
-      );
+      }
+    '';
   };
 }
